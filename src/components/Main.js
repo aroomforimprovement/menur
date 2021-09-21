@@ -105,7 +105,7 @@ const suggestionList = state.suggestions.map((suggestion, i) => {
             <Header className='header'/>
             <div className='container'>
                 <div className='row'>
-                    <div className='selector col col-4'>
+                    <div className='selector col col-5'>
                         <FormGroup >
                             <Label for='dishSelect'>What are you making?</Label><br/>
                             <Input type='select' name='select' id='dishSelect'
@@ -119,7 +119,7 @@ const suggestionList = state.suggestions.map((suggestion, i) => {
                     </div>
                     <div className='suggestions col col-6 ms-4'>
                         <h4>Suggestions</h4>
-                        <ul className='list-unstyled' >
+                        <ul className='list-unstyled'>
                             {suggestionList}
                         </ul>
                     </div>
