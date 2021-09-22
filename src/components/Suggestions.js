@@ -42,7 +42,7 @@ export const Suggestions = () => {
         
         const ingredients = suggestion.ingredients.map((ing) => {
             return(
-                <li key={ing.name}>{ing.name.replace(DELIM, OR)}</li>
+                <li key={ing.name}>{ing.name.replaceAll(DELIM, OR)}</li>
             );
         });
         

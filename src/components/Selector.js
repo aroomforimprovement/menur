@@ -16,7 +16,7 @@ export const Selector = () => {
 
     const selectionIngredients = state.selection.ingredients.map((ing, i) => {
         return(
-            <li key={ing.name}>{ing.name.replace(DELIM, OR)}</li>
+            <li key={ing.name}>{ing.name.replaceAll(DELIM, OR)}</li>
         );
     });
 
