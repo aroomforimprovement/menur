@@ -26,6 +26,13 @@ code {
   text-align: start;
 }
 
+.suggestion{
+  border-color:chartreuse;
+  border-radius: 5px;
+  color:chocolate;
+  display: block;
+}
+
 .footer{
   bottom:0px;
 }

@@ -1,5 +1,6 @@
 
 export const DELIM = '|';
+export const OR = ' or ';
 
 //export const MEALS = 
 

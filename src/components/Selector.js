@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormGroup, Label, Input,} from 'reactstrap';
-import { MEALS } from '../shared/meals';
+import { DELIM, MEALS, OR } from '../shared/meals';
 import { useMainContext } from './Main';
 
 export const Selector = () => {
@@ -16,7 +16,7 @@ export const Selector = () => {
 
     const selectionIngredients = state.selection.ingredients.map((ing, i) => {
         return(
-            <li key={ing.name}>{ing.name}</li>
+            <li key={ing.name}>{ing.name.replace(DELIM, OR)}</li>
         );
     });
 
