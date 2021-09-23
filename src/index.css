@@ -26,14 +26,14 @@ code {
   text-align: start;
 }
 
-.suggestion{
+.suggestion {
   border-color:chartreuse;
   border-radius: 5px;
   color:chocolate;
   display: block;
 }
 
-.meal-plan {
+.meal-plan table {
   text-align: start;
   border-radius: 5%;
   border-width: 2px;
@@ -41,13 +41,10 @@ code {
   margin-left:0px;
 }
 
-.meal-plan-heading{
-
-}
-
 .mealtime{
-  min-width: 100%;
-  min-height: 20px;
+  min-width: 100px;
+  min-height: 40px;
+  background-color: blanchedalmond;
 }
 
 .footer{
