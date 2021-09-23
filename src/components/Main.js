@@ -17,7 +17,6 @@ export const Main = () => {
     const [state, dispatch] = useReducer(reducer, INIT_STATE);
     const mainState = { state, dispatch };
 
-    
     return(
         <div>
             <MainContext.Provider value={mainState}>
@@ -30,7 +29,9 @@ export const Main = () => {
                                 <Selector />
                                 <Suggestions />                        
                             </div>
-                            <MealPlan />
+                            <div className='row'>
+                                <MealPlan />
+                            </div>
                         </div>
                        <Footer className='footer'/>
                     </div>

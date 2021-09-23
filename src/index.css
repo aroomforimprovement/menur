@@ -33,17 +33,21 @@ code {
   display: block;
 }
 
-.meal-plan{
+.meal-plan {
   text-align: start;
+  border-radius: 5%;
+  border-width: 2px;
+  border-color: black;
+  margin-left:0px;
 }
 
 .meal-plan-heading{
 
 }
 
-.day{
-  text-align: start;
-  display: inline;
+.mealtime{
+  min-width: 100%;
+  min-height: 20px;
 }
 
 .footer{
