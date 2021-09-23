@@ -5,10 +5,7 @@ import { useMainContext } from './Main';
 
 export const Selector = () => {
     const { state, dispatch } = useMainContext();
-    //const mealArr = JSON.parse(MEALS.meals);
     const meals = MEALS.map((meal, i) => {
-        //console.log("MEAL at start:");
-        //console.dir(meal);
         return(
             <option key={meal.name}>{meal.name}</option>
         );
@@ -24,12 +21,10 @@ export const Selector = () => {
         MEALS.forEach((meal) => {
             //console.dir(meal);
             if(meal.name === e.target.value){
-                console.dir(meal);
                 dispatch({type: 'CHANGE_SELECTION', data: meal});
                 return;
             }
         });
-        console.log("Getting suggestions");
         dispatch({type: 'GET_SUGGESTIONS', data: e.target.value});
     }
 

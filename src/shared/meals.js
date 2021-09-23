@@ -2,8 +2,6 @@
 export const DELIM = '|';
 export const OR = ' or ';
 
-//export const MEALS = 
-
 export const MEALS = [
         {
             "name": "Pick a meal",

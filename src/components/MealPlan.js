@@ -29,7 +29,7 @@ export const MealPlan = () => {
 
     const Day = ({day}) => {
        return(
-            <div className='container day'>
+            <div className='day'>
                 <div className='h5'>{day}</div>
                 <MealPlanSlot mealTime="Dinner"/>
             </div>

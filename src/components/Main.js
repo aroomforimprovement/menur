@@ -30,9 +30,7 @@ export const Main = () => {
                                 <Selector />
                                 <Suggestions />                        
                             </div>
-                            <div className='row'>
-                                <MealPlan />
-                            </div>
+                            <MealPlan />
                         </div>
                        <Footer className='footer'/>
                     </div>

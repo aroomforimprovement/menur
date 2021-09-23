@@ -41,7 +41,7 @@ const Suggestion = ({suggestion, ingredients}) => {
 }
 export const Suggestions = () => {
     
-    const { state, dispatch } = useMainContext();
+    const { state } = useMainContext();
     
 
     const suggestionList = state.suggestions.map((suggestion, i) => {
