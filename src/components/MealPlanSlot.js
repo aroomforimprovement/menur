@@ -5,12 +5,11 @@ export const MealPlanSlot = () => {
     const [meal, setMeal] = useState(null);
     const [isSet, setIsSet] = useState(null);
     
-    
 
     const handleDragEnter = (e) => {
         if(!isSet){
             e.target.style.color = 'green';
-            e.target.div.style.backgroundColour = 'green';
+            e.target.style.backgroundColour = 'green';
         }
         e.target.style.fontWeight = 'bold';
         console.log("ENTER");
