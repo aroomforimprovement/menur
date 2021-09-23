@@ -47,6 +47,10 @@ export const reducer = (state, action) => {
         return meals;
     }
 
+    const getSuggestionScore = () => {
+
+    }
+
     switch(action.type){
         case 'CHANGE_SELECTION':{
             return ({...state, selection: action.data});

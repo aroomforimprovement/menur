@@ -25,13 +25,17 @@ const Suggestion = ({dragData, ingredients}) => {
     return(
         <DragDropContainer targetKey='meal' 
             onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
-            onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}>
+            onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}
+            >
         <li key={dragData.meal.name}>
             <div className='container'>
-                <div className='mt-3' onClick={handleToggle}>
-                    <h5>
+                <div className='' onClick={handleToggle}>
+                    <h5 className='suggestion-text'>
                         {dragData.meal.name}<span>{' '}</span> 
-                        {showIngredients ? "^" : ">"}
+                        {showIngredients 
+                            ? <span className='fa fa-angle-up'>{' '}</span> 
+                            : <span className='fa fa-angle-down'>{' '}</span>
+                        }
                     </h5>
                 </div>
                 {
@@ -63,19 +67,22 @@ export const Suggestions = () => {
         });
         
         return(
-            <Suggestion key={suggestion.name} 
+            <Suggestion className='suggestion' key={suggestion.name} 
                 dragData={{meal: suggestion}}
                 ingredients={ingredients}
+                
             />
         );
     });
 
     return(
-        <div className='suggestions col col-6 ms-4'>
-            <h4>Suggestions</h4>
-            <ul className='list-unstyled'>
-                {suggestionList}
-            </ul>
+        <div className='col col-6 ms-4 suggestions'>
+            <div >
+                <h5>Suggestions</h5>
+                <ul className='list-unstyled'>
+                    {suggestionList}
+                </ul>
+            </div>
         </div>
     )
 }

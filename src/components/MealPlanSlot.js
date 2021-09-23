@@ -37,10 +37,8 @@ export const MealPlanSlot = ({mealtime, day}) => {
     return(
         <DropTarget targetKey='meal' 
             onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>                
-            <div className='container'>
-                <div className='mealtime'>
-                    {meal ? meal.meal.name : ' '}
-                </div>
+            <div className='container mealtime'><div className='mealtime-close'><span className='fa fa-minus-square-o'>{' '}</span></div>
+                <div className='mealtime-text'>{meal ? meal.meal.name : ' '}</div>    
             </div>
         </DropTarget>
     );

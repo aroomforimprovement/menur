@@ -27,13 +27,13 @@ export const MealPlan = () => {
             <tbody>
                 <tr>
                     <th scope='row'>Dinner</th>
-                    <td className='col col-1'><MealPlanSlot mealtime={"Dinner"} day={"Monday"}/></td>
-                    <td className='col col-1'><MealPlanSlot mealtime={"Dinner"} day={"Tuesday"}/></td>
-                    <td className='col col-1'><MealPlanSlot mealtime={"Dinner"} day={"Wednesday"}/></td>
-                    <td className='col col-1'><MealPlanSlot mealtime={"Dinner"} day={"Thursday"}/></td>
-                    <td className='col col-1'><MealPlanSlot mealtime={"Dinner"} day={"Friday"}/></td>
-                    <td className='col col-1'><MealPlanSlot mealtime={"Dinner"} day={"Saturday"}/></td>
-                    <td className='col col-1'><MealPlanSlot mealtime={"Dinner"} day={"Sunday"}/></td>
+                    <td ><MealPlanSlot mealtime={"Dinner"} day={"Monday"}/></td>
+                    <td ><MealPlanSlot mealtime={"Dinner"} day={"Tuesday"}/></td>
+                    <td ><MealPlanSlot mealtime={"Dinner"} day={"Wednesday"}/></td>
+                    <td ><MealPlanSlot mealtime={"Dinner"} day={"Thursday"}/></td>
+                    <td ><MealPlanSlot mealtime={"Dinner"} day={"Friday"}/></td>
+                    <td ><MealPlanSlot mealtime={"Dinner"} day={"Saturday"}/></td>
+                    <td ><MealPlanSlot mealtime={"Dinner"} day={"Sunday"}/></td>
                 </tr>
                 <tr>
                     <th scope='row'>Lunch</th>
