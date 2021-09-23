@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { DropTarget } from 'react-drag-drop-container';
 import { useMainContext } from './Main';
 
 export const MealPlan = () => {
@@ -6,23 +7,22 @@ export const MealPlan = () => {
     const MealPlanSlot = ({mealTime}) => {
         const [meal, setMeal] = useState(null);
 
-        const handleDragOver = (e) => {
-            e.preventDefault();
-            //e.dataTransfer.dropEffect = prop.dropEffect
-        } 
         const handleDragEnter = (e) => {
-            //e.dataTransfer.dropEffect = props.dropEffect;
+            //
         }    
         const handleDrop = (e) => {
-            setMeal(JSON.parse(e.dataTransfer.getData("drag-item")));
+            setMeal(e.dragData);
         }
 
         return(
+            <DropTarget targetKey='meal' 
+                onDragEnter={handleDragEnter} onHit={handleDrop}>
             <div className='container'>
-                <div onDragOver={handleDragOver} onDragEnter={handleDragEnter} onDrop={handleDrop}>
+                <div >
                     {mealTime}: {meal ? meal.name : null}
                 </div>
             </div>
+            </DropTarget>
         );
     }
 

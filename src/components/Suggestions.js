@@ -1,27 +1,36 @@
 import React, { useState } from 'react';
+import { DragDropContainer } from 'react-drag-drop-container';
 import { useMainContext } from './Main';
 import { DELIM, OR} from '../shared/meals';
 
-const Suggestion = ({suggestion, ingredients}) => {
+const Suggestion = ({dragData, ingredients}) => {
     const [showIngredients, setShowIngredients] = useState(false);
     const handleToggle = () => {
         setShowIngredients(!showIngredients);        
     }
     const handleDragStart = (e) => {
-        e.dataTransfer.setData('drag-item', JSON.stringify(suggestion));
-        e.dataTransfer.effectAllowed = 'move';
+        //e.dataTransfer.setData('drag-item', JSON.stringify(dragData));
+        //e.dataTransfer.effectAllowed = 'move';
+    }
+    const handleDrag = (e) => {
+        //
     }
     const handleDragEnd = (e) => {
         console.log('drag end');
     }
+    const handleDrop = (e) => {
+
+    }
 
     return(
-        <li key={suggestion.name} draggable
-            onDragStart={handleDragStart} onDragEnd={handleDragEnd} >
+        <DragDropContainer targetKey='meal' 
+            onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
+            onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}>
+        <li key={dragData.name}>
             <div className='container'>
                 <div className='mt-3' onClick={handleToggle}>
                     <h5>
-                        {suggestion.name}<span>{' '}</span> 
+                        {dragData.name}<span>{' '}</span> 
                         {showIngredients ? "^" : ">"}
                     </h5>
                 </div>
@@ -36,6 +45,7 @@ const Suggestion = ({suggestion, ingredients}) => {
                     : <div></div>}
             </div>
         </li>
+        </DragDropContainer>
     );
 
 }
@@ -54,7 +64,7 @@ export const Suggestions = () => {
         
         return(
             <Suggestion key={suggestion.name} 
-                suggestion={suggestion} 
+                dragData={suggestion}
                 ingredients={ingredients}
             />
         );
