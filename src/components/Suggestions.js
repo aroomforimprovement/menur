@@ -26,11 +26,11 @@ const Suggestion = ({dragData, ingredients}) => {
         <DragDropContainer targetKey='meal' 
             onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
             onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}>
-        <li key={dragData.name}>
+        <li key={dragData.meal.name}>
             <div className='container'>
                 <div className='mt-3' onClick={handleToggle}>
                     <h5>
-                        {dragData.name}<span>{' '}</span> 
+                        {dragData.meal.name}<span>{' '}</span> 
                         {showIngredients ? "^" : ">"}
                     </h5>
                 </div>
@@ -64,7 +64,7 @@ export const Suggestions = () => {
         
         return(
             <Suggestion key={suggestion.name} 
-                dragData={suggestion}
+                dragData={{meal: suggestion}}
                 ingredients={ingredients}
             />
         );

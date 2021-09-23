@@ -70,6 +70,13 @@ export const reducer = (state, action) => {
             });
             return ({...state, suggestions:newSuggestions});
         }
+        case 'ADD_MEAL':{
+            console.log("ADD MEAL: " + action.data.meal.name);
+            return ({...state, 
+                mealplan: {...state[action.data.day],
+                    [action.data.mealtime] : action.data.meal}
+             });
+        }
         default:
             break;
     }

@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { DropTarget } from 'react-drag-drop-container';
+import { useMainContext } from './Main';
 
-export const MealPlanSlot = () => {
+export const MealPlanSlot = ({mealtime, day}) => {
     const [meal, setMeal] = useState(null);
     const [isSet, setIsSet] = useState(null);
-    
+    const { state, dispatch } = useMainContext();
+
 
     const handleDragEnter = (e) => {
         if(!isSet){
             e.target.style.color = 'green';
             e.target.style.backgroundColour = 'green';
+            e.dragElem.style.color = 'green';
         }
         e.target.style.fontWeight = 'bold';
         console.log("ENTER");
@@ -23,7 +26,10 @@ export const MealPlanSlot = () => {
         
     }    
     const handleDrop = (e) => {
-        setMeal(e.dragData);
+        e.dragData.day = day;
+        e.dragData.mealtime = mealtime;
+        dispatch({type: 'ADD_MEAL', data: e.dragData})
+        setMeal(e.dragData)
         setIsSet(true);
         e.target.style.color = 'blue';
     }
@@ -33,7 +39,7 @@ export const MealPlanSlot = () => {
             onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>                
             <div className='container'>
                 <div className='mealtime'>
-                    {meal ? meal.name : ' '}
+                    {meal ? meal.meal.name : ' '}
                 </div>
             </div>
         </DropTarget>
