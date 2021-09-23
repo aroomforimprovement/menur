@@ -1,25 +1,41 @@
 import React, { useState } from 'react';
 import { DropTarget } from 'react-drag-drop-container';
+import { Container } from 'reactstrap';
 import { useMainContext } from './Main';
 
 export const MealPlan = () => {
 
-    const MealPlanSlot = ({mealTime}) => {
+    const MealPlanSlot = ({mealtime}) => {
         const [meal, setMeal] = useState(null);
+        const [isSet, setIsSet] = useState(null);
+        
+        
 
         const handleDragEnter = (e) => {
-            //
+            if(!isSet){
+                e.target.style.color = 'green';
+            }
+            e.target.style.fontWeight = 'bold';
+        }
+        const handleDragLeave = (e) => {
+            if(!isSet){
+                e.target.style.color = 'black';
+                e.target.style.fontWeight = 'normal';
+            }
+            
         }    
         const handleDrop = (e) => {
             setMeal(e.dragData);
+            setIsSet(true);
+            e.target.style.color = 'blue';
         }
 
         return(
             <DropTarget targetKey='meal' 
-                onDragEnter={handleDragEnter} onHit={handleDrop}>
+                onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>
             <div className='container'>
-                <div >
-                    {mealTime}: {meal ? meal.name : null}
+                <div className='mealtime'>
+                    {mealtime}: {meal ? meal.name : null}
                 </div>
             </div>
             </DropTarget>
@@ -30,8 +46,8 @@ export const MealPlan = () => {
     const Day = ({day}) => {
        return(
             <div className='day'>
-                <div className='h5'>{day}</div>
-                <MealPlanSlot mealTime="Dinner"/>
+                <div >{day}</div>
+                <MealPlanSlot mealtime="Dinner"/>
             </div>
         )
 
