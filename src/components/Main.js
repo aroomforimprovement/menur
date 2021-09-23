@@ -28,8 +28,10 @@ export const Main = () => {
                         <div className='container'>
                             <div className='row'>
                                 <Selector />
-                                <Suggestions /> 
-                                <MealPlan />                       
+                                <Suggestions />                        
+                            </div>
+                            <div className='row'>
+                                <MealPlan />
                             </div>
                         </div>
                        <Footer className='footer'/>

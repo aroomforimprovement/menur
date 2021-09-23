@@ -14,9 +14,6 @@ export const MealPlan = () => {
             //e.dataTransfer.dropEffect = props.dropEffect;
         }    
         const handleDrop = (e) => {
-            //something
-            console.log("DROP");
-            console.dir(e.dataTransfer.getData("drag-item"));
             setMeal(JSON.parse(e.dataTransfer.getData("drag-item")));
         }
 
@@ -32,7 +29,7 @@ export const MealPlan = () => {
 
     const Day = ({day}) => {
        return(
-            <div className='container'>
+            <div className='container day'>
                 <div className='h5'>{day}</div>
                 <MealPlanSlot mealTime="Dinner"/>
             </div>
@@ -46,13 +43,13 @@ export const MealPlan = () => {
         <div className='container meal-plan mt-5'>
             <h5 className='meal-plan-heading'>Meal Plan</h5>
             <div className='row'>
-                <Day day="Monday" className='day col col-1'/>
-                <Day day="Tuesday" className='day col col-1'/>
-                <Day day="Wednesday" className='day col col-1'/>
-                <Day day="Thursday" className='day col col-1'/>
-                <Day day="Friday" className='day col col-1'/>
-                <Day day="Saturday" className='day col col-1'/>
-                <Day day="Sunday" className='day col col-1'/>
+                <Day day="Monday" className='col col-1'/>
+                <Day day="Tuesday" className='col col-1'/>
+                <Day day="Wednesday" className='col col-1'/>
+                <Day day="Thursday" className='col col-1'/>
+                <Day day="Friday" className='col col-1'/>
+                <Day day="Saturday" className='col col-1'/>
+                <Day day="Sunday" className='col col-1'/>
             </div>
         </div>
     );

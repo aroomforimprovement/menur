@@ -43,7 +43,7 @@ code {
 
 .day{
   text-align: start;
-  display: inline-block;
+  display: inline;
 }
 
 .footer{
