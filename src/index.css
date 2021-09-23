@@ -33,6 +33,19 @@ code {
   display: block;
 }
 
+.meal-plan{
+  text-align: start;
+}
+
+.meal-plan-heading{
+
+}
+
+.day{
+  text-align: start;
+  display: inline-block;
+}
+
 .footer{
   bottom:0px;
 }

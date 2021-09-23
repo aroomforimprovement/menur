@@ -7,11 +7,17 @@ const Suggestion = ({suggestion, ingredients}) => {
     const handleToggle = () => {
         setShowIngredients(!showIngredients);        
     }
-    if(showIngredients){
-
+    const handleDragStart = (e) => {
+        e.dataTransfer.setData('drag-item', JSON.stringify(suggestion));
+        e.dataTransfer.effectAllowed = 'move';
     }
+    const handleDragEnd = (e) => {
+        console.log('drag end');
+    }
+
     return(
-        <li key={suggestion.name} draggable>
+        <li key={suggestion.name} draggable
+            onDragStart={handleDragStart} onDragEnd={handleDragEnd} >
             <div className='container'>
                 <div className='mt-3' onClick={handleToggle}>
                     <h5>

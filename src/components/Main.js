@@ -4,6 +4,7 @@ import { INIT_STATE } from '../shared/states';
 import { Selector } from './Selector';
 import { Suggestions } from './Suggestions';
 import { reducer } from '../redux/Main';
+import { MealPlan } from './MealPlan';
 
 const MainContext = createContext(INIT_STATE);
 
@@ -27,7 +28,8 @@ export const Main = () => {
                         <div className='container'>
                             <div className='row'>
                                 <Selector />
-                                <Suggestions />                        
+                                <Suggestions /> 
+                                <MealPlan />                       
                             </div>
                         </div>
                        <Footer className='footer'/>
