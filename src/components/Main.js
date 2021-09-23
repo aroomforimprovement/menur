@@ -36,7 +36,6 @@ export const Main = () => {
                        <Footer className='footer'/>
                     </div>
                     )}
-                    
                 </MainContext.Consumer>
                 
             </MainContext.Provider>

@@ -64,12 +64,14 @@ code {
   font-size:smaller;
   text-align:start;
   vertical-align: bottom;
+  display:inline;
 }
 
 .mealtime-close{
   text-align:end;
-  position: absolute;
-  display:inline;
+  display:block;
+  margin-right: 0px;
+  padding-right: 0px;
 }
 
 .footer{

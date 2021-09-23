@@ -33,12 +33,19 @@ export const MealPlanSlot = ({mealtime, day}) => {
         setIsSet(true);
         e.target.style.color = 'blue';
     }
+    const handleRemoveMeal = () => {
+        setMeal(null);
+        setIsSet(false);
+        dispatch({type: 'REMOVE_MEAL', data: {day: day, mealtime: mealtime}})
+    }
 
     return(
         <DropTarget targetKey='meal' 
             onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>                
-            <div className='container mealtime'><div className='mealtime-close'><span className='fa fa-minus-square-o'>{' '}</span></div>
-                <div className='mealtime-text'>{meal ? meal.meal.name : ' '}</div>    
+            <div className='container mealtime'>
+                <div className='mealtime-text'>{meal ? meal.meal.name : ' '}</div>   
+                <span className='fa fa-minus-square-o mealtime-close'
+                    onClick={handleRemoveMeal}>{' '}</span> 
             </div>
         </DropTarget>
     );
