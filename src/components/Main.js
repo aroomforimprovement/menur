@@ -34,7 +34,7 @@ export const Main = () => {
                                 <MealPlan />
                             </div>
                             <div className='row'>
-                                <GenList className='gen-list'/>
+                                <GenList className='col col-3'/>
                             </div>
                         </div>
                        <Footer className='footer'/>

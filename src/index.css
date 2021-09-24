@@ -16,6 +16,11 @@ code {
   text-align: start;
 }
 
+.selector-heading{
+  margin-bottom: 1em;
+  font-weight:bold;
+}
+
 .suggestions{
   text-align:start;
 }
@@ -102,7 +107,7 @@ code {
 }
 
 .get-list{
-  text-align: start;
+  text-align:start;
   font-size:small;
 }
 

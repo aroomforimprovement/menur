@@ -13,6 +13,8 @@ export const getIngredientsFromMeal = (meal) => {
             ingredientArr.push(ingredient);
         }
     });
+    //console.log('getIngredientsFromMeal');
+    //console.log(ingredientArr);
     return ingredientArr;
 }
 

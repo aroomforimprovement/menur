@@ -70,7 +70,6 @@ const Suggestion = ({dragData, ingredients}) => {
 export const Suggestions = () => {
     
     const { state } = useMainContext();
-    
 
     const suggestionList = state.suggestions.map((suggestion, i) => {
         
@@ -79,25 +78,34 @@ export const Suggestions = () => {
             let classes = 'sugg-ingredient ';
             const mealIngredients = getIngredientsFromMeal(meal);
             mealIngredients.forEach((mealIngredient) => {
-                console.log(mealIngredient.name + ':' + ing.name);
-                if(ing.name.split('|').length > 1){
-                    ing.name.split('|').forEach((split) => {
-                        if(split === mealIngredient.name){
-                            classes += 'bold';        
+                if(ing.name.indexOf(DELIM) > -1){
+                    ing.name.split(DELIM).forEach((split) => {
+                        if(mealIngredient.name.toLowerCase() === split.toLowerCase()){
+                            //console.log(mealIngredient.name + '===' + split);
+                            if(!classes.indexOf('bold') > -1){
+                                classes += 'bold';
+                            }        
+                        }else{
+                            //console.log(mealIngredient.name + '=/=' + split);
                         }
                     });
-                }else if(mealIngredient.name === ing.name){
-                    classes += 'bold';
+                }else if(mealIngredient.name.toLowerCase() === ing.name.toLowerCase()){
+                    //console.log(mealIngredient.name + '===' + ing.name);
+                    if(!classes.indexOf('bold') > -1){
+                        classes += 'bold';
+                    }
+                }else{
+                   // console.log(mealIngredient.name + '=/=' + ing.name);
                 }
             });
             
             return(
-                <div >
-                    <li className={classes} key={ing.name}>{ing.name.replaceAll(DELIM, OR)}</li>
+                <div className={classes} key={ing.name}>
+                    {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
                 </div>
             );
         });
-        
+
         return(
             <Suggestion key={suggestion.name} 
                 dragData={{meal: suggestion}}
@@ -105,6 +113,7 @@ export const Suggestions = () => {
                 
             />
         );
+        
     });
 
     return(

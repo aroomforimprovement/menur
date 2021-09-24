@@ -34,25 +34,23 @@ export const GenList = () => {
         for(let key of Object.keys(ingNames) ){
             ingredients.push({"name": key, "qty": ingNames[key]});
         }
-        console.dir(ingredients);
+        //console.dir(ingredients);
         return ingredients;
     }
     const ingredientList = getIngredients();
     const ingredients = ingredientList.map((ingredient, i) => {
         return(
             <div key={ingredient.name} >
-                <li >{ingredient.name.replace(DELIM, OR)} x {ingredient.qty}</li>
+                <li >{ingredient.name.replaceAll(DELIM, OR)} x {ingredient.qty}</li>
             </div>
         );
     });
     
     return(
-        <div className='container'>
-            <div className='row'>
-                <div className='col col-5'>
-                <h6>Generated Shopping List</h6>
-                <ul className='list-unstyled'>{ingredients}</ul>
-                </div>
+        <div className='gen-list'>
+            <div>
+                <h6 className='gen-list'>Generated Shopping List</h6>
+                <ul className='list-unstyled gen-llist'>{ingredients}</ul>
             </div>
         </div>
     );

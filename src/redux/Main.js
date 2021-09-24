@@ -33,6 +33,9 @@ export const reducer = (state, action) => {
     }
 
     switch(action.type){
+        case 'SET_SHOW_SPICES':{
+            return({...state, showSpices: action.data})
+        }
         case 'CHANGE_SELECTION':{
             return ({...state, selection: action.data});
         }

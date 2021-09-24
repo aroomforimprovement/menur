@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Label, Input,} from 'reactstrap';
+import { FormGroup, Label, Input, InputGroup, InputGroupText, InputGroupAddon } from 'reactstrap';
 import { DELIM, MEALS, OR } from '../shared/meals';
 import { useMainContext } from './Main';
 
@@ -13,7 +13,11 @@ export const Selector = () => {
 
     const selectionIngredients = state.selection.ingredients.map((ing, i) => {
         return(
-            <li key={ing.name}>{ing.name.replaceAll(DELIM, OR)}</li>
+            <div key={ing.name}>
+                {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond')
+                    ? <div></div> 
+                    : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
+            </div>
         );
     });
 
@@ -28,15 +32,25 @@ export const Selector = () => {
         dispatch({type: 'GET_SUGGESTIONS', data: e.target.value});
     }
 
+    const handleCheck = (e) => {
+        dispatch({type: 'SET_SHOW_SPICES', data: e.target.checked})
+    }
+
     return(
         <div className='selector col col-5'>
         <FormGroup >
-            <Label for='dishSelect'>What are you making?</Label><br/>
+            <Label for='dishSelect' className='selector-heading'>What are you making?</Label><br/>
             <Input type='select' name='select' id='dishSelect'
                 onChange={handleChange}>
                     {meals}
             </Input>
         </FormGroup>
+        <FormGroup check>
+            <Label check>
+                <Input type="checkbox" onChange={handleCheck}/>{' '}
+                Shows spices / condiments
+            </Label>
+      </FormGroup>
         <ul className='list-unstyled mt-2 ms-2'>
             {selectionIngredients}
         </ul>
