@@ -38,12 +38,12 @@ const Suggestion = ({dragData, ingredients}) => {
                         }
                     </h5>
                 </div>
-                {
+                    {
                     showIngredients 
                     ? 
                     <div>
                         <ul className='list-unstyled'>
-                            {ingredients}
+                            <small>{ingredients}</small>
                         </ul>
                     </div> 
                     : <div></div>}

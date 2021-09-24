@@ -42,8 +42,8 @@ export const reducer = (state, action) => {
                 }
             }
         });
-        console.log("Meals with "+ingredient+":");
-        console.dir(meals);
+        //console.log("Meals with "+ingredient+":");
+        //console.dir(meals);
         return meals;
     }
 
@@ -62,7 +62,7 @@ export const reducer = (state, action) => {
                 }
             });
         });
-        console.log(suggestion.name + " " + score);
+        //console.log(suggestion.name + " " + score);
         return score;
     }   
 
@@ -82,7 +82,7 @@ export const reducer = (state, action) => {
             return ({...state, selection: action.data});
         }
         case 'GET_SUGGESTIONS':{
-            console.log(action.data);
+            //console.log(action.data);
             const newSuggestions = [];
             getIngredientsFromMeal(state.selection).forEach((ingredient) => {
                 const suggestions = getMealsWithIngredient(ingredient.name);
@@ -102,15 +102,18 @@ export const reducer = (state, action) => {
             return ({...state, suggestions:rankedSuggestions});
         }
         case 'ADD_MEAL':{
-            console.log("ADD MEAL: " + action.data.meal.name);
-            return ({...state, 
-                mealplan: {...state[action.data.day],
-                    [action.data.mealtime] : action.data.meal}
-             });
+            //console.log("ADD MEAL: " + action.data.meal.name);
+            const meal = action.data.meal;
+            let mealplan = {...state.mealplan};
+            console.log("ADD_MEAL");
+            mealplan[action.data.day][action.data.mealtime] = action.data.meal;
+            console.dir(mealplan);
+
+            return ({...state, mealplan: mealplan});
         }
         case 'REMOVE_MEAL':{
             return ({...state, 
-                mealplan: {...state[action.data.day],
+                mealplan: {...state.mealplan[action.data.day],
                     [action.data.mealtime] : {}}
              });
         }

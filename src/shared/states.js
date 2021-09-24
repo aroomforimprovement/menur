@@ -1,6 +1,9 @@
 import { MEALS } from "./meals";
 
 
+export const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+export const mealtimes = ["Dinner", "Lunch", "Breakfast"];
+
 export const INIT_STATE = {
     selection: MEALS[0], 
     suggestions: [],

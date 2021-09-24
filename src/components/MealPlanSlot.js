@@ -5,7 +5,7 @@ import { useMainContext } from './Main';
 export const MealPlanSlot = ({mealtime, day}) => {
     const [meal, setMeal] = useState(null);
     const [isSet, setIsSet] = useState(null);
-    const { state, dispatch } = useMainContext();
+    const { dispatch } = useMainContext();
 
 
     const handleDragEnter = (e) => {
@@ -15,13 +15,13 @@ export const MealPlanSlot = ({mealtime, day}) => {
             e.dragElem.style.color = 'green';
         }
         e.target.style.fontWeight = 'bold';
-        console.log("ENTER");
+        //console.log("ENTER");
     }
     const handleDragLeave = (e) => {
         if(!isSet){
             e.target.style.color = 'black';
             e.target.style.fontWeight = 'normal';
-            console.log("LEAVE");
+            //console.log("LEAVE");
         }
         
     }    

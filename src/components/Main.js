@@ -5,6 +5,7 @@ import { Selector } from './Selector';
 import { Suggestions } from './Suggestions';
 import { reducer } from '../redux/Main';
 import { MealPlan } from './MealPlan';
+import { GenList } from './GenList';
 
 const MainContext = createContext(INIT_STATE);
 
@@ -31,6 +32,9 @@ export const Main = () => {
                             </div>
                             <div className='row'>
                                 <MealPlan />
+                            </div>
+                            <div className='row'>
+                                <GenList className='gen-list'/>
                             </div>
                         </div>
                        <Footer className='footer'/>

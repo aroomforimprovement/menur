@@ -6,7 +6,7 @@ export const MealPlan = () => {
 
     const Leftovers = () => {
         return(
-            <tr>Placeholder</tr>
+            <div>Placeholder</div>
         );
     }
     
@@ -60,7 +60,7 @@ export const MealPlan = () => {
                         Leftovers:
                     </th>
                     <td>
-                        {Leftovers}
+                        <Leftovers />
                     </td>
                 </tr>
             </tbody>
