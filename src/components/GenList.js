@@ -28,7 +28,7 @@ export const GenList = () => {
         });    
         let ingNames = {};
         ingArr.forEach((i) => {
-            ingNames[i.name] = ingNames[i.name] ? ingNames[i.name] + parseInt(i.qty) : parseInt(i.qty);
+            ingNames[i.name] = ingNames[i.name] ? ingNames[i.name] + parseFloat(i.qty) : parseFloat(i.qty);
         });
         let ingredients = [];
         for(let key of Object.keys(ingNames) ){
