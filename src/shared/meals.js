@@ -864,7 +864,7 @@ export const MEALS = [{
         },
         {
             "name": "Cayenne pepper",
-            "type": "dry",
+            "type": "spice",
             "qty": "1",
             "score": "1"
         },
