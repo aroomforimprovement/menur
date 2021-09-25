@@ -4,7 +4,7 @@ import { useMainContext } from './Main';
 import { DELIM, OR} from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
 
-const Suggestion = ({dragData, ingredients}) => {
+const Suggestion = ({dragData}) => {
     let classes = 'suggestion';
     if(dragData.meal.score >= 16){
         classes = classes + ' sugg-good';
@@ -15,6 +15,7 @@ const Suggestion = ({dragData, ingredients}) => {
     }else{
         classes = classes + ' sugg-none';
     }
+    const { state, dispatch } = useMainContext();
     const [showIngredients, setShowIngredients] = useState(false);
     const handleToggle = () => {
         setShowIngredients(!showIngredients);        
@@ -33,6 +34,39 @@ const Suggestion = ({dragData, ingredients}) => {
     const handleDrop = (e) => {
        // e.target.style.color = 'grey';
     }
+
+    const ingredients = dragData.meal.ingredients.map((ing) => {
+        const meal = {...state.selection};
+        let classes = 'sugg-ingredient ';
+        const mealIngredients = getIngredientsFromMeal(meal);
+        mealIngredients.forEach((mealIngredient) => {
+            if(ing.name.indexOf(DELIM) > -1){
+                ing.name.split(DELIM).forEach((split) => {
+                    if(mealIngredient.name.toLowerCase() === split.toLowerCase()){
+                        //console.log(mealIngredient.name + '===' + split);
+                        if(!classes.indexOf('bold') > -1){
+                            classes += 'bold';
+                        }        
+                    }else{
+                        //console.log(mealIngredient.name + '=/=' + split);
+                    }
+                });
+            }else if(mealIngredient.name.toLowerCase() === ing.name.toLowerCase()){
+                //console.log(mealIngredient.name + '===' + ing.name);
+                if(!classes.indexOf('bold') > -1){
+                    classes += 'bold';
+                }
+            }else{
+               // console.log(mealIngredient.name + '=/=' + ing.name);
+            }
+        });
+        
+        return(
+            <div className={classes} key={ing.name}>
+                {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
+            </div>
+        );
+    });
     
     return(
         <div className='col col-2 m-1 sugg-container'>
@@ -73,44 +107,9 @@ export const Suggestions = () => {
 
     const suggestionList = state.suggestions.map((suggestion, i) => {
         
-        const ingredients = suggestion.ingredients.map((ing) => {
-            const meal = {...state.selection};
-            let classes = 'sugg-ingredient ';
-            const mealIngredients = getIngredientsFromMeal(meal);
-            mealIngredients.forEach((mealIngredient) => {
-                if(ing.name.indexOf(DELIM) > -1){
-                    ing.name.split(DELIM).forEach((split) => {
-                        if(mealIngredient.name.toLowerCase() === split.toLowerCase()){
-                            //console.log(mealIngredient.name + '===' + split);
-                            if(!classes.indexOf('bold') > -1){
-                                classes += 'bold';
-                            }        
-                        }else{
-                            //console.log(mealIngredient.name + '=/=' + split);
-                        }
-                    });
-                }else if(mealIngredient.name.toLowerCase() === ing.name.toLowerCase()){
-                    //console.log(mealIngredient.name + '===' + ing.name);
-                    if(!classes.indexOf('bold') > -1){
-                        classes += 'bold';
-                    }
-                }else{
-                   // console.log(mealIngredient.name + '=/=' + ing.name);
-                }
-            });
-            
-            return(
-                <div className={classes} key={ing.name}>
-                    {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
-                </div>
-            );
-        });
-
         return(
             <Suggestion key={suggestion.name} 
                 dragData={{meal: suggestion}}
-                ingredients={ingredients}
-                
             />
         );
         

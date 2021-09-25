@@ -71,6 +71,8 @@ code {
 
 .sugg-ingredients{
   background-color:blanchedalmond;
+  font-weight: bold;
+  color: red;
 }
 
 .sugg-ingredient{
