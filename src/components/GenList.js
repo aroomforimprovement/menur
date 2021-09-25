@@ -1,8 +1,9 @@
 import React from 'react';
 import { DELIM, OR } from '../shared/meals';
 import { days, mealtimes } from '../shared/states';
+import { ListItem } from './ListItem';
 import { useMainContext } from './Main';
-
+import { UserList } from './UserList';
 
 export const GenList = () => {
 
@@ -40,19 +41,26 @@ export const GenList = () => {
     const ingredientList = getIngredients();
     const ingredients = ingredientList.map((ingredient, i) => {
         return(
-            <div key={ingredient.name} >
-                <li >{ingredient.name.replaceAll(DELIM, OR)} x {ingredient.qty}</li>
-            </div>
+            <ListItem dragData={ingredient}/>
         );
     });
+
     
     return(
-        <div>
-        <div className='gen-list mt-2'>
+        <div className='row'>
+        <div className='gen-list col-4 mt-2'>
             <div>
                 <h6 >Generated Shopping List</h6>
                 <ul className='list-unstyled'>{ingredients}</ul>
             </div>
+        </div>
+        <div className='gen-list col-4 mt-2'>
+            <h6 >List 1</h6>
+            <UserList />
+        </div>
+        <div className='gen-list col-4 mt-2'>
+            <h6 >List 2</h6>
+            <ul className='list-unstyled'>Placeholder</ul>
         </div>
         <div className='divider mb-3'></div>
         </div>

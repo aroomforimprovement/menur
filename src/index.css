@@ -105,6 +105,8 @@ code {
   text-align:start;
   vertical-align: bottom;
   display:inline;
+  font-weight: bold;
+  color:blue;
 }
 
 .mealtime-close{
