@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { DragDropContainer } from 'react-drag-drop-container';
 import { useMainContext } from './Main';
 import { DELIM, OR} from '../shared/meals';
-import { getIngredientsFromMeal, getMealsWithIngredient,  } from '../utils/objUtils';
+import { getIngredientsFromMeal } from '../utils/objUtils';
 
 const Suggestion = ({dragData, ingredients}) => {
-    console.log("SCORE:");
-    console.dir(dragData.meal.score);
     let classes = 'suggestion';
     if(dragData.meal.score >= 16){
         classes = classes + ' sugg-good';

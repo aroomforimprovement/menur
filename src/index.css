@@ -115,6 +115,10 @@ code {
   bottom:0px;
 }
 
+.cleardata{
+  text-align:end;
+}
+
 .header{
   background-color: blanchedalmond;
 }

@@ -15,7 +15,8 @@ export const useMainContext = () => {
 
 export const Main = () => {
 
-    const [state, dispatch] = useReducer(reducer, INIT_STATE);
+    const [state, dispatch] = useReducer(reducer, window.localStorage.getItem('MENUR_STATE') 
+        ? JSON.parse(window.localStorage.getItem('MENUR_STATE')) : INIT_STATE);
     const mainState = { state, dispatch };
 
     return(

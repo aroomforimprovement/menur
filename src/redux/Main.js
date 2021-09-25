@@ -1,3 +1,4 @@
+import { INIT_STATE } from '../shared/states';
 import { getIngredientsFromMeal, getMealsWithIngredient } from '../utils/objUtils';
 
 export const reducer = (state, action) => {
@@ -66,6 +67,10 @@ export const reducer = (state, action) => {
             let mealplan = {...state.mealplan};
             mealplan[action.data.day][action.data.mealtime] = {};
             return ({...state, mealplan: mealplan});
+        }
+        case 'CLEAR_DATA':{
+            window.localStorage.removeItem('MENUR_STATE');
+            return INIT_STATE;
         }
         default:
             break;
