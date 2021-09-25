@@ -43,8 +43,6 @@ export const MealPlanSlot = ({mealtime, day}) => {
         setIsSet(false);
         dispatch({type: 'REMOVE_MEAL', data: {day: day, mealtime: mealtime}});
         window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
-        console.log("MENUR_STATE");
-        console.dir(window.localStorage.getItem('MENUR_STATE'));
     }
     const handleClick = () => {
         setShowIngredients(!showIngredients);

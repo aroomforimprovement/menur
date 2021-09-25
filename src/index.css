@@ -36,7 +36,7 @@ code {
   display:block;
   min-width:60px;
   min-height: 30px;
-  padding:5px 10px 5px 5px;
+  padding:5px 0px 2px 0px;
   margin: 4px 4px 4px 4px;
 }
 
@@ -53,12 +53,13 @@ code {
 }
 
 .sugg-none{
-  background-color: rgb(219, 213, 255);
+  background-color: rgb(236, 232, 253);
 }
 
 .suggestion-text{
   color:rgb(22, 53, 61);
   font-size:smaller;
+  font-weight: bold;
 }
 
 .sugg-expand{
@@ -70,9 +71,9 @@ code {
 }
 
 .sugg-ingredients{
-  background-color:blanchedalmond;
-  font-weight: bold;
-  color: red;
+  background-color:rgb(252, 242, 228);
+  color: black;
+  width:100%;
 }
 
 .sugg-ingredient{
@@ -91,6 +92,7 @@ code {
   height: 100%;
   vertical-align: bottom;
   position: relative;
+  cursor: pointer;
 }
 
 .mealtime-text{
@@ -106,6 +108,11 @@ code {
   display:inline-block;
   top: 2px;
   right: 2px;
+}
+
+.mealplan-ingredients{
+  font-weight: normal;
+  color: black;
 }
 
 .get-list{

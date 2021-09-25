@@ -39,27 +39,28 @@ const Suggestion = ({dragData}) => {
         const meal = {...state.selection};
         let classes = 'sugg-ingredient ';
         const mealIngredients = getIngredientsFromMeal(meal);
-        mealIngredients.forEach((mealIngredient) => {
+        outer: for(let ind = 0; ind < mealIngredients.length; ind++){
             if(ing.name.indexOf(DELIM) > -1){
-                ing.name.split(DELIM).forEach((split) => {
-                    if(mealIngredient.name.toLowerCase() === split.toLowerCase()){
-                        //console.log(mealIngredient.name + '===' + split);
+                const splits = ing.name.split(DELIM);
+                for(let index = 0; index < splits.length; index++){
+                    if(mealIngredients[ind].name.toLowerCase() === splits[index].toLowerCase()){
+                        console.log("ing: "+ing.name);
+                        console.log(mealIngredients[ind].name + '===' + splits[index]);
                         if(!classes.indexOf('bold') > -1){
+                            console.log("setting class to bold");
                             classes += 'bold';
+                            break outer;
                         }        
-                    }else{
-                        //console.log(mealIngredient.name + '=/=' + split);
                     }
-                });
-            }else if(mealIngredient.name.toLowerCase() === ing.name.toLowerCase()){
+                }
+            }else if(mealIngredients[ind].name.toLowerCase() === ing.name.toLowerCase()){
                 //console.log(mealIngredient.name + '===' + ing.name);
                 if(!classes.indexOf('bold') > -1){
                     classes += 'bold';
+                    break;
                 }
-            }else{
-               // console.log(mealIngredient.name + '=/=' + ing.name);
             }
-        });
+        }
         
         return(
             <div className={classes} key={ing.name}>
