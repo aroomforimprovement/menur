@@ -9,11 +9,7 @@ export const reducer = (state, action) => {
         suggIngredients.forEach((ingredient) => {
             mealIngredients.forEach((mealIngredient) => {
                 if(ingredient.name === mealIngredient.name){
-                    if(ingredient.type === 'fresh'){
-                        score += 2;
-                    }else{
-                        score += 1;
-                    }
+                    score += parseInt(ingredient.score);
                 }
             });
         });
@@ -61,12 +57,9 @@ export const reducer = (state, action) => {
         }
         case 'ADD_MEAL':{
             //console.log("ADD MEAL: " + action.data.meal.name);
-            const meal = action.data.meal;
             let mealplan = {...state.mealplan};
             console.log("ADD_MEAL");
             mealplan[action.data.day][action.data.mealtime] = action.data.meal;
-            console.dir(mealplan);
-
             return ({...state, mealplan: mealplan});
         }
         case 'REMOVE_MEAL':{

@@ -5,12 +5,14 @@ import { DELIM, OR} from '../shared/meals';
 import { getIngredientsFromMeal, getMealsWithIngredient,  } from '../utils/objUtils';
 
 const Suggestion = ({dragData, ingredients}) => {
+    console.log("SCORE:");
+    console.dir(dragData.meal.score);
     let classes = 'suggestion';
-    if(dragData.meal.score >= 9){
+    if(dragData.meal.score >= 16){
         classes = classes + ' sugg-good';
-    }else if(dragData.meal.score >= 6){
+    }else if(dragData.meal.score >= 12){
         classes = classes + ' sugg-ok';
-    }else if(dragData.meal.score >= 3){
+    }else if(dragData.meal.score >= 8){
         classes = classes + ' sugg-bad';
     }else{
         classes = classes + ' sugg-none';
