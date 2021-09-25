@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+.divider{
+  background-color: silver;
+  height:2px;
+}
+
 .selector{
   text-align: start;
 }

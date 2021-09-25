@@ -37,7 +37,8 @@ export const Selector = () => {
     }
 
     return(
-        <div className='selector col col-5'>
+        <div className='selector col col-4'>
+        <div className='divider mb-3'></div>
         <FormGroup >
             <Label for='dishSelect' className='selector-heading'>What are you making?</Label><br/>
             <Input type='select' name='select' id='dishSelect'
@@ -45,15 +46,19 @@ export const Selector = () => {
                     {meals}
             </Input>
         </FormGroup>
-        <FormGroup check>
+        <div className='divider mt-3'></div>
+        <FormGroup className='mt-3' check>
             <Label check>
                 <Input type="checkbox" onChange={handleCheck}/>{' '}
                 Shows spices / condiments
             </Label>
       </FormGroup>
-        <ul className='list-unstyled mt-2 ms-2'>
+        <div className='divider mt-3 mb-2'></div>
+        <strong>Ingredients</strong>
+        <ul className='list-unstyled mt-2 mb-1 ms-2'>
             {selectionIngredients}
         </ul>
+        <div className='divider'></div>
         </div>
     );
 }

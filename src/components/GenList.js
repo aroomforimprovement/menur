@@ -47,11 +47,14 @@ export const GenList = () => {
     });
     
     return(
-        <div className='gen-list'>
+        <div>
+        <div className='gen-list mt-2'>
             <div>
-                <h6 className='gen-list'>Generated Shopping List</h6>
-                <ul className='list-unstyled gen-llist'>{ingredients}</ul>
+                <h6 >Generated Shopping List</h6>
+                <ul className='list-unstyled'>{ingredients}</ul>
             </div>
+        </div>
+        <div className='divider mb-3'></div>
         </div>
     );
 }

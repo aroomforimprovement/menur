@@ -70,7 +70,7 @@ const Suggestion = ({dragData}) => {
     });
     
     return(
-        <div className='col col-2 m-1 sugg-container'>
+        <div className='col col-3 sugg-container'>
             <DragDropContainer targetKey='meal' 
                 onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
                 onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}
@@ -117,12 +117,14 @@ export const Suggestions = () => {
     });
 
     return(
-        <div className='col col-6 ms-2 suggestions'>
+        <div className='col col-7 suggestions'>
             <div >
+                <div className='divider'></div>
                 <h5>Suggestions</h5>
                 <div className='list-unstyled'>
                     {suggestionList}
                 </div>
+                <div className='divider'></div>
             </div>
         </div>
     )
