@@ -63,10 +63,9 @@ export const reducer = (state, action) => {
             return ({...state, mealplan: mealplan});
         }
         case 'REMOVE_MEAL':{
-            return ({...state, 
-                mealplan: {...state.mealplan[action.data.day],
-                    [action.data.mealtime] : {}}
-             });
+            let mealplan = {...state.mealplan};
+            mealplan[action.data.day][action.data.mealtime] = {};
+            return ({...state, mealplan: mealplan});
         }
         default:
             break;
