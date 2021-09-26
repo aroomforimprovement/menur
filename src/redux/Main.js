@@ -74,6 +74,30 @@ export const reducer = (state, action) => {
         return arr;
     }
 
+    const hasLeftoverToRemove = (leftovers, day, mealtime) => {
+        for(let i = 0; i < leftovers.length; i++){
+            //console.log(leftovers[i].day_tag +":"+ leftovers[i].mealtime_tag);
+            if(leftovers[i].day_tag === day &&
+                leftovers[i].mealtime_tag === mealtime){
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    const getLeftoverRemoved = (leftovers, day, mealtime) => {
+        for(let i = 0; i < leftovers.length; i++){
+            console.log(leftovers[i].day_tag +":"+ leftovers[i].mealtime_tag);
+            if(leftovers[i].day_tag === day &&
+                leftovers[i].mealtime_tag === mealtime){
+                    leftovers.splice(i, 1);
+                    return leftovers;
+            }
+        }
+        return leftovers;
+    }
+
+
     //console.log("|"+action.type+":"+action.data+"|");
     //console.dir(action.data);
     switch(action.type){
@@ -122,12 +146,67 @@ export const reducer = (state, action) => {
         case 'ADD_MEAL':{
             let mealplan = {...state.mealplan};
             mealplan[action.data.day][action.data.mealtime] = action.data.meal;
-            return ({...state, mealplan: mealplan});
+            //add extra to leftovers 
+            // - tag leftovers with day and mealtime  
+            const servings = parseInt(action.data.meal.servings);
+            let leftovers = [...state.leftovers];
+            if(servings > 2){
+                for(let i = 2; i < servings; i++){
+                    let leftover = {
+                        "name": "Leftover " + action.data.meal.name,
+                        "servings": "1",
+                        "ingredients": [],
+                        "score": "100",
+                        "day_tag": action.data.day,
+                        "mealtime_tag": action.data.mealtime
+                    }
+                    leftovers.push(leftover);
+                }
+            }
+            return ({...state, mealplan: mealplan, leftovers: leftovers});
         }
         case 'REMOVE_MEAL':{
             let mealplan = {...state.mealplan};
             mealplan[action.data.day][action.data.mealtime] = {};
-            return ({...state, mealplan: mealplan});
+            //search leftovers AND mealslots for leftovers with 
+            // day and mealtime tags
+            let leftovers = [...state.leftovers];
+            while(hasLeftoverToRemove(leftovers, action.data.day, action.data.mealtime)){
+                leftovers = getLeftoverRemoved(leftovers, action.data.day, action.data.mealtime);
+                continue;
+            }
+            let leftoverMeals = [];
+            for(let [key, value] of Object.entries(mealplan) ){
+                //console.log(key+":"+value);
+                for(let [ke, val] of Object.entries(mealplan[key])){
+                    //console.log(ke+":"+val);
+                    for(let [k, v] of Object.entries(mealplan[key][ke])){
+                        //console.log(k+":"+v);
+                        if(k === 'name' && v.indexOf('Leftover') > -1){
+                            let dayFound = false;
+                            let mealtimeFound = false;
+                            for(let [kee, vaa] of Object.entries(mealplan[key][ke])){
+                                //console.log(kee+":"+vaa);
+                                if(kee === 'day_tag' && vaa === action.data.day){
+                                    dayFound = vaa;
+                                }
+                                if(kee === 'mealtime_tag' && vaa === action.data.mealtime){
+                                    mealtimeFound = vaa;
+                                }
+                            }
+                            if(dayFound && mealtimeFound){
+                                console.log(dayFound + ":" + mealtimeFound);
+                                let itemToRemove = {day: dayFound, mealtime: mealtimeFound};
+                                leftoverMeals.push(itemToRemove);
+                            }
+                        }
+                    }
+                }
+            }
+            leftoverMeals.forEach((meal) => {
+                mealplan[meal.day][meal.mealtime] = {};
+            });
+            return ({...state, mealplan: mealplan, leftovers: leftovers});
         }
         case 'GEN_LIST':{
             const genList = getIngredientsFromMealPlan();
@@ -147,6 +226,11 @@ export const reducer = (state, action) => {
             let list = [...state[action.data.old.list]];
             list = getItemQtyChanged(list, action.data.old, action.data.update);
             return ({...state, list});
+        }
+        case 'REMOVE_LEFTOVER':{
+            let leftovers = [...state.leftovers];
+            leftovers = getItemRemoved(leftovers, action.data);
+            return ({...state, leftovers: leftovers});
         }
         case 'CLEAR_DATA':{
             window.localStorage.removeItem('MENUR_STATE');

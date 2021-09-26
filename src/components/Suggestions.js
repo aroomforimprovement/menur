@@ -5,7 +5,7 @@ import { DELIM, OR} from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
 import { MealGen } from './MealGen';
 
-const Suggestion = ({dragData}) => {
+export const Suggestion = ({dragData}) => {
     let classes = 'suggestion';
     if(dragData.meal.score >= 16){
         classes = classes + ' sugg-good';
@@ -16,7 +16,7 @@ const Suggestion = ({dragData}) => {
     }else{
         classes = classes + ' sugg-none';
     }
-    const { state } = useMainContext();
+    const { state, dispatch } = useMainContext();
     const [showIngredients, setShowIngredients] = useState(false);
     const handleToggle = () => {
         setShowIngredients(!showIngredients);        
@@ -32,7 +32,9 @@ const Suggestion = ({dragData}) => {
        //
     }
     const handleDrop = (e) => {
-       // e.target.style.color = 'grey';
+        if(e.dragData.meal.name.indexOf('Leftover') > -1){
+            dispatch({type: 'REMOVE_LEFTOVER', data: e.dragData.meal});
+        }
     }
 
     const ingredients = dragData.meal.ingredients.map((ing, i) => {

@@ -1,15 +1,9 @@
 import React from 'react';
 import { MealPlanSlot } from './MealPlanSlot';
-
+import { Leftovers } from './Leftovers.js';
 
 export const MealPlan = () => {
 
-    const Leftovers = () => {
-        return(
-            <div>Placeholder</div>
-        );
-    }
-    
     return(
         <div>
             <div className='divider'></div>
