@@ -143,6 +143,10 @@ code {
   right: 2px;
 }
 
+.end{
+  text-align:end;
+}
+
 .footer{
   bottom:0px;
 }

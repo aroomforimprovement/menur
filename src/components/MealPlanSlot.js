@@ -18,12 +18,10 @@ export const MealPlanSlot = ({mealtime, day}) => {
             e.dragElem.style.color = 'green';
         }
         e.target.style.color = 'red';
-        //console.log("ENTER");
     }
     const handleDragLeave = (e) => {
         if(!isSet){
             e.target.style.color = 'black';
-            //console.log("LEAVE");
         }else{
             e.target.style.color = 'blue';
             e.target.style.fontWeight = 'bold';

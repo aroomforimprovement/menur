@@ -1,6 +1,7 @@
 
 export const DELIM = '|';
 export const OR = ' or ';
+export const DEFAULT_SERVINGS = 2;
 
 export const MEALS = [{
     "name": "Pick a meal",

@@ -3,6 +3,7 @@ import { DragDropContainer } from 'react-drag-drop-container';
 import { useMainContext } from './Main';
 import { DELIM, OR} from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
+import { MealGen } from './MealGen';
 
 const Suggestion = ({dragData}) => {
     let classes = 'suggestion';
@@ -34,7 +35,7 @@ const Suggestion = ({dragData}) => {
        // e.target.style.color = 'grey';
     }
 
-    const ingredients = dragData.meal.ingredients.map((ing) => {
+    const ingredients = dragData.meal.ingredients.map((ing, i) => {
         const meal = {...state.selection};
         let classes = 'sugg-ingredient ';
         const mealIngredients = getIngredientsFromMeal(meal);
@@ -43,17 +44,13 @@ const Suggestion = ({dragData}) => {
                 const splits = ing.name.split(DELIM);
                 for(let index = 0; index < splits.length; index++){
                     if(mealIngredients[ind].name.toLowerCase() === splits[index].toLowerCase()){
-                        //console.log("ing: "+ing.name);
-                        //console.log(mealIngredients[ind].name + '===' + splits[index]);
                         if(!classes.indexOf('bold') > -1){
-                           // console.log("setting class to bold");
                             classes += 'bold';
                             break outer;
                         }        
                     }
                 }
             }else if(mealIngredients[ind].name.toLowerCase() === ing.name.toLowerCase()){
-                //console.log(mealIngredient.name + '===' + ing.name);
                 if(!classes.indexOf('bold') > -1){
                     classes += 'bold';
                     break;
@@ -62,7 +59,7 @@ const Suggestion = ({dragData}) => {
         }
         
         return(
-            <div className={classes} key={ing.name}>
+            <div className={classes} key={i}>
                 {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
             </div>
         );
@@ -123,7 +120,9 @@ export const Suggestions = () => {
                 <div className='list-unstyled'>
                     {suggestionList}
                 </div>
-                <div className='divider'></div>
+                <div className='divider mb-1'></div>
+                <MealGen />
+                <div className='divider mt-1'></div>
             </div>
         </div>
     )

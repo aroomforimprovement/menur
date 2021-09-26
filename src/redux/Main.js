@@ -103,6 +103,22 @@ export const reducer = (state, action) => {
             const rankedSuggestions = getRankedSuggestions(state.selection, newSuggestions);
             return ({...state, suggestions:rankedSuggestions});
         }
+        case 'ADD_SUGGESTION':{
+            const suggestions = [...state.suggestions];
+            suggestions.push(action.data);
+            return ({...state, suggestions: suggestions});
+        }
+        case 'MEAL_GEN':{
+            let suggList = [...state.suggestions];
+            suggList.push(
+                {
+                    "name": action.data.name, 
+                    "ingredients": action.data.ingredients, 
+                    "score": 0, 
+                    "mealtime":action.data.mealtime
+                });
+            return ({...state, })
+        }
         case 'ADD_MEAL':{
             let mealplan = {...state.mealplan};
             mealplan[action.data.day][action.data.mealtime] = action.data.meal;
