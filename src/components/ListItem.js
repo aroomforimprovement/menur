@@ -21,7 +21,7 @@ export const ListItem = ({dragData}) => {
             onDragStart={handleDragStart} onDragEnd={handleDragEnd}
             onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}>
             <div key={dragData.name} >
-                <li >{dragData.name.replaceAll(DELIM, OR)} x {dragData.qty}</li>
+                <span >{dragData.name.replaceAll(DELIM, OR)} x {dragData.qty}</span>
             </div>
         </DragDropContainer>
     );

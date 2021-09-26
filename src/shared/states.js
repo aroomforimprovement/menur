@@ -16,5 +16,7 @@ export const INIT_STATE = {
         "Saturday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
         "Sunday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}}
     },
-    shopping: {}
+    genList: [],
+    userList1: [],
+    userList2: []
 }

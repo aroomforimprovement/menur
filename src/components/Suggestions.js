@@ -15,21 +15,20 @@ const Suggestion = ({dragData}) => {
     }else{
         classes = classes + ' sugg-none';
     }
-    const { state, dispatch } = useMainContext();
+    const { state } = useMainContext();
     const [showIngredients, setShowIngredients] = useState(false);
     const handleToggle = () => {
         setShowIngredients(!showIngredients);        
     }
 
     const handleDragStart = (e) => {
-        //e.dataTransfer.setData('drag-item', JSON.stringify(dragData));
-        //e.dataTransfer.effectAllowed = 'move';
+        //
     }
     const handleDrag = (e) => {
         //
     }
     const handleDragEnd = (e) => {
-        console.log('drag end');
+       //
     }
     const handleDrop = (e) => {
        // e.target.style.color = 'grey';

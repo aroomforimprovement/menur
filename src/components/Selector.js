@@ -23,7 +23,6 @@ export const Selector = () => {
 
     const handleChange = (e) => {
         MEALS.forEach((meal) => {
-            //console.dir(meal);
             if(meal.name === e.target.value){
                 dispatch({type: 'CHANGE_SELECTION', data: meal});
                 return;

@@ -19,6 +19,9 @@ export const Main = () => {
         ? JSON.parse(window.localStorage.getItem('MENUR_STATE')) : INIT_STATE);
     const mainState = { state, dispatch };
 
+    const handleGenList = () => {
+        dispatch({type: 'GEN_LIST', data:true});
+    }
     return(
         <div>
             <MainContext.Provider value={mainState}>
@@ -34,6 +37,13 @@ export const Main = () => {
                             <div className='row'>
                                 <MealPlan />
                             </div>
+                            <div className='row mt-2 mb-2'>
+                                <button onClick={handleGenList} 
+                                    className='btn btn-success col col-12'>
+                                    Generate shopping list (if you make changes to the meal plan, you'll have to do this again)
+                                </button>
+                            </div>
+                            <div className='divider' ></div>
                             <div className='row'>
                                 <GenList className='col col-3'/>
                             </div>

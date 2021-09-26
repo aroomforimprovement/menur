@@ -127,6 +127,11 @@ code {
   font-size:small;
 }
 
+.user-list{
+  padding-bottom: 100px;
+  background-color: cornsilk;
+}
+
 .footer{
   bottom:0px;
 }
