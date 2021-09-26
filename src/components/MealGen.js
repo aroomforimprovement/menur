@@ -40,6 +40,7 @@ export const MealGen = () => {
     }
     const handleAdd = (e) => {
         e.preventDefault();
+        if(name && name !== '');
         addSuggestion(e);
         setName('');
         setIng([]);

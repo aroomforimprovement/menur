@@ -71,7 +71,7 @@ const Suggestion = ({dragData}) => {
                 onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
                 onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}
                 >
-                <li key={dragData.meal.name} className={classes}>
+                <li className={classes}>
                     <div className='' onClick={handleToggle}>
                         <h5 className='suggestion-text'>
                             {dragData.meal.name} 
@@ -105,7 +105,7 @@ export const Suggestions = () => {
     const suggestionList = state.suggestions.map((suggestion, i) => {
         
         return(
-            <Suggestion key={suggestion.name} 
+            <Suggestion key={i} 
                 dragData={{meal: suggestion}}
             />
         );
