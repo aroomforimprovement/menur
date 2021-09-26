@@ -132,6 +132,17 @@ code {
   background-color: cornsilk;
 }
 
+.user-list ul li{
+  width:100%;
+  position:relative;
+}
+
+.list-remove{
+  position:absolute;
+  text-align:end;
+  right: 2px;
+}
+
 .footer{
   bottom:0px;
 }

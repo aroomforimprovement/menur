@@ -512,7 +512,7 @@ export const MEALS = [{
         },
         {
             "name": "Garlic powder",
-            "type": "dry",
+            "type": "spice",
             "qty": "1",
             "score": "1"
         },

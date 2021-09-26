@@ -43,10 +43,10 @@ const Suggestion = ({dragData}) => {
                 const splits = ing.name.split(DELIM);
                 for(let index = 0; index < splits.length; index++){
                     if(mealIngredients[ind].name.toLowerCase() === splits[index].toLowerCase()){
-                        console.log("ing: "+ing.name);
-                        console.log(mealIngredients[ind].name + '===' + splits[index]);
+                        //console.log("ing: "+ing.name);
+                        //console.log(mealIngredients[ind].name + '===' + splits[index]);
                         if(!classes.indexOf('bold') > -1){
-                            console.log("setting class to bold");
+                           // console.log("setting class to bold");
                             classes += 'bold';
                             break outer;
                         }        

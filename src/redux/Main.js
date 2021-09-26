@@ -66,9 +66,16 @@ export const reducer = (state, action) => {
         }
         return arr;
     }
+    const getItemQtyChanged = (arr, old, update) => {
+        const i = arr.indexOf(old);
+        if(i > -1){
+            arr[i] = update;
+        }
+        return arr;
+    }
 
-    console.log("|"+action.type+":"+action.data+"|");
-    console.dir(action.data);
+    //console.log("|"+action.type+":"+action.data+"|");
+    //console.dir(action.data);
     switch(action.type){
         case 'SET_SHOW_SPICES':{
             return({...state, showSpices: action.data})
@@ -97,9 +104,7 @@ export const reducer = (state, action) => {
             return ({...state, suggestions:rankedSuggestions});
         }
         case 'ADD_MEAL':{
-            //console.log("ADD MEAL: " + action.data.meal.name);
             let mealplan = {...state.mealplan};
-            console.log("ADD_MEAL");
             mealplan[action.data.day][action.data.mealtime] = action.data.meal;
             return ({...state, mealplan: mealplan});
         }
@@ -112,35 +117,20 @@ export const reducer = (state, action) => {
             const genList = getIngredientsFromMealPlan();
             return ({...state, genList: genList, userList1: [], userList2: []});
         }
-        case 'ADD_TO_genList':{
-            let list = [...state.genList];
+        case 'ADD_TO_LIST':{
+            let list = [...state[action.data.list]];
             list.push(action.data);
-            return ({...state, genList: list});
+            return ({...state, [action.data.list]: list});
         }
-        case 'ADD_TO_userList1':{
-            let list = [...state.userList1];
-            list.push(action.data);
-            return ({...state, userList1: list});
-        }
-        case 'ADD_TO_userList2':{
-            let list = [...state.userList2];
-            list.push(action.data);
-            return ({...state, userList2: list});
-        }
-        case 'REMOVE_FROM_genList':{
-            let list = [...state.genList];
+        case 'REMOVE_FROM_LIST':{
+            let list = [...state[action.data.list]];
             list = getItemRemoved(list, action.data);
-            return ({...state, genList: list});
+            return ({...state, [action.data.list] : list})
         }
-        case 'REMOVE_FROM_userList1':{
-            let list = [...state.userList1];
-            list = getItemRemoved(list, action.data);
-            return ({...state, userList1: list});
-        }
-        case 'REMOVE_FROM_userList2':{
-            let list = [...state.userList2];
-            list = getItemRemoved(list, action.data);
-            return ({...state, userList2: list});
+        case 'UPDATE_ON_LIST':{
+            let list = [...state[action.data.old.list]];
+            list = getItemQtyChanged(list, action.data.old, action.data.update);
+            return ({...state, list});
         }
         case 'CLEAR_DATA':{
             window.localStorage.removeItem('MENUR_STATE');

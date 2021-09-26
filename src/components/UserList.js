@@ -8,20 +8,28 @@ export const UserList = ({list}) => {
     const { state, dispatch } = useMainContext();
 
     const handleDragEnter = () => {
-        console.log("enter");
+        //console.log("enter");
     }
     const handleDragLeave = () => {
 
     }
     const handleDrop = async (e) => {
-        await dispatch({
-            type: 'REMOVE_FROM_'+e.dragData.list, 
-            data: e.dragData
-        });
+        await dispatch({type: 'REMOVE_FROM_LIST', data: e.dragData});
         e.dragData.list = list;
-        console.log("dragData");
-        console.dir(e.dragData);
-        dispatch({type: 'ADD_TO_'+list, data: e.dragData});
+        dispatch({type: 'ADD_TO_LIST', data: e.dragData});
+    }
+    const decrement = (old) => {
+        let update = {...old};
+        update.qty = parseFloat(old.qty) - 1;
+        dispatch({type: 'UPDATE_ON_LIST', data: {old: old, update: update}});
+    }
+    const increment = (old) => {
+        let update = {...old};
+        update.qty = parseFloat(old.qty) + 1;
+        dispatch({type: 'UPDATE_ON_LIST', data: {old: old, update: update}});
+    }
+    const remove = (i) => {
+        dispatch({type: 'REMOVE_FROM_LIST', data: i});
     }
 
     const ingredients = state[list].map((ingredient, i) => {
@@ -29,7 +37,13 @@ export const UserList = ({list}) => {
             state[list].length > 0
                 ? 
                 <li key={ingredient.name}>
+                    <div className='fa fa-caret-left me-1'
+                        onClick={() => decrement(ingredient)}></div>
                     <ListItem dragData={ingredient}/>
+                    <div className='fa fa-caret-right ms-1'
+                        onClick={() => increment(ingredient)}></div>
+                    <div className='fa fa-asterisk list-remove'
+                        onClick={() => remove(ingredient)}></div>
                 </li>
                 : <div></div>
         );
