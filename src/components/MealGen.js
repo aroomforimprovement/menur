@@ -7,6 +7,7 @@ export const MealGen = () => {
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [name, setName] = useState('');
     const [ingredients, setIng] = useState([]);
+    const [servings, setServings] = useState(2);
 
 
     const handleShowForm = () => {
@@ -30,7 +31,8 @@ export const MealGen = () => {
     const addSuggestion = (e) => {
         const meal = {
             name: name,
-            ingredients: ingredients
+            ingredients: ingredients,
+            servings: servings
         }
         dispatch({type: 'ADD_SUGGESTION', data: meal});
     }
@@ -50,6 +52,10 @@ export const MealGen = () => {
         if(e.key === 'Enter'){
             handleAddIngredient(e);
         }
+    }
+    const handleServingsChange = (e) => {
+        console.log(e.target.value);
+        setServings(e.target.value);
     }
 
     const IngredientField = ({ingredient, i}) => {
@@ -94,6 +100,14 @@ export const MealGen = () => {
                             onChange={handleNameChange}
                             defaultValue={name}></Input>
                     </InputGroup>
+                    <div className='row'>
+                        <InputGroup size='sm'>
+                            <Label for='servings'>Servings:</Label>
+                            <Input type='number' id='servings' defaultValue={2}
+                                onChange={handleServingsChange} 
+                                className='col col-1 ms-8'></Input>
+                        </InputGroup>
+                    </div>
                     <Label size='sm'>Ingredients</Label>
                     <div id='ingredient-slot'>
                         {ingredientFields}
