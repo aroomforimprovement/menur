@@ -19,7 +19,7 @@ export const MEALS = [{
     "mealtime": "Dinner",
     "servings": "2",
     "ingredients": [{
-            "name": "Canned tomatoes",
+            "name": "Chopped tomatoes",
             "type": "tin",
             "qty": "2",
             "score": "2"

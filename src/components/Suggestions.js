@@ -78,7 +78,7 @@ export const Suggestion = ({dragData}) => {
                 onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
                 onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}
                 >
-                <div className={'shadow shadow-sm hover-shadow border border-success rounded pe-4'+classes}>
+                <div className={'hover-shadow border border-grey rounded pe-4'+classes}>
                     <h5 className='suggestion-text'>
                         {dragData.meal.name}                     
                     </h5>
