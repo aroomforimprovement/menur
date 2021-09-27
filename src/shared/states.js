@@ -7,6 +7,7 @@ export const mealtimes = ["Dinner", "Lunch", "Breakfast"];
 export const INIT_STATE = {
     selection: MEALS[0], 
     suggestions: [],
+    selectedSuggestion: MEALS[0],
     mealplan: {
         "Monday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
         "Tuesday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},

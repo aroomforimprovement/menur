@@ -19,6 +19,11 @@ export const Suggestion = ({dragData}) => {
     const { state, dispatch } = useMainContext();
     const [showIngredients, setShowIngredients] = useState(false);
     const handleToggle = () => {
+        if(!showIngredients){
+            dispatch({type: 'SET_SELECTED_SUGGESTION', data: dragData.meal});
+        }else{
+            dispatch({type: 'UNSET_SLECTED_SUGGESTION', data: dragData.meal});
+        }
         setShowIngredients(!showIngredients);        
     }
 

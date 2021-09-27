@@ -1,3 +1,4 @@
+import { MEALS } from '../shared/meals';
 import { INIT_STATE, days, mealtimes } from '../shared/states';
 import { getIngredientsFromMeal, getMealsWithIngredient } from '../utils/objUtils';
 
@@ -106,6 +107,15 @@ export const reducer = (state, action) => {
         }
         case 'CHANGE_SELECTION':{
             return ({...state, selection: action.data});
+        }
+        case 'SET_SELECTED_SUGGESTION':{
+            return ({...state, selectedSuggestion: action.data});
+        }
+        case 'UNSET_SLECTED_SUGGESTION':{
+            if(state.selectedSuggestion === action.data){
+                return({...state, selectedSuggestion: MEALS[0]});
+            }
+            return(state);
         }
         case 'GET_SUGGESTIONS':{
             //console.log(action.data);

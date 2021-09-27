@@ -1,6 +1,7 @@
 import React from 'react';
-import { FormGroup, Label, Input, InputGroup, InputGroupText, InputGroupAddon } from 'reactstrap';
+import { FormGroup, Label, Input } from 'reactstrap';
 import { DELIM, MEALS, OR } from '../shared/meals';
+import { getIngredientsFromMeal } from '../utils/objUtils';
 import { useMainContext } from './Main';
 
 export const Selector = () => {
@@ -12,8 +13,29 @@ export const Selector = () => {
     });
 
     const selectionIngredients = state.selection.ingredients.map((ing, i) => {
+        const meal = {...state.selectedSuggestion};
+        let classes = 'selection-ingredients ';
+        const mealIngredients = getIngredientsFromMeal(meal);
+        outer: for(let ind = 0; ind < mealIngredients.length; ind++){
+            if(ing.name.indexOf(DELIM) > -1){
+                const splits = ing.name.split(DELIM);
+                for(let index = 0; index < splits.length; index++){
+                    if(mealIngredients[ind].name.toLowerCase() === splits[index].toLowerCase()){
+                        if(!classes.indexOf('bold') > -1){
+                            classes += 'bold';
+                            break outer;
+                        }        
+                    }
+                }
+            }else if(mealIngredients[ind].name.toLowerCase() === ing.name.toLowerCase()){
+                if(!classes.indexOf('bold') > -1){
+                    classes += 'bold';
+                    break;
+                }
+            }
+        }
         return(
-            <div key={ing.name}>
+            <div key={i} className={classes}>
                 {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond')
                     ? <div></div> 
                     : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
