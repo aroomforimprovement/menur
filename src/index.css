@@ -143,6 +143,11 @@ code {
   right: 2px;
 }
 
+.list-heading{
+  display:inline-block;
+  margin-right: 10px; 
+}
+
 .end{
   text-align:end;
 }
