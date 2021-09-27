@@ -225,7 +225,8 @@ export const reducer = (state, action) => {
         case 'UPDATE_ON_LIST':{
             let list = [...state[action.data.old.list]];
             list = getItemQtyChanged(list, action.data.old, action.data.update);
-            return ({...state, list});
+            console.dir(list);
+            return ({...state, [action.data.old.list]: list});
         }
         case 'REMOVE_LEFTOVER':{
             let leftovers = [...state.leftovers];

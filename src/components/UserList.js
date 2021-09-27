@@ -38,12 +38,13 @@ export const UserList = ({list}) => {
                 ? 
                 <li key={ingredient.name}>
                     <div className='fa fa-caret-left me-1'
-                        onClick={() => decrement(ingredient)}></div>
+                        onClick={() => decrement(ingredient)}>{' '}</div>
                     <ListItem dragData={ingredient}/>
                     <div className='fa fa-caret-right ms-1'
-                        onClick={() => increment(ingredient)}></div>
-                    <div className='fa fa-asterisk list-remove'
-                        onClick={() => remove(ingredient)}></div>
+                        onClick={() => increment(ingredient)}>{' '}</div>
+                    <div className='fa list-remove'
+                        onClick={() => remove(ingredient)}>x
+                    </div>
                 </li>
                 : <div></div>
         );

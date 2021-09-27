@@ -141,6 +141,7 @@ code {
   position:absolute;
   text-align:end;
   right: 2px;
+  cursor: pointer;
 }
 
 .list-heading{
