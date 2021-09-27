@@ -73,32 +73,29 @@ export const Suggestion = ({dragData}) => {
     });
     
     return(
-        <div className={'col col-sm-4 col-md-3 col-lg-2 me-2 mb-1 sugg-container border border-success rounded ' + classes}>
-            <DragDropContainer targetKey='meal' className='col col-12'
+        <div className={'sugg-container me-2 mb-1'}>
+        <DragDropContainer targetKey='meal' className='suggestion-dnd'
                 onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
                 onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}
                 >
-                <div >
+                <div className={'shadow shadow-sm hover-shadow border border-success rounded pe-4'+classes}>
                     <h5 className='suggestion-text'>
                         {dragData.meal.name}                     
                     </h5>
-                    
                 </div>
-                    
-            </DragDropContainer>
-            {
-                    showIngredients 
-                    ? 
-                    <div className='sugg-ingredients col col-12 m-0'>
-                        <ul className='list-unstyled'>
-                            <small>{ingredients}</small>
-                        </ul>
-                    </div> 
-                    : <div></div>}
-            <div className='sugg-expand' onClick={handleToggle}>{showIngredients 
-                            ? <span className='fa fa-angle-up'>{' '}</span> 
-                            : <span className='fa fa-angle-down'>{' '}</span>
-                        }</div>
+                {showIngredients 
+                ? <div className='sugg-ingredients col col-12 m-0'>
+                    <ul className='list-unstyled'>
+                        <small>{ingredients}</small>
+                    </ul>
+                </div> 
+                : <div></div>}
+                <div className='sugg-expand' onClick={handleToggle}>
+                    {showIngredients 
+                    ? <span className='fa fa-angle-up'>{' '}</span> 
+                    : <span className='fa fa-angle-down'>{' '}</span>}
+                </div>
+        </DragDropContainer>
         </div>
     );
 
@@ -112,7 +109,7 @@ export const Suggestions = () => {
     const suggestionList = state.suggestions.map((suggestion, i) => {
         
         return(
-            <Suggestion key={i} 
+            <Suggestion key={i} className='col col-sm-4 col-md-3 col-lg-2 '
                 dragData={{meal: suggestion}}
             />
         );
@@ -120,16 +117,13 @@ export const Suggestions = () => {
     });
 
     return(
-        <div className='col col-7 suggestions'>
+        <div className='suggestions col col-7 ms-3 shadow shadow-sm'>
             <div >
-                <div className='divider'></div>
                 <h5>Suggestions</h5>
                 <div className='list-unstyled'>
                     {suggestionList}
                 </div>
-                <div className='divider mb-1'></div>
-                <MealGen />
-                <div className='divider mt-1'></div>
+                <MealGen className='shadow shadow-sm mt-3' />
             </div>
         </div>
     )

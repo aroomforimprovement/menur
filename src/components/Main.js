@@ -28,8 +28,8 @@ export const Main = () => {
                 <MainContext.Consumer>
                     {() => (
                         <div>
-                        <Header className='header'/>
-                        <div className='container'>
+                        <Header />
+                        <div className='container mt-3'>
                             <div className='row'>
                                 <Selector />
                                 <Suggestions />                        
@@ -39,11 +39,10 @@ export const Main = () => {
                             </div>
                             <div className='row mt-2 mb-2'>
                                 <button onClick={handleGenList} 
-                                    className='btn btn-warning border border-success col col-12'>
+                                    className='shadow btn btn-warning border border-success col col-12'>
                                     Generate shopping list (if you make changes to the meal plan, you'll have to do this again)
                                 </button>
                             </div>
-                            <div className='divider' ></div>
                             <div className='row'>
                                 <GenList className='col col-3'/>
                             </div>

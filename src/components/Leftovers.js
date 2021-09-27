@@ -14,13 +14,13 @@ export const Leftovers = ({dragData}) => {
 
     const leftovers = state.leftovers.map((leftover, i) => {
         return(
-            <div key={i}>
+            <div key={i} className='leftover col col-sm-6 col-md-4 col-lg-3 ms-1 mb-1'>
                 <Leftover dragData={{meal: leftover}}/>
             </div>
         );
     });
 
     return(
-        <div>{leftovers}</div>
+        <div className='col col-12'>{leftovers}</div>
     );
 }

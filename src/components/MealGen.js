@@ -89,7 +89,7 @@ export const MealGen = () => {
     });
 
     return(
-        <div className='container meal-gen'>
+        <div className='container meal-gen shadow shadow-sm pb-3 mt-3 mb-3'>
             <div className='btn btn-lg btn-outline-primary fa fa-plus'
                 onClick={handleShowForm}>{' '}</div>
             <div hidden={!isFormVisible}>
@@ -102,7 +102,7 @@ export const MealGen = () => {
                     </InputGroup>
                     <div className='row'>
                         <InputGroup size='sm'>
-                            <Label for='servings'>Servings:</Label>
+                            <Label for='servings' className='me-4'>Servings:</Label>
                             <Input type='number' id='servings' defaultValue={2}
                                 onChange={handleServingsChange} 
                                 className='col col-1 ms-8'></Input>
@@ -112,15 +112,20 @@ export const MealGen = () => {
                     <div id='ingredient-slot'>
                         {ingredientFields}
                     </div>
-                    <div >
-                        <IngredientField i={ingredients.length} />
-                    </div>
-                    <div className='btn btn-sm btn-outline-primary fa fa-plus end'
-                        onClick={handleAddIngredient}></div>
                     <div className='row'>
-                        <button className='btn btn-sm btn-outline-primary col col-4 mx-1'
+                        <div className='col col-11'>
+                            <IngredientField i={ingredients.length} />
+                        </div>
+                        <div className='col col-1 btn btn-outline-primary fa fa-plus end'
+                        onClick={handleAddIngredient}>
+
+                        </div>
+                    </div>
+                    <div className='row ing-row'>
+                        <div className='col col-3'></div>
+                        <button className='btn btn-sm btn-outline-primary col col-4 mx-1 mt-3'
                             onClick={handleAddAndClose}>Add and close</button>                       
-                        <button className='btn btn-sm btn-primary col col-4 mx-1'
+                        <button className='btn btn-sm btn-primary col col-4 mx-1 mt-3'
                             onClick={handleAdd}>Add and add another</button>
                     </div>
                 </div>

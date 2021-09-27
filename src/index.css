@@ -81,6 +81,10 @@ code {
   width:100%;
 }
 
+.ing-row{
+  text-align: end;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -88,11 +92,10 @@ code {
 .mealtime{
   min-width: 100px;
   min-height: 40px;
-  background-color: blanchedalmond;
+  background-color: rgb(241, 241, 241);
   width: 100%;
   height: 100%;
-  border-radius: 10px;
-  border-color:darkblue;
+  border-radius: 8px;
   vertical-align: bottom;
   position: relative;
   cursor: pointer;
@@ -119,6 +122,14 @@ code {
 .mealplan-ingredients{
   font-weight: normal;
   color: black;
+}
+
+.leftover{
+  display:inline;
+}
+
+.leftover-col{
+  text-align: start;
 }
 
 .gen-list{
@@ -161,8 +172,4 @@ code {
 
 .cleardata{
   text-align:end;
-}
-
-.header{
-  background-color: blanchedalmond;
 }

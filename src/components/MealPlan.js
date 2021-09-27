@@ -5,8 +5,7 @@ import { Leftovers } from './Leftovers.js';
 export const MealPlan = () => {
 
     return(
-        <div>
-            <div className='divider'></div>
+        <div className='shadow-lg border border-info mt-3 col col-12'>
             <table className="table col col-1">
                 <thead className='col col-1'>
                     <tr >
@@ -51,17 +50,13 @@ export const MealPlan = () => {
                         <td><MealPlanSlot mealtime={"Breakfast"} day={"Saturday"}/></td>
                         <td><MealPlanSlot mealtime={"Breakfast"} day={"Sunday"}/></td>
                     </tr>
-                    <tr>
-                        <th>
-                            Leftovers:
-                        </th>
-                        <td>
-                            <Leftovers />
-                        </td>
-                    </tr>
+                    
                 </tbody>
             </table>
-            <div className='divider'></div>
+            <div className='leftover-col col col-12 ms-2'>
+                <h5 >Leftovers: </h5>
+                <Leftovers />
+            </div>
         </div>
     )
  
