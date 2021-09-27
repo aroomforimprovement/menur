@@ -22,7 +22,7 @@ export const MealGen = () => {
         const qtyField = document.getElementById(`qty_${ingredients.length}`); 
         let ingr = [...ingredients];
         let i = {name: nameField.value, type: typeField.value, qty: qtyField.value};
-        console.dir(i);
+        //console.dir(i);
         if(i.name.length > 0){
             ingr.push(i);
         }
