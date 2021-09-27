@@ -39,7 +39,7 @@ export const Main = () => {
                             </div>
                             <div className='row mt-2 mb-2'>
                                 <button onClick={handleGenList} 
-                                    className='btn btn-success col col-12'>
+                                    className='btn btn-warning border border-success col col-12'>
                                     Generate shopping list (if you make changes to the meal plan, you'll have to do this again)
                                 </button>
                             </div>

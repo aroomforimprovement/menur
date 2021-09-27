@@ -16,12 +16,9 @@ export const Footer = () => {
     return(
         <div>
             <div className='row'>
-                <div className='col col-4 clear'>
-                    <button className='btn btn-sm btn-danger'
+                <div className='clear'>
+                    <button className='col col-10 btn btn-sm btn-danger border border-success'
                         onClick={handleClearData}>Clear data and start again</button>
-                </div>
-                <div className='col col-4'>
-                    <p>Menur</p>
                 </div>
             </div>
         </div>

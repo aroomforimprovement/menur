@@ -6,7 +6,7 @@ import { getIngredientsFromMeal } from '../utils/objUtils';
 import { MealGen } from './MealGen';
 
 export const Suggestion = ({dragData}) => {
-    let classes = 'suggestion';
+    let classes = '';
     if(dragData.meal.score >= 16){
         classes = classes + ' sugg-good';
     }else if(dragData.meal.score >= 12){
@@ -66,39 +66,39 @@ export const Suggestion = ({dragData}) => {
         }
         
         return(
-            <div className={classes} key={i}>
+            <div className={classes} key={i} >
                 {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
             </div>
         );
     });
     
     return(
-        <div className='col col-sm-4 col-md-3 col-lg-2 me-2 mb-1 sugg-container'>
-            <DragDropContainer targetKey='meal' 
+        <div className={'col col-sm-4 col-md-3 col-lg-2 me-2 mb-1 sugg-container border border-success rounded ' + classes}>
+            <DragDropContainer targetKey='meal' className='col col-12'
                 onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
                 onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}
                 >
-                <li className={classes}>
-                    <div className='' onClick={handleToggle}>
-                        <h5 className='suggestion-text'>
-                            {dragData.meal.name} 
-                            <div className='sugg-expand'>{showIngredients 
-                                ? <span className='fa fa-angle-up'>{' '}</span> 
-                                : <span className='fa fa-angle-down'>{' '}</span>
-                            }</div>
-                        </h5>
-                    </div>
-                        {
-                        showIngredients 
-                        ? 
-                        <div>
-                            <ul className='list-unstyled sugg-ingredients'>
-                                <small>{ingredients}</small>
-                            </ul>
-                        </div> 
-                        : <div></div>}
-                </li>
+                <div >
+                    <h5 className='suggestion-text'>
+                        {dragData.meal.name}                     
+                    </h5>
+                    
+                </div>
+                    
             </DragDropContainer>
+            {
+                    showIngredients 
+                    ? 
+                    <div className='sugg-ingredients col col-12 m-0'>
+                        <ul className='list-unstyled'>
+                            <small>{ingredients}</small>
+                        </ul>
+                    </div> 
+                    : <div></div>}
+            <div className='sugg-expand' onClick={handleToggle}>{showIngredients 
+                            ? <span className='fa fa-angle-up'>{' '}</span> 
+                            : <span className='fa fa-angle-down'>{' '}</span>
+                        }</div>
         </div>
     );
 
