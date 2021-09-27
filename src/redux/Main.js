@@ -245,9 +245,11 @@ export const reducer = (state, action) => {
         }
         case 'CLEAR_DATA':{
             window.localStorage.removeItem('MENUR_STATE');
+            window.location.reload();
             return INIT_STATE;
         }
         default:
             break;
     }
+    
 }

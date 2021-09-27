@@ -23,7 +23,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
         if(!isSet){
             e.target.style.color = 'black';
         }else{
-            e.target.style.color = 'blue';
+            e.target.style.color = '#000066';
             e.target.style.fontWeight = 'bold';
         }
         
@@ -64,8 +64,8 @@ export const MealPlanSlot = ({mealtime, day}) => {
             <div className='container mealtime' onClick={handleClick}>
                 <div className='mealtime-text'>{state.mealplan[day][mealtime].name 
         ? state.mealplan[day][mealtime].name  : ' '}</div>   
-                <span className='fa fa-minus-square-o mealtime-close'
-                    onClick={handleRemoveMeal}>{' '}</span> 
+                <span className='fa mealtime-close'
+                    onClick={handleRemoveMeal}>{'x'}</span> 
             </div>
             {
             showIngredients 

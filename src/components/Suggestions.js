@@ -73,7 +73,7 @@ export const Suggestion = ({dragData}) => {
     });
     
     return(
-        <div className='col col-3 sugg-container'>
+        <div className='col col-sm-4 col-md-3 col-lg-2 me-2 mb-1 sugg-container'>
             <DragDropContainer targetKey='meal' 
                 onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
                 onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}

@@ -42,11 +42,11 @@ export const MealGen = () => {
     }
     const handleAdd = (e) => {
         e.preventDefault();
-        if(name && name !== '');
-        addSuggestion(e);
-        setName('');
-        setIng([]);
-
+        if(name && name !== ''){
+            addSuggestion(e);
+            setName('');
+            setIng([]);
+        }
     }
     const handleIngredientKeyDown = (e) => {
         if(e.key === 'Enter'){
