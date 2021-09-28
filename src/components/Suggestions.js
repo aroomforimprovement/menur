@@ -78,7 +78,7 @@ export const Suggestion = ({dragData}) => {
                 onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
                 onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}
                 >
-                <div className={'hover-shadow border border-grey rounded pe-4'+classes}>
+                <div className={'suggestion hover-shadow border border-grey rounded pe-4'+classes}>
                     <h5 className='suggestion-text'>
                         {dragData.meal.name}                     
                     </h5>
@@ -117,7 +117,7 @@ export const Suggestions = () => {
     });
 
     return(
-        <div className='suggestions col col-7 ms-3 shadow shadow-sm'>
+        <div className='suggestions col col-8 shadow shadow-sm'>
             <div >
                 <h5>Suggestions</h5>
                 <div className='list-unstyled'>

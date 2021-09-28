@@ -11,7 +11,7 @@ export const MealGen = () => {
 
 
     const handleShowForm = () => {
-        setIsFormVisible(true);
+        setIsFormVisible(!isFormVisible);
     }
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -37,8 +37,10 @@ export const MealGen = () => {
         dispatch({type: 'ADD_SUGGESTION', data: meal});
     }
     const handleAddAndClose = (e) => {
-        addSuggestion(e);
-        setIsFormVisible(false);
+        if(name && name !== ''){
+            addSuggestion(e);
+            setIsFormVisible(false);                
+        }
     }
     const handleAdd = (e) => {
         e.preventDefault();
@@ -87,10 +89,11 @@ export const MealGen = () => {
             <IngredientField key={i} ingredient={ingredient} i={i} />
         );
     });
-
+    let showFormClasses = ''
     return(
         <div className='container meal-gen shadow shadow-sm pb-3 mt-3 mb-3'>
-            <div className='btn btn-lg btn-outline-primary fa fa-plus'
+            <div hidden={true}>{isFormVisible ? showFormClasses = 'fa-caret-up' : showFormClasses = 'fa-plus'}</div>
+            <div className={'btn btn-lg btn-outline-primary fa '+showFormClasses}
                 onClick={handleShowForm}>{' '}</div>
             <div hidden={!isFormVisible}>
                 <div className='container'>

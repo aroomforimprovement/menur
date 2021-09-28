@@ -58,23 +58,16 @@ export const MealPlanSlot = ({mealtime, day}) => {
         :
         <div></div>
 
-    const btnStyle = {
-        width:'3px',
-        height:'3px',
-        top:'2px',
-        right:'2px'
-    }
-
     return(
         <DropTarget targetKey='meal' 
             onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>                
-            <div className='container mealtime border border-secondary shadow-sm' onClick={handleClick}>
+            <div className='container mealtime border shadow-sm hover-shadow' onClick={handleClick}>
                 <div className='mealtime-text'>{state.mealplan[day][mealtime].name 
                     ? state.mealplan[day][mealtime].name  : ' '}
                 </div>   
-                <button type='button' className='btn-close meal-remove' 
-                    style={btnStyle} aria-label='Remove'
-                    onClick={handleRemoveMeal}>
+                <button type='button' className='btn-close meal-remove' onClick={handleRemoveMeal} 
+                    style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} aria-label='Remove'
+                >
                 </button> 
                 <div onClick={handleClick}>
                     {showIngredients 
