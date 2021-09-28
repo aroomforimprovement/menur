@@ -4,8 +4,9 @@ import { useMainContext } from './Main';
 import { DELIM, OR} from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
 import { MealGen } from './MealGen';
+import { Dropdown } from 'react-bootstrap';
 
-export const Suggestion = ({dragData}) => {
+export const Suggestion = ({dragData, keyProp}) => {
     let classes = '';
     if(dragData.meal.score >= 10){
         classes = classes + ' sugg-good';
@@ -17,14 +18,13 @@ export const Suggestion = ({dragData}) => {
         classes = classes + ' sugg-none';
     }
     const { state, dispatch } = useMainContext();
-    const [showIngredients, setShowIngredients] = useState(false);
-    const handleToggle = () => {
-        if(!showIngredients){
+    const handleToggle = (isOpen) => {
+        console.dir(isOpen);
+        if(isOpen){
             dispatch({type: 'SET_SELECTED_SUGGESTION', data: dragData.meal});
         }else{
             dispatch({type: 'UNSET_SLECTED_SUGGESTION', data: dragData.meal});
         }
-        setShowIngredients(!showIngredients);        
     }
 
     const handleDragStart = (e) => {
@@ -40,6 +40,10 @@ export const Suggestion = ({dragData}) => {
         if(e.dragData.meal.name.indexOf('Leftover') > -1){
             dispatch({type: 'REMOVE_LEFTOVER', data: e.dragData.meal});
         }
+    }
+
+    const handleItemClick = (e) => {
+        //can do something here with ingredient?
     }
 
     const ingredients = dragData.meal.ingredients.map((ing, i) => {
@@ -66,39 +70,40 @@ export const Suggestion = ({dragData}) => {
         }
         
         return(
-            <div className={classes} key={i} >
-                {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
+            <div key={i}>            
+                {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') 
+                    ? null 
+                    : <Dropdown.Item as='div' onClick={handleItemClick}>
+                        <span className={''+classes}>
+                            {ing.name.replaceAll(DELIM, OR)}
+                        </span>
+                    </Dropdown.Item>}
             </div>
         );
     });
     
     return(
-        <div className={'sugg-container me-2 mb-1'}>
-        <DragDropContainer targetKey='meal' className='suggestion-dnd'
+        <div className='sugg-container me-1 mb-1'>
+            <Dropdown as={DragDropContainer} onToggle={handleToggle} 
+                className={'dropdown'} drop={'down'}
+                //below are props for DragDropContainer
+                targetKey='meal'
                 onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
-                onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}
-                >
-                <div className={'suggestion hover-shadow border border-grey rounded pe-4'+classes}>
+                onDrag={handleDrag} onDrop={handleDrop} dragData={dragData} >
+                <div className={'border border-grey rounded pe-3'+classes}>
                     <h5 className='suggestion-text'>
-                        {dragData.meal.name}                     
+                        {dragData.meal.name}
+                        <Dropdown.Toggle as={'div'} id={'suggDrop_'+keyProp} className='sugg-expand ms-4'
+                        size='sm' align='end' >
+                        </Dropdown.Toggle>                 
                     </h5>
                 </div>
-                {showIngredients 
-                ? <div className='sugg-ingredients col col-12 m-0'>
-                    <ul className='list-unstyled'>
-                        <small>{ingredients}</small>
-                    </ul>
-                </div> 
-                : <div></div>}
-                <div className='sugg-expand' onClick={handleToggle}>
-                    {showIngredients 
-                    ? <span className='fa fa-angle-up'>{' '}</span> 
-                    : <span className='fa fa-angle-down'>{' '}</span>}
-                </div>
-        </DragDropContainer>
+                <Dropdown.Menu  className='sugg-ingredients' aria-labelledby={'suggDrop_'+keyProp}>
+                    <small>{ingredients}</small>
+                </Dropdown.Menu>            
+            </Dropdown>
         </div>
     );
-
 }
 
 
@@ -110,7 +115,7 @@ export const Suggestions = () => {
         
         return(
             <Suggestion key={i} className='col col-sm-4 col-md-3 col-lg-2 '
-                dragData={{meal: suggestion}}
+                dragData={{meal: suggestion}} keyProp={i}
             />
         );
         

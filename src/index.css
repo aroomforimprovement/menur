@@ -48,15 +48,27 @@ code {
 }
 
 .sugg-good{
-  background-color: rgb(98, 255, 93);
+  background-color: rgb(5, 156, 0);
+}
+
+.sugg-good .suggestion-text{
+  color:rgb(236, 236, 236);
 }
 
 .sugg-ok{
-  background-color: rgb(255, 142, 37);
+  background-color: rgb(219, 124, 35);
+}
+
+.sugg-ok .suggestion-text{
+  color:rgb(236, 236, 236);
 }
 
 .sugg-bad{
-  background-color: rgb(252, 98, 98);
+  background-color: rgb(155, 29, 29);
+}
+
+.sugg-bad .suggestion-text{
+  color:rgb(236, 236, 236);
 }
 
 .sugg-none{
@@ -84,6 +96,7 @@ code {
 .sugg-ingredients{
   background-color:rgb(252, 242, 228);
   color: black;
+  top: 20px;
 }
 
 .sugg-ingredient{
