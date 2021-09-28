@@ -42,9 +42,11 @@ export const UserList = ({list}) => {
                     <ListItem dragData={ingredient}/>
                     <div className='fa fa-caret-right ms-1'
                         onClick={() => increment(ingredient)}>{' '}</div>
-                    <div className='fa list-remove'
-                        onClick={() => remove(ingredient)}>x
-                    </div>
+                    <button type='button' className='btn-close meal-remove' 
+                        onClick={() => remove(ingredient)} 
+                        style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} 
+                        aria-label='Remove'>
+                    </button> 
                 </li>
                 : <div></div>
         );

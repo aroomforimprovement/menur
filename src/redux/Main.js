@@ -97,8 +97,7 @@ export const reducer = (state, action) => {
         }
         return leftovers;
     }
-
-
+    
     //console.log("|"+action.type+":"+action.data+"|");
     //console.dir(action.data);
     switch(action.type){

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { DropTarget } from 'react-drag-drop-container';
 import { useMainContext } from './Main';
 import { DELIM, OR } from '../shared/meals';
-import { Button } from 'reactstrap';
 
 export const MealPlanSlot = ({mealtime, day}) => {
     const { state, dispatch } = useMainContext();

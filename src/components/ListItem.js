@@ -20,7 +20,7 @@ export const ListItem = ({dragData}) => {
         <DragDropContainer targetKey='list' 
             onDragStart={handleDragStart} onDragEnd={handleDragEnd}
             onDrag={handleDrag} onDrop={handleDrop} dragData={dragData}>
-            <div key={dragData.name} >
+            <div key={dragData.name} className='list-item'>
                 <span >{dragData.name.replaceAll(DELIM, OR)} x {dragData.qty}</span>
             </div>
         </DragDropContainer>
