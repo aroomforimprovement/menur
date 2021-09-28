@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { DropTarget } from 'react-drag-drop-container';
 import { useMainContext } from './Main';
 import { DELIM, OR } from '../shared/meals';
+import { Button } from 'reactstrap';
 
 export const MealPlanSlot = ({mealtime, day}) => {
     const { state, dispatch } = useMainContext();
@@ -57,6 +58,12 @@ export const MealPlanSlot = ({mealtime, day}) => {
         :
         <div></div>
 
+    const btnStyle = {
+        width:'3px',
+        height:'3px',
+        top:'2px',
+        right:'2px'
+    }
 
     return(
         <DropTarget targetKey='meal' 
@@ -65,10 +72,10 @@ export const MealPlanSlot = ({mealtime, day}) => {
                 <div className='mealtime-text'>{state.mealplan[day][mealtime].name 
                     ? state.mealplan[day][mealtime].name  : ' '}
                 </div>   
-                <span className='fa mealtime-close'
+                <button type='button' className='btn-close meal-remove' 
+                    style={btnStyle} aria-label='Remove'
                     onClick={handleRemoveMeal}>
-                        {'x'}
-                </span> 
+                </button> 
                 <div onClick={handleClick}>
                     {showIngredients 
                     ? <span className='fa fa-angle-up'>{' '}</span> 

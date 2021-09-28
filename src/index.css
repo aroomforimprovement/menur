@@ -110,7 +110,7 @@ code {
   color:rgb(0, 0, 126);
 }
 
-.mealtime-close{
+.meal-remove{
   position:absolute;
   text-align:end;
   display:inline-block;
