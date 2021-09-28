@@ -40,7 +40,8 @@ export const reducer = (state, action) => {
         const suggIngredients = getIngredientsFromMeal(suggestion);
         suggIngredients.forEach((ingredient) => {
             mealIngredients.forEach((mealIngredient) => {
-                if(ingredient.name === mealIngredient.name){
+                if(ingredient.type !== 'spice' && ingredient.type !== 'cond' &&
+                    ingredient.name === mealIngredient.name){
                     score += parseInt(ingredient.score);
                 }
             });

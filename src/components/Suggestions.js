@@ -7,11 +7,11 @@ import { MealGen } from './MealGen';
 
 export const Suggestion = ({dragData}) => {
     let classes = '';
-    if(dragData.meal.score >= 16){
+    if(dragData.meal.score >= 10){
         classes = classes + ' sugg-good';
-    }else if(dragData.meal.score >= 12){
-        classes = classes + ' sugg-ok';
     }else if(dragData.meal.score >= 8){
+        classes = classes + ' sugg-ok';
+    }else if(dragData.meal.score >= 6){
         classes = classes + ' sugg-bad';
     }else{
         classes = classes + ' sugg-none';
@@ -106,7 +106,7 @@ export const Suggestions = () => {
     
     const { state } = useMainContext();
 
-    const suggestionList = state.suggestions.map((suggestion, i) => {
+    const suggestionList = state.suggestions.slice(0, 10).map((suggestion, i) => {
         
         return(
             <Suggestion key={i} className='col col-sm-4 col-md-3 col-lg-2 '
