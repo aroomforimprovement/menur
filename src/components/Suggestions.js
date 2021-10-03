@@ -111,7 +111,7 @@ export const Suggestions = () => {
     
     const { state } = useMainContext();
 
-    const suggestionList = state.suggestions.slice(0, 10).map((suggestion, i) => {
+    const suggestionList = state.suggestions.map((suggestion, i) => {
         
         return(
             <Suggestion key={i} className='col col-sm-4 col-md-3 col-lg-2 '

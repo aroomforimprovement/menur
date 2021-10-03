@@ -29,6 +29,7 @@ export const MealGen = () => {
         setIng(ingr);
     }
     const addSuggestion = (e) => {
+        console.log("addSuggestion");
         const meal = {
             name: name,
             ingredients: ingredients,

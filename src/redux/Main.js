@@ -135,9 +135,14 @@ export const reducer = (state, action) => {
                 });
             });
             const rankedSuggestions = getRankedSuggestions(state.selection, newSuggestions);
-            return ({...state, suggestions:rankedSuggestions});
+            const sampleSuggestions = rankedSuggestions.slice(0, 10);
+            console.log("sampleSuggestions");
+            console.dir(sampleSuggestions);
+            return ({...state, suggestions:sampleSuggestions});
         }
         case 'ADD_SUGGESTION':{
+            console.log('ADD_SUGGESTION: ');
+            console.dir(action.data)
             const suggestions = [...state.suggestions];
             suggestions.push(action.data);
             return ({...state, suggestions: suggestions});
