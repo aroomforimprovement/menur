@@ -98,7 +98,7 @@ export const Suggestion = ({dragData, keyProp}) => {
                         </Dropdown.Toggle>                 
                     </h5>
                 </div>
-                <Dropdown.Menu  className='sugg-ingredients' aria-labelledby={'suggDrop_'+keyProp}>
+                <Dropdown.Menu  className='sugg-ingredients mb-3' aria-labelledby={'suggDrop_'+keyProp}>
                     <small>{ingredients}</small>
                 </Dropdown.Menu>            
             </Dropdown>
@@ -122,7 +122,7 @@ export const Suggestions = () => {
     });
 
     return(
-        <div className='suggestions col col-8 shadow shadow-sm'>
+        <div className='suggestions col col-8 shadow shadow-sm align-bottom'>
             <div >
                 <h5>Suggestions</h5>
                 <div className='list-unstyled'>
