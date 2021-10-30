@@ -81,6 +81,10 @@ export const Suggestion = ({dragData, keyProp}) => {
             </div>
         );
     });
+
+    const handleClickDay = (e) => {
+        e.preventDefault();
+    }
     
     return(
         <div className='sugg-container me-1 mb-1'>
@@ -90,17 +94,151 @@ export const Suggestion = ({dragData, keyProp}) => {
                 targetKey='meal'
                 onDragStart={handleDragStart} onDragEnd={handleDragEnd} 
                 onDrag={handleDrag} onDrop={handleDrop} dragData={dragData} >
-                <div className={'border border-grey rounded pe-3'+classes}>
+                <div className={`border border-grey rounded pe-3 ${classes}`}>
                     <h5 className='suggestion-text'>
+                        <Dropdown>
+                        <Dropdown.Toggle as={'div'} id={`suggDrop_${keyProp}_days`} className='sugg-expand ms-4'
+                            size='sm' align='start' > +
+                        </Dropdown.Toggle>  
+                        <Dropdown.Menu  className='sugg-ingredients' aria-labelledby={`suggDrop_${keyProp}_days`}>
+                            <li onClick={handleClickDay}>
+                                <Dropdown>
+                                    <Dropdown.Toggle>
+                                        <small>Monday</small>        
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item>
+                                            <small>Breakfast</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Lunch</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Dinner</small>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </li>
+                            <li onClick={handleClickDay}>
+                                <Dropdown>
+                                    <Dropdown.Toggle>
+                                        <small>Tuesday</small>        
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item>
+                                            <small>Breakfast</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Lunch</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Dinner</small>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </li>
+                            <li onClick={handleClickDay}>
+                                <Dropdown>
+                                    <Dropdown.Toggle>
+                                        <small>Wednesday</small>        
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item>
+                                            <small>Breakfast</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Lunch</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Dinner</small>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </li>
+                            <li onClick={handleClickDay}>
+                                <Dropdown>
+                                    <Dropdown.Toggle>
+                                        <small>Thursday</small>        
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item>
+                                            <small>Breakfast</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Lunch</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Dinner</small>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </li>
+                            <li onClick={handleClickDay}>
+                                <Dropdown>
+                                    <Dropdown.Toggle>
+                                        <small>Friday</small>        
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item>
+                                            <small>Breakfast</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Lunch</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Dinner</small>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </li>
+                            <li onClick={handleClickDay}>
+                                <Dropdown>
+                                    <Dropdown.Toggle>
+                                        <small>Saturday</small>        
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item>
+                                            <small>Breakfast</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Lunch</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Dinner</small>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </li>
+                            <li onClick={handleClickDay}>
+                                <Dropdown>
+                                    <Dropdown.Toggle>
+                                        <small>Sunday</small>        
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item>
+                                            <small>Breakfast</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Lunch</small>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <small>Dinner</small>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </li>
+                        </Dropdown.Menu>
+                        </Dropdown>
                         {dragData.meal.name}
-                        <Dropdown.Toggle as={'div'} id={'suggDrop_'+keyProp} className='sugg-expand ms-4'
-                        size='sm' align='end' >
-                        </Dropdown.Toggle>                 
+                        <Dropdown.Toggle as={'div'} id={`suggDrop_${keyProp}`} className='sugg-expand ms-4'
+                            size='sm' align='end' >
+                        </Dropdown.Toggle>  
+                        <Dropdown.Menu  className='sugg-ingredients' aria-labelledby={`suggDrop_${keyProp}`}>
+                            <small>{ingredients}</small>
+                        </Dropdown.Menu>                 
                     </h5>
                 </div>
-                <Dropdown.Menu  className='sugg-ingredients mb-3' aria-labelledby={'suggDrop_'+keyProp}>
-                    <small>{ingredients}</small>
-                </Dropdown.Menu>            
+                         
             </Dropdown>
         </div>
     );

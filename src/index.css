@@ -97,7 +97,9 @@ code {
 .sugg-ingredients{
   background-color:rgb(252, 242, 228);
   color: black;
-  top: 20px;
+  position:absolute;
+  top: 200px;
+  right:200px;
 }
 
 .sugg-ingredient{

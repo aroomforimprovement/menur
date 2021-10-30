@@ -135,7 +135,7 @@ export const MealPlan = () => {
     return(
         
         <div>
-            <button onClick={toggleOrientation} className='btn btn-sm mt-4 btn-warning border border-success'>[=] Toggle Orientation</button>
+            <button onClick={toggleOrientation} className='btn btn-sm mt-4 btn-warning border border-success'>{isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
             {
                 isLandscape ? <LandscapeMealPlan /> : <PortraitMealPlan />
             }
