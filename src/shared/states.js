@@ -20,5 +20,6 @@ export const INIT_STATE = {
     leftovers: [],
     genList: [],
     userList1: [],
-    userList2: []
+    userList2: [],
+    isLandscape: true
 }

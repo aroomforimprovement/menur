@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MealPlanSlot } from './MealPlanSlot';
 import { Leftovers } from './Leftovers.js';
+import { useMainContext } from './Main';
 
 export const MealPlan = () => {
 
-    const [isLandscape, setIsLandscape] = useState(true);
+    const { state, dispatch } = useMainContext();
 
     const toggleOrientation = () => {
-        setIsLandscape(!isLandscape);
+        dispatch({type: 'SET_IS_LANDSCAPE', data: !state.isLandscape})
     }
     const PortraitMealPlan = () => {
         return(
@@ -135,9 +136,9 @@ export const MealPlan = () => {
     return(
         
         <div>
-            <button onClick={toggleOrientation} className='btn btn-sm mt-4 btn-warning border border-success'>{isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
+            <button onClick={toggleOrientation} className='btn btn-sm mt-4 btn-warning border border-success'>{state.isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
             {
-                isLandscape ? <LandscapeMealPlan /> : <PortraitMealPlan />
+                state.isLandscape ? <LandscapeMealPlan /> : <PortraitMealPlan />
             }
         </div>
         

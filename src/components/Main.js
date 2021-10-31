@@ -6,9 +6,9 @@ import { Suggestions } from './Suggestions';
 import { reducer } from '../redux/Main';
 import { MealPlan } from './MealPlan';
 import { GenList } from './GenList';
-import { DownloadableMealPlan } from '../utils/pdfUtils'; 
+import { DownloadableMealPlan, DownloadableMealPlanLandscape } from '../utils/pdfUtils'; 
 import { PDFDownloadLink } from '@react-pdf/renderer';
-//import { MealPlanViewer } from './partials/MealPlanViewer'
+import { MealPlanViewer } from './partials/MealPlanViewer'
 
 
 const MainContext = createContext(INIT_STATE);
@@ -43,13 +43,15 @@ export const Main = () => {
                                 </div>
                                 <div className='row my-2'>
                                         <PDFDownloadLink className={'btn btn-success'}
-                                            document={<DownloadableMealPlan mealplan={state.mealplan}/>} 
+                                            document={state.isLandscape 
+                                                ? <DownloadableMealPlanLandscape mealplan={state.mealplan}/> 
+                                                : <DownloadableMealPlan mealplan={state.mealplan}/>} 
                                             fileName={`mealplan_${new Date()}`}>
                                             {({blob, url, loading, error}) => 
                                                 loading ? 'Loading document...' : 'Download Meal Plan as PDF'
                                             }  
                                         </PDFDownloadLink>
-                                        {/**state && state.mealplan ? <MealPlanViewer mealplan={state.mealplan}/> : <div></div>*/}
+                                        {state && state.mealplan ? <MealPlanViewer mealplan={state.mealplan} isLandscape={state.isLandscape}/> : <div></div>}
                                 </div>
                                 <div className='row mt-2 mb-2'>
                                     <button onClick={handleGenList} 

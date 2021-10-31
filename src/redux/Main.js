@@ -254,8 +254,10 @@ export const reducer = (state, action) => {
             return INIT_STATE;
         }
         case 'DOWNLOAD_MEALPLAN':{
-            
             return ({...state, download: action.data});
+        }
+        case 'SET_IS_LANDSCAPE':{
+            return({...state, isLandscape: action.data});
         }
         default:
             break;

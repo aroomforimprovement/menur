@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { PDFViewer } from '@react-pdf/renderer';
-import { DownloadableMealPlan } from '../../utils/pdfUtils';
+import { DownloadableMealPlan, DownloadableMealPlanLandscape } from '../../utils/pdfUtils';
 
 
-export const MealPlanViewer = ({mealplan}) => {
+export const MealPlanViewer = ({mealplan, isLandscape}) => {
     console.dir(mealplan);
     return(
         <div>
         {mealplan 
         ?
             <PDFViewer width={'100%'} height={'100%'}>
-                <DownloadableMealPlan mealplan={mealplan}/>
+                {isLandscape 
+                ? <DownloadableMealPlanLandscape mealplan={mealplan} />
+                : <DownloadableMealPlan mealplan={mealplan}/>}
             </PDFViewer>
         :
             <div></div>
