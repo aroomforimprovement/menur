@@ -160,9 +160,7 @@ export const reducer = (state, action) => {
         }
         case 'ADD_MEAL':{
             let mealplan = {...state.mealplan};
-            mealplan[action.data.day][action.data.mealtime] = action.data.meal;
-            //add extra to leftovers 
-            // - tag leftovers with day and mealtime  
+            mealplan[action.data.day][action.data.mealtime] = action.data.meal; 
             const servings = parseInt(action.data.meal.servings);
             let leftovers = [...state.leftovers];
             if(servings > 2){
@@ -254,6 +252,10 @@ export const reducer = (state, action) => {
             window.localStorage.removeItem('MENUR_STATE');
             window.location.reload();
             return INIT_STATE;
+        }
+        case 'DOWNLOAD_MEALPLAN':{
+            
+            return ({...state, download: action.data});
         }
         default:
             break;

@@ -48,8 +48,8 @@ code {
 
 .custom-toggle{
   position:absolute;
-  width:15px;
-  height:15px;
+  width:16px;
+  height:16px;
   top:8px;
   cursor:pointer;
   background-color:silver;
@@ -63,17 +63,17 @@ code {
 }
 
 .plus-toggle{
-  left:3px;
+  left:6px;
 }
 .plus-toggle small{
-  left:2px;
+  left:2.5px;
 }
 
 .info-toggle{
-  right:3px;
+  right:6px;
 }
 .info-toggle small{
-  left:5px;
+  left:5.5px;
 }
 
 .suggestion{
