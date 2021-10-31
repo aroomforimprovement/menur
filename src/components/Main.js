@@ -51,7 +51,7 @@ export const Main = () => {
                                                 loading ? 'Loading document...' : 'Download Meal Plan as PDF'
                                             }  
                                         </PDFDownloadLink>
-                                        {state && state.mealplan ? <MealPlanViewer mealplan={state.mealplan} isLandscape={state.isLandscape}/> : <div></div>}
+                                        {/**state && state.mealplan ? <MealPlanViewer mealplan={state.mealplan} isLandscape={state.isLandscape}/> : <div></div>*/}
                                 </div>
                                 <div className='row mt-2 mb-2'>
                                     <button onClick={handleGenList} 
