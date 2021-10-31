@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Form, FormGroup, Label, Input, FormText, InputGroup, Button } from 'reactstrap';
+import { Label, Input, InputGroup } from 'reactstrap';
 import { useMainContext } from './Main';
 
 export const MealGen = () => {
-    const { state, dispatch } = useMainContext();
+    const { dispatch } = useMainContext();
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [name, setName] = useState('');
     const [ingredients, setIng] = useState([]);

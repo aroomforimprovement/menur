@@ -156,7 +156,7 @@ export const reducer = (state, action) => {
                     "score": 0, 
                     "mealtime":action.data.mealtime
                 });
-            return ({...state, })
+            return ({...state, });
         }
         case 'ADD_MEAL':{
             let mealplan = {...state.mealplan};
@@ -191,8 +191,10 @@ export const reducer = (state, action) => {
                 continue;
             }
             let leftoverMeals = [];
+            // eslint-disable-next-line no-unused-vars
             for(let [key, value] of Object.entries(mealplan) ){
                 //console.log(key+":"+value);
+                // eslint-disable-next-line no-unused-vars
                 for(let [ke, val] of Object.entries(mealplan[key])){
                     //console.log(ke+":"+val);
                     for(let [k, v] of Object.entries(mealplan[key][ke])){

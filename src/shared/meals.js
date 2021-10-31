@@ -1262,7 +1262,7 @@ export const MEALS = [{
             "score": "4"
         },
         {
-            "name": "Chopped Tomatoes",
+            "name": "Chopped tomatoes",
             "type": "tin",
             "qty": "1",
             "score": "2"
