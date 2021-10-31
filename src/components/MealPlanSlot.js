@@ -5,40 +5,25 @@ import { DELIM, OR } from '../shared/meals';
 
 export const MealPlanSlot = ({mealtime, day}) => {
     const { state, dispatch } = useMainContext();
-     const [isSet, setIsSet] = useState(state.mealplan[day][mealtime].name 
-        ? true : false );
+
     const [showIngredients, setShowIngredients] = useState(false);
-    
 
 
     const handleDragEnter = (e) => {
-        if(!isSet){
-            e.target.style.color = 'green';
-            e.target.style.backgroundColour = 'green';
-            e.dragElem.style.color = 'green';
-        }
         e.target.style.color = 'red';
     }
     const handleDragLeave = (e) => {
-        if(!isSet){
-            e.target.style.color = 'black';
-        }else{
-            e.target.style.color = '#000066';
-            e.target.style.fontWeight = 'bold';
-        }
-        
+        e.target.style.color = 'darkblue';
     }    
     const handleDrop = (e) => {
         e.dragData.day = day;
         e.dragData.mealtime = mealtime;
-        dispatch({type: 'ADD_MEAL', data: e.dragData})
-        setIsSet(true);
+        dispatch({type: 'ADD_MEAL', data: e.dragData});
         e.target.style.color = 'blue';
         e.target.style.fontWeight = 'bold';
         window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
     const handleRemoveMeal = () => {
-        setIsSet(false);
         dispatch({type: 'REMOVE_MEAL', data: {day: day, mealtime: mealtime}});
         window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }

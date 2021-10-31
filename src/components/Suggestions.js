@@ -91,7 +91,7 @@ export const Suggestion = ({dragData, keyProp}) => {
                 dragData={dragData} className={'dd-container'}>        
             <Dropdown onToggle={handleToggle} 
                 className={`dropdown ${classes}`} drop={'right'} > 
-                <div className={`border border-grey rounded px-3 ${classes}`}>
+                <div className={`border border-grey rounded px-4 ${classes}`}>
                     <h5 className='suggestion-text'>
                         {dragData.meal.name}                                     
                     </h5>
