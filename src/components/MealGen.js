@@ -37,12 +37,6 @@ export const MealGen = () => {
         }
         dispatch({type: 'ADD_SUGGESTION', data: meal});
     }
-    const handleAddAndClose = (e) => {
-        if(name && name !== ''){
-            addSuggestion(e);
-            setIsFormVisible(false);                
-        }
-    }
     const handleAdd = (e) => {
         e.preventDefault();
         if(name && name !== ''){
@@ -102,7 +96,7 @@ export const MealGen = () => {
                     <InputGroup size='sm'>
                         <Input type='text' id='name' placeholder='Name'
                             onChange={handleNameChange}
-                            defaultValue={name}></Input>
+                            value={name}></Input>
                     </InputGroup>
                     <div className='row'>
                         <InputGroup size='sm'>
@@ -126,11 +120,9 @@ export const MealGen = () => {
                         </div>
                     </div>
                     <div className='row ing-row'>
-                        <div className='col col-3'></div>
-                        <button className='btn btn-sm btn-outline-primary col col-4 mx-1 mt-3'
-                            onClick={handleAddAndClose}>Add and close</button>                       
+                        <div className='col col-3'></div>                       
                         <button className='btn btn-sm btn-primary col col-4 mx-1 mt-3'
-                            onClick={handleAdd}>Add and add another</button>
+                            onClick={handleAdd}>Add new meal to suggestions</button>
                     </div>
                 </div>
             </div>
