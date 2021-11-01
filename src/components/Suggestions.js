@@ -1,6 +1,6 @@
 import React from 'react';
 import { DragDropContainer } from 'react-drag-drop-container';
-import { useMainContext } from './Main';
+import { useMainContext } from './MenurRouter';
 import { DELIM, OR} from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
 import { MealGen } from './MealGen';

@@ -99,6 +99,7 @@ export const reducer = (state, action) => {
         return leftovers;
     }
     
+    console.log(action.type+':'+action.data)
     //console.log("|"+action.type+":"+action.data+"|");
     //console.dir(action.data);
     switch(action.type){
@@ -258,6 +259,30 @@ export const reducer = (state, action) => {
         }
         case 'SET_IS_LANDSCAPE':{
             return({...state, isLandscape: action.data});
+        }
+        case 'CHECK_AUTH':{
+            let storedUser = {isAuth: false};
+            if(action.data.isAuthenticated){
+                const user = action.data.user;
+                const userid = user.sub.replace('auth0|', '');
+                storedUser = {userid: userid, email: user.email, 
+                    username: user.nickname, isAuth: true, 
+                    access: (state.user && state.user.access) ? state.user.access : null
+                }
+            }
+            return({...state, user: storedUser});
+        }
+        case 'SET_ACCESS':{
+            let user = {};
+            if(state.user){
+                user = {...state.user};
+            }
+            user.access = action.data;
+            return({...state, user: user});
+        }
+        case 'SET_ACCOUNT_INFO':{
+            return ({...state, meals: action.data.meals, plans: action.data.plans, 
+                user: {...state.user, username: action.data.username}, isSet: action.data.isSet});
         }
         default:
             break;

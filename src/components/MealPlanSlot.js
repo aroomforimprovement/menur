@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DropTarget } from 'react-drag-drop-container';
-import { useMainContext } from './Main';
+import { useMainContext } from './MenurRouter';
 import { DELIM, OR } from '../shared/meals';
 
 export const MealPlanSlot = ({mealtime, day}) => {

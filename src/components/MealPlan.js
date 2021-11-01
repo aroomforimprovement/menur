@@ -1,7 +1,7 @@
 import React from 'react';
 import { MealPlanSlot } from './MealPlanSlot';
 import { Leftovers } from './Leftovers.js';
-import { useMainContext } from './Main';
+import { useMainContext } from './MenurRouter';
 
 export const MealPlan = () => {
 
@@ -134,13 +134,11 @@ export const MealPlan = () => {
     }
     
     return(
-        
         <div>
             <button onClick={toggleOrientation} className='btn btn-sm mt-4 btn-warning border border-success'>{state.isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
             {
                 state.isLandscape ? <LandscapeMealPlan /> : <PortraitMealPlan />
             }
         </div>
-        
     );
 }

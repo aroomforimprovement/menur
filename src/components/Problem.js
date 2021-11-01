@@ -5,7 +5,7 @@ export const Problem = ({message}) => {
         <div className='col-12'>
             <span className='fa fa-skull fa-3x fa-fw'></span>
             <p>{message}</p>
-            <p><a href='/home'>Take me home!</a></p>
+            <p><a href='/'>Take me home!</a></p>
         </div>
     );
 }

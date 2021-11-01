@@ -2,7 +2,7 @@ import React from 'react';
 import { FormGroup, Label, Input } from 'reactstrap';
 import { DELIM, MEALS, OR } from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
-import { useMainContext } from './Main';
+import { useMainContext } from './MenurRouter';
 
 export const Selector = () => {
     const { state, dispatch } = useMainContext();

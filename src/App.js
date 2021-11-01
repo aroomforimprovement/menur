@@ -1,13 +1,19 @@
 import './App.css';
 import { ErrorBoudary } from './utils/errorUtils';
-import { Main } from './components/Main';
+import MenurRouter from './components/MenurRouter';
+import { BrowserRouter } from 'react-router-dom';
+import Auth0ProviderWithHistory from './auth/Auth0ProviderWithHistory';
 
 const App = () => {
   return (
     <ErrorBoudary>
-      <div className='App'>
-        <Main className='main'/>
-      </div>
+      <BrowserRouter>
+        <Auth0ProviderWithHistory >
+          <div className='App'>
+            <MenurRouter className='main'/>
+          </div>
+        </Auth0ProviderWithHistory>
+      </BrowserRouter>
     </ErrorBoudary>
   );
 }

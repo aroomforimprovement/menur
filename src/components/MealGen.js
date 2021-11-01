@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Label, Input, InputGroup } from 'reactstrap';
-import { useMainContext } from './Main';
+import { useMainContext } from './MenurRouter';
 
 export const MealGen = () => {
     const { dispatch } = useMainContext();
