@@ -1,5 +1,4 @@
-import React, { useReducer } from 'react';
-
+import React from 'react';
 import { Selector } from './Selector';
 import { Suggestions } from './Suggestions';
 import { MealPlan } from './MealPlan';

@@ -7,7 +7,7 @@ import { Switch, useHistory, Route, withRouter, Redirect } from 'react-router';
 import { Main } from './Main';
 import { Loading } from './partials/Loading';
 
-const apiUrl = process.env.REACT_APP_URL
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const MainContext = createContext(INIT_STATE);
 
@@ -24,6 +24,7 @@ const MenurRouter = () => {
 
     const MainPage = () => {return <Main/>}
 
+    
 
     useEffect(() => {
         if(!isLoading && !state.user){
@@ -47,28 +48,46 @@ const MenurRouter = () => {
     },[getAccessTokenSilently, isAuthenticated, state.user]);
 
     useEffect(() => {
-        const getAccountInfo = async (id, access) => {
-            return fetch(`${apiUrl}collection/${id}`, {
+        const getAccountInfo = async (access) => {
+            const body = {
+                userid: state.user.userid, 
+                username: state.user.username,
+                email: state.user.email
+            }
+            console.dir(body);
+            return await fetch(`${apiUrl}app/login`, {
+                method: 'POST',
+                body: JSON.stringify(body),
                 headers: {
-                    Authorization: `Bearer ${access}`
+                    Authorization: `Bearer ${access}`,
+                    'Content-Type': 'application/json'
                 }   
             }).then(response => {
                 if(response.ok){
                     return response.json();
                 }
             }, error => {
-                console.error("error fetching anim " + error);
+                console.error("error fetching account info: " + error);
             }).catch(err => console.error(err))
         }
-        if(isAuthenticated && state.user && state.user.access && !state.isSet){
-            getAccountInfo(state.user.userid, state.user.access)
+        const setInfo = async () => {
+            await getAccountInfo(state.user.access)
                 .then((result) => {
-                    result.isSet = true;
-                    dispatch({
-                        type: 'SET_ACCOUNT_INFO',
-                        data: result
-                    });
-                })
+                    if(result){
+                        result.isSet = true;
+                        dispatch({
+                            type: 'SET_ACCOUNT_INFO',
+                            data: result
+                        });
+                    }else{
+                        dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
+                    }
+                    
+                    
+            });
+        }
+        if(isAuthenticated && state.user && state.user.access && !state.isSet){
+            setInfo();
         }else if(!isLoading && !isAuthenticated && !state.user){
             dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
         }
