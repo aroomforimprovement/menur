@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Selector } from './Selector';
 import { Suggestions } from './Suggestions';
 import { MealPlan } from './MealPlan';

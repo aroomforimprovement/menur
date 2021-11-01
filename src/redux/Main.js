@@ -104,7 +104,7 @@ export const reducer = (state, action) => {
     //console.dir(action.data);
     switch(action.type){
         case 'SET_SHOW_SPICES':{
-            return({...state, showSpices: action.data})
+            return({...state, showSpices: action.data});
         }
         case 'CHANGE_SELECTION':{
             return ({...state, selection: action.data});
