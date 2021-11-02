@@ -87,7 +87,7 @@ export const Footer = () => {
                 }
             }).then(response => {
                 if(response.ok){
-                    console.log(`mealplan saved ok ${response.json()}`);
+                    console.log(`mealplan saved ok`);
                     setIsSaving(false);
                     setIsSaveFailed(false);
                 }else{

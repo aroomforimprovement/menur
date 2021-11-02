@@ -19,8 +19,9 @@ export const useMainContext = () => {
 const MenurRouter = () => {
 
     const { isLoading, isAuthenticated, user, getAccessTokenSilently } = useAuth0();
-    const [state, dispatch] = useReducer(reducer, window.localStorage.getItem('MENUR_STATE') 
-        ? JSON.parse(window.localStorage.getItem('MENUR_STATE')) : INIT_STATE);
+    const [state, dispatch] = useReducer(reducer, INIT_STATE);
+    //const [state, dispatch] = useReducer(reducer, window.localStorage.getItem('MENUR_STATE') 
+    //    ? JSON.parse(window.localStorage.getItem('MENUR_STATE')) : INIT_STATE);
     const mainState = { state, dispatch };
     const history = useHistory();
 
@@ -87,12 +88,9 @@ const MenurRouter = () => {
                             type: 'SET_ACCOUNT_INFO',
                             data: result
                         });
-                        console.dir(state);
                     }else{
                         dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
-                    }
-                    
-                    
+                    }  
             });
         }
         if(isAuthenticated && state.user && state.user.access && !state.isSet){

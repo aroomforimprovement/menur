@@ -57,7 +57,7 @@ export const MealGen = () => {
             }
         }).then(response => {
             if(response.ok){
-                console.log(`meal saved ok ${response.json()}`);
+                console.log(`meal saved ok`);
                 return true;
             }else{
                 console.error(`response not ok`);

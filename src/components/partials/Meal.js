@@ -1,15 +1,42 @@
 import React, { useState } from 'react';
 import { DELIM, OR } from '../../shared/meals';
+import { useMainContext } from '../MenurRouter';
+
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const Meal = ({meal, showSpices}) => {
+    const { state, dispatch } = useMainContext();
     const [showIngredients, setShowIngredients] = useState(false);
+
+    const deleteMeal = async () => {
+        return await fetch(`${apiUrl}app/meal/${meal.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${state.user.access}`
+            }
+        }).then(response => {
+            if(response.ok){
+                console.dir(response);
+                return response;
+            }
+        }, error => {
+            console.error(error);
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
 
     const handleClick = () => {
         setShowIngredients(!showIngredients);
     }
 
     const handleDeleteMeal = () => {
-        console.error("handleDeleteMeal not implemented");
+        deleteMeal().then((response) => {
+            if(response.ok){
+                window.location.href = '/account';
+            }
+        });
     }
 
     const ingredients = meal.name 
