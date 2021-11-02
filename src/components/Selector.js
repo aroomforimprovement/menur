@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Form } from 'react-bootstrap';
 import { DELIM, MEALS, OR } from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
@@ -56,28 +56,28 @@ export const Selector = () => {
     }
 
     const handleCheckBasic = (e) => {
-        dispatch({type: 'SET_SHOW_BASIC', data: e.target.checked});
+        dispatch({type: 'SET_SHOW_BASIC', data: e.target.value});
         window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
     const handleCheckMine = (e) => {
-        dispatch({type: 'SET_SHOW_MINE', data: e.target.checked});
+        dispatch({type: 'SET_SHOW_MINE', data: e.target.value});
         window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
     const handleCheckSpices = (e) => {
-        dispatch({type: 'SET_SHOW_SPICES', data: e.target.checked});
+        dispatch({type: 'SET_SHOW_SPICES', data: e.target.value});
         window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
     return(
         <div className='selector col col-4 shadow shadow-sm' >
             <Form.Group >
-                <Form.Label className='selector-heading'>What are you making?</Form.Label>
-                <Form.Check type="checkbox" onChange={handleCheckBasic} label={'Basic meals'} id="checkBasic"/>
-                <Form.Check type="checkbox" onChange={handleCheckMine} label={'My meals'} id="checkMine"/>
+                <Form.Label className='selector-heading'>What are you making?</Form.Label><br/>
+                <Form.Check inline type={"checkbox"} onChange={handleCheckBasic} label={'Basic meals'} id="checkBasic"/>
+                <Form.Check inline type={"checkbox"} onChange={handleCheckMine} label={'My meals'} id="checkMine"/>
                 <Form.Select  id='mealSelect'
-                    onChange={handleChange} value={state.selection}>
+                    onChange={handleChange} value={state.selection.name}>
                     {meals}
                 </Form.Select>
             </Form.Group>
