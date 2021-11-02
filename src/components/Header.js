@@ -3,7 +3,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useMainContext } from './MenurRouter';
 import { Loading } from './partials/Loading';
 import { LoginBtn, LogoutBtn, SignupBtn } from './partials/AuthBtns';
-import { v4 as uuidv4 } from 'uuid';
+import { getNewId } from '../utils/objUtils';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -63,10 +63,7 @@ export const Footer = () => {
     const [isSaving, setIsSaving] = useState(false);
     const [isSaveFailed, setIsSaveFailed] = useState(false);
 
-    const getNewId = () => {
-        console.log("getNewAnimId");
-        return uuidv4();
-    }    
+        
     const saveDataToAccount = async () => {
         if(state && state.user && state.user.isAuth){
             const body = {
@@ -121,15 +118,20 @@ export const Footer = () => {
                     ? <div className='border border-danger'>Error saving the mealplan :(</div>
                     : <div></div>}
                 </div>
+                <div className='row'>
                 {isSaving ? <Loading /> : 
-                <div className='row'> 
+                    <div>
                     {state && state.user && state.user.isAuth
-                    ? <button className='col col-10 btn btn-sm btn-success border border-warning mb-2 mt-4'
+                    ? <button className='col col-10 btn btn-sm btn-success border border-warning mx-auto my-2'
                         onClick={handleSaveData}>
                         <span className='fa fa-save me-2'></span> Save this mealplan to your account <span className='fa fa-save ms-2'></span>
-                    </button> : <div></div>} 
-                </div>}
-                <button className='col col-10 btn btn-sm btn-danger border border-success mb-3 mt-1'
+                    </button> : <div></div>}
+                    </div> 
+                }
+                </div>
+            </div>
+            <div className='row'>
+                <button className='col col-10 btn btn-sm btn-danger border border-success mx-auto my-2'
                     onClick={handleClearData}>
                     <span className='fa fa-close me-2'></span> Clear data and start again <span className='fa fa-close ms-2'></span>
                 </button> 

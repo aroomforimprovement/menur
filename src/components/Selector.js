@@ -1,14 +1,15 @@
-import React from 'react';
-import { FormGroup, Label, Input } from 'reactstrap';
+import React, { useEffect } from 'react';
+import { Form } from 'react-bootstrap';
 import { DELIM, MEALS, OR } from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
 import { useMainContext } from './MenurRouter';
 
 export const Selector = () => {
     const { state, dispatch } = useMainContext();
+    
     const meals = MEALS.map((meal, i) => {
         return(
-            <option key={i}>{meal.name}</option>
+            <option key={meal.name}>{meal.name}</option>
         );
     });
 
@@ -51,31 +52,41 @@ export const Selector = () => {
             }
         });
         dispatch({type: 'GET_SUGGESTIONS', data: e.target.value});
+        window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
-    const handleCheck = (e) => {
-        dispatch({type: 'SET_SHOW_SPICES', data: e.target.checked})
+    const handleCheckBasic = (e) => {
+        dispatch({type: 'SET_SHOW_BASIC', data: e.target.checked});
+        window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
+    }
+
+    const handleCheckMine = (e) => {
+        dispatch({type: 'SET_SHOW_MINE', data: e.target.checked});
+        window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
+    }
+
+    const handleCheckSpices = (e) => {
+        dispatch({type: 'SET_SHOW_SPICES', data: e.target.checked});
+        window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
     return(
         <div className='selector col col-4 shadow shadow-sm' >
-        <FormGroup >
-            <Label for='dishSelect' className='selector-heading'>What are you making?</Label><br/>
-            <Input type='select' name='select' id='dishSelect'
-                onChange={handleChange} defaultValue={state.selection}>
+            <Form.Group >
+                <Form.Label className='selector-heading'>What are you making?</Form.Label>
+                <Form.Check type="checkbox" onChange={handleCheckBasic} label={'Basic meals'} id="checkBasic"/>
+                <Form.Check type="checkbox" onChange={handleCheckMine} label={'My meals'} id="checkMine"/>
+                <Form.Select  id='mealSelect'
+                    onChange={handleChange} value={state.selection}>
                     {meals}
-            </Input>
-        </FormGroup>
-        <FormGroup className='mt-3' check>
-            <Label check>
-                <Input type="checkbox" onChange={handleCheck}/>{' '}
-                Shows spices / condiments
-            </Label>
-      </FormGroup>
-        <strong>Ingredients</strong>
-        <ul className='list-unstyled mt-2 mb-1 ms-2'>
-            {selectionIngredients}
-        </ul>
+                </Form.Select>
+            </Form.Group>
+            <Form.Check type="checkbox" onChange={handleCheckSpices} value={state.showSpices}
+                id={'showSpicesCheckbox'} label={'Shows spices / condiments'}/>
+            <strong>Ingredients</strong>
+            <ul className='list-unstyled mt-2 mb-1 ms-2'>
+                {selectionIngredients}
+            </ul>
         </div>
     );
 }

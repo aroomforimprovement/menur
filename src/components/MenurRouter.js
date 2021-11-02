@@ -18,14 +18,14 @@ export const useMainContext = () => {
 const MenurRouter = () => {
 
     const { isLoading, isAuthenticated, user, getAccessTokenSilently } = useAuth0();
-    const [state, dispatch] = useReducer(reducer, INIT_STATE);
+    const [state, dispatch] = useReducer(reducer, window.localStorage.getItem('MENUR_STATE') 
+        ? JSON.parse(window.localStorage.getItem('MENUR_STATE')) : INIT_STATE);
     const mainState = { state, dispatch };
     const history = useHistory();
 
     const MainPage = () => {return <Main/>}
 
     
-
     useEffect(() => {
         if(!isLoading && !state.user){
             dispatch({

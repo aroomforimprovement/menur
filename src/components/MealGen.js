@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Label, Input, InputGroup } from 'reactstrap';
 import { useMainContext } from './MenurRouter';
+import { getNewId } from '../utils/objUtils';
 
 export const MealGen = () => {
-    const { dispatch } = useMainContext();
+    const { state, dispatch } = useMainContext();
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [name, setName] = useState('');
     const [ingredients, setIng] = useState([]);
     const [servings, setServings] = useState(2);
-
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     const handleShowForm = () => {
         setIsFormVisible(!isFormVisible);
@@ -37,9 +38,47 @@ export const MealGen = () => {
         }
         dispatch({type: 'ADD_SUGGESTION', data: meal});
     }
+    const saveMeal = async () => { 
+        const body = {
+            userid: state.user.userid,
+            meal: {
+                id: getNewId(),
+                name: name,
+                ingredients: ingredients,
+                servings: servings
+            }
+        }
+        return await fetch(`${apiUrl}app/meal`, {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+                Authorization: `Bearer ${state.user.access}`,
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if(response.ok){
+                console.log(`meal saved ok ${response.json()}`);
+                return true;
+            }else{
+                console.error(`response not ok`);
+            }
+        }, error => {
+            console.error(error);
+            return false;
+        }).catch((error) => {console.error(error)});
+    }
     const handleAdd = (e) => {
         e.preventDefault();
         if(name && name !== ''){
+            addSuggestion(e);
+            setName('');
+            setIng([]);
+        }
+    }
+    const handleSave = async (e) => {
+        e.preventDefault();
+        if(name && name !== ''){
+            await saveMeal();
             addSuggestion(e);
             setName('');
             setIng([]);
@@ -123,6 +162,10 @@ export const MealGen = () => {
                         <div className='col col-3'></div>                       
                         <button className='btn btn-sm btn-primary col col-4 mx-1 mt-3'
                             onClick={handleAdd}>Add new meal to suggestions</button>
+                        {state && state.user && state.user.isAuth ?
+                            <button className='btn btn-sm btn-success col col-4 mx-1 mt-3'
+                            onClick={handleSave}>Save new meal to account</button> : <div></div>
+                        }
                     </div>
                 </div>
             </div>

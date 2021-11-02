@@ -43,7 +43,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
         <div></div>
 
     return(
-        <DropTarget targetKey='meal' 
+        <DropTarget targetKey='meal' className='mealtime-container'
             onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>                
             <div className='container mealtime border shadow-sm' onClick={handleClick}>
                 <div className='mealtime-text'>{state.mealplan[day][mealtime].name 
@@ -63,7 +63,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
             showIngredients 
             ? 
             <div>
-                <ul className='list-unstyled sugg-ingredients'>
+                <ul className='list-unstyled mealplan-ingredients'>
                     <small>{ingredients}</small>
                 </ul>
             </div> 

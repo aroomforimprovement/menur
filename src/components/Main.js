@@ -19,6 +19,10 @@ export const Main = () => {
         dispatch({type: 'GEN_LIST', data:true});
     }
 
+    useEffect(() => {
+        console.dir(state);
+    },[state]);
+
     return(    
         <div className='container mt-3'>
             <div className='row'>

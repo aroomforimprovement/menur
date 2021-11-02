@@ -203,7 +203,9 @@ code {
 
 .mealplan-ingredients{
   font-weight: normal;
+  font-size: small;
   color: black;
+  background-color: blanchedalmond;
 }
 
 .leftover{

@@ -106,13 +106,19 @@ export const reducer = (state, action) => {
         case 'SET_SHOW_SPICES':{
             return({...state, showSpices: action.data});
         }
+        case 'SET_SHOW_BASIC':{
+            return({...state, showBasic: action.data});
+        }
+        case 'SET_SHOW_MINE':{
+            return({...state, showMine: action.data});
+        }
         case 'CHANGE_SELECTION':{
             return ({...state, selection: action.data});
         }
         case 'SET_SELECTED_SUGGESTION':{
             return ({...state, selectedSuggestion: action.data});
         }
-        case 'UNSET_SLECTED_SUGGESTION':{
+        case 'UNSET_SELECTED_SUGGESTION':{
             if(state.selectedSuggestion === action.data){
                 return({...state, selectedSuggestion: MEALS[0]});
             }

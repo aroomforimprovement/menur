@@ -1,4 +1,11 @@
 import { MEALS, DELIM } from '../shared/meals';
+import { v4 as uuidv4 } from 'uuid';
+
+
+export const getNewId = () => {
+    console.log("getNewAnimId");
+    return uuidv4();
+}
 
 export const getIngredientsFromMeal = (meal) => {
     let ingredientArr = [];

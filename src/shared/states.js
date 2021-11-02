@@ -21,5 +21,8 @@ export const INIT_STATE = {
     genList: [],
     userList1: [],
     userList2: [],
-    isLandscape: true
+    isLandscape: true,
+    showSpices: false,
+    showBasic: true,
+    showMine: false,
 }
