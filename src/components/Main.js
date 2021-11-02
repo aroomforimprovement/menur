@@ -6,6 +6,7 @@ import { GenList } from './GenList';
 import { DownloadableMealPlan, DownloadableMealPlanLandscape } from '../utils/pdfUtils'; 
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useMainContext } from './MenurRouter';
+import { Footer } from './Header';
 //import { MealPlanViewer } from './partials/MealPlanViewer';
 
 
@@ -50,6 +51,7 @@ const Planner = () => {
             <div className='row'>
                 <GenList className='col col-3'/>
             </div>
+            <Footer className='footer'/>
         </div>                        
     );
 }

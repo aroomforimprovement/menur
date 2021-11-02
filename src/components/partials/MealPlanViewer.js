@@ -5,7 +5,7 @@ import { DownloadableMealPlan, DownloadableMealPlanLandscape } from '../../utils
 
 
 export const MealPlanViewer = ({mealplan, isLandscape}) => {
-    console.dir(mealplan);
+    //console.dir(mealplan);
     return(
         <div>
         {mealplan 

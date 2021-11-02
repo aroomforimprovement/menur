@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useAccountContext } from '../Account';
 import { DELIM, OR } from '../../shared/meals';
 
-export const Meal = ({meal}) => {
-    const {account } = useAccountContext();
+export const Meal = ({meal, showSpices}) => {
+    //const { account } = useAccountContext();
     const [showIngredients, setShowIngredients] = useState(false);
 
     const handleClick = () => {
@@ -19,7 +19,7 @@ export const Meal = ({meal}) => {
         meal.ingredients.map((ing) => {
             return(
                 <div className='mealplan-ingredients' key={ing.name}>
-                    {!account.showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
+                    {!showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
                 </div>
             )
         })

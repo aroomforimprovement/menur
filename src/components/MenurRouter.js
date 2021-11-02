@@ -27,7 +27,12 @@ const MenurRouter = () => {
     const MainPage = () => {return <Planner/>}
     const AccountPage = () => {return <Account/>}
 
-    
+    useEffect(() => {
+        if(isLoading && state.isSet){
+            dispatch({type: 'UNSET'})
+        }
+    })
+
     useEffect(() => {
         if(!isLoading && !state.user){
             dispatch({
@@ -76,11 +81,13 @@ const MenurRouter = () => {
             await getAccountInfo(state.user.access)
                 .then((result) => {
                     if(result){
+                        console.dir(result);
                         result.isSet = true;
                         dispatch({
                             type: 'SET_ACCOUNT_INFO',
                             data: result
                         });
+                        console.dir(state);
                     }else{
                         dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
                     }
@@ -103,12 +110,11 @@ const MenurRouter = () => {
                     {() => (
                     <div>
                         <Header />
-                            <Switch>
-                                <Route path='/planner' history={history} component={MainPage} />
-                                <Route path='/account' history={history} component={AccountPage} />
-                                {<Redirect to='/planner' history={history} />}
-                            </Switch>
-                        <Footer className='footer'/>
+                        <Switch>
+                            <Route path='/planner' history={history} component={MainPage} />
+                            <Route path='/account' history={history} component={AccountPage} />
+                            {<Redirect to='/planner' history={history} />}
+                        </Switch>
                     </div>        
                     )}      
                 </MainContext.Consumer>
