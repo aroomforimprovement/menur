@@ -25,14 +25,15 @@ export const Meal = ({meal, showSpices}) => {
         <div></div>
 
     return(
-        <div className='container account-meal mealtime border shadow-sm'>
-            <div className='row account-meal-view'>
-            <div className='container' onClick={handleClick}>
-                <div className='mealtime-text'>{meal.name 
-                    ? meal.name  : 'NAME MISSING'}
-                </div>   
+        <div>
+        <div className='container account-meal border shadow-sm'>
+            <div className='row'>
+                <div className='col col-12'> {/*onClick={handleClick}>*/}
+                    <div className='mealtime-text'>
+                        {meal.name ? meal.name  : 'NAME MISSING'}
+                    </div>   
                 <button type='button' className='btn-close meal-remove' onClick={handleDeleteMeal} 
-                    style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} aria-label='Remove'
+                    style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} aria-label='Delete'
                 >
                 </button> 
                 <div onClick={handleClick}>
@@ -41,16 +42,19 @@ export const Meal = ({meal, showSpices}) => {
                     : <span className='fa fa-angle-down'>{' '}</span>}
                 </div>
             </div>
-            {
-            showIngredients 
+            </div>
+        </div>
+        <div>
+            {showIngredients 
             ? 
             <div>
-                <ul className='list-unstyled mealplan-ingredients'>
+                <ul className='list-unstyled account-meal-ingredients shadow shadow-lg'>
                     <small>{ingredients}</small>
                 </ul>
             </div> 
-            : <div></div>}
-            </div>
+            : <div></div>
+            }
+        </div>
         </div>
     );
 }

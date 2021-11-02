@@ -13,6 +13,7 @@ export const Plan = ({plan, isLandscape}) => {
     }
     const handleOpenPlan = () => {
         console.error("handleEditPlan not implemented");
+        
     }
 
     return(
