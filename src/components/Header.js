@@ -70,6 +70,7 @@ export const Footer = () => {
                 userid: state.user.userid,
                 mealplan:{
                     id: getNewId(),
+                    name: new Date(),
                     mealplan: state.mealplan,
                     leftovers: state.leftovers,
                     genList: state.genList,
