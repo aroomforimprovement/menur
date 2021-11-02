@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { useAccountContext } from '../Account';
 import { DELIM, OR } from '../../shared/meals';
 
 export const Meal = ({meal, showSpices}) => {
-    //const { account } = useAccountContext();
     const [showIngredients, setShowIngredients] = useState(false);
 
     const handleClick = () => {
@@ -27,9 +25,9 @@ export const Meal = ({meal, showSpices}) => {
         <div></div>
 
     return(
-        <div className='container account-meal'>
+        <div className='container account-meal mealtime border shadow-sm'>
             <div className='row account-meal-view'>
-            <div className='container suggestion border shadow-sm' onClick={handleClick}>
+            <div className='container' onClick={handleClick}>
                 <div className='mealtime-text'>{meal.name 
                     ? meal.name  : 'NAME MISSING'}
                 </div>   

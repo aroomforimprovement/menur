@@ -260,3 +260,12 @@ code {
 .cleardata{
   text-align:end;
 }
+
+.account-plan{
+  max-width: 100px;
+}
+
+.account-plans-header, .account-meals-header{
+  text-align: start;
+  cursor:pointer;
+}

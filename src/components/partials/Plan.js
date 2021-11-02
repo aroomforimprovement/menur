@@ -1,8 +1,12 @@
 import React from "react";
+import { DownloadableMealPlanLandscape, DownloadableMealPlan } from "../../utils/pdfUtils";
 import { MealPlanViewer } from "./MealPlanViewer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { useMainContext } from "../MenurRouter";
 
-export const Plan = ({plan}) => {
 
+export const Plan = ({plan, isLandscape}) => {
+    const {state} = useMainContext();
 
     const handleDeletePlan = () => {
         console.error("handleDeletePlan not implemented");
@@ -12,7 +16,7 @@ export const Plan = ({plan}) => {
     }
 
     return(
-        <div className='container account-plan'>
+        <div className='container account-plan p-1'>
             <div className='row'>
                 <h6>{plan.name}</h6>
             </div>
@@ -28,6 +32,15 @@ export const Plan = ({plan}) => {
                     onClick={handleOpenPlan}>
                         Open
                 </button>
+                {state && plan ? <PDFDownloadLink className={'btn btn-sm btn-success col col-4'}
+                    document={isLandscape 
+                    ? <DownloadableMealPlanLandscape mealplan={plan.mealplan}/> 
+                    : <DownloadableMealPlan mealplan={plan.mealplan}/>} 
+                        fileName={`mealplan_${new Date()}`}>
+                            {({blob, url, loading, error}) => 
+                                loading ? 'Loading document...' : 'Download'
+                            }
+                </PDFDownloadLink> : <div></div>}
             </div>
         </div>
     );

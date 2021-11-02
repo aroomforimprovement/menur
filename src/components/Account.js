@@ -14,8 +14,8 @@ export const useAccountContext = () => {
 const Account = () => {
     const { state, dispatch } = useMainContext();
 
-    const [ hidePlans, setHidePlans ] = useState(true);
-    const [ hideMeals, setHideMeals ] = useState(true);
+    const [ hidePlans, setHidePlans ] = useState(false);
+    const [ hideMeals, setHideMeals ] = useState(false);
     const [ showSpices, setShowSpices ] = useState(false);
     const [account, accountDispatch] = useReducer(accountReducer, {showSpices: false});
     const stateOfAccount = {account, accountDispatch};
@@ -38,14 +38,18 @@ const Account = () => {
         ? state.plans.map((plan, i) => {
             const link = `/planner/${plan.id}`;
             return(
-                <Plan key={plan.id} plan={plan} link={link}/>
+                <div key={plan.id} className='col col-5 m-1 border border-primary'>
+                    <Plan  plan={plan} link={link} isLandscape={true}/>
+                </div>
             );
         }) : <div>No saved mealplans here.</div>;
 
         const meals = state && state.meals && state.meals.length > 0
         ? state.meals.map((meal, i) => {
             return(
-                <Meal key={meal.id} meal={meal} showSpices={showSpices}/>
+                <div key={meal.id} className='col col-3'>
+                    <Meal meal={meal} showSpices={showSpices}/>
+                </div>
             );
         }) : <div>No saved meals here.</div>;
 
@@ -55,13 +59,13 @@ const Account = () => {
                 <AccountContext.Consumer>
                     {() => (
                         <div>
-                            <div className='row account-heading'>
+                            <div className='row account-heading mt-2'>
                                 <h3>{state.user.username}</h3>
                             </div>
                             <div className='row account-plans'>
                                 <div className='account-plans-header'
                                     onClick={handleShowPlans}>
-                                    MealPlans:
+                                    <h5>MealPlans:</h5>
                                 </div>
                                 <div className='container' hidden={hidePlans}>
                                     <div className='row mb-4'>{plans}</div>
@@ -70,7 +74,7 @@ const Account = () => {
                             <div className='row account-meals'>
                                 <div className='account-meals-header'
                                     onClick={handleShowMeals}>
-                                    <h6>Meals:</h6>
+                                    <h5>Meals:</h5>
                                 </div>
                                 <div className='container' hidden={hideMeals}>
                                     <div className='row mb-4'>{meals}</div>
