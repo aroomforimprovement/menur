@@ -56,17 +56,17 @@ export const Selector = () => {
     }
 
     const handleCheckBasic = (e) => {
-        dispatch({type: 'SET_SHOW_BASIC', data: e.target.value});
+        dispatch({type: 'SET_SHOW_BASIC', data: e.target.checked});
         window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
     const handleCheckMine = (e) => {
-        dispatch({type: 'SET_SHOW_MINE', data: e.target.value});
+        dispatch({type: 'SET_SHOW_MINE', data: e.target.checked});
         window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
     const handleCheckSpices = (e) => {
-        dispatch({type: 'SET_SHOW_SPICES', data: e.target.value});
+        dispatch({type: 'SET_SHOW_SPICES', data: e.target.checked});
         window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
@@ -74,14 +74,16 @@ export const Selector = () => {
         <div className='selector col col-4 shadow shadow-sm' >
             <Form.Group >
                 <Form.Label className='selector-heading'>What are you making?</Form.Label><br/>
-                <Form.Check inline type={"checkbox"} onChange={handleCheckBasic} label={'Basic meals'} id="checkBasic"/>
-                <Form.Check inline type={"checkbox"} onChange={handleCheckMine} label={'My meals'} id="checkMine"/>
-                <Form.Select  id='mealSelect'
+                <Form.Check inline type={"checkbox"} onChange={handleCheckBasic} label={'Basic meals'} 
+                    id="checkBasic" checked={state.showBasic}/>
+                <Form.Check inline type={"checkbox"} onChange={handleCheckMine} label={'My meals'} 
+                    id="checkMine" checked={state.showMine}/>
+                <Form.Select  id='mealSelect' className='my-2'
                     onChange={handleChange} value={state.selection.name}>
                     {meals}
                 </Form.Select>
             </Form.Group>
-            <Form.Check type="checkbox" onChange={handleCheckSpices} value={state.showSpices}
+            <Form.Check type="checkbox" onChange={handleCheckSpices} checked={state.showSpices}
                 id={'showSpicesCheckbox'} label={'Shows spices / condiments'}/>
             <strong>Ingredients</strong>
             <ul className='list-unstyled mt-2 mb-1 ms-2'>
