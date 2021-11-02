@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Selector } from './Selector';
 import { Suggestions } from './Suggestions';
 import { MealPlan } from './MealPlan';
@@ -11,7 +11,7 @@ import { useMainContext } from './MenurRouter';
 
 
 
-export const Main = () => {
+const Main = () => {
     
     const { state, dispatch} = useMainContext();
 
@@ -19,9 +19,6 @@ export const Main = () => {
         dispatch({type: 'GEN_LIST', data:true});
     }
 
-    useEffect(() => {
-        console.dir(state);
-    },[state]);
 
     return(    
         <div className='container mt-3'>
@@ -56,3 +53,5 @@ export const Main = () => {
         </div>                        
     );
 }
+
+export default Main;

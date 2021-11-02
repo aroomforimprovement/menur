@@ -24,11 +24,11 @@ export const Header = () => {
                     <Navbar.Toggle aria-controls={'responsive-navbar-nav'}/>
                     <Navbar.Collapse id={'responsive-navbar-nav'}>
                         <Nav className='me-auto col col-10 col-md-9' navbar>
-                            <Nav.Link className='nav-link m-1' to='/'>
+                            <Nav.Link className='nav-link m-1' href='/'>
                                     MealPlanner
                             </Nav.Link>
                             {!state ? <Loading /> : state.user && state.user.isAuth 
-                            ? <Nav.Link className='nav-link m-1' to={`/account`}>
+                            ? <Nav.Link className='nav-link m-1' href='/account'>
                                     Account
                               </Nav.Link> 
                             : <div></div>}

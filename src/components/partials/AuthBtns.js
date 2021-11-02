@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useMainContext } from '../MenurRouter';
 
 export const LoginBtn = ({size}) => {
     const classes = `btn btn-secondary ${size} m-1`;
@@ -7,7 +8,10 @@ export const LoginBtn = ({size}) => {
     const { loginWithPopup } = useAuth0();
 
     const loginPop = async () => {
-        loginWithPopup();
+        loginWithPopup().then(() => {
+            console.log('loginWithPopup, then...');
+            window.location.href = '/account';
+        });
     }
     return <button 
             onClick={() => loginPop()}
@@ -18,11 +22,17 @@ export const LoginBtn = ({size}) => {
 }
 
 export const LogoutBtn = ({size}) => {
+    const {dispatch} = useMainContext();
     const classes = `btn btn-secondary ${size} m-1`;
     const url = `${process.env.REACT_APP_URL}/`;
     const { logout } = useAuth0();
+    const logoutMenur = () => {
+        logout({url}).then(() => {
+            dispatch({type: 'LOGOUT', data: true})
+        });
+    }
     return <button 
-            onClick={() => logout({url})}
+            onClick={() => logoutMenur()}
             type='button' 
             className={classes}>
                 Log out

@@ -290,6 +290,10 @@ export const reducer = (state, action) => {
             return ({...state, meals: action.data.meals, plans: action.data.plans, 
                 user: {...state.user, username: action.data.username}, isSet: action.data.isSet});
         }
+        case 'LOGOUT':{
+            console.log('LOGOUT');
+            return ({...state, user: undefined});
+        }
         default:
             break;
     }

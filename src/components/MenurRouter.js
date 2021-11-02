@@ -4,8 +4,9 @@ import { reducer } from '../redux/Main';
 import { INIT_STATE } from '../shared/states';
 import { Header, Footer } from './Header';
 import { Switch, useHistory, Route, withRouter, Redirect } from 'react-router';
-import { Main } from './Main';
+import Main from './Main';
 import { Loading } from './partials/Loading';
+import Account from './Account';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -24,6 +25,7 @@ const MenurRouter = () => {
     const history = useHistory();
 
     const MainPage = () => {return <Main/>}
+    const AccountPage = () => {return <Account/>}
 
     
     useEffect(() => {
@@ -95,24 +97,23 @@ const MenurRouter = () => {
 
     return (
         <div>
+            {state && state.isSet ? 
             <MainContext.Provider value={mainState}>
                 <MainContext.Consumer>
                     {() => (
-                        <div>
-                            {state ? 
-                            <div>
-                            <Header />
-                                <Switch>
-                                    <Route path='/' history={history} component={MainPage} />
-                                    <Redirect to='/' history={history} />
-                                </Switch>
-                            <Footer className='footer'/>
-                            </div>
-                            : <Loading />}
-                        </div>
-                    )}
+                    <div>
+                        <Header />
+                            <Switch>
+                                <Route path='/' history={history} component={MainPage} />
+                                <Route path='/account' history={history} component={AccountPage} />
+                                {/**<Redirect to='/' history={history} />*/}
+                            </Switch>
+                        <Footer className='footer'/>
+                    </div>        
+                    )}      
                 </MainContext.Consumer>
             </MainContext.Provider>
+            : <Loading />}
         </div>
     )
 }
