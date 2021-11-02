@@ -26,10 +26,9 @@ export const LogoutBtn = ({size}) => {
     const classes = `btn btn-secondary ${size} m-1`;
     const url = `${process.env.REACT_APP_URL}/`;
     const { logout } = useAuth0();
-    const logoutMenur = () => {
-        logout({url}).then(() => {
-            dispatch({type: 'LOGOUT', data: true})
-        });
+    const logoutMenur = async () => {
+        await dispatch({type: 'CLEAR_DATA', data: true});
+        logout({url});
     }
     return <button 
             onClick={() => logoutMenur()}

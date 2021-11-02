@@ -11,7 +11,7 @@ import { useMainContext } from './MenurRouter';
 
 
 
-const Main = () => {
+const Planner = () => {
     
     const { state, dispatch} = useMainContext();
 
@@ -54,4 +54,4 @@ const Main = () => {
     );
 }
 
-export default Main;
+export default Planner;

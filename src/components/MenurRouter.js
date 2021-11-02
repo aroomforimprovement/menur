@@ -4,7 +4,7 @@ import { reducer } from '../redux/Main';
 import { INIT_STATE } from '../shared/states';
 import { Header, Footer } from './Header';
 import { Switch, useHistory, Route, withRouter, Redirect } from 'react-router';
-import Main from './Main';
+import Planner from './Main';
 import { Loading } from './partials/Loading';
 import Account from './Account';
 
@@ -24,7 +24,7 @@ const MenurRouter = () => {
     const mainState = { state, dispatch };
     const history = useHistory();
 
-    const MainPage = () => {return <Main/>}
+    const MainPage = () => {return <Planner/>}
     const AccountPage = () => {return <Account/>}
 
     
@@ -104,9 +104,9 @@ const MenurRouter = () => {
                     <div>
                         <Header />
                             <Switch>
-                                <Route path='/' history={history} component={MainPage} />
+                                <Route path='/planner' history={history} component={MainPage} />
                                 <Route path='/account' history={history} component={AccountPage} />
-                                {/**<Redirect to='/' history={history} />*/}
+                                {<Redirect to='/planner' history={history} />}
                             </Switch>
                         <Footer className='footer'/>
                     </div>        
