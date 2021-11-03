@@ -12,10 +12,10 @@ export const useAccountContext = () => {
 }
 
 const Account = () => {
-    const { state, dispatch } = useMainContext();
+    const { state } = useMainContext();
 
-    const [ hidePlans, setHidePlans ] = useState(false);
-    const [ hideMeals, setHideMeals ] = useState(false);
+    const [ hidePlans, setHidePlans ] = useState(true);
+    const [ hideMeals, setHideMeals ] = useState(true);
     const [ showSpices, setShowSpices ] = useState(false);
     const [account, accountDispatch] = useReducer(accountReducer, {showSpices: false});
     const stateOfAccount = {account, accountDispatch};
@@ -38,7 +38,7 @@ const Account = () => {
         ? state.plans.map((plan, i) => {
             const link = `/planner/${plan.id}`;
             return(
-                <div key={plan.id} className='col col-5 m-1 border border-primary'>
+                <div key={plan.id} className='col col-5 m-1 border border-secondary'>
                     <Plan  plan={plan} link={link} isLandscape={true}/>
                 </div>
             );
@@ -63,8 +63,8 @@ const Account = () => {
                             <div className='row account-heading mt-2'>
                                 <h3>{state.user.username}</h3>
                             </div>
-                            <div className='row account-plans'>
-                                <div className='account-plans-header'
+                            <div className='row account-plans my-4 px-2 shadow shadow-lg border border-light'>
+                                <div className='account-plans-header p-4'
                                     onClick={handleShowPlans}>
                                     <h5>MealPlans:</h5>
                                 </div>
@@ -72,8 +72,8 @@ const Account = () => {
                                     <div className='row mb-4'>{plans}</div>
                                 </div>
                             </div>
-                            <div className='row account-meals'>
-                                <div className='account-meals-header'
+                            <div className='row account-meals my-4 px-2 shadow shadow-lg border border-light'>
+                                <div className='account-meals-header p-4'
                                     onClick={handleShowMeals}>
                                     <h5>Meals:</h5>
                                 </div>
