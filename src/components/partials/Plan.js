@@ -3,11 +3,12 @@ import { DownloadableMealPlanLandscape, DownloadableMealPlan } from "../../utils
 import { MealPlanViewer } from "./MealPlanViewer";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useMainContext } from "../MenurRouter";
+import { toast } from 'react-hot-toast';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export const Plan = ({plan, isLandscape}) => {
-    const {state} = useMainContext();
+    const {state, dispatch} = useMainContext();
 
     const deletePlan = async () => {
         return await fetch(`${apiUrl}app/plan/${plan.id}`, {
@@ -25,19 +26,22 @@ export const Plan = ({plan, isLandscape}) => {
             console.error(error);
         }).catch((error) => {
             console.error(error);
+            return error;
         });
     }
     const handleDeletePlan = () => {
         deletePlan().then((response) => {
             if(response && response.ok){
-                window.location.href = '/account';
+                toast.success('Mealplan deleted ok');
+                //window.location.href = '/account';
+                dispatch({type: 'REMOVE_SAVED_PLAN', data: plan.id});
             }else{
+                toast.error('Error deleting Mealplan');
                 console.error("handleDeletePlan: response not ok");
             }
         });
     }
     const handleOpenPlan = () => {
-        console.error("handleEditPlan not implemented");
         window.location.href = `/planner/${plan.id}`;
     }
 

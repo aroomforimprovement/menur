@@ -3,7 +3,6 @@ import { Label, Input, InputGroup } from 'reactstrap';
 import { useMainContext } from './MenurRouter';
 import { getNewId } from '../utils/objUtils';
 import { toast } from 'react-hot-toast';
-import { SuccessToast } from './partials/Toasts';
 
 export const MealGen = () => {
     const { state, dispatch } = useMainContext();
@@ -42,9 +41,7 @@ export const MealGen = () => {
         dispatch({type: 'ADD_SUGGESTION', data: meal});
     }
     
-    const toastSuccess = (message) => {
-        toast(message);
-    }
+
     const saveMeal = async () => { 
         const id = getNewId();
         const body = {
@@ -67,7 +64,7 @@ export const MealGen = () => {
             if(response.ok){
                 console.log(`meal saved ok`);
                 dispatch({type: 'ADD_SELECTOR_MEAL', data: body});
-                toastSuccess("Meal saved ok");
+                toast("Meal saved ok");
                 return id;
             }else{
                 console.error(`response not ok`);
@@ -136,7 +133,6 @@ export const MealGen = () => {
     let showFormClasses = ''
     return(
         <div className='container meal-gen shadow shadow-sm pb-3 mt-3 mb-3'>
-            <SuccessToast />
             <div hidden={true}>{isFormVisible ? showFormClasses = 'fa-caret-up' : showFormClasses = 'fa-plus'}</div>
             <div className={'btn btn-lg btn-outline-primary fa '+showFormClasses}
                 onClick={handleShowForm}>{' '}</div>

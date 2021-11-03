@@ -8,6 +8,8 @@ import Planner from './Main';
 import { Loading } from './partials/Loading';
 import Account from './Account';
 import { hasAuthCookie } from '../auth/secUtils';
+import { Toast } from './partials/Toasts';
+
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -78,6 +80,7 @@ const MenurRouter = () => {
                 }
             }, error => {
                 console.error("error fetching account info: " + error);
+                
             }).catch(err => console.error(err))
         }
         const setInfo = async () => {
@@ -110,6 +113,7 @@ const MenurRouter = () => {
                     {() => (
                     <div>
                         <Header />
+                        <Toast />
                         <Switch>
                             <Route path='/planner/*' histor={history} component={ContPage} /><Route path='/planner' history={history} component={MainPage} />
                             <Route path='/account' history={history} component={AccountPage} />

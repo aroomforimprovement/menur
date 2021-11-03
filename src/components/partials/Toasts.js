@@ -2,7 +2,7 @@ import React from 'react';
 import { Toaster } from 'react-hot-toast';
 
 
-export const SuccessToast = ({message}) => {
+export const Toast = () => {
     return (
             <Toaster />
     )

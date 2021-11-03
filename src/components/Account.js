@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useState } from 'react';
+import React, { createContext, useContext, useEffect, useReducer, useState } from 'react';
 import { useMainContext } from './MenurRouter';
 import { accountReducer } from '../redux/Account';
 import { Form } from 'react-bootstrap';
@@ -12,20 +12,18 @@ export const useAccountContext = () => {
 }
 
 const Account = () => {
-    const { state } = useMainContext();
+    const { state, dispatch } = useMainContext();
 
-    const [ hidePlans, setHidePlans ] = useState(true);
-    const [ hideMeals, setHideMeals ] = useState(true);
     const [ showSpices, setShowSpices ] = useState(false);
     const [account, accountDispatch] = useReducer(accountReducer, {showSpices: false});
     const stateOfAccount = {account, accountDispatch};
 
     const handleShowPlans = () => {
-        setHidePlans(!hidePlans);
+        dispatch({type: 'SET_HIDE_PLANS', data: !state.hidePlans});
     }
 
     const handleShowMeals = () => {
-        setHideMeals(!hideMeals);
+        dispatch({type: 'SET_HIDE_MEALS', data: !state.hideMeals});
     }
 
     const handleCheckSpices = (e) => {
@@ -54,7 +52,11 @@ const Account = () => {
             );
         }) : <div>No saved meals here.</div>;
 
-    
+    useEffect(() => {
+
+    },[state.meals, state.plans]);
+
+
     return(
         <div className='container account-page'>
             <AccountContext.Provider value={stateOfAccount}>
@@ -69,7 +71,7 @@ const Account = () => {
                                     onClick={handleShowPlans}>
                                     <h5>MealPlans:</h5>
                                 </div>
-                                <div className='container' hidden={hidePlans}>
+                                <div className='container' hidden={state.hidePlans}>
                                     <div className='row mb-4'>{plans}</div>
                                 </div>
                             </div>
@@ -78,7 +80,7 @@ const Account = () => {
                                     onClick={handleShowMeals}>
                                     <h5>Meals:</h5>
                                 </div>
-                                <div className='container' hidden={hideMeals}>
+                                <div className='container' hidden={state.hideMeals}>
                                     <div className='row mb-4'>{meals}</div>
                                     <div className='row mb-4'>    
                                         <div className='col col-3'>

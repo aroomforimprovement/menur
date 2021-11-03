@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { DELIM, OR } from '../../shared/meals';
 import { useMainContext } from '../MenurRouter';
-import { Redirect } from 'react-router';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export const Meal = ({meal, showSpices}) => {
-    const { state } = useMainContext();
+    const { state, dispatch } = useMainContext();
     const [showIngredients, setShowIngredients] = useState(false);
 
     const deleteMeal = async () => {
@@ -35,7 +35,10 @@ export const Meal = ({meal, showSpices}) => {
     const handleDeleteMeal = () => {
         deleteMeal().then((response) => {
             if(response.ok){
-                window.location.href = '/account';
+                toast.success("Meal deleted ok");
+                dispatch({type: 'REMOVE_SAVED_MEAL', data: meal.id});
+            }else{
+                toast.error("Error deleting the Meal");
             }
         });
     }
@@ -56,7 +59,7 @@ export const Meal = ({meal, showSpices}) => {
         <div>
         <div className='container account-meal border shadow-sm'>
             <div className='row'>
-                <div className='col col-12'> {/*onClick={handleClick}>*/}
+                <div className='col col-12'> 
                     <div className='mealtime-text'>
                         {meal.name ? meal.name  : 'NAME MISSING'}
                     </div>   

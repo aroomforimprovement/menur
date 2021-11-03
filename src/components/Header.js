@@ -4,6 +4,7 @@ import { useMainContext } from './MenurRouter';
 import { Loading } from './partials/Loading';
 import { LoginBtn, LogoutBtn, SignupBtn } from './partials/AuthBtns';
 import { getNewId } from '../utils/objUtils';
+import { toast } from 'react-hot-toast';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -62,7 +63,6 @@ export const Footer = () => {
     const { state, dispatch } = useMainContext();
     const [isSaving, setIsSaving] = useState(false);
     const [isSaveFailed, setIsSaveFailed] = useState(false);
-
         
     const saveDataToAccount = async () => {
         if(state && state.user && state.user.isAuth){
@@ -90,6 +90,7 @@ export const Footer = () => {
                     console.log(`mealplan saved ok`);
                     setIsSaving(false);
                     setIsSaveFailed(false);
+                    toast.sucess("Mealplan saved ok");
                 }else{
                     console.error(`response not ok`);
                 }
@@ -99,6 +100,7 @@ export const Footer = () => {
                 console.error(error);
                 setIsSaving(false);
                 setIsSaveFailed(false);
+                toast.error("Error saving mealplan");
             });
         }
     }

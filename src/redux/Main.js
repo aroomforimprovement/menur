@@ -307,6 +307,26 @@ export const reducer = (state, action) => {
             meals.push(action.data);
             return({...state, meals: meals});
         }
+        case 'REMOVE_SAVED_PLAN':{
+            const plans = [...state.plans];
+            const newPlans = plans.filter((p) => {
+                return p.id !== action.data;
+            });
+            return({...state, plans: newPlans});
+        }
+        case 'REMOVE_SAVED_MEAL':{
+            const meals = [...state.meals];
+            const newMeals = meals.filter((m) => {
+                return m.id !== action.data;
+            })
+            return({...state, meals: newMeals});
+        }
+        case 'SET_HIDE_PLANS':{
+            return({...state, hidePlans: action.data});
+        }
+        case 'SET_HIDE_MEALS':{
+            return({...state, hideMeals: action.data});
+        }
         default:
             break;
     }
