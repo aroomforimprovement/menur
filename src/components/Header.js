@@ -15,7 +15,7 @@ export const Header = () => {
 
     return(
         <div className='nav-area col-12'>
-            <Navbar collapseOnSelect expand='md' bg='light' variant='light'>
+            <Navbar collapseOnSelect expand='sm' bg='light' variant='light'>
                 <Container>
                 <Navbar.Brand className='mr-auto' href='/'>
                         <img src={logo}  height='40px' width='40px'

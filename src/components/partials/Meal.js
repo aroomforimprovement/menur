@@ -5,7 +5,7 @@ import { useMainContext } from '../MenurRouter';
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export const Meal = ({meal, showSpices}) => {
-    const { state, dispatch } = useMainContext();
+    const { state } = useMainContext();
     const [showIngredients, setShowIngredients] = useState(false);
 
     const deleteMeal = async () => {

@@ -4,16 +4,41 @@ import { MealPlanViewer } from "./MealPlanViewer";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useMainContext } from "../MenurRouter";
 
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const Plan = ({plan, isLandscape}) => {
     const {state} = useMainContext();
 
+    const deletePlan = async () => {
+        return await fetch(`${apiUrl}app/plan/${plan.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${state.user.access}`
+            }
+        }).then(response => {
+            if(response.ok){
+                console.dir(response);
+                return response;
+            }
+        }, error => {
+            console.error(error);
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
     const handleDeletePlan = () => {
-        console.error("handleDeletePlan not implemented");
+        deletePlan().then((response) => {
+            if(response && response.ok){
+                window.location.href = '/account';
+            }else{
+                console.error("handleDeletePlan: response not ok");
+            }
+        });
     }
     const handleOpenPlan = () => {
         console.error("handleEditPlan not implemented");
-        
+
     }
 
     return(
