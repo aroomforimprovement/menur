@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { DELIM, MEALS, OR } from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
@@ -6,6 +6,8 @@ import { useMainContext } from './MenurRouter';
 
 export const Selector = () => {
     const { state, dispatch } = useMainContext();
+    //const { selection, setSelection } = useState(MEALS[0]);
+    
     const mealsIncluded = state.showBasic ? state.showMine ? MEALS.concat(state.meals) :
         MEALS : state.showMine ? state.meals : [];
 

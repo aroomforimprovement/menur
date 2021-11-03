@@ -5,7 +5,7 @@ import { DELIM, OR} from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
 import { MealGen } from './MealGen';
 import { Dropdown } from 'react-bootstrap';
-import { ClickAddToMealPlan, ClickToExpandMeal, InfoToggle } from './partials/SuggestionParts';
+import { ClickAddToMealPlan, ClickToExpandMeal } from './partials/SuggestionParts';
 
 export const Suggestion = ({dragData, keyProp}) => {
     let classes = '';
