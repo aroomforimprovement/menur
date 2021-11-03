@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Selector } from './Selector';
 import { Suggestions } from './Suggestions';
 import { MealPlan } from './MealPlan';
@@ -6,7 +6,7 @@ import { GenList } from './GenList';
 import { DownloadableMealPlan, DownloadableMealPlanLandscape } from '../utils/pdfUtils'; 
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useMainContext } from './MenurRouter';
-import { Footer } from './Header';
+import { Footer } from './partials/Footer';
 import { useParams } from 'react-router';
 //import { MealPlanViewer } from './partials/MealPlanViewer';
 
