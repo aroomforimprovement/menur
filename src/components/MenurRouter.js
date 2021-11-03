@@ -2,11 +2,12 @@ import React, {createContext, useContext, useEffect, useReducer} from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { reducer } from '../redux/Main';
 import { INIT_STATE } from '../shared/states';
-import { Header, Footer } from './Header';
+import { Header } from './Header';
 import { Switch, useHistory, Route, withRouter, Redirect } from 'react-router';
 import Planner from './Main';
 import { Loading } from './partials/Loading';
 import Account from './Account';
+import { hasAuthCookie } from '../utils/secUtils';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 

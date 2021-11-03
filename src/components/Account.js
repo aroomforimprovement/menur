@@ -54,6 +54,7 @@ const Account = () => {
             );
         }) : <div>No saved meals here.</div>;
 
+    
     return(
         <div className='container account-page'>
             <AccountContext.Provider value={stateOfAccount}>
