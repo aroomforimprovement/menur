@@ -39,10 +39,11 @@ export const MealGen = () => {
         dispatch({type: 'ADD_SUGGESTION', data: meal});
     }
     const saveMeal = async () => { 
+        const id = getNewId();
         const body = {
             userid: state.user.userid,
             meal: {
-                id: getNewId(),
+                id: id,
                 name: name,
                 ingredients: ingredients,
                 servings: servings
@@ -58,7 +59,8 @@ export const MealGen = () => {
         }).then(response => {
             if(response.ok){
                 console.log(`meal saved ok`);
-                return true;
+                dispatch({type: 'ADD_SELECTOR_MEAL', data: body})
+                return id;
             }else{
                 console.error(`response not ok`);
             }

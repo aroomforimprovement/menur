@@ -302,6 +302,11 @@ export const reducer = (state, action) => {
             return({...state, mealplan: plan.mealplan, leftovers: plan.leftovers,
                 genList: plan.genList, userList1: plan.userList1, userList2: plan.userList2, splatSet: true})
         }
+        case 'ADD_SELECTOR_MEAL':{
+            const meals = [...state.meals];
+            meals.push(action.data);
+            return({...state, meals: meals});
+        }
         default:
             break;
     }

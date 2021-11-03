@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import { DELIM, MEALS, OR } from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
@@ -8,6 +8,11 @@ export const Selector = () => {
     const { state, dispatch } = useMainContext();
     const mealsIncluded = state.showBasic ? state.showMine ? MEALS.concat(state.meals) :
         MEALS : state.showMine ? state.meals : [];
+    
+    useEffect(() => {
+
+    },[state.meals]);
+
     const meals = mealsIncluded.map((meal, i) => {
         return(
             <option key={meal.name}>{meal.name}</option>
