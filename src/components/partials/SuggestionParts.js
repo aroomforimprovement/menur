@@ -42,7 +42,6 @@ export const DropToSelectDay = ({day, keyProp, dragData}) => {
             dragData.day = day;
             dragData.mealtime = mealtime;
             dispatch({type: 'ADD_MEAL', data: dragData});
-            window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
     return(<li onClick={swallowClick}>

@@ -21,11 +21,9 @@ export const MealPlanSlot = ({mealtime, day}) => {
         dispatch({type: 'ADD_MEAL', data: e.dragData});
         e.target.style.color = 'blue';
         e.target.style.fontWeight = 'bold';
-        window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
     const handleRemoveMeal = () => {
         dispatch({type: 'REMOVE_MEAL', data: {day: day, mealtime: mealtime}});
-        window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
     const handleClick = () => {
         setShowIngredients(!showIngredients);

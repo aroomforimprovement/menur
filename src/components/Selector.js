@@ -58,22 +58,18 @@ export const Selector = () => {
             }
         });
         dispatch({type: 'GET_SUGGESTIONS', data: e.target.value});
-        window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
     const handleCheckBasic = (e) => {
         dispatch({type: 'SET_SHOW_BASIC', data: e.target.checked});
-        window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
     const handleCheckMine = (e) => {
         dispatch({type: 'SET_SHOW_MINE', data: e.target.checked});
-        window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
     const handleCheckSpices = (e) => {
         dispatch({type: 'SET_SHOW_SPICES', data: e.target.checked});
-        window.localStorage.setItem("MENUR_STATE", JSON.stringify(state));
     }
 
     return(

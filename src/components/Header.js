@@ -90,7 +90,7 @@ export const Footer = () => {
                     console.log(`mealplan saved ok`);
                     setIsSaving(false);
                     setIsSaveFailed(false);
-                    toast.sucess("Mealplan saved ok");
+                    toast.success("Mealplan saved ok");
                 }else{
                     console.error(`response not ok`);
                 }
