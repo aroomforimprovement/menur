@@ -25,4 +25,6 @@ export const INIT_STATE = {
     showSpices: false,
     showBasic: true,
     showMine: false,
+    meals: [],
+    plans: []
 }

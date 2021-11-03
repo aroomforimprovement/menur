@@ -6,8 +6,9 @@ import { useMainContext } from './MenurRouter';
 
 export const Selector = () => {
     const { state, dispatch } = useMainContext();
-    
-    const meals = MEALS.map((meal, i) => {
+    const mealsIncluded = state.showBasic ? state.showMine ? MEALS.concat(state.meals) :
+        MEALS : state.showMine ? state.meals : [];
+    const meals = mealsIncluded.map((meal, i) => {
         return(
             <option key={meal.name}>{meal.name}</option>
         );

@@ -31,7 +31,7 @@ const Planner = ({edit}) => {
             setSplat();
             console.log("splat");
         }
-    },[splat, dispatch]);
+    },[splat, dispatch, state.splatSet]);
 
     return(    
         <div className='container mt-3'>
