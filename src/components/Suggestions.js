@@ -5,7 +5,7 @@ import { DELIM, OR} from '../shared/meals';
 import { getIngredientsFromMeal } from '../utils/objUtils';
 import { MealGen } from './MealGen';
 import { Dropdown } from 'react-bootstrap';
-import { ClickAddToMealPlan, InfoToggle } from './partials/SuggestionParts';
+import { ClickAddToMealPlan, ClickToExpandMeal, InfoToggle } from './partials/SuggestionParts';
 
 export const Suggestion = ({dragData, keyProp}) => {
     let classes = '';
@@ -19,14 +19,7 @@ export const Suggestion = ({dragData, keyProp}) => {
         classes = classes + ' sugg-none';
     }
     const { state, dispatch } = useMainContext();
-    const handleToggle = (isOpen) => {
-        console.dir(isOpen);
-        if(isOpen){
-            dispatch({type: 'SET_SELECTED_SUGGESTION', data: dragData.meal});
-        }else{
-            dispatch({type: 'UNSET_SLECTED_SUGGESTION', data: dragData.meal});
-        }
-    }
+    
 
     const handleDragStart = (e) => {
         //
@@ -89,22 +82,14 @@ export const Suggestion = ({dragData, keyProp}) => {
             <DragDropContainer targetKey='meal' onDragStart={handleDragStart} 
                 onDragEnd={handleDragEnd} onDrag={handleDrag} onDrop={handleDrop} 
                 dragData={dragData} className={'dd-container'}>        
-            <Dropdown onToggle={handleToggle} 
-                className={`dropdown ${classes}`} drop={'right'} > 
-                <div className={`border border-grey rounded px-4 ${classes}`}>
-                    <h5 className='suggestion-text'>
-                        {dragData.meal.name}                                     
-                    </h5>
-                </div>     
-                <Dropdown.Toggle split as={InfoToggle} id={`suggDrop_${keyProp}`} className='sugg-expand ms-4'
-                    size='sm'  >
-                </Dropdown.Toggle>  
-                <Dropdown.Menu  className='sugg-ingredients' aria-labelledby={`suggDrop_${keyProp}`}>
-                    <small>{ingredients}</small>
-                </Dropdown.Menu>
-                <ClickAddToMealPlan keyProp={keyProp}  dragData={dragData} className='sugg-click-add'/>
-            </Dropdown>
-            
+                 
+                    <div className={`border border-silver rounded px-4 ${classes}`}>
+                        <h5 className='suggestion-text'>
+                            {dragData.meal.name}                                     
+                        </h5>
+                    </div>    
+                    <ClickAddToMealPlan keyProp={keyProp}  dragData={dragData} className='sugg-click-add'/> 
+                    <ClickToExpandMeal keyProp={keyProp} ingredients={ingredients} dragData={dragData} className='sugg-expand'/>
             </DragDropContainer>
         </div>
     );

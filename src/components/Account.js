@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useReducer, useState } from 'react';
+import React, { createContext, useContext, useReducer, useState } from 'react';
 import { useMainContext } from './MenurRouter';
 import { accountReducer } from '../redux/Account';
 import { Form } from 'react-bootstrap';
@@ -52,9 +52,7 @@ const Account = () => {
             );
         }) : <div>No saved meals here.</div>;
 
-    useEffect(() => {
 
-    },[state.meals, state.plans]);
 
 
     return(

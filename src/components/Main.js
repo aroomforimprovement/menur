@@ -22,14 +22,11 @@ const Planner = ({edit}) => {
     }
 
     useEffect(() => {
-        console.log("splat?");
-        console.log(splat);
         const setSplat = () => {
             dispatch({type: 'SET_SPLAT', data: splat});
         }
         if(splat && !state.splatSet){
             setSplat();
-            console.log("splat");
         }
     },[splat, dispatch, state.splatSet]);
 

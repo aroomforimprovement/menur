@@ -128,6 +128,7 @@ code {
   top:1px;
   right:3px;
   cursor: pointer;
+  width: 15px;
 }
 
 .sugg-click-add{
@@ -139,6 +140,7 @@ code {
   cursor: pointer;
   color:rgb(5, 156, 0);
   background-color: royalblue;
+  width:15px;
 }
 
 .sugg-click-add-day{

@@ -86,12 +86,38 @@ export const ClickAddToMealPlan = ({keyProp, dragData}) => {
     return(
         <Dropdown drop={'left'}>           
             <Dropdown.Toggle
-            as={PlusToggle} id={`suggDrop_${keyProp}_days`} 
-             size='sm' >
+                as={PlusToggle} 
+                id={`suggDrop_${keyProp}_days`} 
+                size='sm' >
             </Dropdown.Toggle>  
             <Dropdown.Menu>
                 {days}
             </Dropdown.Menu>
         </Dropdown>
     );
+}
+
+export const ClickToExpandMeal = ({ingredients, keyProp, dragData}) => {
+    const {dispatch} = useMainContext();
+    const handleToggle = (isOpen) => {
+        console.dir(isOpen);
+        if(isOpen){
+            dispatch({type: 'SET_SELECTED_SUGGESTION', data: dragData.meal});
+        }else{
+            dispatch({type: 'UNSET_SLECTED_SUGGESTION', data: dragData.meal});
+        }
+    }
+    return(
+    <Dropdown //onToggle={handleToggle} 
+        drop={'right'} >
+        <Dropdown.Toggle 
+            as={InfoToggle} 
+            id={`suggDrop_${keyProp}`}
+            size='sm'  >
+        </Dropdown.Toggle>  
+        <Dropdown.Menu >
+            {ingredients}
+        </Dropdown.Menu>
+    </Dropdown>
+    )
 }
