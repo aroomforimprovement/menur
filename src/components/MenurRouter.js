@@ -7,7 +7,6 @@ import { Switch, useHistory, Route, withRouter, Redirect } from 'react-router';
 import Planner from './Main';
 import { Loading } from './partials/Loading';
 import Account from './Account';
-import { hasAuthCookie } from '../auth/secUtils';
 import { Toast } from './partials/Toasts';
 
 

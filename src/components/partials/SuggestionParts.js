@@ -32,7 +32,7 @@ export const InfoToggle = React.forwardRef(({ children, onClick }, ref) => (
 
 export const DropToSelectDay = ({day, keyProp, dragData}) => {
 
-    const {state, dispatch} = useMainContext();
+    const {dispatch} = useMainContext();
 
     const swallowClick = (e) => {
         e.preventDefault();

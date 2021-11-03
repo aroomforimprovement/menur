@@ -86,13 +86,6 @@ const styles = StyleSheet.create({
     },
 });
 
-const getIngredients = (ingredients) => {
-    let retIng = '';
-    ingredients.forEach((i) => {
-        retIng += i + ',';
-    });
-    return retIng;
-}
 
 export const DownloadableMealPlan = ({mealplan}) => (
     <Document >
