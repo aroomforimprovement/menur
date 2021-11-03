@@ -25,12 +25,13 @@ const MenurRouter = () => {
     const mainState = { state, dispatch };
     const history = useHistory();
 
-    const MainPage = () => {return <Planner/>}
+    const MainPage = () => {return <Planner edit={false}/>}
+    const ContPage = () => {return <Planner edit={true}/>}
     const AccountPage = () => {return <Account/>}
 
     useEffect(() => {
         if(isLoading && state.isSet){
-            dispatch({type: 'UNSET'})
+            dispatch({type: 'UNSET'});
         }
     })
 
@@ -109,9 +110,9 @@ const MenurRouter = () => {
                     <div>
                         <Header />
                         <Switch>
-                            <Route path='/planner' history={history} component={MainPage} />
+                            <Route path='/planner/*' histor={history} component={ContPage} /><Route path='/planner' history={history} component={MainPage} />
                             <Route path='/account' history={history} component={AccountPage} />
-                            {<Redirect to='/planner' history={history} />}
+                            <Redirect to='/planner' history={history} />
                         </Switch>
                     </div>        
                     )}      

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Selector } from './Selector';
 import { Suggestions } from './Suggestions';
 import { MealPlan } from './MealPlan';
@@ -7,19 +7,31 @@ import { DownloadableMealPlan, DownloadableMealPlanLandscape } from '../utils/pd
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useMainContext } from './MenurRouter';
 import { Footer } from './Header';
+import { useParams } from 'react-router';
 //import { MealPlanViewer } from './partials/MealPlanViewer';
 
 
 
-
-const Planner = () => {
+const Planner = ({edit}) => {
     
-    const { state, dispatch} = useMainContext();
+    const { state, dispatch } = useMainContext();
+    const splat = useParams()[0];
 
     const handleGenList = () => {
         dispatch({type: 'GEN_LIST', data:true});
     }
 
+    useEffect(() => {
+        console.log("splat?");
+        console.log(splat);
+        const setSplat = () => {
+            dispatch({type: 'SET_SPLAT', data: splat});
+        }
+        if(splat && !state.splatSet){
+            setSplat();
+            console.log("splat");
+        }
+    },[splat, dispatch]);
 
     return(    
         <div className='container mt-3'>

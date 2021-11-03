@@ -100,8 +100,7 @@ export const reducer = (state, action) => {
     }
     
     console.log(action.type+':'+action.data)
-    //console.log("|"+action.type+":"+action.data+"|");
-    //console.dir(action.data);
+    console.dir(action.data);
     switch(action.type){
         case 'SET_SHOW_SPICES':{
             return({...state, showSpices: action.data});
@@ -292,6 +291,16 @@ export const reducer = (state, action) => {
         }
         case 'UNSET':{
             return({...state, isSet: false})
+        }
+        case 'SET_SPLAT':{
+            const plans = [...state.plans];
+            const plan = plans.find(p => {
+                return p.id === action.data;
+            })
+            console.dir(plan);
+            console.log(plan.leftovers);
+            return({...state, mealplan: plan.mealplan, leftovers: plan.leftovers,
+                genList: plan.genList, userList1: plan.userList1, userList2: plan.userList2, splatSet: true})
         }
         default:
             break;

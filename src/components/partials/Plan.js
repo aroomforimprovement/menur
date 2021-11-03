@@ -38,7 +38,7 @@ export const Plan = ({plan, isLandscape}) => {
     }
     const handleOpenPlan = () => {
         console.error("handleEditPlan not implemented");
-
+        window.location.href = `/planner/${plan.id}`;
     }
 
     return(
