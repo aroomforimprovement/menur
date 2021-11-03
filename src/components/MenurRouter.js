@@ -7,7 +7,7 @@ import { Switch, useHistory, Route, withRouter, Redirect } from 'react-router';
 import Planner from './Main';
 import { Loading } from './partials/Loading';
 import Account from './Account';
-import { hasAuthCookie } from '../utils/secUtils';
+import { hasAuthCookie } from '../auth/secUtils';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
