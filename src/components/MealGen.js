@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Label, Input, InputGroup } from 'reactstrap';
+import { Form, FormControl, InputGroup } from 'react-bootstrap'; 
 import { useMainContext } from './MenurRouter';
 import { getNewId } from '../utils/objUtils';
 import { toast } from 'react-hot-toast';
@@ -106,19 +106,19 @@ export const MealGen = () => {
             <div className='container'>
                 <div className='row'>
                     <InputGroup onKeyDown={handleIngredientKeyDown}>
-                        <Input type='text' id={`ingredient_${i}`} placeholder='Ingredient'
+                        <FormControl type='text' id={`ingredient_${i}`} placeholder='Ingredient'
                             defaultValue={ingredient && ingredient.name ? ingredient.name : ''} 
-                            className='col col-7'></Input>
-                        <Input type='select' id={`type_${i}`} className='col col-3'
+                            className='col col-7'></FormControl>
+                        <Form.Select type='select' id={`type_${i}`} className='col col-3'
                             defaultValue={ingredient && ingredient.type ? ingredient.type : 'fresh'}>
                             <option>fresh</option>
                             <option>dry</option>
                             <option>tin</option>
                             <option>spice</option>
                             <option>cond</option>
-                        </Input>
-                        <Input type='number' id={`qty_${i}`} placeholder={1}
-                            className='col col-2' defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1}></Input>
+                        </Form.Select>
+                        <FormControl type='number' id={`qty_${i}`} placeholder={1}
+                            className='col col-2' defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1}></FormControl>
                     </InputGroup>
                 </div>
             </div>
@@ -138,21 +138,21 @@ export const MealGen = () => {
                 onClick={handleShowForm}>{' '}</div>
             <div hidden={!isFormVisible}>
                 <div className='container'>
-                    <Label className='mb-1'>Meal name:</Label>
+                    <Form.Label className='mb-1'>Meal name:</Form.Label>
                     <InputGroup size='sm'>
-                        <Input type='text' id='name' placeholder='Name'
+                        <FormControl type='text' id='name' placeholder='Name'
                             onChange={handleNameChange}
-                            value={name}></Input>
+                            value={name}></FormControl>
                     </InputGroup>
                     <div className='row'>
                         <InputGroup size='sm'>
-                            <Label for='servings' className='me-4'>Servings:</Label>
-                            <Input type='number' id='servings' defaultValue={2}
+                            <Form.Label for='servings' className='me-4'>Servings:</Form.Label>
+                            <FormControl type='number' id='servings' defaultValue={2}
                                 onChange={handleServingsChange} 
-                                className='col col-1 ms-8'></Input>
+                                className='col col-1 ms-8'></FormControl>
                         </InputGroup>
                     </div>
-                    <Label size='sm'>Ingredients</Label>
+                    <Form.Label size='sm'>Ingredients</Form.Label>
                     <div id='ingredient-slot'>
                         {ingredientFields}
                     </div>
