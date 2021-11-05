@@ -19,4 +19,4 @@ ARG REACT_APP_AUTH_SCOPE
 ARG REACT_APP_AUTH_AUDIENCE
 
 EXPOSE 3031
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
