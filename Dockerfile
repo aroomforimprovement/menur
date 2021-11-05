@@ -5,7 +5,8 @@ COPY package.json ./
 COPY yarn.lock ./
 COPY ./src ./src
 COPY ./public ./public
-RUN yarn
+RUN yarn install && yarn build
+
 
 ARG REACT_APP_URL
 ARG REACT_APP_AUTH_REQ
