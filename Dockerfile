@@ -1,8 +1,10 @@
 FROM node:14-alpine
-WORKDIR /app/
+WORKDIR /app
 #ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
 COPY yarn.lock ./
+COPY ./src ./src
+COPY ./public ./public
 RUN yarn
 
 ARG REACT_APP_URL
