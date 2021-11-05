@@ -1,10 +1,10 @@
 FROM node:14-alpine
 WORKDIR /app
-#ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
 COPY yarn.lock ./
-COPY ./src ./src
-COPY ./public ./public
+#COPY ./src ./src
+#COPY ./public ./public
 RUN yarn install && yarn build
 
 
