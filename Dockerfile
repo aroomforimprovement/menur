@@ -5,8 +5,8 @@ COPY package.json ./
 COPY yarn.lock ./
 #COPY ./src ./src
 #COPY ./public ./public
-RUN yarn install && yarn build
-
+RUN yarn install
+COPY . .
 
 ARG REACT_APP_URL
 ARG REACT_APP_AUTH_REQ
@@ -20,4 +20,4 @@ ARG REACT_APP_AUTH_SCOPE
 ARG REACT_APP_AUTH_AUDIENCE
 
 EXPOSE 3031
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
