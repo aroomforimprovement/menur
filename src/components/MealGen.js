@@ -146,7 +146,7 @@ export const MealGen = () => {
                     </InputGroup>
                     <div className='row'>
                         <InputGroup size='sm'>
-                            <Form.Label for='servings' className='me-4'>Servings:</Form.Label>
+                            <Form.Label htmlFor='servings' className='me-4'>Servings:</Form.Label>
                             <FormControl type='number' id='servings' defaultValue={2}
                                 onChange={handleServingsChange} 
                                 className='col col-1 ms-8'></FormControl>
