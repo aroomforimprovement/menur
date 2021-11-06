@@ -30,7 +30,7 @@ COPY . .
 RUN yarn build
 
 FROM nginx:1.12-alpine as nginx-build
-COPY --from=ui-build app/build ./usr/share/nginx/html
+COPY --from=ui-build app/build /usr/share/nginx/html
 COPY --from=ui-build app/nginx.conf /etc/nginx/conf.d/default.conf
 COPY default.conf.template /etc/nginx/templates/
 #COPY nginx.conf /etc/nginx/
