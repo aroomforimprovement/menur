@@ -1,6 +1,6 @@
 FROM node:14-alpine as ui-build
 WORKDIR /app
-ENV PATH /node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH
 ENV NODE_ENV=development
 COPY package.json ./
 COPY yarn.lock ./
@@ -8,7 +8,7 @@ COPY yarn.lock ./
 #COPY ./public ./public
 RUN yarn
 COPY . ./
-RUN yarn build
+# RUN yarn build
 
 
 ARG REACT_APP_URL
