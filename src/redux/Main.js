@@ -314,6 +314,11 @@ export const reducer = (state, action) => {
             });
             return({...state, plans: newPlans});
         }
+        case 'ADD_SAVED_PLAN':{
+            const newPlans = [...state.plans];
+            newPlans.push(action.data);
+            return({...state, plans: newPlans});
+        }
         case 'REMOVE_SAVED_MEAL':{
             const meals = [...state.meals];
             const newMeals = meals.filter((m) => {

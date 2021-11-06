@@ -37,6 +37,7 @@ export const Footer = () => {
                     console.log(`mealplan saved ok`);
                     setIsSaving(false);
                     setIsSaveFailed(false);
+                    //dispatch({type: 'ADD_SAVED_PLAN', data: body})
                     toast.success("Mealplan saved ok");
                 }else{
                     console.error(`response not ok`);
