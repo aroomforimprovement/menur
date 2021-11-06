@@ -19,13 +19,13 @@ ARG REACT_APP_API_URL
 ARG REACT_APP_AUTH_SCOPE
 ARG REACT_APP_AUTH_AUDIENCE
 
-COPY package.json /app/
-COPY yarn.lock /app/
+COPY package.json ./
+COPY yarn.lock ./
 
 RUN yarn install --frozen-lockfile
 
 # RUN echo $PORT
-COPY ./ /app/
+COPY . .
 
 RUN yarn build
 
