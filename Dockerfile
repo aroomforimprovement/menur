@@ -25,13 +25,13 @@ RUN yarn install --frozen-lockfile
 
 COPY . .
 
-#RUN yarn build
+RUN yarn build
 
-#FROM nginx:1.12-alpine
-#COPY --from=ui-build app/build ./build
-#COPY default.conf.template /nginx/conf.d/default.conf.template
-#COPY nginx.conf /nginx/nginx.conf
+FROM nginx:1.12-alpine
+COPY --from=ui-build app/build ./build
+COPY default.conf.template /nginx/conf.d/default.conf.template
+COPY nginx.conf /nginx/nginx.conf
 
 EXPOSE 3031
 
-CMD ["npm", "start"]
+#CMD ["npm", "start"]
