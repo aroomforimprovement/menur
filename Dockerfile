@@ -1,3 +1,7 @@
+FROM Centos:7
+RUN useradd -u 8877 bob
+USER bob
+
 FROM node:14-alpine as ui-build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
@@ -27,4 +31,4 @@ ARG REACT_APP_AUTH_AUDIENCE
 
 EXPOSE 3031
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["-c", "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default" ,"nginx", "-g", "daemon off;"]
