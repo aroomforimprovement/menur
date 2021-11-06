@@ -16,4 +16,4 @@ services:
             - ./:/app
             - /app/node_modules
         #command: ["envsubst '${PORT}' < /etc/nginx/conf.d/nginx.conf > /etc/nginx/conf.d/nginx.conf", "nginx", "-g", "daemon off;"]
-        command: ["nginx", "-g", "daemon off;"]
+        #command: ["nginx", "-g", "daemon off;"]
