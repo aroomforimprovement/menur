@@ -1,20 +1,18 @@
 FROM node:14-alpine as ui-build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
-#ENV NODE_ENV=development
+ENV NODE_ENV=development
 COPY package.json ./
 COPY yarn.lock ./
-#COPY ./src ./src
-#COPY ./public ./public
-#RUN yarn
-COPY . ./
-RUN yarn install 
 
+RUN yarn
 
+COPY . .
 
-##&& yarn build
+RUN yarn build
 
-CMD ["yarn", "start"]
+FROM nginx:1.12-alpine
+COPY --from=ui-build app/build ./build
 
 ARG REACT_APP_URL
 ARG REACT_APP_AUTH_REQ
@@ -28,3 +26,5 @@ ARG REACT_APP_AUTH_SCOPE
 ARG REACT_APP_AUTH_AUDIENCE
 
 EXPOSE 3031
+
+CMD ["nginx", "-g", "daemon-off"]
