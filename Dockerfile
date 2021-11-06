@@ -1,4 +1,4 @@
-FROM Centos:7
+FROM centos:7
 RUN useradd -u 8877 bob
 USER bob
 
