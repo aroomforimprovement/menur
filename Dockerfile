@@ -1,6 +1,7 @@
 FROM node:14-alpine as ui-build
 WORKDIR /app
 ENV PATH /node_modules/.bin:$PATH
+ENV NODE_ENV=development
 COPY package.json ./
 COPY yarn.lock ./
 #COPY ./src ./src
