@@ -3,7 +3,7 @@ build:
     #    PORT
     docker:
         web: Dockerfile
-run:
+#run:
 #    web: /bin/bash -c "envsubst '\$PORT' < /conf.d/nginx.conf > /etc/nginx/conf.d/nginx.conf" && nginx -g daemon off;
 #    web:  nginx -g "daemon off;"
-    web: ["envsubst '$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf", 'nginx', '-g', 'daemon off;']
+#    web: "envsubst '$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && 'nginx', '-g', 'daemon off;']
