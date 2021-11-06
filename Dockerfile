@@ -24,6 +24,7 @@ COPY yarn.lock ./
 
 RUN yarn install --frozen-lockfile
 
+RUN echo $PORT
 COPY . .
 
 RUN yarn build
