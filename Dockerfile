@@ -31,7 +31,7 @@ RUN yarn build
 
 FROM nginx:1.12-alpine as nginx-build
 COPY --from=ui-build app/build ./build
-COPY default.conf.template /etc/nginx/conf.d/default.conf.template
+COPY default.conf.template /etc/nginx/conf.d/default.conf
 COPY nginx.conf ./etc/nginx/nginx.conf
 
 EXPOSE 3031
