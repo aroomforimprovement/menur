@@ -7,7 +7,7 @@ COPY yarn.lock ./
 
 RUN yarn
 
-COPY . .
+COPY . ./
 
 RUN yarn build
 
@@ -27,4 +27,4 @@ ARG REACT_APP_AUTH_AUDIENCE
 
 EXPOSE 3031
 
-CMD ["nginx", "-g", "daemon-off;"]
+CMD ["nginx", "-g", "daemon off;"]
