@@ -17,6 +17,8 @@ RUN yarn build
 
 FROM nginx:1.12-alpine
 COPY --from=ui-build app/build ./build
+COPY default.conf.template /nginx/conf.d/default.conf.template
+COPY nginx.conf /nginx/nginx.conf
 
 ARG REACT_APP_URL
 ARG REACT_APP_AUTH_REQ
