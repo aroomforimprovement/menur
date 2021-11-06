@@ -30,12 +30,12 @@ COPY . .
 RUN yarn build
 
 FROM nginx:1.12-alpine as nginx-build
-COPY --from=ui-build app/build /usr/share/nginx/html
+COPY --from=ui-build app/build /usr/share/nginx/html/
 COPY --from=ui-build app/nginx.conf /etc/nginx/conf.d/default.conf
 COPY default.conf.template /etc/nginx/templates/
 #COPY nginx.conf /etc/nginx/
 
-# COPY docker-entrypoint.sh /
+COPY docker-entrypoint.sh /
 
 EXPOSE 3031
 
@@ -49,7 +49,7 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 # COPY default.conf.template ./default.conf.template
 # CMD "envsubst '\$PORT' < default.conf.template > /etc/nginx/nginx.conf" && nginx -g 'daemon off;'
 
-# CMD nginx -g 'daemon off;'
+CMD nginx -g 'daemon off;'
 
 # CMD ["envsubst '\$PORT' < /etc/nginx/conf.d/nginx.conf > /etc/nginx/conf.d/nginx.conf", "nginx", "-g", "daemon off;"]
 # CMD sed -i -e 's/$PORT/'"$PORT"'/g' nginx -g 'daemon off;'
