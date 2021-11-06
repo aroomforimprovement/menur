@@ -1,6 +1,6 @@
-FROM centos:7
-RUN useradd -u 8877 bob
-USER bob
+# FROM centos:7
+# RUN useradd -u 8877 bob
+# USER bob
 
 FROM node:14-alpine as ui-build
 WORKDIR /app
@@ -32,7 +32,7 @@ RUN yarn build
 FROM nginx:1.12-alpine as nginx-build
 COPY --from=ui-build app/build ./build
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
-#COPY nginx.conf ./etc/nginx/conf.d/nginx.conf
+COPY nginx.conf ./etc/nginx/conf.d/nginx.conf
 
 EXPOSE 3031
 
