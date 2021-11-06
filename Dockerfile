@@ -24,7 +24,7 @@ COPY yarn.lock ./
 
 RUN yarn install --frozen-lockfile
 
-RUN echo $PORT
+# RUN echo $PORT
 COPY . .
 
 RUN yarn build
@@ -36,7 +36,7 @@ COPY nginx.conf ./etc/nginx/nginx.conf
 
 EXPOSE 3031
 
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+CMD "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 
 # CMD ["envsubst '\$PORT' < /etc/nginx/conf.d/nginx.conf > /etc/nginx/conf.d/nginx.conf", "nginx", "-g", "daemon off;"]
 #CMD sed -i -e 's/$PORT/'"$PORT"'/g' nginx -g 'daemon off;'
