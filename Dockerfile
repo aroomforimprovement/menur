@@ -1,6 +1,6 @@
-#FROM centos:7
-#RUN useradd -u 8877 bob
-#USER bob
+FROM centos:7
+RUN useradd -u 8877 bob
+USER bob
 
 FROM node:14-alpine as ui-build
 WORKDIR /app
@@ -34,4 +34,5 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 3031
 
+CMD ["nginx", "-g", "daemon off;"]
 #CMD ["npm", "start"]
