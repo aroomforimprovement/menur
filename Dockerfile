@@ -29,13 +29,14 @@ COPY . .
 
 RUN yarn build
 
-FROM nginx:1.12-alpine
+FROM nginx:1.12-alpine as nginx-build
 COPY --from=ui-build app/build ./build
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 3031
 
+CMD /bin/bash -c "envsubst '\$PORT' < /conf.d/nginx.conf > /etc/nginx/conf.d/nginx.conf" && nginx -g 'daemon off';
 #CMD sed -i -e 's/$PORT/'"$PORT"'/g' nginx -g 'daemon off;'
 #CMD ["nginx", "-g", "daemon off;"]
 #CMD ["npm", "start"]
