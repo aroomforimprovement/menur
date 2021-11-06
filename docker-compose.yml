@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+    menur-ui:
+        build:
+            context: ./
+        ports:
+            - "3031:3031"
+        container_name: menur-ui_stage
+        stdin_open: true
+        env_file:
+            - ./.env-stage
+        volumes:
+            - ./:/app
+            - /app/node_modules

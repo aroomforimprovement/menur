@@ -1,6 +1,6 @@
 FROM node:14-alpine as ui-build
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH /node_modules/.bin:$PATH
 COPY package.json ./
 COPY yarn.lock ./
 #COPY ./src ./src
@@ -9,7 +9,6 @@ RUN yarn
 COPY . ./
 RUN yarn build
 
-COPY --from=ui-build /app/build ./build
 
 ARG REACT_APP_URL
 ARG REACT_APP_AUTH_REQ
