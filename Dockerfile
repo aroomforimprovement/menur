@@ -36,7 +36,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 3031
 
-CMD /bin/bash -c "envsubst '\$PORT' < /conf.d/nginx.conf > /etc/nginx/conf.d/nginx.conf" && nginx -g 'daemon off';
+CMD "envsubst '\$PORT' < /conf.d/nginx.conf > /etc/nginx/conf.d/nginx.conf" && nginx -g 'daemon off';
 #CMD sed -i -e 's/$PORT/'"$PORT"'/g' nginx -g 'daemon off;'
 #CMD ["nginx", "-g", "daemon off;"]
 #CMD ["npm", "start"]
