@@ -19,13 +19,13 @@ ARG REACT_APP_API_URL
 ARG REACT_APP_AUTH_SCOPE
 ARG REACT_APP_AUTH_AUDIENCE
 
-COPY package.json ./
-COPY yarn.lock ./
+COPY package.json /app/
+COPY yarn.lock /app/
 
 RUN yarn install --frozen-lockfile
 
 # RUN echo $PORT
-COPY . .
+COPY ./ /app/
 
 RUN yarn build
 
@@ -33,7 +33,7 @@ FROM nginx:1.12-alpine as nginx-build
 COPY --from=ui-build app/build ./build
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY nginx.conf /etc/nginx/nginx.conf
-# COPY docker-entrypoint.sh /
+COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
