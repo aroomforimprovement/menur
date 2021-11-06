@@ -1,8 +1,10 @@
-version: '3.3'
+version: '3.8'
 services:
     menur-ui:
         build:
             context: ./
+        environment:
+            - PORT
         ports:
             - "3031:3031"
             - "443:8443"
@@ -13,4 +15,5 @@ services:
         volumes:
             - ./:/app
             - /app/node_modules
-        command: ["envsubst '${PORT}' < /etc/nginx/conf.d/nginx.conf > /etc/nginx/conf.d/nginx.conf", "nginx", "-g", "daemon off;"]
+        #command: ["envsubst '${PORT}' < /etc/nginx/conf.d/nginx.conf > /etc/nginx/conf.d/nginx.conf", "nginx", "-g", "daemon off;"]
+        command: ["nginx", "-g", "daemon off;"]
