@@ -72,7 +72,7 @@ const MenurRouter = () => {
                 headers: {
                     Authorization: `Bearer ${access}`,
                     'Content-Type': 'application/json'
-                }   
+                }
             }).then(response => {
                 if(response.ok){
                     return response.json();
