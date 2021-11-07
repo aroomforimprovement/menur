@@ -6,7 +6,13 @@ server {
     location / {
         root   /usr/share/nginx/html/;
         index  index.html index.htm;
-        try_files $uri $uri/ /index.html =404;
+        #try_files $uri $uri/ /index.html =404;
+
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	    proxy_set_header Host $http_host;
+	    proxy_redirect off;
+	    proxy_pass http://localhost:3031; #next serve listens here and receives nginx requests
+    
     }
 
     # Media: images, icons, video, audio, HTC
@@ -28,6 +34,8 @@ server {
     location ~ ^.+\..+$ {
         try_files $uri =404;
     }
+
+
     #listen       80;
     #server_name  localhost;
 
