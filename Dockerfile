@@ -5,7 +5,7 @@ USER nginx
 FROM node:14-alpine as ui-build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
-# ENV NODE_ENV=development
+ENV NODE_ENV=development
 
 ARG PORT
 ARG REACT_APP_URL
