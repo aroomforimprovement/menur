@@ -38,12 +38,12 @@ FROM nginx:1.12-alpine as nginx-build
 COPY --from=ui-build /app/build /usr/share/nginx/html/
 COPY --from=ui-build /app/Staticfile /usr/share/nginx/html/
 # COPY --from=ui-build /app/default.conf.template /etc/nginx/nginx.default.conf
-COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.conf.default
+#COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.conf.default
 # COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.conf.default
 # COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.default.conf
 # COPY --from=ui-build /app/d.default.conf.template /etc/nginx/conf.d/default.conf
 
-COPY d.default.conf.template /etc/nginx/templates/default.conf.template
+#COPY d.default.conf.template /etc/nginx/templates/default.conf.template
 
 COPY docker-entrypoint.sh /
 
@@ -66,7 +66,7 @@ EXPOSE ${PORT:-3031}
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD "sed -i -e 's/\${PORT}/'\${PORT}'/g' /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+#CMD "sed -i -e 's/\${PORT}/'\${PORT}'/g' /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 
 
 # CMD ["/bin/bash", "-c", "envsubst '\${PORT}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf", "nginx", "-g", "daemon off;"]
