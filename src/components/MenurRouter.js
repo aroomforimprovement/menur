@@ -69,10 +69,13 @@ const MenurRouter = () => {
                 method: 'POST',
                 body: JSON.stringify(body),
                 mode: 'cors',
+                credentials: 'same-origin',
                 headers: {
                     Authorization: `Bearer ${access}`,
-                    'Content-Type': 'application/json'
-                }
+                    'Content-Type': 'application/json',
+                    
+                },
+                redirect: 'follow'
             }).then(response => {
                 if(response.ok){
                     return response.json();
