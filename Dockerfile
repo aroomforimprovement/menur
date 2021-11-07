@@ -60,7 +60,10 @@ ARG PATH
 
 EXPOSE ${PORT:-3031}
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["yarn", "start"]
+
+# ENTRYPOINT ["/docker-entrypoint.sh"]
+
 
 #CMD "sed -i -e 's/\${PORT}/'\${PORT}'/g' /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 
