@@ -68,6 +68,7 @@ const MenurRouter = () => {
             return await fetch(`${apiUrl}app/login`, {
                 method: 'POST',
                 body: JSON.stringify(body),
+                mode: 'cors',
                 headers: {
                     Authorization: `Bearer ${access}`,
                     'Content-Type': 'application/json'
