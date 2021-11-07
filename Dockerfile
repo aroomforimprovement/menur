@@ -45,7 +45,7 @@ COPY d.default.conf.template /etc/nginx/templates/default.conf.template
 
 COPY docker-entrypoint.sh /
 
-# EXPOSE 3031
+EXPOSE 3031
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
