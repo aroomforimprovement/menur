@@ -47,10 +47,10 @@ COPY docker-entrypoint.sh /
 
 # EXPOSE 3031
 
-#ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD ["envsubst '\${PORT}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf", "nginx", "-g", 'daemon off;']
+# CMD ["envsubst '\${PORT}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf", "nginx", "-g", 'daemon off;']
 
-#CMD nginx -g 'daemon off;'
+CMD nginx -g 'daemon off;'
 
 # CMD ["npm", "start"]
