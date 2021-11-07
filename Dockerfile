@@ -5,7 +5,7 @@ USER nginx
 FROM node:14-alpine as ui-build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
-ENV NODE_ENV=development
+# ENV NODE_ENV=development
 
 ARG PORT
 ARG REACT_APP_URL
@@ -18,6 +18,7 @@ ARG REACT_APP_AUTH_DOMAIN
 ARG REACT_APP_API_URL
 ARG REACT_APP_AUTH_SCOPE
 ARG REACT_APP_AUTH_AUDIENCE
+ARG PATH
 
 COPY . .
 
@@ -34,7 +35,8 @@ RUN yarn install --frozen-lockfile
 RUN yarn build
 
 FROM nginx:1.12-alpine as nginx-build
-COPY --from=ui-build /app/build /usr/share/nginx/html
+COPY --from=ui-build /app/build /usr/share/nginx/html/
+COPY --from=ui-build /Staticfile /usr/share/nginx/html/
 # COPY --from=ui-build /app/default.conf.template /etc/nginx/nginx.default.conf
 COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.conf.default
 # COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.conf.default
@@ -44,6 +46,8 @@ COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.conf.default
 COPY d.default.conf.template /etc/nginx/templates/default.conf.template
 
 COPY docker-entrypoint.sh /
+
+ENV PATH /app/node_modules/.bin:$PATH
 
 ARG PORT
 ARG REACT_APP_URL
@@ -56,6 +60,7 @@ ARG REACT_APP_AUTH_DOMAIN
 ARG REACT_APP_API_URL
 ARG REACT_APP_AUTH_SCOPE
 ARG REACT_APP_AUTH_AUDIENCE
+ARG PATH
 
 EXPOSE ${PORT:-3031}
 
