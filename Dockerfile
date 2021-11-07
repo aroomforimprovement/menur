@@ -1,6 +1,6 @@
 FROM centos:7
-RUN useradd -u 8877 bob
-USER bob
+RUN useradd -u 8877 nginx
+USER nginx
 
 FROM node:14-alpine as ui-build
 WORKDIR /app
