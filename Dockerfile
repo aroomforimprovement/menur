@@ -49,7 +49,7 @@ COPY docker-entrypoint.sh /
 
 #ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD ["/usr/local/bin/envsubst '\${PORT}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf", "nginx", "-g", 'daemon off;']
+CMD ["envsubst '\${PORT}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf", "nginx", "-g", 'daemon off;']
 
 #CMD nginx -g 'daemon off;'
 
