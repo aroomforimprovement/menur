@@ -5,9 +5,9 @@ services:
             context: ./
         environment:
             - PORT
-        ports:
-            - "3031:3031"
-            - "443:8443"
+        #ports:
+        #    - "3031:3031"
+        #    - "443:8443"
         container_name: menur-ui_stage
         stdin_open: true
         env_file:

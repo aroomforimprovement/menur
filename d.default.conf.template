@@ -1,17 +1,17 @@
 server {
 	# listen ${PORT} default_server;
 
-    #location / {
-    #    root   /usr/share/nginx/html;
-    #        index  index.html index.htm;
-    #        try_files $uri $uri/ /index.html =404;
-    #    }
+    location / {
+        root   /usr/share/nginx/html;
+            index  index.html index.htm;
+            try_files $uri $uri/ /index.html =404;
+    }
 
-        location / {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to redirecting to index.html
-            try_files $uri $uri/ /index.html;
-        }
+    #location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to redirecting to index.html
+    #    try_files $uri $uri/ /index.html;
+    #}
 
         # Media: images, icons, video, audio, HTC
         location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc)$ {
