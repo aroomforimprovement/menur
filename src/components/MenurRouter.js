@@ -10,7 +10,7 @@ import Account from './Account';
 import { Toast } from './partials/Toasts';
 
 
-const apiUrl = process.env.REACT_APP_API_URL;
+let apiUrl = process.env.REACT_APP_API_URL;
 if(apiUrl.indexOf('/') !== apiUrl.length(-1)){
     apiUrl = `${apiUrl}/`
 }
