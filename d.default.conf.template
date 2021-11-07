@@ -16,6 +16,10 @@ server {
 	    #proxy_pass http://localhost:3031; #next serve listens here and receives nginx requests
     
     }
+    # react build files
+    location ~ .(static)/(js|css|media)/(.+)$ {
+		try_files $uri $uri/ /$1/$2/$3;
+	}
 
     # Media: images, icons, video, audio, HTC
     location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc)$ {
