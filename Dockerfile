@@ -38,7 +38,7 @@ COPY --from=ui-build /app/default.conf.template /etc/nginx/nginx.conf.default
 COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.conf
 COPY --from=ui-build /app/d.default.conf.template /etc/nginx/conf.d/default.conf
 
-COPY default.conf.template /etc/nginx/templates/
+COPY d.default.conf.template /etc/nginx/templates/default.conf.template
 
 COPY docker-entrypoint.sh /
 
