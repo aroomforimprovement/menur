@@ -11,9 +11,7 @@ import { Toast } from './partials/Toasts';
 
 
 let apiUrl = process.env.REACT_APP_API_URL;
-if(apiUrl.indexOf('/') !== apiUrl.length(-1)){
-    apiUrl = `${apiUrl}/`
-}
+
 
 const MainContext = createContext(INIT_STATE);
 
