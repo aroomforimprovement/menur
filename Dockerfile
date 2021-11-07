@@ -35,8 +35,9 @@ RUN yarn build
 
 FROM nginx:1.12-alpine as nginx-build
 COPY --from=ui-build /app/build /usr/share/nginx/html
-COPY --from=ui-build /app/default.conf.template /etc/nginx/nginx.default.conf
+# COPY --from=ui-build /app/default.conf.template /etc/nginx/nginx.default.conf
 COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.conf
+COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.default.conf
 # COPY --from=ui-build /app/d.default.conf.template /etc/nginx/conf.d/default.conf
 
 COPY d.default.conf.template /etc/nginx/templates/default.conf.template
