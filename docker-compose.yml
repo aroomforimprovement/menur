@@ -2,7 +2,7 @@ version: '3.8'
 services:
     menur-ui:
         build:
-            context: ./
+            context: .
         environment:
             - PORT
         ports:
