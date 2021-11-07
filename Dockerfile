@@ -41,7 +41,7 @@ COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.conf.default
 # COPY --from=ui-build /app/nginx.conf /etc/nginx/nginx.default.conf
 # COPY --from=ui-build /app/d.default.conf.template /etc/nginx/conf.d/default.conf
 
-COPY d.default.conf.template /etc/nginx/templates/default.conf.template
+COPY default.conf.core.template /etc/nginx/templates/default.conf.template
 
 COPY docker-entrypoint.sh /
 
@@ -64,7 +64,7 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD "sed -i -e 's/\${PORT}/'\${PORT}'/g' /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 
 
-# CMD ["envsubst '\${PORT}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf", "nginx", "-g", 'daemon off;']
+# CMD ["/bin/bash", "-c", "envsubst '\${PORT}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf", "nginx", "-g", "daemon off;"]
 
 # CMD nginx -g 'daemon off;'
 
