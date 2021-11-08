@@ -11,7 +11,7 @@ import { Toast } from './partials/Toasts';
 
 
 let apiUrl = process.env.REACT_APP_API_URL;
-let proxy = "https://menur-back.herokuapp.com/";
+let proxy = process.env.REACT_APP_PROXY_URL;
 
 const MainContext = createContext(INIT_STATE);
 
