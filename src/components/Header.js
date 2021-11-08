@@ -36,7 +36,7 @@ export const Header = () => {
                               </LinkContainer>
                             : <div></div>}
                         </Nav>
-                        <div className='header bg-light mt-2'>
+                        <div className='header bg-light mt-2 me-4'>
                             <h5 className='mb-2'>Menur</h5>
                         </div>
                         <div className='auth-nav-wrapper'>
