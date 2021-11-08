@@ -10,7 +10,7 @@ export const LoginBtn = ({size}) => {
     const loginPop = async () => {
         loginWithPopup().then(() => {
             console.log('loginWithPopup, then...');
-            window.location.href = '/account';
+            window.location.href = '/planner';
         });
     }
     return <button 
@@ -24,7 +24,7 @@ export const LoginBtn = ({size}) => {
 export const LogoutBtn = ({size}) => {
     const {dispatch} = useMainContext();
     const classes = `btn btn-secondary ${size} m-1`;
-    const url = `${process.env.REACT_APP_URL}/`;
+    const url = `/planenr`;
     const { logout } = useAuth0();
     const logoutMenur = async () => {
         await dispatch({type: 'CLEAR_DATA', data: true});

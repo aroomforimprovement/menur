@@ -181,8 +181,7 @@ code {
 }
 
 .mealtime{
-  min-width: 100px;
-  min-height: 40px;
+  min-height:40px;
   background-color: blanchedalmond;
   opacity: 0.8;
   width: 100%;
@@ -192,12 +191,39 @@ code {
   position: relative;
   cursor: pointer;
 }
-
-/*
-.mealtime:hover{
-  opacity:0.9;
+.mealtime-ls, .mealtime-header-ls{
+  max-width:80px;
+  min-width:80px;
 }
-*/
+.mealtime-pt, .mealtime-header-pt{
+  max-width:80px;
+  min-width:80px;
+}
+
+@media screen and (max-width: 576px){
+  .mealtime-ls, .mealtime-header-ls{
+    min-width: 30px;
+    max-width: 30px;
+  }
+}
+@media screen and (max-width: 768px){
+  .mealtime-ls, .mealtime-header-ls{
+    min-width: 40px;
+    max-width: 40px;
+  }
+}
+@media screen and (max-width: 992px){
+  .mealtime-ls, .mealtime-header-ls{
+    min-width: 60px;
+    max-width: 60px;
+  }
+}
+
+
+.mealtime:hover{
+  opacity:1;
+}
+
 .mealtime-text{
   font-size:smaller;
   text-align:start;

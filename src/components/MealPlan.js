@@ -14,12 +14,12 @@ export const MealPlan = () => {
         return(
             <div className='shadow-lg border border-info mt-3 col col-12'>
                 <table className="table col col-1">
-                    <thead className='col col-1'>
+                    <thead >
                         <tr >
-                            <th scope='col' className='col col-1'>#</th>
-                            <th scope='col'>Breakfast</th>
-                            <th scope='col'>Lunch</th>
-                            <th scope='col'>Dinner</th>
+                            <th scope='col' className='col col-1 mealtime-header-pt'>#</th>
+                            <th scope='col' className='mealtime-header-pt'>Breakfast</th>
+                            <th scope='col' className='mealtime-header-pt'>Lunch</th>
+                            <th scope='col' className='mealtime-header-pt'>Dinner</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,37 +30,37 @@ export const MealPlan = () => {
                             <td ><MealPlanSlot mealtime={"Dinner"} day={"Monday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row'>Tuesday</th>
+                            <th scope='row' className='mealtime-header'>Tuesday</th>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Tuesday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Tuesday"}/></td>
                             <td><MealPlanSlot mealtime={"Dinner"} day={"Tuesday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row'>Wednesday</th>
+                            <th scope='row' className='mealtime-header'>Wednesday</th>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Wednesday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Wednesday"}/></td>
                             <td><MealPlanSlot mealtime={"Dinner"} day={"Wednesday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row'>Thursday</th>
+                            <th scope='row' className='mealtime-header'>Thursday</th>
                             <td ><MealPlanSlot mealtime={"Breakfast"} day={"Thursday"}/></td>
                             <td ><MealPlanSlot mealtime={"Lunch"} day={"Thursday"}/></td>
                             <td ><MealPlanSlot mealtime={"Dinner"} day={"Thursday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row'>Friday</th>
+                            <th scope='row' className='mealtime-header'>Friday</th>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Friday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Friday"}/></td>
                             <td><MealPlanSlot mealtime={"Dinner"} day={"Friday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row'>Saturday</th>
+                            <th scope='row' className='mealtime-header'>Saturday</th>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Saturday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Saturday"}/></td>
                             <td><MealPlanSlot mealtime={"Dinner"} day={"Saturday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row'>Sunday</th>
+                            <th scope='row' className='mealtime-header'>Sunday</th>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Sunday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Sunday"}/></td>
                             <td><MealPlanSlot mealtime={"Dinner"} day={"Sunday"}/></td>
@@ -81,14 +81,14 @@ export const MealPlan = () => {
                 <table className="table col col-1">
                     <thead className='col col-1'>
                         <tr >
-                            <th scope='col' className='col col-1'>#</th>
-                            <th scope='col'>Monday</th>
-                            <th scope='col'>Tuesday</th>
-                            <th scope='col'>Wednesday</th>
-                            <th scope='col'>Thursday</th>
-                            <th scope='col'>Friday</th>
-                            <th scope='col'>Saturday</th>
-                            <th scope='col'>Sunday</th>
+                            <th scope='col' className='col col-1 mealtime-header-ls'>#</th>
+                            <th scope='col' className='mealtime-header-ls'>Monday</th>
+                            <th scope='col' className='mealtime-header-ls'>Tuesday</th>
+                            <th scope='col' className='mealtime-header-ls'>Wednesday</th>
+                            <th scope='col' className='mealtime-header-ls'>Thursday</th>
+                            <th scope='col' className='mealtime-header-ls'>Friday</th>
+                            <th scope='col' className='mealtime-header-ls'>Saturday</th>
+                            <th scope='col' className='mealtime-header-ls'>Sunday</th>
                         </tr>
                     </thead>
                     <tbody>
