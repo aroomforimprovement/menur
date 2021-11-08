@@ -106,11 +106,11 @@ export const MealGen = () => {
         return(
             <div className='container'>
                 <div className='row'>
-                    <InputGroup onKeyDown={handleIngredientKeyDown}>
+                    <InputGroup onKeyDown={handleIngredientKeyDown} className='col col-12'>
                         <FormControl type='text' id={`ingredient_${i}`} placeholder='Ingredient'
                             defaultValue={ingredient && ingredient.name ? ingredient.name : ''} 
-                            className='col col-7'></FormControl>
-                        <Form.Select type='select' id={`type_${i}`} className='col col-3'
+                            className='col col-sm-9 col-7'></FormControl>
+                        <Form.Select type='select' id={`type_${i}`} className='col col-sm-2 col-3'
                             defaultValue={ingredient && ingredient.type ? ingredient.type : 'fresh'}>
                             <option>fresh</option>
                             <option>dry</option>
@@ -119,7 +119,7 @@ export const MealGen = () => {
                             <option>cond</option>
                         </Form.Select>
                         <FormControl type='number' id={`qty_${i}`} placeholder={1}
-                            className='col col-2' defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1}></FormControl>
+                            className='col col-sm-1 col-2' defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1}></FormControl>
                     </InputGroup>
                 </div>
             </div>
@@ -158,20 +158,20 @@ export const MealGen = () => {
                         {ingredientFields}
                     </div>
                     <div className='row'>
-                        <div className='col col-11'>
+                        <div className='col col-12'>
                             <IngredientField i={ingredients.length} />
                         </div>
-                        <div className='col col-1 btn btn-outline-primary fa fa-plus end'
+                        <div className='col col-1 btn btn-outline-primary btn-sm fa fa-plus end'
                         onClick={handleAddIngredient}>
 
                         </div>
                     </div>
                     <div className='row ing-row'>
                         <div className='col col-3'></div>                       
-                        <button className='btn btn-sm btn-primary col col-4 mx-1 mt-3'
+                        <button className='btn btn-sm btn-primary col col-12 mx-1 mt-3'
                             onClick={handleAdd}>Add new meal to suggestions</button>
                         {state && state.user && state.user.isAuth ?
-                            <button className='btn btn-sm btn-success col col-4 mx-1 mt-3'
+                            <button className='btn btn-sm btn-success col col-12 mx-1 mt-1'
                             onClick={handleSave}>Save new meal to account</button> : <div></div>
                         }
                     </div>
