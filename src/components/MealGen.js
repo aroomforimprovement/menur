@@ -11,6 +11,7 @@ export const MealGen = () => {
     const [ingredients, setIng] = useState([]);
     const [servings, setServings] = useState(2);
     const apiUrl = process.env.REACT_APP_API_URL;
+    let proxy = process.env.REACT_APP_PROXY_URL;
 
     const handleShowForm = () => {
         setIsFormVisible(!isFormVisible);
@@ -53,7 +54,7 @@ export const MealGen = () => {
                 servings: servings
             }
         }
-        return await fetch(`${apiUrl}app/meal`, {
+        return await fetch(`${proxy}${apiUrl}app/meal`, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {

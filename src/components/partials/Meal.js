@@ -4,13 +4,14 @@ import { DELIM, OR } from '../../shared/meals';
 import { useMainContext } from '../MenurRouter';
 
 const apiUrl = process.env.REACT_APP_API_URL;
+let proxy = process.env.REACT_APP_PROXY_URL;
 
 export const Meal = ({meal, showSpices}) => {
     const { state, dispatch } = useMainContext();
     const [showIngredients, setShowIngredients] = useState(false);
 
     const deleteMeal = async () => {
-        return await fetch(`${apiUrl}app/meal/${meal.id}`, {
+        return await fetch(`${proxy}${apiUrl}app/meal/${meal.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

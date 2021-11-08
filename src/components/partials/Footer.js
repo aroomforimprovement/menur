@@ -5,6 +5,7 @@ import { getNewId } from '../../utils/objUtils';
 import { toast } from 'react-hot-toast';
 
 const apiUrl = process.env.REACT_APP_API_URL;
+let proxy = process.env.REACT_APP_PROXY_URL;
 
 export const Footer = () => {
     const { state, dispatch } = useMainContext();
@@ -25,7 +26,7 @@ export const Footer = () => {
                     userList2: state.userList2
                 }
             }
-            return await fetch(`${apiUrl}app/plan`, {
+            return await fetch(`${proxy}${apiUrl}app/plan`, {
                 method: 'POST',
                 body: JSON.stringify(body),
                 headers: {

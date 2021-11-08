@@ -6,12 +6,13 @@ import { useMainContext } from "../MenurRouter";
 import { toast } from 'react-hot-toast';
 
 const apiUrl = process.env.REACT_APP_API_URL;
+let proxy = process.env.REACT_APP_PROXY_URL;
 
 export const Plan = ({plan, isLandscape}) => {
     const {state, dispatch} = useMainContext();
 
     const deletePlan = async () => {
-        return await fetch(`${apiUrl}app/plan/${plan.id}`, {
+        return await fetch(`${proxy}${apiUrl}app/plan/${plan.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
