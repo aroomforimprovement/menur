@@ -111,13 +111,13 @@ export const Suggestions = () => {
     });
 
     return(
-        <div className='suggestions col col-8 shadow shadow-sm align-bottom'>
+        <div className='suggestions col col-12 col-md-8 shadow shadow-sm align-bottom'>
+            <MealGen className='shadow shadow-sm mt-3' />
             <div >
                 <h5>Suggestions</h5>
                 <div className='list-unstyled'>
                     {suggestionList}
                 </div>
-                <MealGen className='shadow shadow-sm mt-3' />
             </div>
         </div>
     )

@@ -76,6 +76,19 @@ code {
   left:5.5px;
 }
 
+.meal-gen{
+  text-align:start;
+  position:relative;
+}
+
+.mean-gen-toggle{
+  text-align:center;
+}
+
+.meal-gen-left{
+  text-align:end;
+}
+
 .suggestion{
   opacity:0.7;
 }

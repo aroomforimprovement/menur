@@ -71,7 +71,7 @@ export const Selector = () => {
     }
 
     return(
-        <div className='selector col col-4 shadow shadow-sm' >
+        <div className='selector col col-12 col-md-4' >
             <Form.Group >
                 <Form.Label className='selector-heading'>What are you making?</Form.Label><br/>
                 <Form.Check inline type={"checkbox"} onChange={handleCheckBasic} label={'Basic meals'} 
