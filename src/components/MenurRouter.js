@@ -11,7 +11,7 @@ import { Toast } from './partials/Toasts';
 
 
 let apiUrl = process.env.REACT_APP_API_URL;
-
+let proxy = "https://menur-back.herokuapp.com/";
 
 const MainContext = createContext(INIT_STATE);
 
@@ -65,7 +65,7 @@ const MenurRouter = () => {
                 email: state.user.email
             }
             console.dir(body);
-            return await fetch(`${apiUrl}app/login`, {
+            return await fetch(`${proxy}${apiUrl}app/login`, {
                 method: 'POST',
                 body: JSON.stringify(body),
                 mode: 'cors',
