@@ -71,8 +71,7 @@ const MenurRouter = () => {
                 mode: 'cors',
                 headers: {
                     Authorization: `Bearer ${access}`,
-                    'Content-Type': 'application/json',
-                    
+                    'Content-Type': 'application/json'
                 },
                 redirect: 'follow'
             }).then(response => {
