@@ -163,7 +163,6 @@ export const MealGen = () => {
                         </div>
                         <div className='col col-1 btn btn-outline-primary btn-sm fa fa-plus end'
                         onClick={handleAddIngredient}>
-
                         </div>
                     </div>
                     <div className='row ing-row'>
