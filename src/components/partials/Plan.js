@@ -24,6 +24,7 @@ export const Plan = ({plan, isLandscape}) => {
                 return response;
             }
         }, error => {
+
             console.error(error);
         }).catch((error) => {
             console.error(error);
@@ -67,7 +68,7 @@ export const Plan = ({plan, isLandscape}) => {
                     document={isLandscape 
                     ? <DownloadableMealPlanLandscape mealplan={plan.mealplan}/> 
                     : <DownloadableMealPlan mealplan={plan.mealplan}/>} 
-                        fileName={`mealplan_${new Date()}`}>
+                        fileName={`mealplan_${plan.name}`}>
                             {({blob, url, loading, error}) => 
                                 loading ? 'Loading document...' : 'Download'
                             }
