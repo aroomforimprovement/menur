@@ -10,7 +10,7 @@ export const MealPlanViewer = ({mealplan, isLandscape}) => {
         <div>
         {mealplan 
         ?
-            <PDFViewer width={'100%'} height={'100%'}>
+            <PDFViewer >
                 {isLandscape 
                 ? <DownloadableMealPlanLandscape mealplan={mealplan} />
                 : <DownloadableMealPlan mealplan={mealplan}/>}
