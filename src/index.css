@@ -79,7 +79,9 @@ code {
 .meal-gen{
   text-align:start;
   position:relative;
+  /*background-color: rgb(245, 245, 245);*/
 }
+
 
 .mean-gen-toggle{
   text-align:center;

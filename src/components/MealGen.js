@@ -28,8 +28,10 @@ export const MealGen = () => {
         //console.dir(i);
         if(i.name.length > 0){
             ingr.push(i);
+            toast(`Ingredient added to new meal ${name}`);
         }
         setIng(ingr);
+        
     }
     const addSuggestion = (e) => {
         e.preventDefault();
@@ -65,10 +67,11 @@ export const MealGen = () => {
             if(response.ok){
                 console.log(`meal saved ok`);
                 dispatch({type: 'ADD_SELECTOR_MEAL', data: body.meal});
-                toast("Meal saved ok");
+                toast.success("Meal saved ok");
                 return id;
             }else{
                 console.error(`response not ok`);
+                toast.error("Error saving the meal");
             }
         }, error => {
             console.error(error);
@@ -104,12 +107,13 @@ export const MealGen = () => {
 
     const IngredientField = ({ingredient, i}) => {
         return(
-            <div className='row'>
-                <InputGroup onKeyDown={handleIngredientKeyDown} className='col col-12'>
-                    <FormControl type='text' id={`ingredient_${i}`} placeholder='Ingredient'
+            <div className='container p-0'>
+                <InputGroup size='sm' onKeyDown={handleIngredientKeyDown} className='row'>
+                    <FormControl size='sm' type='text' id={`ingredient_${i}`} placeholder='Ingredient'
                         defaultValue={ingredient && ingredient.name ? ingredient.name : ''} 
-                        className='col col-sm-9 col-7'></FormControl>
-                    <Form.Select type='select' id={`type_${i}`} className='col col-sm-2 col-2'
+                        className='w-50'></FormControl>
+                    
+                    <Form.Select size='sm' type='select' id={`type_${i}`} 
                         defaultValue={ingredient && ingredient.type ? ingredient.type : 'fresh'}>
                         <option>fresh</option>
                         <option>dry</option>
@@ -117,8 +121,8 @@ export const MealGen = () => {
                         <option>spice</option>
                         <option>cond</option>
                     </Form.Select>
-                    <FormControl type='number' id={`qty_${i}`} placeholder={1}
-                        className='col col-sm-1 col-1' defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1}></FormControl>
+                    <FormControl size='sm' type='number' id={`qty_${i}`} placeholder={1}
+                        defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1}></FormControl>
                 </InputGroup>
             </div>
         );
@@ -126,40 +130,45 @@ export const MealGen = () => {
 
     const ingredientFields = ingredients.map((ingredient, i) => {
         return(
-            <IngredientField key={i} ingredient={ingredient} i={i} />
+            <div key={i}><p>{ingredient.name} x{ingredient.qty} ({ingredient.type})</p></div>
+            //<IngredientField key={i} ingredient={ingredient} i={i} />
         );
     });
 
     let showFormClasses = ''
 
     return(
-        <div className='container meal-gen shadow shadow-sm pb-3 mt-3 mb-3'>
-            <div hidden={true}>{isFormVisible ? showFormClasses = 'fa-caret-up' : showFormClasses = 'fa-caret-down'}</div>
+        <div className='container meal-gen shadow shadow-sm p-0 pb-3 mt-3 mb-3'>
+            <div hidden={true}>{isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-down'}</div>
             <div className='col col-12 meal-gen-toggle'>
-                <div className='btn btn-sm btn-outline-primary fa fa-plus col col-12 mel-gen-toggle-btn'
-                    onClick={handleShowForm}>
+                <div className='btn btn-sm btn-outline-primary col col-12 mel-gen-toggle-btn'
+                    onClick={handleShowForm} text='Create a new meal'>
                     <span className={`fa ${showFormClasses} ms-3`}>{' '}</span>
                 </div>
             </div>
             <div hidden={!isFormVisible}>
-                <div className='container'>
-                    <Form.Label className='mb-1'>Meal name:</Form.Label>
+                <div className='container bg-light'>
+                    <Form.Label className='mb-1 mt-2'>
+                        <h5>Meal name:</h5>
+                    </Form.Label>
                     <InputGroup size='sm'>
                         <FormControl type='text' id='name' placeholder='Name'
                             onChange={handleNameChange}
                             value={name}></FormControl>
                     </InputGroup>
                     <div className='row meal-gen-left mt-1'>
-                        <div className='col col-5'>
-                            <InputGroup size='sm'>
-                                <Form.Label htmlFor='servings' className='me-4 mt-2'>Servings:</Form.Label>
+                        <div className='col col-5 ms-5'>
+                            <InputGroup size='sm' >
+                                <Form.Label size='sm' htmlFor='servings' className='me-4 mt-2'>
+                                    <h5>Servings:</h5>
+                                </Form.Label>
                                 <FormControl type='number' id='servings' defaultValue={2}
-                                    onChange={handleServingsChange} 
-                                    className='col col-1 ms-8'></FormControl>
+                                    onChange={handleServingsChange} size="sm"
+                                    className='col col-2 ms-4 '></FormControl>
                             </InputGroup>
                         </div>
                     </div>
-                    <Form.Label size='sm' className='mt-2'>Ingredients</Form.Label>
+                    <Form.Label size='sm' className='mt-2'><h5>Ingredients</h5></Form.Label>
                     <div id='ingredient-slot'>
                         {ingredientFields}
                     </div>
@@ -167,7 +176,7 @@ export const MealGen = () => {
                         <div className='col col-12'>
                             <IngredientField i={ingredients.length} />
                         </div>
-                        <div className='col col-1 btn btn-outline-primary btn-sm fa fa-plus'
+                        <div className='col col-12 btn btn-outline-primary btn-sm fa fa-plus mt-1'
                             onClick={handleAddIngredient}>
                         </div>
                     </div>

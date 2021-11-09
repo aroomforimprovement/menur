@@ -8,6 +8,7 @@ import Planner from './Main';
 import { Loading } from './partials/Loading';
 import Account from './Account';
 import { Toast } from './partials/Toasts';
+import toast from 'react-hot-toast';
 
 
 let apiUrl = process.env.REACT_APP_API_URL;
@@ -93,8 +94,10 @@ const MenurRouter = () => {
                             type: 'SET_ACCOUNT_INFO',
                             data: result
                         });
+                        toast.success("Your account info is ready");
                     }else{
                         dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
+                        toast.warn("You are not logged in");
                     }  
             });
         }
