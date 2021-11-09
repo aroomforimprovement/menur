@@ -24,7 +24,7 @@ export const LoginBtn = ({size}) => {
 export const LogoutBtn = ({size}) => {
     const {dispatch} = useMainContext();
     const classes = `btn btn-secondary ${size} m-1`;
-    const url = `/planenr`;
+    const url = `/planner`;
     const { logout } = useAuth0();
     const logoutMenur = async () => {
         await dispatch({type: 'CLEAR_DATA', data: true});
