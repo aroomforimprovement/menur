@@ -14,11 +14,13 @@ export const Footer = () => {
         
     const saveDataToAccount = async () => {
         if(state && state.user && state.user.isAuth){
+            const name = new Date().toString();
+            const id = getNewId();
             const body = {
                 userid: state.user.userid,
                 mealplan:{
-                    id: getNewId(),
-                    name: new Date(),
+                    id: id,
+                    name: name,
                     mealplan: state.mealplan,
                     leftovers: state.leftovers,
                     genList: state.genList,
@@ -38,7 +40,7 @@ export const Footer = () => {
                     console.log(`mealplan saved ok`);
                     setIsSaving(false);
                     setIsSaveFailed(false);
-                    //dispatch({type: 'ADD_SAVED_PLAN', data: body})
+                    dispatch({type: 'ADD_SAVED_PLAN', data: body.mealplan})
                     toast.success("Mealplan saved ok");
                 }else{
                     console.error(`response not ok`);
