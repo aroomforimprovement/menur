@@ -24,43 +24,43 @@ export const MealPlan = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope='row'>Monday</th>
+                            <th scope='row' className='mealtime-header-pt'>Monday</th>
                             <td ><MealPlanSlot mealtime={"Breakfast"} day={"Monday"}/></td>
                             <td ><MealPlanSlot mealtime={"Lunch"} day={"Monday"}/></td>
                             <td ><MealPlanSlot mealtime={"Dinner"} day={"Monday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row' className='mealtime-header'>Tuesday</th>
+                            <th scope='row' className='mealtime-header-pt'>Tuesday</th>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Tuesday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Tuesday"}/></td>
                             <td><MealPlanSlot mealtime={"Dinner"} day={"Tuesday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row' className='mealtime-header'>Wednesday</th>
+                            <th scope='row' className='mealtime-header-pt'>Wednesday</th>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Wednesday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Wednesday"}/></td>
                             <td><MealPlanSlot mealtime={"Dinner"} day={"Wednesday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row' className='mealtime-header'>Thursday</th>
+                            <th scope='row' className='mealtime-header-pt'>Thursday</th>
                             <td ><MealPlanSlot mealtime={"Breakfast"} day={"Thursday"}/></td>
                             <td ><MealPlanSlot mealtime={"Lunch"} day={"Thursday"}/></td>
                             <td ><MealPlanSlot mealtime={"Dinner"} day={"Thursday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row' className='mealtime-header'>Friday</th>
+                            <th scope='row' className='mealtime-header-pt'>Friday</th>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Friday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Friday"}/></td>
                             <td><MealPlanSlot mealtime={"Dinner"} day={"Friday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row' className='mealtime-header'>Saturday</th>
+                            <th scope='row' className='mealtime-header-pt'>Saturday</th>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Saturday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Saturday"}/></td>
                             <td><MealPlanSlot mealtime={"Dinner"} day={"Saturday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row' className='mealtime-header'>Sunday</th>
+                            <th scope='row' className='mealtime-header-pt'>Sunday</th>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Sunday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Sunday"}/></td>
                             <td><MealPlanSlot mealtime={"Dinner"} day={"Sunday"}/></td>
@@ -93,7 +93,7 @@ export const MealPlan = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope='row'>Dinner</th>
+                            <th scope='row' className='mealtime-ls'>Dinner</th>
                             <td ><MealPlanSlot mealtime={"Dinner"} day={"Monday"}/></td>
                             <td ><MealPlanSlot mealtime={"Dinner"} day={"Tuesday"}/></td>
                             <td ><MealPlanSlot mealtime={"Dinner"} day={"Wednesday"}/></td>
@@ -103,7 +103,7 @@ export const MealPlan = () => {
                             <td ><MealPlanSlot mealtime={"Dinner"} day={"Sunday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row'>Lunch</th>
+                            <th scope='row' className='mealtime-ls'>Lunch</th>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Monday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Tuesday"}/></td>
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Wednesday"}/></td>
@@ -113,7 +113,7 @@ export const MealPlan = () => {
                             <td><MealPlanSlot mealtime={"Lunch"} day={"Sunday"}/></td>
                         </tr>
                         <tr>
-                            <th scope='row'>Breakfast</th>
+                            <th scope='row' className='mealtime-ls'>Breakfast</th>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Monday"}/></td>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Tuesday"}/></td>
                             <td><MealPlanSlot mealtime={"Breakfast"} day={"Wednesday"}/></td>
@@ -134,8 +134,8 @@ export const MealPlan = () => {
     }
     
     return(
-        <div>
-            <button onClick={toggleOrientation} className='btn btn-sm mt-4 btn-warning border border-success'>{state.isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
+        <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'}`}>
+            <button onClick={toggleOrientation} className={`mt-4 py-2 px-3 border shadow ${state.isLandscape ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>{state.isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
             {
                 state.isLandscape ? <LandscapeMealPlan /> : <PortraitMealPlan />
             }

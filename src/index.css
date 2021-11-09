@@ -200,16 +200,28 @@ code {
   min-width:80px;
 }
 
+.toggle-orientation-ls, .toggle-orientation-pt{
+  border-radius:5px;
+  opacity:0.8;
+  background-color:rgba(255);
+}
+.toggle-orientation-ls:hover, .toggle-orientation-pt:hover{
+  transform:scale(1.02);
+}
+
 @media screen and (max-width: 576px){
-  .mealtime-ls, .mealtime-header-ls{
-    min-width: 30px;
+  .mealtime-header-ls{
     max-width: 30px;
+    transform:scale(0.8);
   }
 }
 @media screen and (max-width: 768px){
   .mealtime-ls, .mealtime-header-ls{
-    min-width: 40px;
     max-width: 40px;
+    transform:scale(0.8);
+  }
+  .toggle-orientation-ls{
+    background-color: rgb(255, 200, 200);
   }
 }
 @media screen and (max-width: 992px){
@@ -217,7 +229,16 @@ code {
     min-width: 60px;
     max-width: 60px;
   }
+  .mealtime-header-ls, .mealtime-header-pt{
+    transform:scale(0.8);
+  }
 }
+@media screen and (min-width: 992px){
+  .toggle-orientation-pt{
+    background-color: rgb(255, 200, 200);
+  }
+}
+
 
 
 .mealtime:hover{
