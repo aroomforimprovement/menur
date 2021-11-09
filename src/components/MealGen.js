@@ -64,7 +64,7 @@ export const MealGen = () => {
         }).then(response => {
             if(response.ok){
                 console.log(`meal saved ok`);
-                dispatch({type: 'ADD_SELECTOR_MEAL', data: body});
+                dispatch({type: 'ADD_SELECTOR_MEAL', data: body.meal});
                 toast("Meal saved ok");
                 return id;
             }else{
@@ -131,7 +131,7 @@ export const MealGen = () => {
     });
 
     let showFormClasses = ''
-    
+
     return(
         <div className='container meal-gen shadow shadow-sm pb-3 mt-3 mb-3'>
             <div hidden={true}>{isFormVisible ? showFormClasses = 'fa-caret-up' : showFormClasses = 'fa-caret-down'}</div>
