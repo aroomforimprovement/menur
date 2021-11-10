@@ -1,7 +1,9 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { useMainContext } from '../../main/MenurRouter';
-
+import { DragDropContainer } from 'react-drag-drop-container';
+import { DELIM, OR} from '../../shared/meals';
+import { getIngredientsFromMeal } from '../../utils/objUtils';
 
 export const PlusToggle = React.forwardRef(({ children, onClick }, ref) => (
     <div className='border rounded-circle custom-toggle plus-toggle'
@@ -120,4 +122,92 @@ export const ClickToExpandMeal = ({ingredients, keyProp, dragData}) => {
         </Dropdown.Menu>
     </Dropdown>
     )
+}
+
+export const Suggestion = ({dragData, keyProp}) => {
+    let classes = '';
+    if(dragData.meal.score >= 10){
+        classes = classes + ' sugg-good';
+    }else if(dragData.meal.score >= 8){
+        classes = classes + ' sugg-ok';
+    }else if(dragData.meal.score >= 6){
+        classes = classes + ' sugg-bad';
+    }else{
+        classes = classes + ' sugg-none';
+    }
+    const { state, dispatch } = useMainContext();
+    
+
+    const handleDragStart = (e) => {
+        //
+    }
+    const handleDrag = (e) => {
+        //
+    }
+    const handleDragEnd = (e) => {
+       //
+    }
+    const handleDrop = (e) => {
+        if(e.dragData.meal.name.indexOf('Leftover') > -1){
+            dispatch({type: 'REMOVE_LEFTOVER', data: e.dragData.meal});
+        }
+    }
+
+    const handleItemClick = (e) => {
+        e.preventDefault();
+    }
+
+    const ingredients = dragData.meal.ingredients.map((ing, i) => {
+        const meal = {...state.selection};
+        let classes = 'sugg-ingredient ';
+        const mealIngredients = getIngredientsFromMeal(meal);
+        outer: for(let ind = 0; ind < mealIngredients.length; ind++){
+            if(ing.name.indexOf(DELIM) > -1){
+                const splits = ing.name.split(DELIM);
+                for(let index = 0; index < splits.length; index++){
+                    if(mealIngredients[ind].name.toLowerCase() === splits[index].toLowerCase()){
+                        if(!classes.indexOf('bold') > -1){
+                            classes += 'bold';
+                            break outer;
+                        }        
+                    }
+                }
+            }else if(mealIngredients[ind].name.toLowerCase() === ing.name.toLowerCase()){
+                if(!classes.indexOf('bold') > -1){
+                    classes += 'bold';
+                    break;
+                }
+            }
+        }
+        
+        return(
+            <div key={i}>            
+                {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') 
+                    ? null 
+                    : <Dropdown.Item as='div' onClick={handleItemClick}>
+                        <span className={''+classes}>
+                            {ing.name.replaceAll(DELIM, OR)}
+                        </span>
+                    </Dropdown.Item>}
+            </div>
+        );
+    });
+
+    
+    return(
+        <div className={`sugg-container me-1 mb-1`}>
+            <DragDropContainer targetKey='meal' onDragStart={handleDragStart} 
+                onDragEnd={handleDragEnd} onDrag={handleDrag} onDrop={handleDrop} 
+                dragData={dragData} className={'dd-container'}>        
+                 
+                    <div className={`border border-silver rounded px-4 ${classes}`}>
+                        <h5 className='suggestion-text'>
+                            {dragData.meal.name}                                     
+                        </h5>
+                    </div>    
+                    <ClickAddToMealPlan keyProp={keyProp}  dragData={dragData} className='sugg-click-add'/> 
+                    <ClickToExpandMeal keyProp={keyProp} ingredients={ingredients} dragData={dragData} className='sugg-expand'/>
+            </DragDropContainer>
+        </div>
+    );
 }

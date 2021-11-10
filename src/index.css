@@ -324,6 +324,17 @@ code {
   }
 }
 
+.showSpices{
+  transition: all .5s ease;
+  text-align: left;
+}
+.show-spices label{
+  font-size:small;
+  margin:0px;
+  padding:0px;
+  text-align: start;
+}
+
 .leftover{
   display:inline;
 }
