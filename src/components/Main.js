@@ -36,8 +36,10 @@ const Planner = ({edit}) => {
                 <Selector className='shadow shadow-sm'/>
                 <Suggestions className='shadow shadow-sm'/>                        
             </div>
-            <div className='row'>
-                <MealPlan />
+            <div className='container mealplan-row p-0'>
+                <div className='row p-0'>
+                    <MealPlan className='col col-12 ms-md-4 my-2 p-0'/>
+                </div>
             </div>
             <div className='row my-2'>
                 {state ? <PDFDownloadLink className={'btn btn-success'}

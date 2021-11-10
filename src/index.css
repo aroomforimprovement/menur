@@ -194,6 +194,10 @@ code {
   cursor: pointer;
 }
 
+.mealplan-row{
+  margin:auto;
+}
+
 .dummy-plan-meal{
   position:relative;
   text-align: center;
@@ -284,6 +288,13 @@ code {
   color:rgb(0, 0, 126);
   opacity: 1;
 }
+@media screen and (max-width: 768px){
+  .mealtime-text{
+    position:absolute;
+    left:3px;
+    font-size:x-small;
+  }
+}
 
 .meal-remove{
   position:absolute;
@@ -294,11 +305,24 @@ code {
   right: 2px;
 }
 
+
+
+
+
 .mealplan-ingredients{
   font-weight: normal;
   font-size: small;
   color: black;
   background-color: blanchedalmond;
+  position:relative;
+}
+
+@media screen and (max-width: 768px){
+  .mealplan-ingredients-text{
+    position:absolute;
+    left:0px;
+    font-size: x-small;
+  }
 }
 
 .leftover{

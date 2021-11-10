@@ -41,7 +41,7 @@ export const MealPlan = () => {
             );
         });
         return(
-            <Container>
+            <Container className='mealplan-container'>
                 <Row>
                     <Col xs={1} className={'mealplan-header p-0 m-1'}>*</Col>
                     {header}
@@ -101,9 +101,11 @@ export const MealPlan = () => {
     return(
         <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'}`}>
             <button onClick={toggleOrientation} className={`mt-4 py-2 px-3 border shadow ${state.isLandscape ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>{state.isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
+            <div className='mt-2'>
             {
                 state.isLandscape ? <LandscapePlan /> : <PortraitPlan />
             }
+            </div>
         </div>
     );
 }
