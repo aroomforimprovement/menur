@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
-import { useMainContext } from './MenurRouter';
-import { accountReducer } from '../redux/Account';
+import { useMainContext } from '../main/MenurRouter';
+import { accountReducer } from './accountReducer';
 import { Form } from 'react-bootstrap';
-import { Plan } from './partials/Plan';
-import { Meal } from './partials/Meal';
+import { Plan } from './components/Plan';
+import { Meal } from './components/Meal';
 
 const AccountContext = createContext({showSpices: false});
 

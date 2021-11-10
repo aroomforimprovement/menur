@@ -1,10 +1,9 @@
 import React from "react";
 import { DownloadableMealPlanLandscape, DownloadableMealPlan } from "../../utils/pdfUtils";
-import { MealPlanViewer } from "./MealPlanViewer";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { useMainContext } from "../MenurRouter";
+import { useMainContext } from "../../main/MenurRouter";
 import { toast } from 'react-hot-toast';
-import { DummyMealPlan } from "../DummyMealPlan";
+import { DummyMealPlan } from "./DummyMealPlan";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;

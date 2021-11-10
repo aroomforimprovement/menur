@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
-import { Selector } from './Selector';
-import { Suggestions } from './Suggestions';
-import { MealPlan } from './MealPlan';
-import { GenList } from './GenList';
+import { Selector } from './selector/Selector';
+import { Suggestions } from './suggestions/Suggestions';
+import { MealPlan } from './mealplan/MealPlan';
+import { GenList } from './shopping/GenList';
 import { DownloadableMealPlan, DownloadableMealPlanLandscape } from '../utils/pdfUtils'; 
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import { useMainContext } from './MenurRouter';
-import { Footer } from './partials/Footer';
+import { useMainContext } from '../main/MenurRouter';
+import { Footer } from './Footer';
 import { useParams } from 'react-router';
-//import { MealPlanViewer } from './partials/MealPlanViewer';
 
 
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { DragDropContainer } from 'react-drag-drop-container';
-import { useMainContext } from './MenurRouter';
-import { DELIM, OR} from '../shared/meals';
-import { getIngredientsFromMeal } from '../utils/objUtils';
-import { MealGen } from './MealGen';
+import { useMainContext } from '../../main/MenurRouter';
+import { DELIM, OR} from '../../shared/meals';
+import { getIngredientsFromMeal } from '../../utils/objUtils';
+import { MealGen } from '../mealgen/MealGen';
 import { Dropdown } from 'react-bootstrap';
-import { ClickAddToMealPlan, ClickToExpandMeal } from './partials/SuggestionParts';
+import { ClickAddToMealPlan, ClickToExpandMeal } from './SuggestionParts';
 
 export const Suggestion = ({dragData, keyProp}) => {
     let classes = '';

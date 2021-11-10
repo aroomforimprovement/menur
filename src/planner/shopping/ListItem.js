@@ -1,5 +1,5 @@
 import React from 'react';
-import { DELIM, OR } from '../shared/meals';
+import { DELIM, OR } from '../../shared/meals';
 import { DragDropContainer } from 'react-drag-drop-container';
 
 export const ListItem = ({dragData}) => {

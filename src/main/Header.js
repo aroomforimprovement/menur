@@ -2,8 +2,8 @@ import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useMainContext } from './MenurRouter';
-import { Loading } from './partials/Loading';
-import { LoginBtn, LogoutBtn, SignupBtn } from './partials/AuthBtns';
+import { Loading } from '../common/Loading';
+import { LoginBtn, LogoutBtn, SignupBtn } from '../common/AuthBtns';
 
 
 export const Header = () => {

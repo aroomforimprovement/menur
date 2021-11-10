@@ -1,6 +1,6 @@
 import './App.css';
 import { ErrorBoudary } from './utils/errorUtils';
-import MenurRouter from './components/MenurRouter';
+import MenurRouter from './main/MenurRouter';
 import { BrowserRouter } from 'react-router-dom';
 import Auth0ProviderWithHistory from './auth/Auth0ProviderWithHistory';
 

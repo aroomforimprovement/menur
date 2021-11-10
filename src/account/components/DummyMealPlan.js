@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { DummyMealPlanSlot } from './DummyMealPlanSlot';
-import { Leftovers } from './Leftovers.js';
 import { Row, Col, Container } from 'react-bootstrap';
-import { days, mealtimes } from '../shared/states';
+import { days, mealtimes } from '../../shared/states';
 
 
 export const DummyMealPlan = ({mealplan, name}) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { DropTarget } from 'react-drag-drop-container';
 import { ListItem } from "./ListItem";
-import { useMainContext } from "./MenurRouter";
+import { useMainContext } from "../../main/MenurRouter";
 
 
 export const UserList = ({list}) => {

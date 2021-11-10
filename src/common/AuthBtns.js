@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useMainContext } from '../MenurRouter';
+import { useMainContext } from '../main/MenurRouter';
 
 export const LoginBtn = ({size}) => {
     const classes = `btn btn-secondary ${size} m-1`;

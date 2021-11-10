@@ -1,13 +1,13 @@
 import React, {createContext, useContext, useEffect, useReducer} from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { reducer } from '../redux/Main';
+import { reducer } from './menurReducer';
 import { INIT_STATE } from '../shared/states';
 import { Header } from './Header';
 import { Switch, useHistory, Route, withRouter, Redirect } from 'react-router';
-import Planner from './Main';
-import { Loading } from './partials/Loading';
-import Account from './Account';
-import { Toast } from './partials/Toasts';
+import Planner from '../planner/Planner';
+import { Loading } from '../common/Loading';
+import Account from '../account/Account';
+import { Toast } from '../common/Toasts';
 import toast from 'react-hot-toast';
 
 

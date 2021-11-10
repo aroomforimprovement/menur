@@ -1,9 +1,9 @@
 import React from 'react';
 import { MealPlanSlot } from './MealPlanSlot';
 import { Leftovers } from './Leftovers.js';
-import { useMainContext } from './MenurRouter';
+import { useMainContext } from '../../main/MenurRouter';
 import { Row, Col, Container } from 'react-bootstrap';
-import { days, mealtimes } from '../shared/states';
+import { days, mealtimes } from '../../shared/states';
 
 export const MealPlan = () => {
 

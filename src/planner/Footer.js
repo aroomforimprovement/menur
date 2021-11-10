@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useMainContext } from '../MenurRouter';
-import { Loading } from './Loading';
-import { getNewId } from '../../utils/objUtils';
+import { useMainContext } from '../main/MenurRouter';
+import { Loading } from '../common/Loading';
+import { getNewId } from '../utils/objUtils';
 import { toast } from 'react-hot-toast';
 
 const apiUrl = process.env.REACT_APP_API_URL;

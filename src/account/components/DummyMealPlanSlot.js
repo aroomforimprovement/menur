@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DELIM, OR } from '../shared/meals';
+import { DELIM, OR } from '../../shared/meals';
 
 export const DummyMealPlanSlot = ({mealplan ,mealtime, day, isLandscape}) => {
 

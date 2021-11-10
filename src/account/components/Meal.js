@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { DELIM, OR } from '../../shared/meals';
-import { useMainContext } from '../MenurRouter';
+import { useMainContext } from '../../main/MenurRouter';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
