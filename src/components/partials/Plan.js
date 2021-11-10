@@ -4,6 +4,7 @@ import { MealPlanViewer } from "./MealPlanViewer";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useMainContext } from "../MenurRouter";
 import { toast } from 'react-hot-toast';
+import { DummyMealPlan } from "../DummyMealPlan";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
@@ -48,12 +49,10 @@ export const Plan = ({plan, isLandscape}) => {
     }
 
     return(
-        <div className='container account-plan p-1'>
+        <div className='container account-plan p-0 m-0'>
             <div className='row'>
-                <h6>{plan.name}</h6>
-            </div>
-            <div className='row'>
-                <MealPlanViewer mealplan={plan.mealplan} isLandscape={true}/>
+                <DummyMealPlan mealplan={plan.mealplan} name={plan.name} leftovers={plan.mealplan.leftovers}/>
+                {/*<MealPlanViewer mealplan={plan.mealplan} isLandscape={true}/>*/}
             </div>
             <div className='row'>
                 <button className='btn btn-sm btn-warning col col-4'

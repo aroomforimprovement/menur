@@ -36,7 +36,7 @@ const Account = () => {
         ? state.plans.map((plan, i) => {
             const link = `/planner/${plan.id}`;
             return(
-                <div key={plan.id} className='col col-5 m-1 border border-secondary'>
+                <div key={plan.id} className='col col-12 col-lg-6 border border-secondary'>
                     <Plan  plan={plan} link={link} isLandscape={true}/>
                 </div>
             );

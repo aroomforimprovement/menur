@@ -193,6 +193,34 @@ code {
   position: relative;
   cursor: pointer;
 }
+
+.dummy-plan-meal{
+  position:relative;
+  text-align: center;
+  background-color: blanchedalmond;
+  font-size: x-small;
+  font-weight:bold;
+  max-height:40px;
+  min-height:40px;
+  overflow: hidden;
+  margin-top:3px;
+  cursor: pointer;
+}
+
+.dummy-plan-meal .name{
+  position:absolute;
+  left: 4px;
+}
+
+.dummy-plan-ing{
+  background-color: blanchedalmond;
+  font-size: xx-small;
+}
+
+.dummy-plan-header{
+  font-size: x-small;
+}
+
 .mealtime-ls, .mealtime-header-ls{
   max-width:80px;
   min-width:80px;
