@@ -1,9 +1,13 @@
 import React from 'react';
 
-export const Loading = ({message}) => {
+export const Loading = ({message, classes, size}) => {
+    if(!size){
+        size = 1;
+    }
     return(
-        <div className='loading col-1'>
-            <span className='fa fa-spinner fa-pulse fa-1x fa-fw'></span>
+        <div>
+            <div className={`spinner-border ${classes}`}>
+            </div>
             <p>{message}</p>
         </div>
     );

@@ -126,7 +126,7 @@ const MenurRouter = () => {
                     )}      
                 </MainContext.Consumer>
             </MainContext.Provider>
-            : <Loading />}
+            : <Loading message={"Getting the fork out..."} classes={'main-loader col-2 mt-5'} />}
         </div>
     )
 }

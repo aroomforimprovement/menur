@@ -30,7 +30,7 @@ export class ErrorBoudary extends Component {
 
     render() {
         if(this.state.hasError){
-            return <Problem message={"Error boundary..."} />
+            return <Problem message={"Something went wrong with the app"} />
         }
         return this.props.children;
     }

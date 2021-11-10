@@ -2,10 +2,10 @@ import React from 'react';
 
 export const Problem = ({message}) => {
     return(
-        <div className='col-12'>
-            <span className='fa fa-skull fa-3x fa-fw'></span>
-            <p>{message}</p>
-            <p><a href='/'>Take me home!</a></p>
+        <div className='px-4 py-5 my-5 text-center'>
+            <img src='/assets/fail.svg' className='d-block mx-auto mb-4 col-2' alt='error' />
+            <h4>{message}</h4>
+            <button className={'btn btn-primary m-5 p-2'} href='/'>Take me home!</button>
         </div>
     );
 }
