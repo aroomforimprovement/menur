@@ -97,7 +97,7 @@ export const DummyMealPlan = ({mealplan, name}) => {
 
        
     return(
-        <Container className={'dummy-plan'}>{/*className={`mealplan-${isLandscape ? 'ls' : 'pt'}`}>*/}
+        <div className={'dummy-plan'}>{/*className={`mealplan-${isLandscape ? 'ls' : 'pt'}`}>*/}
             <Row>
                 <Col><h6>{name}</h6></Col>
                 <Col>
@@ -109,6 +109,6 @@ export const DummyMealPlan = ({mealplan, name}) => {
                 </Col>
             </Row>
             {isLandscape ? <LandscapePlan /> : <PortraitPlan />}
-        </Container>
+        </div>
     );
 }
