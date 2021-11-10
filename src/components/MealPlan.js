@@ -2,6 +2,8 @@ import React from 'react';
 import { MealPlanSlot } from './MealPlanSlot';
 import { Leftovers } from './Leftovers.js';
 import { useMainContext } from './MenurRouter';
+import { Row, Col, Container } from 'react-bootstrap';
+import { days, mealtimes } from '../shared/states';
 
 export const MealPlan = () => {
 
@@ -10,134 +12,97 @@ export const MealPlan = () => {
     const toggleOrientation = () => {
         dispatch({type: 'SET_IS_LANDSCAPE', data: !state.isLandscape})
     }
-    const PortraitMealPlan = () => {
+
+    const LandscapeRow = ({mealtime}) =>{
+        const mealslots = days.map((day) => {
+            return(
+                <Col xs={1} className={'mealplan-header p-0 m-2'} key={day}>
+                    <MealPlanSlot mealtime={mealtime} day={day}/>
+                </Col>
+            );
+        });
         return(
-            <div className='shadow-lg border border-info mt-3 col col-12'>
-                <table className="table col col-1">
-                    <thead >
-                        <tr >
-                            <th scope='col' className='col col-1 mealtime-header-pt'>#</th>
-                            <th scope='col' className='mealtime-header-pt'>Breakfast</th>
-                            <th scope='col' className='mealtime-header-pt'>Lunch</th>
-                            <th scope='col' className='mealtime-header-pt'>Dinner</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope='row' className='mealtime-header-pt'>Monday</th>
-                            <td ><MealPlanSlot mealtime={"Breakfast"} day={"Monday"}/></td>
-                            <td ><MealPlanSlot mealtime={"Lunch"} day={"Monday"}/></td>
-                            <td ><MealPlanSlot mealtime={"Dinner"} day={"Monday"}/></td>
-                        </tr>
-                        <tr>
-                            <th scope='row' className='mealtime-header-pt'>Tuesday</th>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Tuesday"}/></td>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Tuesday"}/></td>
-                            <td><MealPlanSlot mealtime={"Dinner"} day={"Tuesday"}/></td>
-                        </tr>
-                        <tr>
-                            <th scope='row' className='mealtime-header-pt'>Wednesday</th>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Wednesday"}/></td>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Wednesday"}/></td>
-                            <td><MealPlanSlot mealtime={"Dinner"} day={"Wednesday"}/></td>
-                        </tr>
-                        <tr>
-                            <th scope='row' className='mealtime-header-pt'>Thursday</th>
-                            <td ><MealPlanSlot mealtime={"Breakfast"} day={"Thursday"}/></td>
-                            <td ><MealPlanSlot mealtime={"Lunch"} day={"Thursday"}/></td>
-                            <td ><MealPlanSlot mealtime={"Dinner"} day={"Thursday"}/></td>
-                        </tr>
-                        <tr>
-                            <th scope='row' className='mealtime-header-pt'>Friday</th>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Friday"}/></td>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Friday"}/></td>
-                            <td><MealPlanSlot mealtime={"Dinner"} day={"Friday"}/></td>
-                        </tr>
-                        <tr>
-                            <th scope='row' className='mealtime-header-pt'>Saturday</th>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Saturday"}/></td>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Saturday"}/></td>
-                            <td><MealPlanSlot mealtime={"Dinner"} day={"Saturday"}/></td>
-                        </tr>
-                        <tr>
-                            <th scope='row' className='mealtime-header-pt'>Sunday</th>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Sunday"}/></td>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Sunday"}/></td>
-                            <td><MealPlanSlot mealtime={"Dinner"} day={"Sunday"}/></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <Row>
+                <Col xs={1} className={'mealplan-header px-0 m-1 pt-3 pb-1'}>{mealtime}</Col>
+                {mealslots}
+            </Row>
+        )
+    }
+
+    const LandscapePlan = () => {
+        const rows = mealtimes.map((mealtime) => {
+            return(
+                <LandscapeRow key={mealtime} mealtime={mealtime} />
+            );
+        });
+        const header = days.map((day) => {
+            return(
+                <Col xs={1} className={'mealplan-header p-0 m-2'} key={day}>{day}</Col>
+            );
+        });
+        return(
+            <Container>
+                <Row>
+                    <Col xs={1} className={'mealplan-header p-0 m-1'}>*</Col>
+                    {header}
+                </Row>
+                {rows}
                 <div className='leftover-col col col-12 ms-2'>
                     <h5 >Leftovers: </h5>
                     <Leftovers />
                 </div>
-            </div>
+            </Container>
         );
     }
 
-    const LandscapeMealPlan = () => {
+    const PortraitRow = ({day}) => {
+        const mealslots = mealtimes.map((mealtime) => {
+            return(
+                <Col className={'mealplan-header mt-2 mx-1'} key={mealtime}>
+                    <MealPlanSlot mealtime={mealtime} day={day}/>
+                </Col>
+            );
+        });
         return(
-            <div className='shadow-lg border border-info mt-3 col col-12'>
-                <table className="table col col-1">
-                    <thead className='col col-1'>
-                        <tr >
-                            <th scope='col' className='col col-1 mealtime-header-ls'>#</th>
-                            <th scope='col' className='mealtime-header-ls'>Monday</th>
-                            <th scope='col' className='mealtime-header-ls'>Tuesday</th>
-                            <th scope='col' className='mealtime-header-ls'>Wednesday</th>
-                            <th scope='col' className='mealtime-header-ls'>Thursday</th>
-                            <th scope='col' className='mealtime-header-ls'>Friday</th>
-                            <th scope='col' className='mealtime-header-ls'>Saturday</th>
-                            <th scope='col' className='mealtime-header-ls'>Sunday</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope='row' className='mealtime-ls'>Dinner</th>
-                            <td ><MealPlanSlot mealtime={"Dinner"} day={"Monday"}/></td>
-                            <td ><MealPlanSlot mealtime={"Dinner"} day={"Tuesday"}/></td>
-                            <td ><MealPlanSlot mealtime={"Dinner"} day={"Wednesday"}/></td>
-                            <td ><MealPlanSlot mealtime={"Dinner"} day={"Thursday"}/></td>
-                            <td ><MealPlanSlot mealtime={"Dinner"} day={"Friday"}/></td>
-                            <td ><MealPlanSlot mealtime={"Dinner"} day={"Saturday"}/></td>
-                            <td ><MealPlanSlot mealtime={"Dinner"} day={"Sunday"}/></td>
-                        </tr>
-                        <tr>
-                            <th scope='row' className='mealtime-ls'>Lunch</th>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Monday"}/></td>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Tuesday"}/></td>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Wednesday"}/></td>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Thursday"}/></td>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Friday"}/></td>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Saturday"}/></td>
-                            <td><MealPlanSlot mealtime={"Lunch"} day={"Sunday"}/></td>
-                        </tr>
-                        <tr>
-                            <th scope='row' className='mealtime-ls'>Breakfast</th>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Monday"}/></td>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Tuesday"}/></td>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Wednesday"}/></td>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Thursday"}/></td>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Friday"}/></td>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Saturday"}/></td>
-                            <td><MealPlanSlot mealtime={"Breakfast"} day={"Sunday"}/></td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
+            <Row>
+                <Col className='pt-3'>{day}</Col>
+                {mealslots}
+            </Row>
+        )
+    }
+
+    const PortraitPlan = () => {
+        const rows = days.map((day) => {
+            return(
+                <PortraitRow  key={day} day={day}/>
+            );
+        });
+        const header = mealtimes.map((day) => {
+            return(
+                <Col className={'mealplan-header m-2'} key={day}>{day}</Col>
+            )
+        });
+        return(
+            <Container>
+                <Row>
+                    <Col className={'mealplan-header p-0 m-1'}>*</Col>
+                    {header}
+                </Row>
+                {rows}
                 <div className='leftover-col col col-12 ms-2'>
                     <h5 >Leftovers: </h5>
                     <Leftovers />
                 </div>
-            </div>
+            </Container>
         );
     }
+
     
     return(
         <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'}`}>
             <button onClick={toggleOrientation} className={`mt-4 py-2 px-3 border shadow ${state.isLandscape ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>{state.isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
             {
-                state.isLandscape ? <LandscapeMealPlan /> : <PortraitMealPlan />
+                state.isLandscape ? <LandscapePlan /> : <PortraitPlan />
             }
         </div>
     );
