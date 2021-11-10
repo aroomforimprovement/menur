@@ -305,10 +305,6 @@ code {
   right: 2px;
 }
 
-
-
-
-
 .mealplan-ingredients{
   font-weight: normal;
   font-size: small;
@@ -322,6 +318,9 @@ code {
     position:absolute;
     left:0px;
     font-size: x-small;
+  }
+  .mealplan-header{
+    font-size:small;
   }
 }
 

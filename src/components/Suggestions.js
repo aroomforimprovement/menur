@@ -103,7 +103,7 @@ export const Suggestions = () => {
     const suggestionList = state.suggestions.map((suggestion, i) => {
         
         return(
-            <Suggestion key={i} className='col col-sm-4 col-md-3 col-lg-2 '
+            <Suggestion key={i} className='col col-sm-4 col-md-3 col-lg-2'
                 dragData={{meal: suggestion}} keyProp={i}
             />
         );
@@ -111,7 +111,7 @@ export const Suggestions = () => {
     });
 
     return(
-        <div className='suggestions col col-12 col-md-8 shadow shadow-sm align-bottom'>
+        <div className='suggestions col col-12 col-md-8 align-bottom'>
             <MealGen className='shadow shadow-sm mt-3' />
             <div >
                 <h5>Suggestions</h5>

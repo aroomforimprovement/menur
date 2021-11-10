@@ -138,7 +138,7 @@ export const MealGen = () => {
     let showFormClasses = ''
 
     return(
-        <div className='container meal-gen shadow shadow-sm p-0 pb-3 mt-3 mb-3'>
+        <div className='container meal-gen shadow shadow-sm p-0 mt-3 mb-3'>
             <div hidden={true}>{isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-down'}</div>
             <div className='col col-12 meal-gen-toggle'>
                 <div className='btn btn-sm btn-outline-primary col col-12 mel-gen-toggle-btn'
@@ -185,7 +185,7 @@ export const MealGen = () => {
                         <button className='btn btn-sm btn-primary col col-12 mx-1 mt-3'
                             onClick={handleAdd}>Add new meal to suggestions</button>
                         {state && state.user && state.user.isAuth ?
-                            <button className='btn btn-sm btn-success col col-12 mx-1 mt-1'
+                            <button className='btn btn-sm btn-success col col-12 mx-1 mt-1 mb-3'
                             onClick={handleSave}>Save new meal to account</button> : <div></div>
                         }
                     </div>

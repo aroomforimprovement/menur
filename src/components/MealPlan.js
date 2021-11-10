@@ -41,15 +41,15 @@ export const MealPlan = () => {
             );
         });
         return(
-            <Container className='mealplan-container'>
+            <Container className='mealplan-container m-auto'>
                 <Row>
                     <Col xs={1} className={'mealplan-header p-0 m-1'}>*</Col>
                     {header}
                 </Row>
                 {rows}
-                <div className='leftover-col col col-12 ms-2'>
+                <div className='leftover-col col col-12 ms-0 p-0 mt-3'>
                     <h5 >Leftovers: </h5>
-                    <Leftovers />
+                    <Leftovers className=''/>
                 </div>
             </Container>
         );
@@ -89,8 +89,8 @@ export const MealPlan = () => {
                     {header}
                 </Row>
                 {rows}
-                <div className='leftover-col col col-12 ms-2'>
-                    <h5 >Leftovers: </h5>
+                <div className='leftover-col col col-12 ms-0 mt-3'>
+                    <h5 className='m-0 p-0'>Leftovers: </h5>
                     <Leftovers />
                 </div>
             </Container>
@@ -99,7 +99,7 @@ export const MealPlan = () => {
 
     
     return(
-        <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'}`}>
+        <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'} `}>
             <button onClick={toggleOrientation} className={`mt-4 py-2 px-3 border shadow ${state.isLandscape ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>{state.isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
             <div className='mt-2'>
             {

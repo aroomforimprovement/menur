@@ -33,10 +33,10 @@ const Planner = ({edit}) => {
     return(    
         <div className='container mt-3'>
             <div className='row'>
-                <Selector className='shadow shadow-sm'/>
-                <Suggestions className='shadow shadow-sm'/>                        
+                <Selector />
+                <Suggestions/>                        
             </div>
-            <div className='container mealplan-row p-0'>
+            <div className='container mealplan-row p-0 shadow shadow my-3 pb-2 border border'>
                 <div className='row p-0'>
                     <MealPlan className='col col-12 ms-md-4 my-2 p-0'/>
                 </div>
