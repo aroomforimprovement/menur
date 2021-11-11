@@ -48,11 +48,11 @@ export const Plan = ({plan, isLandscape}) => {
     }
 
     return(
-        <div className='container account-plan p-0 m-0'>
-            <div className='row'>
+        <div className='m-0 p-0 col col-12'>
+            {/*<div className='row'>*/}
                 <DummyMealPlan mealplan={plan.mealplan} name={plan.name} leftovers={plan.mealplan.leftovers}/>
                 {/*<MealPlanViewer mealplan={plan.mealplan} isLandscape={true}/>*/}
-            </div>
+            {/*</div>*/}
             <div className='row'>
                 <button className='btn btn-sm btn-warning col col-4'
                     onClick={handleDeletePlan}>

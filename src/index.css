@@ -198,6 +198,38 @@ code {
   margin:auto;
 }
 
+.dummy-plan{
+  min-width:100%;
+}
+
+@media screen and (max-width: 576px){
+  .mealtime-header-ls{
+    max-width: 30px;
+    transform:scale(0.8);
+  }
+}
+@media screen and (max-width: 768px){
+  .mealtime-ls, .mealtime-header-ls{
+    max-width: 40px;
+    transform:scale(0.8);
+  }
+  .toggle-orientation-ls{
+    background-color: rgb(255, 200, 200);
+  }
+}
+@media screen and (max-width: 992px){
+  .mealtime-ls, .mealtime-header-ls{
+    min-width: 60px;
+    max-width: 60px;
+  }
+  .mealtime-header-ls, .mealtime-header-pt{
+    transform:scale(0.8);
+  }
+}
+@media screen and (max-width: 1196px){
+  
+}
+
 .dummy-plan-meal{
   position:relative;
   text-align: center;
@@ -211,6 +243,10 @@ code {
   cursor: pointer;
 }
 
+.dummy-plan-header{
+  font-size: x-small;
+}
+
 .dummy-plan-meal .name{
   position:absolute;
   left: 4px;
@@ -219,10 +255,6 @@ code {
 .dummy-plan-ing{
   background-color: blanchedalmond;
   font-size: xx-small;
-}
-
-.dummy-plan-header{
-  font-size: x-small;
 }
 
 .mealtime-ls, .mealtime-header-ls{
@@ -388,30 +420,3 @@ code {
   text-align:end;
 }
 
-.account-plan{
-  max-width: 100px;
-}
-
-.account-plans-header, .account-meals-header{
-  text-align: start;
-  cursor:pointer;
-}
-
-.account-meal{
-  min-width: 100px;
-  min-height: 40px;
-  border-radius: 5px;
-  vertical-align: bottom;
-  position: relative;
-  background-color: blanchedalmond;
-  opacity: 0.8;
-  width: 100%;
-  height: 100%;
-}
-
-.account-meal-ingredients{
-  font-weight: normal;
-  font-size: small;
-  color: black;
-  background-color: blanchedalmond;
-}

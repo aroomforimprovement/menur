@@ -15,17 +15,17 @@ export const DummyMealPlan = ({mealplan, name}) => {
     const LandscapeRow = ({mealtime}) =>{
         const mealslots = days.map((day) => {
             return(
-                <Col xs={1} className={'dummy-plan-header p-0 m-2'} key={day}>
+                <div className={'col col-1 dummy-plan-header p-0 mx-1 my-2'} key={day}>
                     <DummyMealPlanSlot mealplan={mealplan} isLandscape={isLandscape}
                         mealtime={mealtime} day={day}/>
-                </Col>
+                </div>
             );
         });
         return(
-            <Row>
-                <Col xs={1} className={'dummy-plan-header px-0 m-1 pt-3 pb-1'}>{mealtime}</Col>
+            <div className='row'>
+                <div className={'col col-1 dummy-plan-header px-0 my-1 pt-3 pb-1'}>{mealtime}</div>
                 {mealslots}
-            </Row>
+            </div>
         )
     }
 
@@ -37,35 +37,35 @@ export const DummyMealPlan = ({mealplan, name}) => {
         });
         const header = days.map((day) => {
             return(
-                <Col xs={1} className={'dummy-plan-header p-0 m-2'} key={day}>{day}</Col>
+                <div className={'col col-1 dummy-plan-header p-0 m-2'} key={day}>{day}</div>
             );
         });
         return(
-            <Container>
-                <Row>
-                    <Col xs={1} className={'dummy-plan-header p-0 m-1'}>*</Col>
+            <div className='container'>
+                <div className='row'>
+                    <div className={'col col-1 dummy-plan-header p-0 m-1'}>*</div>
                     {header}
-                </Row>
+                </div>
                 {rows}
-            </Container>
+            </div>
         );
     }
 
     const PortraitRow = ({day}) => {
         const mealslots = mealtimes.map((mealtime) => {
             return(
-                <Col className={'dummy-plan-header'} key={mealtime}>
+                <div className={'col dummy-plan-header'} key={mealtime}>
                     <DummyMealPlanSlot 
                         mealplan={mealplan} isLandscape={isLandscape} 
                         mealtime={mealtime} day={day}/>
-                </Col>
+                </div>
             );
         });
         return(
-            <Row>
-                <Col>{day}</Col>
+            <div className='row'>
+                <div className='col col-1 dummy-plan-header'>{day}</div>
                 {mealslots}
-            </Row>
+            </div>
         )
     }
 
@@ -77,36 +77,32 @@ export const DummyMealPlan = ({mealplan, name}) => {
         });
         const header = mealtimes.map((day) => {
             return(
-                <Col className={'dummy-plan-header'} key={day}>{day}</Col>
+                <div className={'col dummy-plan-header'} key={day}>{day}</div>
             )
         });
         return(
-            <Container>
-                <Row>
-                    <Col className={'dummy-plan-header p-0 m-1'}>*</Col>
+            <div className='container'>
+                <div className='row'>
+                    <div className={'col dummy-plan-header p-0'}>*</div>
                     {header}
-                </Row>
+                </div>
                 {rows}
-            </Container>
+            </div>
         );
     }
-
-
-
-
-       
+  
     return(
-        <div className={'dummy-plan'}>{/*className={`mealplan-${isLandscape ? 'ls' : 'pt'}`}>*/}
-            <Row>
-                <Col><h6>{name}</h6></Col>
-                <Col>
-                    <button onClick={toggleOrientation} 
-                        className={`border shadow mt-1 ${isLandscape 
-                        ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>
-                            {isLandscape ? "[ || ] " : "[ = ] "}
-                    </button>
-                </Col>
-            </Row>
+        <div className={'dummy-plan col-12'}>{/*className={`mealplan-${isLandscape ? 'ls' : 'pt'}`}>*/}
+            <div className='col col-12'>
+                <div className='row'>
+                    <div className='col col-9'><h7>{name}</h7></div>
+                <button onClick={toggleOrientation} 
+                    className={`border shadow mt-1 col ${isLandscape 
+                    ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>
+                        {isLandscape ? "[ || ] " : "[ = ] "}
+                </button>
+                </div>
+            </div>
             {isLandscape ? <LandscapePlan /> : <PortraitPlan />}
         </div>
     );

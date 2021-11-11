@@ -2,7 +2,6 @@ import React from 'react';
 import { MealPlanSlot } from './MealPlanSlot';
 import { Leftovers } from './Leftovers.js';
 import { useMainContext } from '../../main/MenurRouter';
-import { Row, Col, Container } from 'react-bootstrap';
 import { days, mealtimes } from '../../shared/states';
 
 export const MealPlan = () => {
@@ -16,16 +15,16 @@ export const MealPlan = () => {
     const LandscapeRow = ({mealtime}) =>{
         const mealslots = days.map((day) => {
             return(
-                <Col xs={1} className={'mealplan-header p-0 m-2'} key={day}>
+                <div className={'col col-1 mealplan-header p-0 m-2'} key={day}>
                     <MealPlanSlot mealtime={mealtime} day={day}/>
-                </Col>
+                </div>
             );
         });
         return(
-            <Row>
-                <Col xs={1} className={'mealplan-header px-0 m-1 pt-3 pb-1'}>{mealtime}</Col>
+            <div className='row'>
+                <div className={'col col-1 mealplan-header px-0 m-1 pt-3 pb-1'}>{mealtime}</div>
                 {mealslots}
-            </Row>
+            </div>
         )
     }
 
@@ -37,37 +36,37 @@ export const MealPlan = () => {
         });
         const header = days.map((day) => {
             return(
-                <Col xs={1} className={'mealplan-header p-0 m-2'} key={day}>{day}</Col>
+                <div className={'col col-1 mealplan-header p-0 m-2'} key={day}>{day}</div>
             );
         });
         return(
-            <Container className='mealplan-container m-auto'>
-                <Row>
-                    <Col xs={1} className={'mealplan-header p-0 m-1'}>*</Col>
+            <div className='container mealplan-container m-0'>
+                <div className='row mx-auto'>
+                    <div className={'col col-1 mealplan-header p-0 m-1'}>*</div>
                     {header}
-                </Row>
+                </div>
                 {rows}
                 <div className='leftover-col col col-12 ms-0 p-0 mt-3'>
                     <h5 >Leftovers: </h5>
                     <Leftovers className=''/>
                 </div>
-            </Container>
+            </div>
         );
     }
 
     const PortraitRow = ({day}) => {
         const mealslots = mealtimes.map((mealtime) => {
             return(
-                <Col className={'mealplan-header mt-2 mx-1'} key={mealtime}>
+                <div className={'col mealplan-header mt-2 mx-1'} key={mealtime}>
                     <MealPlanSlot mealtime={mealtime} day={day}/>
-                </Col>
+                </div>
             );
         });
         return(
-            <Row>
-                <Col className='pt-3'>{day}</Col>
+            <div className='row'>
+                <div className='col pt-3'>{day}</div>
                 {mealslots}
-            </Row>
+            </div>
         )
     }
 
@@ -79,21 +78,21 @@ export const MealPlan = () => {
         });
         const header = mealtimes.map((day) => {
             return(
-                <Col className={'mealplan-header m-2'} key={day}>{day}</Col>
+                <div className={'col mealplan-header m-2'} key={day}>{day}</div>
             )
         });
         return(
-            <Container>
-                <Row>
-                    <Col className={'mealplan-header p-0 m-1'}>*</Col>
+            <div className='container'>
+                <div className='row'>
+                    <div className={'col mealplan-header p-0 m-1'}>*</div>
                     {header}
-                </Row>
+                </div>
                 {rows}
                 <div className='leftover-col col col-12 ms-0 mt-3'>
                     <h5 className='m-0 p-0'>Leftovers: </h5>
                     <Leftovers />
                 </div>
-            </Container>
+            </div>
         );
     }
 
