@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import './selector.css';
 import { DELIM, MEALS, OR } from '../../shared/meals';
 import { getIngredientsFromMeal } from '../../utils/objUtils';
 import { useMainContext } from '../../main/MenurRouter';

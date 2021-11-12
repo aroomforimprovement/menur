@@ -1,0 +1,30 @@
+.gen-list{
+    text-align:start;
+    font-size:small;
+  }
+  
+  .user-list{
+    padding-bottom: 100px;
+    background-color: cornsilk;
+    border-color: darkblue;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .user-list ul li{
+    width:100%;
+    position:relative;
+  }
+  
+  .list-remove{
+    position:absolute;
+    text-align:end;
+    right: 2px;
+    cursor: pointer;
+  }
+  
+  .list-heading{
+    display:inline-block;
+    margin-right: 10px; 
+  }
+  

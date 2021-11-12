@@ -1,9 +1,10 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { useMainContext } from '../../main/MenurRouter';
+import './suggestion.css';
+import { useMainContext } from '../../../main/MenurRouter';
 import { DragDropContainer } from 'react-drag-drop-container';
-import { DELIM, OR} from '../../shared/meals';
-import { getIngredientsFromMeal } from '../../utils/objUtils';
+import { DELIM, OR} from '../../../shared/meals';
+import { getIngredientsFromMeal } from '../../../utils/objUtils';
 
 export const PlusToggle = React.forwardRef(({ children, onClick }, ref) => (
     <div className='border rounded-circle custom-toggle plus-toggle'

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMainContext } from '../../main/MenurRouter';
-import { Suggestion } from '../suggestions/Suggestion';
+import { Suggestion } from '../suggestions/suggestion/Suggestion';
 
 
 export const Leftovers = ({dragData}) => {

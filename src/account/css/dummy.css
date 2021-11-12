@@ -1,0 +1,41 @@
+.dummy-plan{
+    min-width:100%;
+  }
+  
+  .dummy-plan-meal{
+    position:relative;
+    text-align: center;
+    background-color: blanchedalmond;
+    font-size: x-small;
+    font-weight:bold;
+    max-height:40px;
+    min-height:40px;
+    overflow: hidden;
+    margin-top:3px;
+    cursor: pointer;
+  }
+  
+  .dummy-plan-header{
+    font-size: x-small;
+  }
+  
+  .dummy-plan-meal .name{
+    position:absolute;
+    left: 4px;
+  }
+  
+  .dummy-plan-ing{
+    background-color: blanchedalmond;
+    font-size: xx-small;
+  }
+  
+  .showSpices{
+    transition: all .5s ease;
+    text-align: left;
+  }
+  .show-spices label{
+    font-size:small;
+    margin:0px;
+    padding:0px;
+    text-align: start;
+  }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './mealplan.css';
 import { DropTarget } from 'react-drag-drop-container';
 import { useMainContext } from '../../main/MenurRouter';
 import { DELIM, OR } from '../../shared/meals';
@@ -51,7 +52,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
                     style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} aria-label='Remove'
                 >
                 </button> 
-                <div onClick={handleClick}>
+                <div onClick={handleClick} className={'expand-ingredients'}>
                     {showIngredients 
                     ? <span className='fa fa-angle-up'>{' '}</span> 
                     : <span className='fa fa-angle-down'>{' '}</span>}

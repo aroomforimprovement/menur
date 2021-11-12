@@ -1,0 +1,16 @@
+.header{
+    text-align:start;
+    height:80px;
+    display:inline-flexbox;
+}
+
+.header-title{
+    text-align:start;
+}
+
+.auth-nav-wrapper{
+    display:inline-block;
+}
+.auth-nav{
+    display:inline-flex;
+}

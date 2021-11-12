@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMainContext } from '../../main/MenurRouter';
 import { MealGen } from './mealgen/MealGen';
-import { Suggestion } from './Suggestion';
+import { Suggestion } from './suggestion/Suggestion';
 
 
 export const Suggestions = () => {

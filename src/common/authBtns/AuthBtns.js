@@ -1,6 +1,7 @@
 import React from 'react';
+import './authbtns.css';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useMainContext } from '../main/MenurRouter';
+import { useMainContext } from '../../main/MenurRouter';
 
 export const LoginBtn = ({size}) => {
     const classes = `btn btn-secondary ${size} m-1`;
@@ -14,11 +15,10 @@ export const LoginBtn = ({size}) => {
         });
     }
     return <button 
-            onClick={() => loginPop()}
-            type='button' 
-            className={classes}
-            >Login</button>
-               
+                onClick={() => loginPop()}
+                type='button' 
+                className={classes}
+                >Login</button>
 }
 
 export const LogoutBtn = ({size}) => {

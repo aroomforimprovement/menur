@@ -1,0 +1,56 @@
+.dummy-meal{
+  min-width: 100px;
+  min-height: 50px;
+  border-radius: 8px;
+  vertical-align: bottom;
+  position: relative;
+  background-color: blanchedalmond;
+  opacity: 0.8;
+  width: 100%;
+  height: 100%;
+  text-align:center;
+}
+
+.meal-remove{
+    position:absolute;
+    text-align:end;
+    display:inline-block;
+    color:brown;
+    top: 0px;
+    right: 2px;
+}
+
+.expand-ingredients{
+  position:absolute;
+  bottom:3px;
+}
+
+.dummy-ingredients{
+    font-weight: normal;
+    font-size: small;
+    color: black;
+    background-color: blanchedalmond;
+    position:relative;
+    min-width:100px;
+    width:100%;
+}
+
+.mealtime-text{
+    font-size:smaller;
+    text-align:center;
+    vertical-align: bottom;
+    display:inline;
+    font-weight: bold;
+    color:rgb(0, 0, 126);
+    opacity: 1;
+}
+  
+  .meal-remove{
+    position:absolute;
+    text-align:end;
+    display:inline-block;
+    color:brown;
+    top: 0px;
+    right: 2px;
+  }
+  

@@ -1,0 +1,163 @@
+.mealplan-ingredients{
+   font-weight: normal;
+   font-size: small;
+   color: black;
+   background-color: blanchedalmond;
+   position:relative;
+ }
+ 
+ @media screen and (max-width: 768px){
+   .mealplan-ingredients-text{
+     position:absolute;
+     left:0px;
+     font-size: x-small;
+   }
+   .mealplan-header{
+     font-size:small;
+   }
+ }
+
+ .expand-ingredients{
+   position:absolute;
+   bottom:3px;
+ }
+ 
+ .meal-remove{
+   position:absolute;
+   text-align:end;
+   display:inline-block;
+   color:brown;
+   top: 0px;
+   right: 2px;
+ }
+
+ .mealtime-ls, .mealtime-header-ls{
+   max-width:80px;
+   min-width:80px;
+ }
+ .mealtime-pt, .mealtime-header-pt{
+   max-width:80px;
+   min-width:80px;
+ }
+ 
+ .toggle-orientation-ls, .toggle-orientation-pt{
+   border-radius:5px;
+   opacity:0.8;
+   background-color:rgba(255);
+ }
+ .toggle-orientation-ls:hover, .toggle-orientation-pt:hover{
+   transform:scale(1.02);
+ }
+ 
+ @media screen and (max-width: 576px){
+   .mealtime-header-ls{
+     max-width: 30px;
+     transform:scale(0.8);
+   }
+ }
+ @media screen and (max-width: 768px){
+   .mealtime-ls, .mealtime-header-ls{
+     max-width: 40px;
+     transform:scale(0.8);
+   }
+   .toggle-orientation-ls{
+     background-color: rgb(255, 200, 200);
+   }
+ }
+ @media screen and (max-width: 992px){
+   .mealtime-ls, .mealtime-header-ls{
+     min-width: 60px;
+     max-width: 60px;
+   }
+   .mealtime-header-ls, .mealtime-header-pt{
+     transform:scale(0.8);
+   }
+ }
+ @media screen and (min-width: 992px){
+   .toggle-orientation-pt{
+     background-color: rgb(255, 200, 200);
+   }
+ }
+
+ @media screen and (max-width: 576px){
+    .mealtime-header-ls{
+      max-width: 30px;
+      transform:scale(0.8);
+    }
+  }
+  @media screen and (max-width: 768px){
+    .mealtime-ls, .mealtime-header-ls{
+      max-width: 40px;
+      transform:scale(0.8);
+    }
+    .toggle-orientation-ls{
+      background-color: rgb(255, 200, 200);
+    }
+  }
+  @media screen and (max-width: 992px){
+    .mealtime-ls, .mealtime-header-ls{
+      min-width: 60px;
+      max-width: 60px;
+    }
+    .mealtime-header-ls, .mealtime-header-pt{
+      transform:scale(0.8);
+    }
+  }
+  @media screen and (max-width: 1196px){
+    
+  }
+
+  .mealtime{
+    min-height:40px;
+    background-color: blanchedalmond;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    vertical-align: bottom;
+    position: relative;
+    cursor: pointer;
+  }
+  
+
+ .mealtime:hover{
+   opacity:1;
+ }
+
+ .mealtime-text{
+   font-size:smaller;
+   text-align:start;
+   vertical-align: bottom;
+   display:inline;
+   font-weight: bold;
+   color:rgb(0, 0, 126);
+   opacity: 1;
+ }
+ @media screen and (max-width: 768px){
+   .mealtime-text{
+     position:absolute;
+     left:3px;
+     font-size:x-small;
+   }
+ }
+
+ .leftover{
+   display:inline;
+ }
+ 
+ .leftover-col{
+   text-align: start;
+ }
+
+ .mealplan-row{
+  margin:auto;
+}
+
+.footer{
+  bottom:0px;
+}
+
+.cleardata{
+  text-align:end;
+}
+

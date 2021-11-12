@@ -1,0 +1,133 @@
+.sugg-container{
+    display:inline-block;
+    position:relative;
+    text-align:center;
+    vertical-align:text-bottom;
+  }
+  
+  .dd-continer{
+    position:relative;
+  }
+  
+  .custom-toggle{
+    position:absolute;
+    width:16px;
+    height:16px;
+    top:8px;
+    cursor:pointer;
+    background-color:silver;
+    color:black;
+  }
+  
+  .custom-toggle small{
+    color:purple;
+    position:absolute;
+    top: -4px;
+  }
+  
+  .plus-toggle{
+    left:6px;
+  }
+  .plus-toggle small{
+    left:2.5px;
+  }
+  
+  .info-toggle{
+    right:6px;
+  }
+  .info-toggle small{
+    left:5.5px;
+  }
+  
+  .suggestion{
+    opacity:0.7;
+  }
+  
+  .suggestion:hover{
+    opacity:0.9;
+  }
+  
+  .sugg-good{
+    background-color: rgb(5, 156, 0);
+  }
+  
+  .sugg-good .suggestion-text{
+    color:rgb(236, 236, 236);
+  }
+  
+  .sugg-ok{
+    background-color: rgb(219, 124, 35);
+  }
+  
+  .sugg-ok .suggestion-text{
+    color:rgb(236, 236, 236);
+  }
+  
+  .sugg-bad{
+    background-color: rgb(155, 29, 29);
+  }
+  
+  .sugg-bad .suggestion-text{
+    color:rgb(236, 236, 236);
+  }
+  
+  .sugg-none{
+    background-color: rgb(236, 232, 253);
+  }
+  
+  .suggestions{
+    text-align:start;
+    
+  }
+  
+  .suggestion-text{
+    color:rgb(0, 0, 66);
+    opacity: 1;
+    font-size:smaller;
+    font-weight: bold;
+    margin-left: 5px;
+    padding-top: 5px;
+  }
+  
+  .sugg-expand{
+    position:absolute;
+    text-align:end;
+    display:inline-block;
+    top:1px;
+    right:3px;
+    cursor: pointer;
+    width: 15px;
+  }
+  
+  .sugg-click-add{
+    position:absolute;
+    text-align:start;
+    display:inline-block;
+    top:1px;
+    left:3px;
+    cursor: pointer;
+    color:rgb(5, 156, 0);
+    background-color: royalblue;
+    width:15px;
+  }
+  
+  .sugg-click-add-day{
+    cursor: pointer;
+  }
+  
+  .sugg-ingredients{
+    background-color:rgb(252, 242, 228);
+    color: black;
+    position:absolute;
+    top: 200px;
+    right:200px;
+  }
+  
+  .sugg-ingredient{
+    width:100%;
+  }
+  
+  .ing-row{
+    text-align: end;
+  }
+  

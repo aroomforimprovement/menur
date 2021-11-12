@@ -1,9 +1,11 @@
 import React from 'react';
+import './header.css';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useMainContext } from './MenurRouter';
 import { Loading } from '../common/Loading';
-import { LoginBtn, LogoutBtn, SignupBtn } from '../common/AuthBtns';
+import { LoginBtn, LogoutBtn, SignupBtn } from '../common/authBtns/AuthBtns';
+
 
 
 export const Header = () => {
@@ -13,7 +15,7 @@ export const Header = () => {
 
 
     return(
-        <div className='nav-area col-12'>
+        <div className='header col-12'>
             <Navbar collapseOnSelect expand='sm' bg='light' variant='light'>
                 <Container>
                 <Navbar.Brand className='mr-auto' href='/'>
@@ -22,7 +24,7 @@ export const Header = () => {
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls={'responsive-navbar-nav'}/>
                     <Navbar.Collapse id={'responsive-navbar-nav'}>
-                        <Nav className='me-auto col col-10 col-md-9' navbar>
+                        <Nav className='me-auto col col-6' navbar>
                             <LinkContainer to='/planner'>
                                 <Nav.Link className='nav-link m-1'>
                                     MealPlanner
@@ -36,7 +38,7 @@ export const Header = () => {
                               </LinkContainer>
                             : <div></div>}
                         </Nav>
-                        <div className='header bg-light mt-2 me-4'>
+                        <div className='header-title bg-light mt-2 center'>
                             <h5 className='mb-2'>Menur</h5>
                         </div>
                         <div className='auth-nav-wrapper'>

@@ -1,4 +1,5 @@
 import React from 'react';
+import './mealplan.css';
 import { MealPlanSlot } from './MealPlanSlot';
 import { Leftovers } from './Leftovers.js';
 import { useMainContext } from '../../main/MenurRouter';

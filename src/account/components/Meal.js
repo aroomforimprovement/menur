@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import '../css/meal.css';
 import { DELIM, OR } from '../../shared/meals';
 import { useMainContext } from '../../main/MenurRouter';
 
@@ -48,7 +49,7 @@ export const Meal = ({meal, showSpices}) => {
         ? 
         meal.ingredients.map((ing) => {
             return(
-                <div className='mealplan-ingredients' key={ing.name}>
+                <div className='col col-12' key={ing.name}>
                     {!showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
                 </div>
             )
@@ -58,7 +59,7 @@ export const Meal = ({meal, showSpices}) => {
 
     return(
         <div>
-        <div className='container account-meal border shadow-sm'>
+        <div className='container dummy-meal border shadow-sm'>
             <div className='row'>
                 <div className='col col-12'> 
                     <div className='mealtime-text'>
@@ -68,7 +69,7 @@ export const Meal = ({meal, showSpices}) => {
                     style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} aria-label='Delete'
                 >
                 </button> 
-                <div onClick={handleClick}>
+                <div onClick={handleClick} className={'expand-ingredients'}>
                     {showIngredients 
                     ? <span className='fa fa-angle-up'>{' '}</span> 
                     : <span className='fa fa-angle-down'>{' '}</span>}
@@ -80,7 +81,7 @@ export const Meal = ({meal, showSpices}) => {
             {showIngredients 
             ? 
             <div>
-                <ul className='list-unstyled account-meal-ingredients shadow shadow-lg'>
+                <ul className='list-unstyled dummy-ingredients col col-12 shadow shadow-lg'>
                     <small>{ingredients}</small>
                 </ul>
             </div> 

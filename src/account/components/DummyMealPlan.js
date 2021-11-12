@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { DummyMealPlanSlot } from './DummyMealPlanSlot';
-import { Row, Col, Container } from 'react-bootstrap';
 import { days, mealtimes } from '../../shared/states';
 
 
@@ -95,7 +94,7 @@ export const DummyMealPlan = ({mealplan, name}) => {
         <div className={'dummy-plan col-12'}>{/*className={`mealplan-${isLandscape ? 'ls' : 'pt'}`}>*/}
             <div className='col col-12'>
                 <div className='row'>
-                    <div className='col col-9'><h7>{name}</h7></div>
+                    <div className='col col-9'><strong>{name}</strong></div>
                 <button onClick={toggleOrientation} 
                     className={`border shadow mt-1 col ${isLandscape 
                     ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>
