@@ -1,5 +1,4 @@
 import React from 'react';
-import './authbtns.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useMainContext } from '../../main/MenurRouter';
 
