@@ -37,10 +37,10 @@ export const Header = () => {
                               </LinkContainer>
                             : <div></div>}
                         </Nav>
-                        <div className='bg-light mt-2 start'>
+                        <div className='col col-2 col-md-3 col-lg-4 bg-light mt-2 start'>
                             <h5 className='mb-2'>Menur</h5>
                         </div>
-                        <div className='auth-nav-wrapper'>
+                        <div className={`auth-nav-wrapper col col-4 col-md-3 start`}>
                             {!state ? <Loading /> :
                             <Nav className='auth-nav' navbar>
                                 <Navbar.Text className='nav-item nav-i'>
