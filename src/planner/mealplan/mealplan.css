@@ -4,16 +4,27 @@
   padding:0px;
   padding-top:1%;
 }
- 
- .toggle-orientation-ls {}
+.toggle-orientation-ls{
+   font-size: xx-small;
+   border-radius:10px;
+   opacity:0.8;
+   background-color:rgba(255);
+}
  .toggle-orientation-pt{
    font-size: xx-small;
    border-radius:10px;
    opacity:0.8;
    background-color:rgba(255);
  }
- .toggle-orientation-ls:hover, .toggle-orientation-pt:hover{
-   transform:scale(1.02);
+ .toggle-orientation-ls:hover {
+  transform:scale(1.1);
+  font-size: x-small;
+  opacity:1;
+ }
+ .toggle-orientation-pt:hover{
+   transform:scale(1.1);
+   font-size: x-small;
+   opacity:1;
  }
  @media screen and (min-width: 992px){
   .toggle-orientation-pt{
