@@ -59,9 +59,9 @@ export const Meal = ({meal, showSpices}) => {
 
     return(
         <div>
-        <div className='container dummy-meal border shadow-sm'>
-            <div className='row'>
-                <div className='col col-12'> 
+        <div className='container dummy-meal border shadow-sm m-0 p-0'>
+            <div className='row meal-row m-0 px-0'>
+                <div className='col col-12 p-0'> 
                     <div className='mealtime-text'>
                         {meal.name ? meal.name  : 'NAME MISSING'}
                     </div>   
@@ -75,18 +75,19 @@ export const Meal = ({meal, showSpices}) => {
                     : <span className='fa fa-angle-down'>{' '}</span>}
                 </div>
             </div>
-            </div>
-        </div>
-        <div>
+            <div className='px-0 '>
             {showIngredients 
             ? 
-            <div>
-                <ul className='list-unstyled dummy-ingredients col col-12 shadow shadow-lg'>
-                    <small>{ingredients}</small>
+            <div className='px-0 py-1'>
+                <ul className='list-unstyled dummy-ingredients col col-12 ps-2'>
+                    {ingredients}
                 </ul>
             </div> 
             : <div></div>
             }
+        </div>
+            </div>
+            
         </div>
         </div>
     );
