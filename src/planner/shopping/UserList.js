@@ -1,4 +1,5 @@
 import React from "react";
+import './shopping.css';
 import { DropTarget } from 'react-drag-drop-container';
 import { ListItem } from "./ListItem";
 import { useMainContext } from "../../main/MenurRouter";

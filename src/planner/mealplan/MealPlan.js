@@ -16,14 +16,14 @@ export const MealPlan = () => {
     const LandscapeRow = ({mealtime}) =>{
         const mealslots = days.map((day) => {
             return(
-                <div className={'col col-1 mealplan-header p-0 m-2'} key={day}>
+                <div className={'col col-1 mealplan-slot p-0 m-2'} key={day}>
                     <MealPlanSlot mealtime={mealtime} day={day}/>
                 </div>
             );
         });
         return(
             <div className='row'>
-                <div className={'col col-1 mealplan-header px-0 m-1 pt-3 pb-1'}>{mealtime}</div>
+                <div className={'col col-1 mealplan-header px-0 pt-3 pb-1'}>{mealtime}</div>
                 {mealslots}
             </div>
         )
@@ -41,9 +41,9 @@ export const MealPlan = () => {
             );
         });
         return(
-            <div className='container mealplan-container m-0'>
-                <div className='row mx-auto'>
-                    <div className={'col col-1 mealplan-header p-0 m-1'}>*</div>
+            <div className='container mealplan-container m-auto'>
+                <div className='row'>
+                    <div className={'col col-1 mealplan-header p-0 m-1 center'}>*</div>
                     {header}
                 </div>
                 {rows}
@@ -58,14 +58,14 @@ export const MealPlan = () => {
     const PortraitRow = ({day}) => {
         const mealslots = mealtimes.map((mealtime) => {
             return(
-                <div className={'col mealplan-header mt-2 mx-1'} key={mealtime}>
+                <div className={'col col-3 mealplan-slot mb-2'} key={mealtime}>
                     <MealPlanSlot mealtime={mealtime} day={day}/>
                 </div>
             );
         });
         return(
             <div className='row'>
-                <div className='col pt-3'>{day}</div>
+                <div className='mealplan-header col col-2 pt-3'>{day}</div>
                 {mealslots}
             </div>
         )
@@ -100,7 +100,7 @@ export const MealPlan = () => {
     
     return(
         <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'} `}>
-            <button onClick={toggleOrientation} className={`mt-4 py-2 px-3 border shadow ${state.isLandscape ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>{state.isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
+            <button onClick={toggleOrientation} className={`btn-sm mt-4 py-1 px-2 border shadow shadow-sm ${state.isLandscape ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>{state.isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
             <div className='mt-2'>
             {
                 state.isLandscape ? <LandscapePlan /> : <PortraitPlan />

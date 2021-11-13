@@ -140,14 +140,14 @@ export const MealGen = () => {
 
     return(
         <div className='container meal-gen shadow shadow-sm p-0 mt-3 mb-3'>
-            <div hidden={true}>{isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-down'}</div>
+            <div hidden={true} >{isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-down'}</div>
             <div className='col col-12 meal-gen-toggle'>
-                <div className='btn btn-sm btn-outline-primary col col-12 mel-gen-toggle-btn'
+                <div className='btn btn-sm btn-outline-success col col-12 meal-gen-toggle-btn'
                     onClick={handleShowForm} text='Create a new meal'>
                     <span className={`fa ${showFormClasses} ms-3`}>{' '}</span>
                 </div>
             </div>
-            <div hidden={!isFormVisible}>
+            <div className={isFormVisible ? 'meal-gen-in' : 'meal-gen-out'} > {/*hidden={!isFormVisible} >*/}
                 <div className='container bg-light'>
                     <Form.Label className='mb-1 mt-2'>
                         <h5>Meal name:</h5>
@@ -157,29 +157,30 @@ export const MealGen = () => {
                             onChange={handleNameChange}
                             value={name}></FormControl>
                     </InputGroup>
-                    <div className='row meal-gen-left mt-1'>
-                        <div className='col col-5 ms-5'>
+                    <div className='row mt-2'>
+                        <div className='col col-12'>
                             <InputGroup size='sm' >
-                                <Form.Label size='sm' htmlFor='servings' className='me-4 mt-2'>
+                                <Form.Label size='sm' htmlFor='servings' className='col col-8 mt-1'>
                                     <h5>Servings:</h5>
                                 </Form.Label>
                                 <FormControl type='number' id='servings' defaultValue={2}
                                     onChange={handleServingsChange} size="sm"
-                                    className='col col-2 ms-4 '></FormControl>
+                                    className='col col-5 py-0'></FormControl>
                             </InputGroup>
                         </div>
                     </div>
-                    <Form.Label size='sm' className='mt-2'><h5>Ingredients</h5></Form.Label>
+                    <Form.Label size='sm' className='mt-2'><h5>Ingredients:</h5></Form.Label>
                     <div id='ingredient-slot'>
                         {ingredientFields}
                     </div>
                     <div className='row'>
-                        <div className='col col-12'>
+                        <div className='col col-11 me-0'>
                             <IngredientField i={ingredients.length} />
                         </div>
-                        <div className='col col-12 btn btn-outline-primary btn-sm fa fa-plus mt-1'
-                            onClick={handleAddIngredient}>
+                        <div className='col col-1 btn btn-outline-primary btn-sm fa fa-plus my-1 ms-0'
+                                onClick={handleAddIngredient}>
                         </div>
+                        
                     </div>
                     <div className='row ing-row'>
                         <div className='col col-3'></div>                       

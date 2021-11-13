@@ -33,7 +33,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
         ? 
         state.mealplan[day][mealtime].ingredients.map((ing) => {
             return(
-                <div className='mealplan-ingredients-text' key={ing.name}>
+                <div key={ing.name}>
                     {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
                 </div>
             )
@@ -44,28 +44,32 @@ export const MealPlanSlot = ({mealtime, day}) => {
     return(
         <DropTarget targetKey='meal' as='div'
             onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>                
-            <div className={`container mealtime border shadow shadow-sm ${state.isLandscape ? 'mealtime-ls' : 'mealtime-pt'}`} onClick={handleClick}>
-                <div className='mealtime-text'>{state.mealplan[day][mealtime].name 
-                    ? state.mealplan[day][mealtime].name  : ' '}
-                </div>   
-                <button type='button' className='btn-close meal-remove' onClick={handleRemoveMeal} 
-                    style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} aria-label='Remove'
-                >
-                </button> 
-                <div onClick={handleClick} className={'expand-ingredients'}>
-                    {showIngredients 
-                    ? <span className='fa fa-angle-up'>{' '}</span> 
-                    : <span className='fa fa-angle-down'>{' '}</span>}
+            <div className={`container mealtime border shadow shadow-sm m-1 ${state.isLandscape ? 'mealtime-ls' : 'mealtime-pt'}`} onClick={handleClick}>
+                <div>
+                    <div className='mealtime-text'>{state.mealplan[day][mealtime].name 
+                        ? state.mealplan[day][mealtime].name  : ' '}
+                    </div>   
                 </div>
-                {showIngredients 
-            ? 
-            <div>
-                <ul className='list-unstyled mealplan-ingredients'>
-                    <small>{ingredients}</small>
-                </ul>
-            </div> 
-            : <div></div>}
+                <div>
             </div>
+            <div className={'row'}> 
+                <div hidden={!showIngredients}>
+                    <ul className='list-unstyled mealtime-ingredients ms-2 mt-5 col col-12'>
+                        <small>{ingredients}</small>
+                    </ul>
+                </div> 
+            </div>
+                    <button type='button' className='btn-close meal-remove' onClick={handleRemoveMeal} 
+                        style={{ width:'3px', height:'3px', top:'2px', right:'2px', opacity: 0.4, '&:hover': {opacity: 1} }} aria-label='Remove'
+                    >
+                    </button> 
+                    <div onClick={handleClick} className={'expand-ingredients'}>
+                        {showIngredients 
+                        ? <span className='fa fa-angle-up'>{' '}</span> 
+                        : <span className='fa fa-angle-down'>{' '}</span>}
+                    </div>
+                </div>
+                
         </DropTarget>
     );
 }

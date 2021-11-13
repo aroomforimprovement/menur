@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import './planner.css';
 import { Selector } from './selector/Selector';
 import { Suggestions } from './suggestions/Suggestions';
 import { MealPlan } from './mealplan/MealPlan';
@@ -35,7 +36,7 @@ const Planner = ({edit}) => {
                 <Selector />
                 <Suggestions/>                        
             </div>
-            <div className='container mealplan-row p-0 shadow shadow my-3 pb-2 border border'>
+            <div className='container mealplan-row col col-12 p-0 shadow shadow my-3 pb-2 border border'>
                 <div className='row p-0'>
                     <MealPlan className='col col-12 ms-md-4 my-2 p-0'/>
                 </div>

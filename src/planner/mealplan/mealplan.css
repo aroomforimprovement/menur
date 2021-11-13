@@ -1,44 +1,7 @@
-.mealplan-ingredients{
-   font-weight: normal;
-   font-size: small;
-   color: black;
-   background-color: blanchedalmond;
-   position:relative;
- }
- 
- @media screen and (max-width: 768px){
-   .mealplan-ingredients-text{
-     position:absolute;
-     left:0px;
-     font-size: x-small;
-   }
-   .mealplan-header{
-     font-size:small;
-   }
- }
-
- .expand-ingredients{
-   position:absolute;
-   bottom:3px;
- }
- 
- .meal-remove{
-   position:absolute;
-   text-align:end;
-   display:inline-block;
-   color:brown;
-   top: 0px;
-   right: 2px;
- }
-
- .mealtime-ls, .mealtime-header-ls{
-   max-width:80px;
-   min-width:80px;
- }
- .mealtime-pt, .mealtime-header-pt{
-   max-width:80px;
-   min-width:80px;
- }
+.mealplan-container{
+  min-width: 400px;
+  margin:auto;
+}
  
  .toggle-orientation-ls, .toggle-orientation-pt{
    border-radius:5px;
@@ -48,98 +11,126 @@
  .toggle-orientation-ls:hover, .toggle-orientation-pt:hover{
    transform:scale(1.02);
  }
+ @media screen and (min-width: 992px){
+  .toggle-orientation-pt{
+    background-color: rgb(255, 200, 200);
+  }
+}
+
+
+@media screen and (max-width: 768px){
+ .toggle-orientation-ls{
+   background-color: rgb(255, 200, 200);
+ }
+}
  
+ .mealplan-header{
+   font-size:small;
+   text-align:center;
+ }
+
+ .mealtime{
+  min-height:50px;
+  min-width:80px;
+  display:flex;
+  padding:10%;
+  background-color: white;
+  font-size:small;
+  opacity: 0.8;
+  border-radius: 8px;
+  vertical-align: bottom;
+  position: relative;
+  cursor: pointer;
+}
+
+.mealtime-text{
+  font-size:small;
+  vertical-align: middle;
+  display:inline;
+  font-weight: bold;
+  color:rgb(0, 0, 126);
+  opacity: 0.8;
+  position:absolute;
+  left:5%;
+}
+
+.mealtime-ingredients{
+  font-weight: normal;
+  font-size: small;
+  font-style: italic;
+  color: black;
+  text-align: start;
+  position:relative;
+  top:0px;
+  left:-20px; 
+}
+
+ .expand-ingredients{
+   position:absolute;
+   bottom:0px;
+   left:45%;
+ }
+ .expand-ingredients span{
+  text-align: center;
+  position:absolute;
+  bottom:0px;
+ }
+ 
+ .meal-remove:hover{
+   opacity: 0.7;
+ }
+
+.mealtime:hover{
+ opacity:1;
+}
+
+
+
  @media screen and (max-width: 576px){
-   .mealtime-header-ls{
-     max-width: 30px;
-     transform:scale(0.8);
+  .mealplan-header{
+    font-size:xx-small;
+    text-align:start; 
+  }
+  .mealtime{
+    font-size:xx-small;
+    text-align: start;
+    max-width:40px;
+   }
+   .mealtime-text{
+     font-size:xx-small;
    }
  }
- @media screen and (max-width: 768px){
-   .mealtime-ls, .mealtime-header-ls{
-     max-width: 40px;
-     transform:scale(0.8);
-   }
-   .toggle-orientation-ls{
-     background-color: rgb(255, 200, 200);
-   }
+@media screen and (max-width: 768px){
+  .mealplan-header{
+    font-size:x-small;
+    text-align:start; 
+  }
+  .mealtime{
+    font-size:small;
+    text-align: center;
+    min-width:50px;
+  }
+  .mealtime-text{
+    font-size:x-small;
+  }
+  .mealtime-ingredients{
+     font-size:x-small;
+  }
  }
  @media screen and (max-width: 992px){
-   .mealtime-ls, .mealtime-header-ls{
-     min-width: 60px;
-     max-width: 60px;
-   }
-   .mealtime-header-ls, .mealtime-header-pt{
-     transform:scale(0.8);
-   }
- }
- @media screen and (min-width: 992px){
-   .toggle-orientation-pt{
-     background-color: rgb(255, 200, 200);
-   }
- }
-
- @media screen and (max-width: 576px){
-    .mealtime-header-ls{
-      max-width: 30px;
-      transform:scale(0.8);
-    }
+  .mealplan-header{
+    font-size:small;
+    text-align:center; 
   }
-  @media screen and (max-width: 768px){
-    .mealtime-ls, .mealtime-header-ls{
-      max-width: 40px;
-      transform:scale(0.8);
-    }
-    .toggle-orientation-ls{
-      background-color: rgb(255, 200, 200);
-    }
-  }
-  @media screen and (max-width: 992px){
-    .mealtime-ls, .mealtime-header-ls{
-      min-width: 60px;
-      max-width: 60px;
-    }
-    .mealtime-header-ls, .mealtime-header-pt{
-      transform:scale(0.8);
-    }
-  }
-  @media screen and (max-width: 1196px){
-    
-  }
-
   .mealtime{
-    min-height:40px;
-    background-color: blanchedalmond;
-    opacity: 0.8;
-    width: 100%;
-    height: 100%;
-    border-radius: 2px;
-    vertical-align: bottom;
-    position: relative;
-    cursor: pointer;
-  }
+    font-size:smaller;
+    min-width:70px;
+   }
+ }
+
+
   
 
- .mealtime:hover{
-   opacity:1;
- }
-
- .mealtime-text{
-   font-size:smaller;
-   text-align:start;
-   vertical-align: bottom;
-   display:inline;
-   font-weight: bold;
-   color:rgb(0, 0, 126);
-   opacity: 1;
- }
- @media screen and (max-width: 768px){
-   .mealtime-text{
-     position:absolute;
-     left:3px;
-     font-size:x-small;
-   }
- }
 
  .leftover{
    display:inline;
@@ -149,9 +140,7 @@
    text-align: start;
  }
 
- .mealplan-row{
-  margin:auto;
-}
+
 
 .footer{
   bottom:0px;
