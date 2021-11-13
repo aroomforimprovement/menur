@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
+import './account.css';
 import { useMainContext } from '../main/MenurRouter';
 import { accountReducer } from './accountReducer';
 import { Form } from 'react-bootstrap';
@@ -48,21 +49,22 @@ const Account = () => {
         ? state.plans.map((plan, i) => {
             const link = `/planner/${plan.id}`;
             return(
-                <div key={plan.id} className='col col-12 col-lg-6 border border-secondary'>
+                <div key={plan.id} 
+                    className='plan-container col col-12 col-lg-6 border border-2 rounded rounded-5'>
                     <Plan  plan={plan} link={link} isLandscape={true}/>
                 </div>
             );
-        }) : <div>No saved mealplans here.</div>;
+    }) : <div>No saved mealplans here.</div>;
 
-        const meals = state && state.meals && state.meals.length > 0
-        ? state.meals.map((meal, i) => {
-            console.log("meal.id: "+meal.id);
-            return(
-                <div key={meal.id} className='col col-3'>
-                    <Meal meal={meal} showSpices={showSpices}/>
-                </div>
-            );
-        }) : <div>No saved meals here.</div>;
+    const meals = state && state.meals && state.meals.length > 0
+    ? state.meals.map((meal, i) => {
+        console.log("meal.id: "+meal.id);
+        return(
+            <div key={meal.id} className='col col-3'>
+                <Meal meal={meal} showSpices={showSpices}/>
+            </div>
+        );
+    }) : <div>No saved meals here.</div>;
 
 
 
@@ -82,7 +84,7 @@ const Account = () => {
                                     <h5>Meal Plans:</h5>
                                 </div>
                                 <div className='container' hidden={state.hidePlans}>
-                                    <div className='row mb-4'>{plans}</div>
+                                    <div className='row mb-4 plan-row'>{plans}</div>
                                 </div>
                             </div>
                             <div className='row account-meals my-4 px-2 shadow shadow-lg border border-light'>

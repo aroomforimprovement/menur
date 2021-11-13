@@ -27,7 +27,7 @@ export const DummyMealPlanSlot = ({mealplan ,mealtime, day, isLandscape}) => {
                 <div className={'name'}>{mealplan[day][mealtime].name 
                     ? mealplan[day][mealtime].name  : ' '}
                 </div>
-                <div onClick={handleClick}>
+                <div onClick={handleClick} className='expand-meal'>
                     {showIngredients 
                     ? <span className='fa fa-angle-up'>{' '}</span> 
                     : <span className='fa fa-angle-down'>{' '}</span>}

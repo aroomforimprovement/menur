@@ -69,8 +69,9 @@
 
   
   .dummy-plan-ing{
-    background-color: blanchedalmond;
     font-size: xx-small;
+    text-align: start;
+    font-style:italic;
   }
   
   .showSpices{
@@ -82,4 +83,9 @@
     margin:0px;
     padding:0px;
     text-align: start;
+  }
+
+  .expand-meal{
+    position:absolute;
+    bottom:0px;
   }

@@ -1,4 +1,5 @@
 import React from "react";
+import '../css/plan.css';
 import { DownloadableMealPlanLandscape, DownloadableMealPlan } from "../../utils/pdfUtils";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useMainContext } from "../../main/MenurRouter";
@@ -48,21 +49,21 @@ export const Plan = ({plan, isLandscape}) => {
     }
 
     return(
-        <div className='m-0 p-0 col col-12'>
+        <div className='container m-0 p-0 col col-12'>
             {/*<div className='row'>*/}
                 <DummyMealPlan mealplan={plan.mealplan} name={plan.name} leftovers={plan.mealplan.leftovers}/>
                 {/*<MealPlanViewer mealplan={plan.mealplan} isLandscape={true}/>*/}
             {/*</div>*/}
-            <div className='row'>
-                <button className='btn btn-sm btn-warning col col-4'
+            <div className='row plan-controls border rounded border'>
+                <button className='btn btn-sm btn-warning border border-light shadow shadow-sm col col-3 m-auto'
                     onClick={handleDeletePlan}>
                         Delete
                 </button>
-                <button className='btn btn-sm btn-outline-primary col col-4'
+                <button className='btn btn-sm btn-outline-primary open-plan border border-primary shadow shadow-sm col col-3 m-auto'
                     onClick={handleOpenPlan}>
                         Open
                 </button>
-                {state && plan ? <PDFDownloadLink className={'btn btn-sm btn-success col col-4'}
+                {state && plan ? <PDFDownloadLink className={'btn btn-sm btn-success border border-light shadow shadow-sm col col-3 m-auto'}
                     document={isLandscape 
                     ? <DownloadableMealPlanLandscape mealplan={plan.mealplan}/> 
                     : <DownloadableMealPlan mealplan={plan.mealplan}/>} 
