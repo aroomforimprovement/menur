@@ -1,6 +1,8 @@
 .mealplan-container{
   min-width: 400px;
-  margin:auto;
+  margin:0px;
+  padding:0px;
+  padding-top:1%;
 }
  
  .toggle-orientation-ls, .toggle-orientation-pt{
@@ -23,18 +25,35 @@
    background-color: rgb(255, 200, 200);
  }
 }
+
+@media screen and (max-width: 400px) {
+  .toggle-orientation-ls{
+    background-color:rgb(255, 43, 43);
+  }
+}
  
  .mealplan-header{
-   font-size:small;
-   text-align:center;
+   font-size:xx-small;
+   font-weight: bolder;
+   text-align:start;
+   color:rgb(173, 173, 173);
+   min-width:40px;
+ }
+ .header-x{
+  max-width:20px;
+ }
+ 
+ .mealplan-slot{
+   min-width:40px;
+   margin-left:5px;
+   padding:0px;
  }
 
  .mealtime{
   min-height:50px;
-  min-width:80px;
-  display:flex;
-  padding:10%;
-  background-color: white;
+  display:inline-flexbox;
+  padding-bottom:15%;
+  background-color:rgba(216, 255, 216, 0.3);
   font-size:small;
   opacity: 0.8;
   border-radius: 8px;
@@ -45,13 +64,11 @@
 
 .mealtime-text{
   font-size:small;
-  vertical-align: middle;
-  display:inline;
-  font-weight: bold;
-  color:rgb(0, 0, 126);
+  display:inline-flex;
+  font-weight:normal;
+  color:rgb(50, 50, 126);
   opacity: 0.8;
-  position:absolute;
-  left:5%;
+  position:relative;
 }
 
 .mealtime-ingredients{
@@ -84,53 +101,167 @@
  opacity:1;
 }
 
-
-
- @media screen and (max-width: 576px){
-  .mealplan-header{
+@media screen and (min-width: 0px) and (max-width: 441px){
+  .mealplan-header{ 
+    min-width:35px;
     font-size:xx-small;
-    text-align:start; 
+  }
+  .header-x{
+    min-width:35px;
+   }
+   .header-y{
+    min-width:30px;
+    max-width:30px;
+   }
+   .header-xy{
+    min-width:45px;
+   }
+  .mealplan-slot{
+    min-width:50px;
+    font-size:xx-small;
   }
   .mealtime{
     font-size:xx-small;
-    text-align: start;
-    max-width:40px;
+    min-width:40px;
    }
    .mealtime-text{
      font-size:xx-small;
+     position:absolute;
+     left:0%;
    }
  }
-@media screen and (max-width: 768px){
+
+ @media screen and (min-width: 442px) and (max-width: 576px){
+  .mealplan-header{
+    font-size:xx-small;
+    text-align:start; 
+  }
+  .header-x{
+    min-width:30px;
+   }
+  .mealplan-slot{
+    min-width:50px;
+  }
+  .mealtime{
+    font-size:xx-small;
+    min-width:40px;
+   }
+   .mealtime-text{
+     font-size:xx-small;
+     position:absolute;
+     left:0%;
+   }
+ }
+@media screen and (min-width: 577px) and (max-width: 768px){
   .mealplan-header{
     font-size:x-small;
     text-align:start; 
   }
+  .header-x{
+    min-width:40px;
+   }
+  .mealplan-slot{
+    min-width:55px;
+  }
   .mealtime{
-    font-size:small;
-    text-align: center;
-    min-width:50px;
+    font-size:x-small;
+    min-width:60px;
   }
   .mealtime-text{
     font-size:x-small;
+    position:absolute;
+    left:0%;
   }
   .mealtime-ingredients{
      font-size:x-small;
   }
  }
- @media screen and (max-width: 992px){
+ @media screen and (min-width: 769px) and (max-width: 992px){
   .mealplan-header{
     font-size:small;
-    text-align:center; 
+    font-weight:bolder;
+  }
+  .header-x{
+    min-width:70px;
+   }
+  .mealplan-slot{
+    min-width:80px;
   }
   .mealtime{
-    font-size:smaller;
-    min-width:70px;
+    font-size:x-small;
+    min-width:90px;
+    vertical-align: middle;
+   }
+   .mealtime-text{
+     font-size:x-small;
    }
  }
 
+ @media screen and (min-width: 992px) and (max-width: 1199px){
+  .mealplan-header{
+    font-size:large; 
+  }
+  .header-x{
+    min-width:90px;
+   }
+  .mealplan-slot{
+    min-width:100px;
+  }
+  .mealtime{
+    font-size:normal;
+    min-width:106px;
+   }
+   
+ }
+ 
+ @media screen and (min-width: 1200px) and (max-width: 1399px){
+  .mealplan-header{
+    font-size:large;
+  }
+  .header-x{
+    min-width:90px;
+    min-width: 120px;
+   }
+  .mealplan-slot{
+    min-width:130px;
+  }
+  .mealtime{
+    font-size:normal;
+    min-width:135px;
+   }
+ }  
 
-  
+ @media screen and (min-width: 1400px) and (max-width: 1599px){
+  .mealplan-header{
+    font-size:large; 
+  }
+  .header-x{
+    min-width:145px;
+   }
+  .mealplan-slot{
+    min-width:150px;
+  }
+  .mealtime{
+    font-size:normal;
+    min-width:155px;
+ } 
+} 
 
+ @media screen and (min-width: 1600px){
+  .mealplan-header{
+    font-size:large; 
+  }
+  .header-x{
+    min-width:140px;
+   }
+  .mealplan-slot{
+    min-width:150px;
+  }
+  .mealtime{
+    font-size:normal;
+    min-width:150px; 
+  } 
+ }
 
  .leftover{
    display:inline;
@@ -140,8 +271,6 @@
    text-align: start;
  }
 
-
-
 .footer{
   bottom:0px;
 }
@@ -149,4 +278,3 @@
 .cleardata{
   text-align:end;
 }
-

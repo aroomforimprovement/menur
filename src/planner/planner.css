@@ -1,4 +1,23 @@
 
 .mealplan-row{
-    min-width:420px;
+    margin:0px;
+  padding:0px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 441px){
+    .mealplan-row{
+        min-width: 470px;
+    }
+}
+
+@media screen and (min-width: 442px) and (max-width: 576px){
+    .mealplan-row{
+        min-width: 480px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px){
+    .mealplan-row{
+        min-width:720px;
+    }
 }
