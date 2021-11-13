@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../css/dummy.css';
 import { DummyMealPlanSlot } from './DummyMealPlanSlot';
 import { days, mealtimes } from '../../shared/states';
 
@@ -14,7 +15,7 @@ export const DummyMealPlan = ({mealplan, name}) => {
     const LandscapeRow = ({mealtime}) =>{
         const mealslots = days.map((day) => {
             return(
-                <div className={'col col-1 dummy-plan-header p-0 mx-1 my-2'} key={day}>
+                <div className={'col col-1 dummy-plan-mealtime p-0 mx-1 my-2'} key={day}>
                     <DummyMealPlanSlot mealplan={mealplan} isLandscape={isLandscape}
                         mealtime={mealtime} day={day}/>
                 </div>
@@ -53,7 +54,7 @@ export const DummyMealPlan = ({mealplan, name}) => {
     const PortraitRow = ({day}) => {
         const mealslots = mealtimes.map((mealtime) => {
             return(
-                <div className={'col dummy-plan-header'} key={mealtime}>
+                <div className={'col col-2 dummy-plan-mealtime'} key={mealtime}>
                     <DummyMealPlanSlot 
                         mealplan={mealplan} isLandscape={isLandscape} 
                         mealtime={mealtime} day={day}/>
@@ -62,7 +63,7 @@ export const DummyMealPlan = ({mealplan, name}) => {
         });
         return(
             <div className='row'>
-                <div className='col col-1 dummy-plan-header'>{day}</div>
+                <div className='col col-2 dummy-plan-header'>{day}</div>
                 {mealslots}
             </div>
         )
@@ -76,13 +77,13 @@ export const DummyMealPlan = ({mealplan, name}) => {
         });
         const header = mealtimes.map((day) => {
             return(
-                <div className={'col dummy-plan-header'} key={day}>{day}</div>
+                <div className={'col col-2 dummy-plan-header'} key={day}>{day}</div>
             )
         });
         return(
             <div className='container'>
                 <div className='row'>
-                    <div className={'col dummy-plan-header p-0'}>*</div>
+                    <div className={'col col-2 dummy-plan-header p-0'}>*</div>
                     {header}
                 </div>
                 {rows}
@@ -91,15 +92,15 @@ export const DummyMealPlan = ({mealplan, name}) => {
     }
   
     return(
-        <div className={'dummy-plan col-12'}>{/*className={`mealplan-${isLandscape ? 'ls' : 'pt'}`}>*/}
+        <div className={'dummy-plan'}>{/*className={`mealplan-${isLandscape ? 'ls' : 'pt'}`}>*/}
             <div className='col col-12'>
-                <div className='row'>
+                <div className='row mt-2 ms-1'>
+                    <button onClick={toggleOrientation} 
+                        className={`border rounded rounded-circle shadow col col-1 py-3 px-0  ${isLandscape 
+                        ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>
+                            <span>{isLandscape ? "[ || ] " : "[ = ] "}</span>
+                    </button>
                     <div className='col col-9'><strong>{name}</strong></div>
-                <button onClick={toggleOrientation} 
-                    className={`border shadow mt-1 col ${isLandscape 
-                    ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>
-                        {isLandscape ? "[ || ] " : "[ = ] "}
-                </button>
                 </div>
             </div>
             {isLandscape ? <LandscapePlan /> : <PortraitPlan />}

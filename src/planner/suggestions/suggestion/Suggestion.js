@@ -201,7 +201,7 @@ export const Suggestion = ({dragData, keyProp}) => {
                 onDragEnd={handleDragEnd} onDrag={handleDrag} onDrop={handleDrop} 
                 dragData={dragData} className={'dd-container'}>        
                  
-                    <div className={`border border-silver rounded px-4 ${classes}`}>
+                    <div className={`border rounded rounded-pill shadow shadow-sm px-4 ${classes}`}>
                         <h5 className='suggestion-text'>
                             {dragData.meal.name}                                     
                         </h5>

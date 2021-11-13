@@ -3,6 +3,12 @@
     position:relative;
     text-align:center;
     vertical-align:text-bottom;
+    opacity:0.85;
+  }
+
+  .sugg-container:hover{
+    opacity:1;
+    transform:scale(1.05);
   }
   
   .dd-continer{
@@ -17,13 +23,19 @@
     cursor:pointer;
     background: rgb(224,224,224);
     background: linear-gradient(30deg, rgba(224,224,224,1) 0%, rgba(213,243,255,1) 0%, rgba(248,248,248,1) 100%);
-    color:black;
+  }
+  .custom-toggle:hover{
+    background: rgb(204,204,204);
+    background: linear-gradient(60deg, rgba(104,104,104,1) 0%, rgba(153,193,205,1) 0%, rgba(248,248,248,1) 100%);
   }
   
   .custom-toggle small{
     color:rgb(117, 117, 117, 0.7);
     position:absolute;
     top: -4px;
+  }
+  .custom-toggle:hover{
+    color:rgb(117, 117, 117, 1);  
   }
   
   .plus-toggle{

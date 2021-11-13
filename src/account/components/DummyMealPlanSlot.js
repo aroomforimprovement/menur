@@ -23,7 +23,7 @@ export const DummyMealPlanSlot = ({mealplan ,mealtime, day, isLandscape}) => {
 
     return(
         <div >                
-            <div className={`container dummy-plan-meal border shadow shadow-sm`} onClick={handleClick}>
+            <div className={`container dummy-plan-meal border rounded shadow shadow-sm`} onClick={handleClick}>
                 <div className={'name'}>{mealplan[day][mealtime].name 
                     ? mealplan[day][mealtime].name  : ' '}
                 </div>
