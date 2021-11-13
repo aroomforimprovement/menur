@@ -142,13 +142,13 @@ export const MealGen = () => {
         <div className='container meal-gen shadow shadow-sm p-0 mt-3 mb-3'>
             <div hidden={true} >{isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-down'}</div>
             <div className='col col-12 meal-gen-toggle'>
-                <div className='btn btn-sm btn-outline-success col col-12 meal-gen-toggle-btn'
+                <div className='btn btn-sm btn-outline-secondary col col-12 meal-gen-toggle-btn'
                     onClick={handleShowForm} text='Create a new meal'>
                     <span className={`fa ${showFormClasses} ms-3`}>{' '}</span>
                 </div>
             </div>
             <div className={isFormVisible ? 'meal-gen-in' : 'meal-gen-out'} > {/*hidden={!isFormVisible} >*/}
-                <div className='container bg-light'>
+                <div className='container meal-gen-container'>
                     <Form.Label className='mb-1 mt-2'>
                         <h5>Meal name:</h5>
                     </Form.Label>
@@ -177,7 +177,7 @@ export const MealGen = () => {
                         <div className='col col-11 me-0'>
                             <IngredientField i={ingredients.length} />
                         </div>
-                        <div className='col col-1 btn btn-outline-primary btn-sm fa fa-plus my-1 ms-0'
+                        <div className='col col-1 btn btn-outline-primary btn-sm fa fa-plus my-1 py-1 ms-0'
                                 onClick={handleAddIngredient}>
                         </div>
                         

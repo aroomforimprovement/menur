@@ -2,6 +2,10 @@
   text-align:start;
   position:relative;
 }
+
+.meal-gen-container{
+  background-color: rgba(216, 216, 250, 0.3);
+}
     
 .meal-gen-toggle{
   text-align:center;

@@ -45,10 +45,10 @@ export const MealPlan = () => {
                 <div className='row'>
                 <div className='row '>
                     <div className={'col col-1 mealplan-header header-xy p-0 m-1 center'}>
-                    <button onClick={toggleOrientation} 
-                        className={`mt-1 ms-2 p-3 border rounded rounded-circle shadow shadow-sm toggle-orientation-ls`}>
-                                <span>{state.isLandscape ? "[ ||| ] " : "[ = ] "}</span>
-                    </button>
+                        <button onClick={toggleOrientation} 
+                            className={`mt-1 ms-2 p-3 border rounded rounded-circle shadow shadow-sm toggle-orientation-ls`}>
+                                {state.isLandscape ? "[ ||| ] " : "[ = ] "}
+                        </button>
                     </div>
                     {header}
                 </div>
