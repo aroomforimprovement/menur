@@ -54,7 +54,7 @@ export const DummyMealPlan = ({mealplan, name}) => {
     const PortraitRow = ({day}) => {
         const mealslots = mealtimes.map((mealtime) => {
             return(
-                <div className={'col col-2 dummy-plan-mealtime'} key={mealtime}>
+                <div className={'col col-3 dummy-plan-mealtime'} key={mealtime}>
                     <DummyMealPlanSlot 
                         mealplan={mealplan} isLandscape={isLandscape} 
                         mealtime={mealtime} day={day}/>
@@ -77,7 +77,7 @@ export const DummyMealPlan = ({mealplan, name}) => {
         });
         const header = mealtimes.map((day) => {
             return(
-                <div className={'col col-2 dummy-plan-header'} key={day}>{day}</div>
+                <div className={'col col-3 dummy-plan-header'} key={day}>{day}</div>
             )
         });
         return(
