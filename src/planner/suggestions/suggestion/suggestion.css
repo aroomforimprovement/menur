@@ -15,12 +15,13 @@
     height:16px;
     top:8px;
     cursor:pointer;
-    background-color:silver;
+    background: rgb(224,224,224);
+    background: linear-gradient(30deg, rgba(224,224,224,1) 0%, rgba(213,243,255,1) 0%, rgba(248,248,248,1) 100%);
     color:black;
   }
   
   .custom-toggle small{
-    color:purple;
+    color:rgb(117, 117, 117, 0.7);
     position:absolute;
     top: -4px;
   }

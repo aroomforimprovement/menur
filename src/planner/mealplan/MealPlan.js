@@ -44,7 +44,13 @@ export const MealPlan = () => {
             <div className='container mealplan-container'>
                 <div className='row'>
                 <div className='row '>
-                    <div className={'col col-1 mealplan-header header-xy p-0 m-1 center'}>*</div>
+                    <div className={'col col-1 mealplan-header header-xy p-0 m-1 center'}>
+                    <button onClick={toggleOrientation} 
+                        className={`btn-sm border shadow shadow-sm ${state.isLandscape 
+                            ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>
+                                {state.isLandscape ? "[ ||| ] " : "[ = ] "} Toggle Orientation
+                    </button>
+                    </div>
                     {header}
                 </div>
                 {rows}
@@ -87,7 +93,13 @@ export const MealPlan = () => {
         return(
             <div className='container'>
                 <div className='row'>
-                    <div className={'col col-2 mealplan-header header-xy p-0 m-1'}>*</div>
+                    <div className={'col col-2 mealplan-header header-xy p-0 m-1'}>
+                    <button onClick={toggleOrientation} 
+                        className={`mt-2 ms-2 p-3 border rounded rounded-circle shadow ${state.isLandscape 
+                            ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>
+                                <span>{state.isLandscape ? "[ ||| ] " : "[ = ] "}</span>
+                    </button>
+                    </div>
                     {header}
                 </div>
                 {rows}
@@ -102,7 +114,6 @@ export const MealPlan = () => {
     
     return(
         <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'} `}>
-            <button onClick={toggleOrientation} className={`btn-sm mt-4 py-1 px-2 border shadow shadow-sm ${state.isLandscape ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>{state.isLandscape ? "[ || ] " : "[ = ] "} Toggle Orientation</button>
             <div className='mt-2'>
             {
                 state.isLandscape ? <LandscapePlan /> : <PortraitPlan />
