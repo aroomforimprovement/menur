@@ -138,16 +138,6 @@ export const Suggestion = ({dragData, keyProp}) => {
     }
     const { state, dispatch } = useMainContext();
     
-
-    const handleDragStart = (e) => {
-        //
-    }
-    const handleDrag = (e) => {
-        //
-    }
-    const handleDragEnd = (e) => {
-       //
-    }
     const handleDrop = (e) => {
         if(e.dragData.meal.name.indexOf('Leftover') > -1){
             dispatch({type: 'REMOVE_LEFTOVER', data: e.dragData.meal});
@@ -197,10 +187,8 @@ export const Suggestion = ({dragData, keyProp}) => {
     
     return(
         <div className={`sugg-container me-1 mb-1`}>
-            <DragDropContainer targetKey='meal' onDragStart={handleDragStart} 
-                onDragEnd={handleDragEnd} onDrag={handleDrag} onDrop={handleDrop} 
-                dragData={dragData} className={'dd-container'}>        
-                 
+            <DragDropContainer targetKey='meal' onDrop={handleDrop} 
+                dragData={dragData} className={'dd-container'}>         
                     <div className={`border rounded rounded-pill shadow shadow-sm px-4 ${classes}`}>
                         <h5 className='suggestion-text'>
                             {dragData.meal.name}                                     
