@@ -91,9 +91,9 @@ export const MealPlan = () => {
                     {header}
                 </div>
                 {rows}
-                <div className='leftover-col col col-12 ms-0 mt-3'>
-                    <h5 className='m-0 p-0'>Leftovers: </h5>
-                    <Leftovers />
+                <div className='leftover-col row ms-0 mt-3'>
+                    <h5 className='m-0 mb-2 p-0 col col-3'>Leftovers: </h5>
+                    <Leftovers className='col col-3'/>
                 </div>
             </div>
         );
