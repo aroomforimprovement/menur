@@ -65,7 +65,7 @@ export const Footer = () => {
         saveDataToAccount();
     }
     return(
-        <div className=''>
+        <div className='mt-4'>
             <div className=''>
                 <div className='row'>
                     {isSaveFailed 
@@ -76,7 +76,7 @@ export const Footer = () => {
                 {isSaving ? <Loading /> : 
                     <div>
                     {state && state.user && state.user.isAuth
-                    ? <button className='shadow col col-10 btn btn-sm btn-success border border-warning mx-auto my-2'
+                    ? <button className='shadow col col-12 btn btn-sm btn-success border border-warning mx-auto my-2 shadow'
                         onClick={handleSaveData}>
                         <span className='fa fa-save me-2'></span> Save this mealplan to your account <span className='fa fa-save ms-2'></span>
                     </button> : <div></div>}
@@ -85,7 +85,7 @@ export const Footer = () => {
                 </div>
             </div>
             <div className='row'>
-                <button className='shadow col col-10 btn btn-sm btn-danger border border-success mx-auto my-2'
+                <button className='shadow col col-11 btn btn-sm btn-danger border border-success mx-auto mt-2 mb-5 shadow'
                     onClick={handleClearData}>
                     <span className='fa fa-close me-2'></span> Clear data and start again <span className='fa fa-close ms-2'></span>
                 </button> 

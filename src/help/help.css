@@ -10,13 +10,16 @@
     background-color:rgba(216, 216, 250, 0.3);
 }
 
-.jum h3 {
-    text-align: start;
-}
 
 .jim{
     text-align:start;
+    border-radius:30px;
     background-color: lavender;
+}
+
+img{
+    border-radius:20px;
+    margin-top:20px;
 }
 
 .privacy-btn{

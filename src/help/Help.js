@@ -75,46 +75,46 @@ export const Help = () => {
                         <ul className='list-unstyled'>
                             <div className='p-5'>
                                 <li>
-                                    <h6>1. Select a meal from the dropdown list:</h6>
+                                    <h5>1. Select a meal from the dropdown list:</h5>
                                     <img className='col col-12' src='/assets/help/help_001.png' alt='Select a meal'/>
                                 </li>
                             </div>
                             <div className='p-5 jim'>
                                 <li>
-                                    <h6>2. The app will suggest meals with similar ingredients</h6>
+                                    <h5>2. The app will suggest meals with similar ingredients</h5>
                                     <img className='col col-12' src='/assets/help/help_002.png' alt='Meal suggestions'/>
                                 </li>
                             </div>
                             <div className='p-5'>
                                 <li>
-                                    <h6>3. Drag the meal or use the controls to add it to your meal plan</h6>
+                                    <h5>3. Drag the meal or use the controls to add it to your meal plan</h5>
                                     <img className='col col-12' src='/assets/help/help_003.png' alt='Drag meal to meal plan'/>
                                 </li>
                             </div>
                             <div className='p-5 jim'>
                                 <li>
-                                    <h6>4. If the meal has more than 2 servings, some leftovers will be created, and
+                                    <h5>4. If the meal has more than 2 servings, some leftovers will be created, and
                                         these can be dropped into the meal plan too.
-                                    </h6>
+                                    </h5>
                                     <img className='col col-12' src='/assets/help/help_004.png' alt='Select a meal'/>
                                 </li>
                             </div>
                             <div className='p-5'>
                                 <li>
-                                    <h6>5. When you're done with the meal plan, you can download a pdf of the plan and
+                                    <h5>5. When you're done with the meal plan, you can download a pdf of the plan and
                                         generate a shopping list of everything you need for the week.
                                         You can drag the list items into separate lists, adjust the quantities and copy 
                                         the contents.
-                                    </h6>
+                                    </h5>
                                     <img className='col col-12' src='/assets/help/help_005.png' alt='Select a meal'/>
                                 </li>
                             </div>
                             <div className='p-5 jim'>
                                 <li>
-                                    <h6>There are other features, click around and see what's possible.
+                                    <h5>There are other features, click around and see what's possible.
                                         You'll probably want to add your own meals - try the button above the
                                         Suggestions list to get started with that:
-                                    </h6>
+                                    </h5>
                                     <img className='col col-12' src='/assets/help/help_006.png' alt='Select a meal'/>
                                 </li>
                             </div>
