@@ -50,7 +50,7 @@ export const Selector = () => {
     });
 
     const handleChange = (e) => {
-        MEALS.forEach((meal) => {
+        state.meals.forEach((meal) => {
             if(meal.name === e.target.value){
                 dispatch({type: 'CHANGE_SELECTION', data: meal});
                 return;
