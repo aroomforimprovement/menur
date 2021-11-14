@@ -36,6 +36,7 @@ const MenurRouter = () => {
 
     const approveCookies = (id) => {
         Cookies.set('cookies_approved', true, {expires: 28*34*60*1000});
+        dispatch({type: 'COOKIES_APPROVED', data: true});
         toast.dismiss(id)
     }
     useEffect(() => {
@@ -145,7 +146,7 @@ const MenurRouter = () => {
         if(!state.cookiesApproved){
             checkCookieApproval();
         }
-    },[state.cookiesApproved]);
+    });
 
     return (
         <div>

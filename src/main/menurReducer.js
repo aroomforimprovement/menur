@@ -102,6 +102,9 @@ export const reducer = (state, action) => {
     console.log(action.type+':'+action.data)
     console.dir(action.data);
     switch(action.type){
+        case 'COOKIES_APPROVED':{
+            return({...state, cookiesApproved: action.data});
+        }
         case 'SET_SHOW_SPICES':{
             return({...state, showSpices: action.data});
         }
