@@ -1,8 +1,23 @@
 .privacy-policy{
     text-align:start;
     padding:20px;
+    background-color: rgb(91, 15, 141);
+}
+
+.frame{
+    background-color: lavenderblush;;
 }
 
 .privacy-policy p{
     padding-left:20px;
+    line-height:normal;
+}
+
+.privacy-policy ul{
+    padding-left:60px;
+}
+
+.privacy-policy ul li p{
+    padding:0px;
+    line-height:normal;
 }
