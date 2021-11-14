@@ -49,7 +49,7 @@ export const GenList = () => {
         copyList([...state.userList2], "LIST 2");
     }
 
-    const ListTemplate = ({list, title}) => {
+    const ListTemplate = ({list, title, copyFunc}) => {
 
         return(
             <div className='gen-list col-4 mt-2 border border-2 shadow shadow-sm'>
@@ -58,7 +58,7 @@ export const GenList = () => {
                     <h6 className='list-heading col mt-1'>{title}</h6>
                     <div className='col col-1 col-md-2 col-lg-1 me-4'>
                         <button className='btn btn-sm btn-outline-info copy-btn mb-2'
-                            onClick={copyGenList}>
+                            onClick={copyFunc}>
                             <span className='fa fa-copy fa-xs'>{' '}</span>
                         </button>
                     </div>
@@ -71,9 +71,9 @@ export const GenList = () => {
 
     return(
         <div className='row'>
-            <ListTemplate list={'genList'} title={'Generated list'}/>
-            <ListTemplate list={'userList1'} title={'User list 1'}/>
-            <ListTemplate list={'userList2'} title={'User list 2'}/>
+            <ListTemplate list={'genList'} title={'Generated list'} copyFunc={copyGenList}/>
+            <ListTemplate list={'userList1'} title={'User list 1'} copyFunc={copyUserList1}/>
+            <ListTemplate list={'userList2'} title={'User list 2'} copyFunc={copyUserList2}/>
         </div>
     );
 }

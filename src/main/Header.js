@@ -36,6 +36,11 @@ export const Header = () => {
                                 </Nav.Link> 
                               </LinkContainer>
                             : <div></div>}
+                            <LinkContainer to='/help'>
+                                <Nav.Link className='nav-link m-1'>
+                                    Help
+                                </Nav.Link> 
+                            </LinkContainer>
                         </Nav>
                         <div className='col col-2 col-md-3 col-lg-4 bg-light mt-2 start'>
                             <h5 className='mb-2'>Menur</h5>

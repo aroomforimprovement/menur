@@ -5,6 +5,7 @@ import { INIT_STATE } from '../shared/states';
 import { Header } from './Header';
 import { Switch, useHistory, Route, withRouter, Redirect } from 'react-router';
 import Planner from '../planner/Planner';
+import { Help } from '../help/Help';
 import { Loading } from '../common/Loading';
 import Account from '../account/Account';
 import { Toast } from '../common/Toasts';
@@ -30,6 +31,7 @@ const MenurRouter = () => {
     const MainPage = () => {return <Planner edit={false}/>}
     const ContPage = () => {return <Planner edit={true}/>}
     const AccountPage = () => {return <Account/>}
+    const HelpPage = () => {return <Help />}
 
     useEffect(() => {
         if(isLoading && state.isSet){
@@ -118,8 +120,10 @@ const MenurRouter = () => {
                         <Header />
                         <Toast />
                         <Switch>
-                            <Route path='/planner/*' histor={history} component={ContPage} /><Route path='/planner' history={history} component={MainPage} />
+                            <Route path='/planner/*' histor={history} component={ContPage} />
+                            <Route path='/planner' history={history} component={MainPage} />
                             <Route path='/account' history={history} component={AccountPage} />
+                            <Route path='/help' history={history} component={HelpPage} />
                             <Redirect to='/planner' history={history} />
                         </Switch>
                     </div>        
