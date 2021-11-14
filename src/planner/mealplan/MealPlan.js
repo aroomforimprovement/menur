@@ -37,14 +37,14 @@ export const MealPlan = () => {
         });
         const header = days.map((day) => {
             return(
-                <div className={'col col-1 mealplan-header header-x p-0 m-2'} key={day}>{day}</div>
+                <div className={'col col-1 mealplan-header header-x m-2'} key={day}>{day}</div>
             );
         });
         return(
             <div className='container mealplan-container'>
                 <div className='row'>
                 <div className='row '>
-                    <div className={'col col-1 mealplan-header header-xy p-0 m-1 center'}>
+                    <div className={'col col-1 mealplan-header header-xy m-1 center'}>
                         <button onClick={toggleOrientation} 
                             className={`mt-1 ms-2 p-3 border rounded rounded-circle shadow shadow-sm toggle-orientation-ls`}>
                                 {state.isLandscape ? "[ ||| ] " : "[ = ] "}
@@ -53,7 +53,7 @@ export const MealPlan = () => {
                     {header}
                 </div>
                 {rows}
-                <div className='leftover-col col col-12 ms-0 p-0 mt-3'>
+                <div className='leftover-col col col-12 ms-0 mt-3'>
                     <h5 >Leftovers: </h5>
                     <Leftovers className=''/>
                 </div>
@@ -92,7 +92,7 @@ export const MealPlan = () => {
         return(
             <div className='container'>
                 <div className='row'>
-                    <div className={'col col-2 mealplan-header header-xy p-0 m-1'}>
+                    <div className={'col col-2 mealplan-header header-xy m-1'}>
                     <button onClick={toggleOrientation} 
                         className={`mt-2 ms-0 ms-md-2 p-3 border rounded rounded-circle shadow toggle-orientation-pt`}>
                                 <span>{state.isLandscape ? "[ ||| ] " : "[ = ] "}</span>
@@ -102,7 +102,7 @@ export const MealPlan = () => {
                 </div>
                 {rows}
                 <div className='leftover-col row ms-0 mt-3'>
-                    <h5 className='m-0 mb-2 p-0 col col-3'>Leftovers: </h5>
+                    <h5 className='m-0 mb-2 col col-3'>Leftovers: </h5>
                     <Leftovers className='col col-3'/>
                 </div>
             </div>
