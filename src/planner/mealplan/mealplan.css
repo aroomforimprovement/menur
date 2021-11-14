@@ -6,15 +6,31 @@
 }
 .toggle-orientation-ls{
    font-size: xx-small;
+   min-width:55px;
+   min-height:55px;
    border-radius:10px;
    opacity:0.8;
-   background-color:rgba(255);
+   background-color:rgba(216, 216, 250, 0.3);
+   position:absolute;
+   left:-20px;
+   top:-20px;
 }
  .toggle-orientation-pt{
    font-size: xx-small;
-   border-radius:10px;
+   min-width:60px;
+   min-height:60px;
    opacity:0.8;
-   background-color:rgba(255);
+   background-color:rgba(216, 216, 250, 0.3);
+   position:absolute;
+   left:0px;
+ }
+ .toggle-orientation-pt > span{
+    min-width:60px;
+    min-height:60px;
+ }
+ .toggle-orientation-ls > span{
+    min-width:60px;
+    min-height:60px;
  }
  .toggle-orientation-ls:hover {
   transform:scale(1.1);
@@ -46,6 +62,7 @@
 }
  
  .mealplan-header{
+   position:relative;
    font-size:xx-small;
    font-weight: bolder;
    text-align:start;

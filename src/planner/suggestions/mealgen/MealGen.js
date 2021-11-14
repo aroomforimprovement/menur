@@ -139,10 +139,10 @@ export const MealGen = () => {
     let showFormClasses = ''
 
     return(
-        <div className='container meal-gen shadow shadow-sm p-0 mt-3 mb-3'>
+        <div className='container meal-gen shadow shadow-lg p-0 mt-3 mb-3'>
             <div hidden={true} >{isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-down'}</div>
-            <div className='col col-12 meal-gen-toggle'>
-                <div className='btn btn-sm btn-outline-secondary col col-12 meal-gen-toggle-btn'
+            <div className='col col-12 meal-gen-toggle border border-1 rounded-3'>
+                <div className='btn-sm col col-12 meal-gen-toggle-btn'
                     onClick={handleShowForm} text='Create a new meal'>
                     <span className={`fa ${showFormClasses} ms-3`}>{' '}</span>
                 </div>

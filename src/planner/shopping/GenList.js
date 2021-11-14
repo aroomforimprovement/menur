@@ -54,10 +54,10 @@ export const GenList = () => {
         return(
             <div className='gen-list col-4 mt-2 border border-2 shadow shadow-sm'>
             <div>
-                <div className='row mb-1 border pt-2'>
+                <div className='row mb-1 border pt-2 bg-theme-primary'>
                     <h6 className='list-heading col mt-1'>{title}</h6>
                     <div className='col col-1 col-md-2 col-lg-1 me-4'>
-                        <button className='btn btn-sm btn-outline-info copy-btn mb-2'
+                        <button className='btn btn-sm btn-outline-info copy-btn mb-2 bg-light'
                             onClick={copyFunc}>
                             <span className='fa fa-copy fa-xs'>{' '}</span>
                         </button>

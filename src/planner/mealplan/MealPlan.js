@@ -94,7 +94,7 @@ export const MealPlan = () => {
                 <div className='row'>
                     <div className={'col col-2 mealplan-header header-xy p-0 m-1'}>
                     <button onClick={toggleOrientation} 
-                        className={`mt-2 ms-2 p-3 border rounded rounded-circle shadow toggle-orientation-pt`}>
+                        className={`mt-2 ms-0 ms-md-2 p-3 border rounded rounded-circle shadow toggle-orientation-pt`}>
                                 <span>{state.isLandscape ? "[ ||| ] " : "[ = ] "}</span>
                     </button>
                     </div>

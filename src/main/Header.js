@@ -1,4 +1,5 @@
 import React from 'react';
+import './header.css';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useMainContext } from './MenurRouter';
@@ -14,8 +15,9 @@ export const Header = () => {
 
 
     return(
-        <div >
-            <Navbar collapseOnSelect expand='sm' bg='light' variant='light'>
+        <div className='site-header'>
+            <Navbar collapseOnSelect expand='md' bg='lavender' variant='light'
+                className=''>
                 <Container>
                 <Navbar.Brand className='mr-auto' href='/'>
                         <img src={logo}  height='40px' width='40px'
@@ -42,7 +44,7 @@ export const Header = () => {
                                 </Nav.Link> 
                             </LinkContainer>
                         </Nav>
-                        <div className='col col-2 col-md-3 col-lg-4 bg-light mt-2 start'>
+                        <div className='col col-2 col-md-3 col-lg-4 mt-2 start'>
                             <h5 className='mb-2'>Menur</h5>
                         </div>
                         <div className={`col col-4 col-md-3 start`}>

@@ -9,8 +9,11 @@
     
 .meal-gen-toggle{
   text-align:center;
+  border-color:rgba(216, 216, 250);
 }
-
+.meal-gen-toggle:hover{
+  background-color:rgba(216, 216, 250, 0.3); 
+}
   
 .meal-gen-left{
   text-align:end;
