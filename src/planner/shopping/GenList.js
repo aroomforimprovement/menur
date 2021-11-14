@@ -63,7 +63,7 @@ export const GenList = () => {
                         </button>
                     </div>
                 </div>
-                <UserList list={list} />
+                <UserList  list={list} />
             </div>
         </div>
         );
