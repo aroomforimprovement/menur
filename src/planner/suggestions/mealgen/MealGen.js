@@ -25,7 +25,18 @@ export const MealGen = () => {
         const typeField = document.getElementById(`type_${ingredients.length}`);
         const qtyField = document.getElementById(`qty_${ingredients.length}`); 
         let ingr = [...ingredients];
-        let i = {name: nameField.value, type: typeField.value, qty: qtyField.value};
+        const type = typeField.value
+        let score = 0;
+        if(type === 'fresh'){
+            score = 4;
+        }else if(type === 'tin'){
+            score = 2;
+        }else if(type === 'dry'){
+            score = 3;
+        }else if(type === 'cond' || type === 'spice'){
+            score = 0;
+        }
+        let i = {name: nameField.value, type: type, qty: qtyField.value, score: score};
         //console.dir(i);
         if(i.name.length > 0){
             ingr.push(i);
