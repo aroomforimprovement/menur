@@ -23,7 +23,7 @@ export const MealPlan = () => {
         });
         return(
             <div className='row '>
-                <div className={'col col-1 mealplan-header header-y px-0 pt-3 pb-1'}>{mealtime}</div>
+                <div className={'col col-1 mealplan-header header-y pt-3 pb-1'}>{mealtime}</div>
                 {mealslots}
             </div>
         )
