@@ -31,7 +31,7 @@ const Planner = ({edit}) => {
     },[splat, dispatch, state.splatSet]);
 
     return(    
-        <div className='container mt-3'>
+        <div className='container mt-3 planner-page'>
             <div className='row'>
                 <Selector />
                 <Suggestions/>                        

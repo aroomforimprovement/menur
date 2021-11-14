@@ -1,7 +1,10 @@
+.planner-page{
+    min-width:100vw;
+}
 
 .mealplan-row{
     margin:0px;
-  padding:0px;
+    padding:0px;
 }
 
 @media screen and (min-width: 0px) and (max-width: 441px){

@@ -43,7 +43,13 @@ export const DummyMealPlan = ({mealplan, name}) => {
         return(
             <div className='container'>
                 <div className='row'>
-                    <div className={'col col-1 dummy-plan-header p-0 m-1'}>*</div>
+                    <div className={'col col-1 dummy-plan-header p-0 m-1'}>
+                    <button onClick={toggleOrientation} 
+                        className={`border rounded rounded-circle shadow col col-1 py-3 px-0  ${isLandscape 
+                        ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>
+                            <span>{isLandscape ? "[ || ] " : "[ = ] "}</span>
+                    </button>
+                    </div>
                     {header}
                 </div>
                 {rows}
@@ -83,7 +89,13 @@ export const DummyMealPlan = ({mealplan, name}) => {
         return(
             <div className='container'>
                 <div className='row'>
-                    <div className={'col col-2 dummy-plan-header p-0'}>*</div>
+                    <div className={'col col-2 dummy-plan-header p-0'}>
+                    <button onClick={toggleOrientation} 
+                        className={`border rounded rounded-circle shadow col col-1 py-3 px-0  ${isLandscape 
+                        ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>
+                            <span>{isLandscape ? "[ || ] " : "[ = ] "}</span>
+                    </button>
+                    </div>
                     {header}
                 </div>
                 {rows}
@@ -95,11 +107,7 @@ export const DummyMealPlan = ({mealplan, name}) => {
         <div className={'dummy-plan'}>{/*className={`mealplan-${isLandscape ? 'ls' : 'pt'}`}>*/}
             <div className='col col-12'>
                 <div className='row mt-2 ms-1'>
-                    <button onClick={toggleOrientation} 
-                        className={`border rounded rounded-circle shadow col col-1 py-3 px-0  ${isLandscape 
-                        ? 'toggle-orientation-ls' : 'toggle-orientation-pt'}`}>
-                            <span>{isLandscape ? "[ || ] " : "[ = ] "}</span>
-                    </button>
+                    
                     <div className='col col-9'><strong>{name}</strong></div>
                 </div>
             </div>

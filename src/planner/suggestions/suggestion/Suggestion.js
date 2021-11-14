@@ -87,13 +87,13 @@ export const dropSelectDays = (keyProp, dragData) => {
 export const ClickAddToMealPlan = ({keyProp, dragData}) => {
     const days = dropSelectDays(keyProp, dragData);
     return(
-        <Dropdown drop={'left'}>           
+        <Dropdown drop={'left'} >           
             <Dropdown.Toggle
                 as={PlusToggle} 
                 id={`suggDrop_${keyProp}_days`} 
                 size='sm' >
             </Dropdown.Toggle>  
-            <Dropdown.Menu>
+            <Dropdown.Menu  className='sugg-drop'>
                 {days}
             </Dropdown.Menu>
         </Dropdown>
@@ -118,7 +118,7 @@ export const ClickToExpandMeal = ({ingredients, keyProp, dragData}) => {
             id={`suggDrop_${keyProp}`}
             size='sm'  >
         </Dropdown.Toggle>  
-        <Dropdown.Menu >
+        <Dropdown.Menu  className='sugg-drop'>
             {ingredients}
         </Dropdown.Menu>
     </Dropdown>

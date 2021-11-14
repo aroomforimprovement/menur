@@ -89,3 +89,11 @@
     position:absolute;
     bottom:0px;
   }
+
+  .toggle-orientation-ls{
+    position:relative;
+  }
+
+  .toggle-orientation-pt{
+    position:relative;
+  }

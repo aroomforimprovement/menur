@@ -4,6 +4,9 @@
     text-align:center;
     vertical-align:text-bottom;
     opacity:0.85;
+    z-index:1;
+  }
+  .sugg-drop{
   }
 
   .sugg-container:hover{
@@ -19,7 +22,7 @@
     position:absolute;
     width:16px;
     height:16px;
-    top:8px;
+    top:7px;
     cursor:pointer;
     background: rgb(224,224,224);
     background: linear-gradient(30deg, rgba(224,224,224,1) 0%, rgba(213,243,255,1) 0%, rgba(248,248,248,1) 100%);

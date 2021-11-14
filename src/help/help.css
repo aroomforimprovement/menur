@@ -1,9 +1,20 @@
+.help-page{
+    text-align:start;
+    min-width: 100vw;
+    width:100%;
+    background-color:rgba(216, 216, 250, 1);
+}
 
 .jum{
     min-height:80vh;
     background-color:rgba(216, 216, 250, 0.3);
 }
 
-.jum h1 {
+.jum h3 {
     text-align: start;
+}
+
+.jim{
+    text-align:start;
+    background-color: lavender;
 }

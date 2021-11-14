@@ -1,3 +1,15 @@
+.account-page{
+    margin-top:0px;
+    min-width:100vw;
+}
+
+.account-plans{
+    background-color:rgba(216, 216, 250, 0.3);
+}
+
+.account-meals{
+    background-color:rgba(216, 216, 250, 0.3);
+}
 
 .account-plans-header{
     cursor: pointer;
