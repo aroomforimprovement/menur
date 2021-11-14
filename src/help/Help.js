@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './help.css';
 import { PrivacyPolicy } from './PrivacyPolicy';
 
 export const Help = () => {
+
+    const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
+    
+    const handleTogglePrivacy = () => {
+        setShowPrivacyPolicy(!showPrivacyPolicy)
+    }
+    
     return(
         <div className='help-page container'>
             <div className='row'>
@@ -16,7 +23,7 @@ export const Help = () => {
                             </p>
                         </div>
                         <div className='p-5'>
-                            <h3>Sounds great, is it free?</h3>
+                            <h3>Sounds useful, is it free?</h3>
                             <p>The app is a hobby project and is free to use.
                             </p>
                         </div>
@@ -42,14 +49,29 @@ export const Help = () => {
                                 You can review the full Privacy Policy below.
                             </p>
                         </div>
+                        <div className='p-5 jim'>
+                            <h3>And what about cookies? I've heard of cookies.</h3>
+                            <p>Cookies are small files stored in your browser that facilitate certain
+                                website functionality. Menur uses ONE such cookie to record whether you have 
+                                acknowledged that it's ok for the app to use cookies.
+                                We'll probably need to add more in the future but we'll let you know about that.
+                                </p><p>Auth0 stores a cookie to let it know whether you are logged into the app.
+                                </p><p>Menur does NOT use cookies or any other method to track your activity on
+                                the site or anywhere on the internet.
+                            </p>
+                        </div>
+                        <div className='p-5'>
+                            <h3>This all sounds great!</h3>
+                            <p>Yeah, it's pretty sweet.
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div className='col col-12 col-md-6 m-0'>
                     <div className='p-5 jum'>
                         <h3>How do I use this app?</h3>
-                        <p>Before you start, it's recommended you use a larger screen to use the app.
-                            A mobile-optimised version is on the way though!
-                        </p>
+                        <p>Before you start, although a mobile-optimised version is on the way, 
+                            <br/>it's recommended you use a larger screen to use the app.</p>
                         <ul className='list-unstyled'>
                             <div className='p-5'>
                                 <li>
@@ -101,7 +123,14 @@ export const Help = () => {
                 </div>
             </div>
             <div className='jum '>
-                <PrivacyPolicy />
+                <div className='privacy-btn col col-12'>
+                <button onClick={handleTogglePrivacy}
+                    className='btn btn-info col col-11 m-auto privacy-btn'>{showPrivacyPolicy ? 'Hide' : 'Show'} Privacy Policy</button>
+                </div>
+                <div hidden={!showPrivacyPolicy}>
+                    <PrivacyPolicy />
+                    
+                </div>
             </div>
         </div>
     );
