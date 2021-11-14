@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useEffect, useReducer} from 'react';
+import React, {createContext, useContext, useEffect, useReducer, useState} from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { reducer } from './menurReducer';
 import { INIT_STATE } from '../shared/states';
@@ -28,6 +28,7 @@ const MenurRouter = () => {
     const [state, dispatch] = useReducer(reducer, INIT_STATE);
     const mainState = { state, dispatch };
     const history = useHistory();
+    const [cookieWarning, setCookieWarning] = useState(false);
 
     const MainPage = () => {return <Planner edit={false}/>}
     const ContPage = () => {return <Planner edit={true}/>}
@@ -117,6 +118,7 @@ const MenurRouter = () => {
     },[isLoading, isAuthenticated, state.user, state.isSet]);
 
     const cookieToast = () => {
+        setCookieWarning(true);
         toast((t) => (
             <div className='container'>
                 <div className='row'>
@@ -143,7 +145,7 @@ const MenurRouter = () => {
                 cookieToast();
             }
         }
-        if(!state.cookiesApproved){
+        if(!state.cookiesApproved && !cookieWarning){
             checkCookieApproval();
         }
     });
