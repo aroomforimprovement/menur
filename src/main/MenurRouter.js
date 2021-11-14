@@ -10,6 +10,7 @@ import { Loading } from '../common/Loading';
 import Account from '../account/Account';
 import { Toast } from '../common/Toasts';
 import toast from 'react-hot-toast';
+import Cookies from 'cookies-js';
 
 
 let apiUrl = process.env.REACT_APP_API_URL;
@@ -33,6 +34,10 @@ const MenurRouter = () => {
     const AccountPage = () => {return <Account/>}
     const HelpPage = () => {return <Help />}
 
+    const approveCookies = (id) => {
+        Cookies.set('cookies_approved', true, {expires: 28*34*60*1000});
+        toast.dismiss(id)
+    }
     useEffect(() => {
         if(isLoading && state.isSet){
             dispatch({type: 'UNSET'});
@@ -108,7 +113,39 @@ const MenurRouter = () => {
         }else if(!isLoading && !isAuthenticated && !state.user){
             dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
         }
-    },[isLoading, isAuthenticated, state.user, state.isSet])
+    },[isLoading, isAuthenticated, state.user, state.isSet]);
+
+    const cookieToast = () => {
+        toast((t) => (
+            <div className='container'>
+                <div className='row'>
+                    <div className='col col-11'>
+                        <span>
+                            By using this website, you accept the use of cookies
+                            to perform basic functionality. <br/>
+                            <a href='/help' target='_blank'>Privacy Policy</a>
+                        </span>
+                    </div>
+                    <div className='col col-1'>
+                        <button className='btn  btn-sm btn-success'
+                            onClick={() => approveCookies(t.id)}>OK</button>
+                    </div>
+                </div>
+            </div>
+        ), {duration: 60000000, position: 'bottom-center', style: {minWidth: 'fit-content', backgroundColor:'#ffa', textAlign: 'start'}})
+        
+    }
+
+    useEffect(() => {
+        const checkCookieApproval = () => {
+            if(!Cookies.get('cookies_approved')){
+                cookieToast();
+            }
+        }
+        if(!state.cookiesApproved){
+            checkCookieApproval();
+        }
+    },[state.cookiesApproved]);
 
     return (
         <div>

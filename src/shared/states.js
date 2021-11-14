@@ -28,5 +28,6 @@ export const INIT_STATE = {
     meals: [],
     plans: [],
     hideMeals: true,
-    hidePlans: true
+    hidePlans: true,
+    cookiesApproved: false,
 }
