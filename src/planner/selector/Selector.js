@@ -64,7 +64,9 @@ export const Selector = () => {
     }
 
     const handleCheckMine = (e) => {
-        dispatch({type: 'SET_SHOW_MINE', data: e.target.checked});
+        if(state.meals && state.meals.length > 0){
+            dispatch({type: 'SET_SHOW_MINE', data: e.target.checked});
+        }
     }
 
     const handleCheckSpices = (e) => {

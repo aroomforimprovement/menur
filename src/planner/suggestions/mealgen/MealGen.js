@@ -164,7 +164,7 @@ export const MealGen = () => {
                         <h5>Meal name:</h5>
                     </Form.Label>
                     <InputGroup size='sm'>
-                        <FormControl type='text' id='name' placeholder='Name'
+                        <FormControl type='text' id='name' placeholder='Meal name'
                             onChange={handleNameChange}
                             value={name}></FormControl>
                     </InputGroup>
