@@ -106,7 +106,7 @@ const MenurRouter = () => {
                         toast.success("Your account info is ready");
                     }else{
                         dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
-                        toast.warn("You are not logged in");
+                        toast.error("You are not logged in");
                     }  
             });
         }
