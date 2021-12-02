@@ -87,13 +87,13 @@ export const dropSelectDays = (keyProp, dragData) => {
 export const ClickAddToMealPlan = ({keyProp, dragData}) => {
     const days = dropSelectDays(keyProp, dragData);
     return(
-        <Dropdown drop={'left'} >           
+        <Dropdown drop={'left'} className='sugg-drop' >           
             <Dropdown.Toggle
                 as={PlusToggle} 
                 id={`suggDrop_${keyProp}_days`} 
                 size='sm' >
             </Dropdown.Toggle>  
-            <Dropdown.Menu  className='sugg-drop'>
+            <Dropdown.Menu  >
                 {days}
             </Dropdown.Menu>
         </Dropdown>
@@ -110,19 +110,20 @@ export const ClickToExpandMeal = ({ingredients, keyProp, dragData}) => {
             dispatch({type: 'UNSET_SELECTED_SUGGESTION', data: dragData.meal});
         }
     }
+
     return(
-    <Dropdown onToggle={handleToggle} 
-        drop={'right'} show={state.selectedSuggestion.name === dragData.meal.name}>
-        <Dropdown.Toggle 
-            as={InfoToggle} 
-            id={`suggDrop_${keyProp}`}
-            size='sm'  >
-        </Dropdown.Toggle>  
-        <Dropdown.Menu  className='sugg-drop'>
-            {ingredients}
-        </Dropdown.Menu>
-    </Dropdown>
-    )
+        <Dropdown onToggle={handleToggle} className='sugg-drop' 
+            drop={'right'} show={state.selectedSuggestion.name === dragData.meal.name}>
+            <Dropdown.Toggle 
+                as={InfoToggle} 
+                id={`suggDrop_${keyProp}`}
+                size='sm'  >
+            </Dropdown.Toggle>  
+            <Dropdown.Menu  >
+                {ingredients}
+            </Dropdown.Menu>
+        </Dropdown>
+    );
 }
 
 export const Suggestion = ({dragData, keyProp}) => {
@@ -138,6 +139,9 @@ export const Suggestion = ({dragData, keyProp}) => {
     }
     const { state, dispatch } = useMainContext();
     
+    const handleDragStart = (e) => {
+
+    }
     const handleDrop = (e) => {
         if(e.dragData.meal.name.indexOf('Leftover') > -1){
             dispatch({type: 'REMOVE_LEFTOVER', data: e.dragData.meal});
@@ -172,10 +176,10 @@ export const Suggestion = ({dragData, keyProp}) => {
         }
         
         return(
-            <div key={i}>            
+            <div className='sugg-ing' key={i}>            
                 {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') 
                     ? null 
-                    : <Dropdown.Item as='div' onClick={handleItemClick}>
+                    : <Dropdown.Item onClick={handleItemClick}>
                         <span className={''+classes}>
                             {ing.name.replaceAll(DELIM, OR)}
                         </span>
@@ -186,17 +190,20 @@ export const Suggestion = ({dragData, keyProp}) => {
 
     
     return(
-        <div className={`sugg-container me-1 mb-1`}>
+        /*<div className={`sugg-container me-1 mb-1`}>*/
             <DragDropContainer targetKey='meal' onDrop={handleDrop} 
-                dragData={dragData} className={'dd-container'}>         
-                    <div className={`border rounded rounded-pill shadow shadow-sm px-4 ${classes}`}>
-                        <h5 className='suggestion-text'>
-                            {dragData.meal.name}                                     
-                        </h5>
-                    </div>    
-                    <ClickAddToMealPlan keyProp={keyProp}  dragData={dragData} className='sugg-click-add'/> 
-                    <ClickToExpandMeal keyProp={keyProp} ingredients={ingredients} dragData={dragData} className='sugg-expand'/>
+                onDragStart={handleDragStart}
+                dragData={dragData}> 
+                <div className='me-1 mb-1'>
+                <div className={`border rounded rounded-pill shadow shadow-sm px-4 ${classes}`}>
+                    <h5 className='suggestion-text'>
+                        {dragData.meal.name}                                     
+                    </h5>
+                </div>    
+                <ClickAddToMealPlan keyProp={keyProp}  dragData={dragData} className='sugg-click-add'/> 
+                <ClickToExpandMeal keyProp={keyProp} ingredients={ingredients} dragData={dragData} className='sugg-expand'/>
+                </div>
             </DragDropContainer>
-        </div>
+        /*</div>*/
     );
 }
