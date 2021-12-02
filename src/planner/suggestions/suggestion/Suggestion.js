@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import './suggestion.css';
 import { useMainContext } from '../../../main/MenurRouter';
@@ -83,7 +83,6 @@ export const dropSelectDays = (keyProp, dragData) => {
     return lists;
 }
 
-
 export const ClickAddToMealPlan = ({keyProp, dragData}) => {
     const days = dropSelectDays(keyProp, dragData);
     return(
@@ -100,7 +99,7 @@ export const ClickAddToMealPlan = ({keyProp, dragData}) => {
     );
 }
 
-export const ClickToExpandMeal = ({ingredients, keyProp, dragData}) => {
+export const ClickToExpandMeal = ({ingredients, keyProp, dragData, isDragging}) => {
     const {state, dispatch} = useMainContext();
     const handleToggle = (isOpen) => {
         console.dir(isOpen);
@@ -112,8 +111,8 @@ export const ClickToExpandMeal = ({ingredients, keyProp, dragData}) => {
     }
 
     return(
-        <Dropdown onToggle={handleToggle} className='sugg-drop' 
-            drop={'right'} show={state.selectedSuggestion.name === dragData.meal.name}>
+        <Dropdown onToggle={handleToggle} className='sugg-drop'
+            drop={'right'} show={state.selectedSuggestion.name === dragData.meal.name && !isDragging}>
             <Dropdown.Toggle 
                 as={InfoToggle} 
                 id={`suggDrop_${keyProp}`}
@@ -138,9 +137,15 @@ export const Suggestion = ({dragData, keyProp}) => {
         classes = classes + ' sugg-none';
     }
     const { state, dispatch } = useMainContext();
-    
-    const handleDragStart = (e) => {
+    const [isDragging, setisDragging] = useState(false);
 
+    const handleDragStart = (e) => {
+        setisDragging(true);
+        
+    }
+    const handleDragEnd = (e) => {
+        setisDragging(false);
+        dispatch({type: 'UNSET_SELECTED_SUGGESTION', data: dragData.meal});
     }
     const handleDrop = (e) => {
         if(e.dragData.meal.name.indexOf('Leftover') > -1){
@@ -192,7 +197,7 @@ export const Suggestion = ({dragData, keyProp}) => {
     return(
         /*<div className={`sugg-container me-1 mb-1`}>*/
             <DragDropContainer targetKey='meal' onDrop={handleDrop} 
-                onDragStart={handleDragStart}
+                onDragStart={handleDragStart} onDragEnd={handleDragEnd}
                 dragData={dragData}> 
                 <div className='me-1 mb-1'>
                 <div className={`border rounded rounded-pill shadow shadow-sm px-4 ${classes}`}>
@@ -201,7 +206,8 @@ export const Suggestion = ({dragData, keyProp}) => {
                     </h5>
                 </div>    
                 <ClickAddToMealPlan keyProp={keyProp}  dragData={dragData} className='sugg-click-add'/> 
-                <ClickToExpandMeal keyProp={keyProp} ingredients={ingredients} dragData={dragData} className='sugg-expand'/>
+                <ClickToExpandMeal keyProp={keyProp} ingredients={ingredients} 
+                    dragData={dragData} className='sugg-expand' isDragging={isDragging}/>
                 </div>
             </DragDropContainer>
         /*</div>*/
