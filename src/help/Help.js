@@ -17,7 +17,7 @@ export const Help = () => {
                     <div className='p-5 jum'>
                         <div className='p-5 jim'>
                             <h3>What is Menur?</h3>
-                            <p>Menur is a household utility intended simplify the process 
+                            <p>Menur is a household utility created to simplify the process 
                                 of planning your meals for the week and making sure you have
                                 everything you need to make those meals.
                             </p>
