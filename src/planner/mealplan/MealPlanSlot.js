@@ -3,6 +3,7 @@ import './mealplan.css';
 import { DropTarget } from 'react-drag-drop-container';
 import { useMainContext } from '../../main/MenurRouter';
 import { DELIM, OR } from '../../shared/meals';
+import { MealPlanSlotIngredient } from './MealPlanSlotIngredient';
 
 export const MealPlanSlot = ({mealtime, day}) => {
     const { state, dispatch } = useMainContext();
@@ -34,7 +35,8 @@ export const MealPlanSlot = ({mealtime, day}) => {
         state.mealplan[day][mealtime].ingredients.map((ing) => {
             return(
                 <div key={ing.name}>
-                    {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
+                    <MealPlanSlotIngredient ing={ing}/>
+                   {/* {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}*/}
                 </div>
             )
         })
@@ -69,7 +71,6 @@ export const MealPlanSlot = ({mealtime, day}) => {
                         : <span className='fa fa-angle-down'>{' '}</span>}
                     </div>
                 </div>
-                
         </DropTarget>
     );
 }
