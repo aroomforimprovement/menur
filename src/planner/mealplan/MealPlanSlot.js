@@ -42,11 +42,14 @@ export const MealPlanSlot = ({mealtime, day}) => {
         })
         :
         <div></div>
-
+    
+    let classes = '';
+    classes = showIngredients ? 'fa-angle-up' : 'fa-angle-down';
+    
     return(
         <DropTarget targetKey='meal' as='div'
             onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>                
-            <div className={`container mealtime border shadow shadow-sm ${state.isLandscape ? 'mealtime-ls' : 'mealtime-pt'}`} onClick={handleClick}>
+            <div className={`container mealtime border shadow shadow-sm ${state.isLandscape ? 'mealtime-ls' : 'mealtime-pt'}`} >
                 <div>
                     <div className='mealtime-text pt-0'>{state.mealplan[day][mealtime].name 
                         ? state.mealplan[day][mealtime].name  : ' '}
@@ -56,21 +59,19 @@ export const MealPlanSlot = ({mealtime, day}) => {
             </div>
             <div className={'row'}> 
                 <div hidden={!showIngredients}>
-                    <ul className='list-unstyled mealtime-ingredients ms-2 mt-5 col col-12'>
+                    <ul className='list-unstyled mealtime-ingredients mx-0 px-0 mt-5 col col-12'>
                         <small>{ingredients}</small>
                     </ul>
-                </div> 
-            </div>
-                    <button type='button' className='btn-close meal-remove' onClick={handleRemoveMeal} 
-                        style={{ width:'3px', height:'3px', top:'2px', right:'2px', opacity: 0.4, '&:hover': {opacity: 1} }} aria-label='Remove'
-                    >
-                    </button> 
-                    <div onClick={handleClick} className={'expand-ingredients'}>
-                        {showIngredients 
-                        ? <span className='fa fa-angle-up'>{' '}</span> 
-                        : <span className='fa fa-angle-down'>{' '}</span>}
-                    </div>
                 </div>
+            </div>
+                <button type='button' className='btn-close meal-remove' onClick={handleRemoveMeal} 
+                    style={{ width:'3px', height:'3px', top:'2px', right:'2px', opacity: 0.4, '&:hover': {opacity: 1} }} aria-label='Remove'
+                >
+                </button>                
+                <div onClick={handleClick} className={'expand-ingredients'}>
+                    <span className={`fa ${classes}`}>{' '}</span> 
+                </div>
+            </div>
         </DropTarget>
     );
 }

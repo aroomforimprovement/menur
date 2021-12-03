@@ -232,6 +232,10 @@ export const reducer = (state, action) => {
             });
             return ({...state, mealplan: mealplan, leftovers: leftovers});
         }
+        case 'REMOVE_MEALPLAN_ING':{
+            console.error("Not implemented");
+            return(state);
+        }
         case 'GEN_LIST':{
             const genList = getIngredientsFromMealPlan();
             return ({...state, genList: genList, userList1: [], userList2: []});
