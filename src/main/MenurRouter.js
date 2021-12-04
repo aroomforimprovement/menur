@@ -160,7 +160,7 @@ const MenurRouter = () => {
                         <Header />
                         <Toast />
                         <Switch>
-                            <Route path='/planner/*' histor={history} component={ContPage} />
+                            <Route path='/planner/:id/:edit' histor={history} component={ContPage} />
                             <Route path='/planner' history={history} component={MainPage} />
                             <Route path='/account' history={history} component={AccountPage} />
                             <Route path='/help' history={history} component={HelpPage} />

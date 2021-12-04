@@ -15,7 +15,10 @@ import { useParams } from 'react-router';
 const Planner = ({edit}) => {
     
     const { state, dispatch } = useMainContext();
-    const splat = useParams()[0];
+    const params = useParams();
+    const splat = params.id;
+    console.log("SPLAT: "+splat);
+    const isEdit = params.edit;
 
     const handleGenList = () => {
         dispatch({type: 'GEN_LIST', data:true});
@@ -45,7 +48,7 @@ const Planner = ({edit}) => {
                 {state ? <PDFDownloadLink className={'btn btn-success'}
                     document={state.isLandscape 
                     ? <DownloadableMealPlanLandscape mealplan={state.mealplan}/> 
-                    : <DownloadableMealPlan mealplan={state.mealplan}/>} 
+                    : <DownloadableMealPlan mealplan={state.mealplan}/>}
                         fileName={`mealplan_${new Date()}`}>
                             {({blob, url, loading, error}) => 
                                 loading ? 'Loading document...' : 'Download Meal Plan as PDF'

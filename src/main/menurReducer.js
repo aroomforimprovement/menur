@@ -325,10 +325,9 @@ export const reducer = (state, action) => {
             const plan = plans.find(p => {
                 return p.id === action.data;
             })
-            console.dir(plan);
-            console.log(plan.leftovers);
             return({...state, mealplan: plan.mealplan, leftovers: plan.leftovers,
-                genList: plan.genList, userList1: plan.userList1, userList2: plan.userList2, splatSet: true})
+                genList: plan.genList, userList1: plan.userList1, userList2: plan.userList2, splatSet: true,
+                backupPlan: {...plan}});
         }
         case 'ADD_SELECTOR_MEAL':{
             const meals = [...state.meals];
@@ -344,7 +343,26 @@ export const reducer = (state, action) => {
         }
         case 'ADD_SAVED_PLAN':{
             const newPlans = [...state.plans];
-            newPlans.push(action.data);
+            let index = -1;
+            let backup = -1;
+            for(let i = 0; i < newPlans.length; i++){
+                if(newPlans[i].id === action.data.mealplan.id){
+                    index = i;
+                }
+                if(state.backupPlan !== undefined){
+                    if(newPlans[i].id === state.backupPlan.id){
+                        backup = i;
+                    }
+                }
+            }
+            if(index > -1){
+                newPlans[index] = action.data.mealplan;
+            }else{
+                newPlans.push(action.data.mealplan);
+            }
+            if(backup > -1){
+                newPlans[backup] = {...state.backup};
+            }
             return({...state, plans: newPlans});
         }
         case 'REMOVE_SAVED_MEAL':{

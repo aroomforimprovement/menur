@@ -3,6 +3,7 @@ import { useMainContext } from '../main/MenurRouter';
 import { Loading } from '../common/Loading';
 import { getNewId } from '../utils/objUtils';
 import { toast } from 'react-hot-toast';
+import { useParams } from 'react-router';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
@@ -11,11 +12,14 @@ export const Footer = () => {
     const { state, dispatch } = useMainContext();
     const [isSaving, setIsSaving] = useState(false);
     const [isSaveFailed, setIsSaveFailed] = useState(false);
-        
+    const params = useParams();
+    const mealPlanId = params.id;
+    const isEdit = params.edit;
+    console.log("isEDIT: "+params.edit);
     const saveDataToAccount = async () => {
         if(state && state.user && state.user.isAuth){
             const name = new Date().toString();
-            const id = getNewId();
+            const id = isEdit > 0 ? mealPlanId : getNewId();
             const body = {
                 userid: state.user.userid,
                 mealplan:{
@@ -40,7 +44,16 @@ export const Footer = () => {
                     console.log(`mealplan saved ok`);
                     setIsSaving(false);
                     setIsSaveFailed(false);
-                    dispatch({type: 'ADD_SAVED_PLAN', data: body.mealplan})
+                    dispatch(
+                        {
+                            type: 'ADD_SAVED_PLAN', 
+                            data: 
+                                {
+                                    mealplan: body.mealplan,
+                                    reset: mealPlanId
+                                }
+                        }
+                    );
                     toast.success("Mealplan saved ok");
                 }else{
                     console.error(`response not ok`);

@@ -4,6 +4,7 @@ import { DownloadableMealPlanLandscape, DownloadableMealPlan } from "../../utils
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useMainContext } from "../../main/MenurRouter";
 import { toast } from 'react-hot-toast';
+import { ToastConfirm, toastConfirmStyle } from "../../common/Toasts";
 import { DummyMealPlan } from "./DummyMealPlan";
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -45,7 +46,22 @@ export const Plan = ({plan, isLandscape}) => {
         });
     }
     const handleOpenPlan = () => {
-        window.location.href = `/planner/${plan.id}`;
+
+        const setIsEdit = (id) => {
+            toast.dismiss(id);
+            window.location.href = `/planner/${plan.id}/1`;
+        }
+
+        const setIsCopy = (id) => {
+            toast.dismiss(id);
+            window.location.href = `/planner/${plan.id}/0`;
+        }
+
+        toast((t) => (
+            <ToastConfirm t={t} approve={setIsEdit} dismiss={setIsCopy}
+                message={'Would you like to edit this mealplan or create a copy and edit that?'}
+                approveBtn={'Edit this one'} dismissBtn={'Create a copy'} />
+        ), toastConfirmStyle());
     }
 
     return(
