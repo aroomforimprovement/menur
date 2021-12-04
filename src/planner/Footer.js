@@ -55,6 +55,7 @@ export const Footer = () => {
                         }
                     );
                     toast.success("Mealplan saved ok");
+                    window.location.href = `/planner/${body.mealplan.id}/1`;
                 }else{
                     console.error(`response not ok`);
                 }
