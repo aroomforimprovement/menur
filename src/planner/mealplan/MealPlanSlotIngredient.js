@@ -2,17 +2,16 @@ import React from 'react';
 import { useMainContext } from '../../main/MenurRouter';
 import { DELIM, OR } from '../../shared/meals';
 
-export const MealPlanSlotIngredient = ({ing}) => {
+export const MealPlanSlotIngredient = ({day, mealtime, ing}) => {
 
-    const {state, dispatch} = useMainContext();
+    const {dispatch} = useMainContext();
 
     const handleRemoveIngredient = (ing, orIng) => {
-        console.error("not implemented");
-        dispatch({type: 'REMOVE_MEALPLAN_ING', data: {ing: ing, orIng: orIng}});
+        dispatch({type: 'REMOVE_MEALPLAN_ING', data: {ing: ing, orIng: orIng, day: day, mealtime: mealtime}});
     }
 
     const OrIngredients = ({ing}) => {
-        console.dir(ing);
+        //console.dir(ing);
         const orIngs = ing.name.split(DELIM);
         if(Array.isArray(orIngs) && orIngs.length > 1){
             const count = orIngs.length;

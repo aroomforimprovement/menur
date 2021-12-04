@@ -234,7 +234,28 @@ export const reducer = (state, action) => {
         }
         case 'REMOVE_MEALPLAN_ING':{
             console.error("Not implemented");
-            return(state);
+            let mealplan = {...state.mealplan};
+            let meal = {...mealplan[action.data.day][action.data.mealtime]};
+            let ingredients = [...meal.ingredients];
+            
+            for(let i = 0; i < ingredients.length; i++){
+                if(ingredients[i].name === action.data.ing.name){
+                    console.log("INGREDIENT: "+ingredients[i].name);
+                    if(ingredients[i].name.indexOf('|') > 0){
+                        const ingredientName = ingredients[i].name.replace(action.data.orIng, '')
+                            .replace('||', '').replace(/^\|/, '').replace(/\|$/, '');
+                        console.log("INGREDIENT NAME: "+ingredientName);
+                        ingredients[i].name = ingredientName;
+                    }else{
+                        console.log("remove ingredient");
+                        ingredients = getItemRemoved(ingredients, action.data.ing);
+                    }
+                }
+            }
+            meal.ingredients = ingredients;
+            mealplan[action.data.day][action.data.mealtime] = meal;
+
+            return({...state, mealplan: mealplan});
         }
         case 'GEN_LIST':{
             const genList = getIngredientsFromMealPlan();

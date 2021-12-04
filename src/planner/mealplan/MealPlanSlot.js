@@ -35,7 +35,8 @@ export const MealPlanSlot = ({mealtime, day}) => {
         state.mealplan[day][mealtime].ingredients.map((ing) => {
             return(
                 <div key={ing.name}>
-                    <MealPlanSlotIngredient ing={ing}/>
+                    <MealPlanSlotIngredient
+                        day={day} mealtime={mealtime} ing={ing}/>
                    {/* {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond') ? <div></div> : <li >{ing.name.replaceAll(DELIM, OR)}</li>}*/}
                 </div>
             )
