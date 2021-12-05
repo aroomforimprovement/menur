@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useReducer, useCallback, useEffect } from "react";
 import './shopping.css';
 import { DropTarget } from 'react-drag-drop-container';
 import { ListItem } from "./ListItem";
@@ -7,6 +7,13 @@ import { useMainContext } from "../../main/MenurRouter";
 
 export const UserList = ({list}) => {
     const { state, dispatch } = useMainContext();
+
+    
+    const highlightDispatch = useCallback(dispatch, [dispatch]);
+
+    const handleHighlightIngredient = (name) => {
+        highlightDispatch({type: 'SET_HIGHLIGHTED_INGREDIENT', data: name})
+    }
 
     const handleDragEnter = () => {
         //console.log("enter");
@@ -41,6 +48,10 @@ export const UserList = ({list}) => {
                     <div className='fa fa-caret-left me-1'
                         onClick={() => decrement(ingredient)}>{' '}</div>
                     <ListItem dragData={ingredient}/>
+                    <div className='btn btn-sm rounded rounded-circle'
+                        onClick={() => {handleHighlightIngredient(ingredient.name)}}>
+                        <small>?</small>
+                    </div>
                     <div className='fa fa-caret-right ms-1'
                         onClick={() => increment(ingredient)}>{' '}</div>
                     <button type='button' className='btn-close meal-remove' 
@@ -54,7 +65,6 @@ export const UserList = ({list}) => {
     });
 
     return(
-        
         <DropTarget targetKey='list' 
                 onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
                 onHit={handleDrop}>
