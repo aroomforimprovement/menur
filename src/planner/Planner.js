@@ -17,8 +17,8 @@ const Planner = ({edit}) => {
     const { state, dispatch } = useMainContext();
     const params = useParams();
     const splat = params.id;
-    console.log("SPLAT: "+splat);
-    const isEdit = params.edit;
+    //console.log("SPLAT: "+splat);
+    //const isEdit = params.edit;
 
     const handleGenList = () => {
         dispatch({type: 'GEN_LIST', data:true});

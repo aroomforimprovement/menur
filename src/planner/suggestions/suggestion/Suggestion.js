@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Dropdown } from 'react-bootstrap';
 import './suggestion.css';
 import { useMainContext } from '../../../main/MenurRouter';
@@ -99,7 +99,7 @@ export const ClickAddToMealPlan = ({keyProp, dragData}) => {
     );
 }
 
-export const ClickToExpandMeal = ({ingredients, keyProp, dragData, isDragging}) => {
+export const ClickToExpandMeal = ({ingredients, keyProp, dragData}) => {
     const {state, dispatch} = useMainContext();
     const handleToggle = (isOpen) => {
         console.dir(isOpen);
@@ -112,7 +112,7 @@ export const ClickToExpandMeal = ({ingredients, keyProp, dragData, isDragging}) 
 
     return(
         <Dropdown onToggle={handleToggle} className='sugg-drop'
-            drop={'right'} show={state.selectedSuggestion.name === dragData.meal.name && !isDragging}>
+            drop={'right'} show={state.selectedSuggestion.name === dragData.meal.name}>
             <Dropdown.Toggle 
                 as={InfoToggle} 
                 id={`suggDrop_${keyProp}`}
@@ -137,14 +137,9 @@ export const Suggestion = ({dragData, keyProp}) => {
         classes = classes + ' sugg-none';
     }
     const { state, dispatch } = useMainContext();
-    const [isDragging, setisDragging] = useState(false);
-
     const handleDragStart = (e) => {
-        setisDragging(true);
-        
     }
     const handleDragEnd = (e) => {
-        setisDragging(false);
         dispatch({type: 'UNSET_SELECTED_SUGGESTION', data: dragData.meal});
     }
     const handleDrop = (e) => {
@@ -207,7 +202,7 @@ export const Suggestion = ({dragData, keyProp}) => {
                 </div>    
                 <ClickAddToMealPlan keyProp={keyProp}  dragData={dragData} className='sugg-click-add'/> 
                 <ClickToExpandMeal keyProp={keyProp} ingredients={ingredients} 
-                    dragData={dragData} className='sugg-expand' isDragging={isDragging}/>
+                    dragData={dragData} className='sugg-expand' />
                 </div>
             </DragDropContainer>
         /*</div>*/

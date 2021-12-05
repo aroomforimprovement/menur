@@ -60,6 +60,7 @@ export const reducer = (state, action) => {
     }
 
     const getItemRemoved = (arr, item) => {
+        console.log("getItemRemoved");
         const i = arr.indexOf(item);
         if(i > -1){
             arr.splice(i, 1);
@@ -173,6 +174,8 @@ export const reducer = (state, action) => {
             mealplan[action.data.day][action.data.mealtime] = action.data.meal; 
             const servings = parseInt(action.data.meal.servings);
             let leftovers = [...state.leftovers];
+            //should abstract 2 into defaultServings var and 
+            //allow user to set that
             if(servings > 2){
                 for(let i = 2; i < servings; i++){
                     let leftover = {
