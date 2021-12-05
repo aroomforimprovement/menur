@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMainContext } from '../../main/MenurRouter';
-import { DELIM, OR } from '../../shared/meals';
+import { DELIM } from '../../shared/meals';
 
 export const MealPlanSlotIngredient = ({day, mealtime, ing}) => {
 

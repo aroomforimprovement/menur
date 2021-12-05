@@ -74,7 +74,7 @@ const MenurRouter = () => {
                 username: state.user.username,
                 email: state.user.email
             }
-            console.dir(body);
+            //console.dir(body);
             return await fetch(`${proxy}${apiUrl}app/login`, {
                 method: 'POST',
                 body: JSON.stringify(body),
@@ -97,7 +97,7 @@ const MenurRouter = () => {
             await getAccountInfo(state.user.access)
                 .then((result) => {
                     if(result){
-                        console.dir(result);
+                        //console.dir(result);
                         result.isSet = true;
                         dispatch({
                             type: 'SET_ACCOUNT_INFO',

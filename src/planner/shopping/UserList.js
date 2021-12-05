@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import './shopping.css';
 import { DropTarget } from 'react-drag-drop-container';
 import { ListItem } from "./ListItem";
