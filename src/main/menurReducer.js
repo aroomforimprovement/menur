@@ -11,7 +11,6 @@ export const reducer = (state, action) => {
         let ingArr = [];
         days.forEach((day) => {
             mealtimes.forEach((mealtime) => {
-                //console.dir(state.mealplan);
                 const meal = state.mealplan[day] && state.mealplan[day][mealtime] 
                     ? state.mealplan[day][mealtime] : {};
                 
@@ -30,7 +29,6 @@ export const reducer = (state, action) => {
         for(let key of Object.keys(ingNames) ){
             ingredients.push({"name": key, "qty": ingNames[key], "list": "genList"});
         }
-        //console.dir(ingredients);
         return ingredients;
     }
 
@@ -125,6 +123,9 @@ export const reducer = (state, action) => {
                 return({...state, selectedSuggestion: MEALS[0]});
             }
             return(state);
+        }
+        case 'SET_HIGHLIGHTED_INGREDIENT':{
+            return({...state, highlightedIngredient: action.data});
         }
         case 'GET_SUGGESTIONS':{
             //console.log(action.data);

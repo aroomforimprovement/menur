@@ -8,6 +8,7 @@ export const INIT_STATE = {
     selection: MEALS[0], 
     suggestions: [],
     selectedSuggestion: MEALS[0],
+    hightlightedIngredient: '',
     mealplan: {
         "Monday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
         "Tuesday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './mealplan.css';
 import { DropTarget } from 'react-drag-drop-container';
 import { useMainContext } from '../../main/MenurRouter';
@@ -9,7 +9,22 @@ export const MealPlanSlot = ({mealtime, day}) => {
     const { state, dispatch } = useMainContext();
 
     const [showIngredients, setShowIngredients] = useState(false);
-
+    const [hasHighlightedIngredient, setHasHighlightedIngredient] = useState(false);
+    
+    useEffect(() => {
+        const ings = state.mealplan[day][mealtime].ingredients 
+            ? [...state.mealplan[day][mealtime].ingredients]
+            : [];
+        let hasHighlight = false;
+        for(let i = 0; i < ings.length; i++){
+            if(state.highlightedIngredient === ings[i].name){
+                hasHighlight = true;
+                console.log("highlighted: " + ings[i].name)
+                break;
+            }
+        }
+        setHasHighlightedIngredient(hasHighlight);
+    }, [day, mealtime, state.highlightedIngredient, state.mealplan]);
 
     const handleDragEnter = (e) => {
         e.target.style.color = 'red';
@@ -50,7 +65,8 @@ export const MealPlanSlot = ({mealtime, day}) => {
     return(
         <DropTarget targetKey='meal' as='div'
             onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>                
-            <div className={`container mealtime border shadow shadow-sm ${state.isLandscape ? 'mealtime-ls' : 'mealtime-pt'}`} >
+            <div className={`container mealtime border shadow shadow-sm ${state.isLandscape ? 'mealtime-ls' : 'mealtime-pt'} 
+                ${hasHighlightedIngredient ? 'border-success' : ''}`} >
                 <div>
                     <div className='mealtime-text pt-0'>{state.mealplan[day][mealtime].name 
                         ? state.mealplan[day][mealtime].name  : ' '}

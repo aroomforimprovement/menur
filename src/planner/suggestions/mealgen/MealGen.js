@@ -180,7 +180,10 @@ export const MealGen = () => {
                             </InputGroup>
                         </div>
                     </div>
-                    <Form.Label size='sm' className='mt-2'><h5>Ingredients:</h5></Form.Label>
+                    <Form.Label size='sm' className='mt-2'>
+                        <h5>Ingredients:</h5>
+                        <small>Use | character to separate options, like "Fresh tomatoes|Canned tomatoes"</small>
+                    </Form.Label>
                     <div id='ingredient-slot'>
                         {ingredientFields}
                     </div>

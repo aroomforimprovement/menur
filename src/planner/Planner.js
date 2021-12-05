@@ -45,7 +45,7 @@ const Planner = ({edit}) => {
                 </div>
             </div>
             <div className='row my-2'>
-                {state ? <PDFDownloadLink className={'btn btn-success'}
+            {state ? <PDFDownloadLink className={'btn btn-success'}
                     document={state.isLandscape 
                     ? <DownloadableMealPlanLandscape mealplan={state.mealplan}/> 
                     : <DownloadableMealPlan mealplan={state.mealplan}/>}
@@ -55,6 +55,7 @@ const Planner = ({edit}) => {
                             }  
                 </PDFDownloadLink> : <div></div>}
                 {/**state && state.mealplan ? <MealPlanViewer mealplan={state.mealplan} isLandscape={state.isLandscape}/> : <div></div>*/}
+               
             </div>
             <div className='row mt-2 mb-2'>
                 <button onClick={handleGenList} 
