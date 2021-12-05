@@ -19,7 +19,7 @@ export const UserList = ({list}) => {
         //console.log("enter");
     }
     const handleDragLeave = () => {
-
+ 
     }
     const handleDrop = async (e) => {
         await dispatch({type: 'REMOVE_FROM_LIST', data: e.dragData});
