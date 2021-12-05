@@ -48,12 +48,13 @@ export const UserList = ({list}) => {
                     <div className='fa fa-caret-left me-1'
                         onClick={() => decrement(ingredient)}>{' '}</div>
                     <ListItem dragData={ingredient}/>
-                    <div className='btn btn-sm rounded rounded-circle'
+                    
+                    <div className='fa fa-caret-right ms-1'
+                        onClick={() => increment(ingredient)}>{' '}</div>
+                    <div className='btn btn-sm rounded rounded-circle border mx-1 p-0 highlight-ingredient'
                         onClick={() => {handleHighlightIngredient(ingredient.name)}}>
                         <small>?</small>
                     </div>
-                    <div className='fa fa-caret-right ms-1'
-                        onClick={() => increment(ingredient)}>{' '}</div>
                     <button type='button' className='btn-close meal-remove' 
                         onClick={() => remove(ingredient)} 
                         style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} 
