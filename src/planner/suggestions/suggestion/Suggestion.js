@@ -201,8 +201,11 @@ export const Suggestion = ({dragData, keyProp}) => {
                     </h5>
                 </div>    
                 <ClickAddToMealPlan keyProp={keyProp}  dragData={dragData} className='sugg-click-add'/> 
-                <ClickToExpandMeal keyProp={keyProp} ingredients={ingredients} 
-                    dragData={dragData} className='sugg-expand' />
+                {dragData.meal.name.indexOf('Leftover') > -1 
+                    ? <div></div>
+                    : <ClickToExpandMeal keyProp={keyProp} ingredients={ingredients} 
+                        dragData={dragData} className='sugg-expand' /> 
+                }
                 </div>
             </DragDropContainer>
         /*</div>*/
