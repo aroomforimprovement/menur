@@ -5,6 +5,7 @@ import { accountReducer } from './accountReducer';
 import { Form } from 'react-bootstrap';
 import { Plan } from './components/Plan';
 import { Meal } from './components/Meal';
+import { Settings } from './components/Settings';
 
 const AccountContext = createContext({showSpices: false});
 
@@ -26,6 +27,10 @@ const Account = () => {
 
     const handleShowMeals = () => {
         dispatch({type: 'SET_HIDE_MEALS', data: !state.hideMeals});
+    }
+
+    const handleShowSettings = () => {
+        dispatch({type: 'SET_HIDE_SETTINGS', data: !state.hideSettings});
     }
 
     const handleCheckSpices = (e) => {
@@ -75,6 +80,13 @@ const Account = () => {
                         <div>
                             <div className='row account-heading mt-2'>
                                 <h3>{state.user.username}</h3>
+                            </div>
+                            <div className='row account-plans my-4 px-2 shadow shadow-lg border border-light '>
+                                <div className='account-plans-header text-center p-4'
+                                    onClick={handleShowSettings}>
+                                    <h5>Settings:</h5>
+                                </div>
+                                <Settings />
                             </div>
                             <div className='row account-plans my-4 px-2 shadow shadow-lg border border-light '>
                                 <div className='account-plans-header text-center p-4'

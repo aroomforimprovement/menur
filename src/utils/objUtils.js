@@ -35,9 +35,9 @@ export const mealHasIngredient = (meal, ingredientName) => {
     return false;
 }
 
-export const getMealsWithIngredient = (ingredient) => {
+export const getMealsWithIngredient = (allMeals, ingredient) => {
     let meals = [];
-    MEALS.forEach((meal) => {
+    allMeals.forEach((meal) => {
         let hasIngredient = false;
         if(mealHasIngredient(meal, ingredient)){
             hasIngredient = true;

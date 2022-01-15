@@ -1,9 +1,35 @@
+import toast from 'react-hot-toast';
 import { MEALS } from '../shared/meals';
 import { INIT_STATE, days, mealtimes } from '../shared/states';
 import { getIngredientsFromMeal, getMealsWithIngredient } from '../utils/objUtils';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+let proxy = process.env.REACT_APP_PROXY_URL;
+
+export const updateDefaultServings = async (id, update, access) => {
+    return await fetch(`${proxy}${apiUrl}app/settings`, {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify({userid: id, settings: {defaultServings: update}}),
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${access}`,
+        }
+    }).then(response => {
+        if(response.ok){
+            toast.success("defaultServings updated ok");
+            return response.json();
+        }
+    }, error => {
+        console.error(error);
+    }).catch((error) => {
+        console.error(error);
+    })
+}
+
 export const reducer = (state, action) => {
     const noop = () => {return};
+
     const getIngredientsFromMealPlan = () => {
         if(!state.mealplan){
             return [{"name": "Add some meals to the week to start generating a list", "qty": ":)"}];
@@ -134,8 +160,9 @@ export const reducer = (state, action) => {
                 return({...state, suggestions:[]});
             }
             const newSuggestions = [];
+            const allMeals = state.meals ? MEALS.concat(state.meals) : MEALS;
             getIngredientsFromMeal(state.selection).forEach((ingredient) => {
-                const suggestions = getMealsWithIngredient(ingredient.name);
+                const suggestions = getMealsWithIngredient(allMeals, ingredient.name);
                 suggestions.forEach((suggestion) => {
                     let exists = false;
                     newSuggestions.forEach((existing) => {
@@ -179,18 +206,16 @@ export const reducer = (state, action) => {
             let leftovers = [...state.leftovers];
             //should abstract 2 into defaultServings var and 
             //allow user to set that
-            if(servings > 2){
-                for(let i = 2; i < servings; i++){
-                    let leftover = {
-                        "name": "Leftover " + action.data.meal.name,
-                        "servings": "1",
-                        "ingredients": [],
-                        "score": "100",
-                        "day_tag": action.data.day,
-                        "mealtime_tag": action.data.mealtime
-                    }
-                    leftovers.push(leftover);
+            if(servings > state.defaultServings){
+                let leftover = {
+                    "name": "Leftover " + action.data.meal.name,
+                    "servings": servings - state.defaultServings,
+                    "ingredients": [],
+                    "score": "100",
+                    "day_tag": action.data.day,
+                    "mealtime_tag": action.data.mealtime
                 }
+                leftovers.push(leftover);
             }
             return ({...state, mealplan: mealplan, leftovers: leftovers});
         }
@@ -384,6 +409,9 @@ export const reducer = (state, action) => {
         }
         case 'SET_HIDE_MEALS':{
             return({...state, hideMeals: action.data});
+        }
+        case 'SET_HIDE_SETTINGS':{
+            return({...state, hideSettings: action.data});
         }
         default:
             break;

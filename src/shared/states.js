@@ -1,4 +1,4 @@
-import { MEALS } from "./meals";
+import { DEFAULT_SERVINGS, MEALS } from "./meals";
 
 
 export const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -28,7 +28,9 @@ export const INIT_STATE = {
     showMine: false,
     meals: [],
     plans: [],
+    hideSettings: true,
     hideMeals: true,
     hidePlans: true,
     cookiesApproved: false,
+    defaultServings: DEFAULT_SERVINGS
 }

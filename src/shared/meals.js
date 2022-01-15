@@ -6,7 +6,7 @@ export const DEFAULT_SERVINGS = 2;
 export const MEALS = [{
     "name": "Pick a meal",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
         "name": "Pick a meal above to start or create your own",
         "type": "",
@@ -17,7 +17,7 @@ export const MEALS = [{
 {
     "name": "Arrabiata",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Chopped tomatoes",
             "type": "tin",
@@ -228,7 +228,7 @@ export const MEALS = [{
 {
     "name": "Carbonara",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Pasta",
             "type": "dry",
@@ -294,7 +294,7 @@ export const MEALS = [{
 {
     "name": "Cauliflower Wings",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Cauliflower",
             "type": "fresh",
@@ -402,7 +402,7 @@ export const MEALS = [{
 {
     "name": "Chicken Curry",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Chicken|Tofu|Quorn",
             "type": "fresh",
@@ -468,7 +468,7 @@ export const MEALS = [{
 {
     "name": "Chinese Curry",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Tofu|Chicken|Quorn",
             "type": "fresh",
@@ -528,7 +528,7 @@ export const MEALS = [{
 {
     "name": "Fajitas",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Chicken|Quorn",
             "type": "fresh",
@@ -576,7 +576,7 @@ export const MEALS = [{
 {
     "name": "Fish 'n' Chips",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Fish in breadcrumbs",
             "type": "frozen",
@@ -707,7 +707,7 @@ export const MEALS = [{
 {
     "name": "Goat's Cheese Salad",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Goat's Cheese",
             "type": "fresh",
@@ -779,7 +779,7 @@ export const MEALS = [{
 {
     "name": "Halloumi Burgers",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Halloumi",
             "type": "fresh",
@@ -826,7 +826,7 @@ export const MEALS = [{
 },  {
     "name": "Italian Chilli",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Baby potatoes",
             "type": "fresh",
@@ -965,7 +965,7 @@ export const MEALS = [{
 {
     "name": "Lentils",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Red lentils",
             "type": "dry",
@@ -1085,7 +1085,7 @@ export const MEALS = [{
 {
     "name": "Mince Gravy",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Mince",
             "type": "fresh",
@@ -1121,7 +1121,7 @@ export const MEALS = [{
 {
     "name": "Omlette",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Cheese",
             "type": "fresh",
@@ -1212,7 +1212,7 @@ export const MEALS = [{
 {
     "name": "Pasta Pesto",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Pasta",
             "type": "dry",
@@ -1242,7 +1242,7 @@ export const MEALS = [{
 {
     "name": "Pizza",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
         "name": "Pizza",
         "type": "frozen",
@@ -1308,7 +1308,7 @@ export const MEALS = [{
 {
     "name": "Thai Curry",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Chicken",
             "type": "fresh",
@@ -1374,7 +1374,7 @@ export const MEALS = [{
 {
     "name": "Vegetarian Chilli",
     "mealtime": "Dinner",
-    "servings": "2",
+    "servings": "DEFAULT",
     "ingredients": [{
             "name": "Chopped tomatoes",
             "type": "tin",
