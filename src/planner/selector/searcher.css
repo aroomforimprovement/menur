@@ -1,0 +1,13 @@
+.searcher{
+    position: relative;
+}
+.search-results{
+    z-index: 1001;
+    background-color: white;
+    position:absolute;
+    cursor: pointer;
+}
+
+.search-result-0{
+    background-color: rgb(128, 193, 255, 0.1);
+}

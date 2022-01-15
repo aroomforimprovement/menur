@@ -4,6 +4,8 @@ import './selector.css';
 import { DELIM, MEALS, OR } from '../../shared/meals';
 import { getIngredientsFromMeal } from '../../utils/objUtils';
 import { useMainContext } from '../../main/MenurRouter';
+import { Searcher } from './Searcher';
+import toast from 'react-hot-toast';
 
 export const Selector = () => {
     const { state, dispatch } = useMainContext();
@@ -66,6 +68,8 @@ export const Selector = () => {
     const handleCheckMine = (e) => {
         if(state.meals && state.meals.length > 0){
             dispatch({type: 'SET_SHOW_MINE', data: e.target.checked});
+        }else{
+            toast("Create an account to add and use own meals");
         }
     }
 
@@ -81,6 +85,9 @@ export const Selector = () => {
                     id="checkBasic" checked={state.showBasic}/>
                 <Form.Check inline type={"checkbox"} onChange={handleCheckMine} label={'My meals'} 
                     id="checkMine" checked={state.showMine}/>
+                <div>
+                    <Searcher />
+                </div>
                 <Form.Select  id='mealSelect' className='my-2'
                     onChange={handleChange} value={state.selection.name}>
                     {meals}

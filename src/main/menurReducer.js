@@ -130,6 +130,9 @@ export const reducer = (state, action) => {
         }
         case 'GET_SUGGESTIONS':{
             //console.log(action.data);
+            if(state.selection.name === 'Pick a meal'){
+                return({...state, suggestions:[]});
+            }
             const newSuggestions = [];
             getIngredientsFromMeal(state.selection).forEach((ingredient) => {
                 const suggestions = getMealsWithIngredient(ingredient.name);
