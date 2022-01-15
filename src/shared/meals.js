@@ -8,7 +8,7 @@ export const MEALS = [{
     "mealtime": "Dinner",
     "servings": "2",
     "ingredients": [{
-        "name": "Pick a meal above to start or create one below",
+        "name": "Pick a meal above to start or create your own",
         "type": "",
         "qty": "1",
         "score": "0"
