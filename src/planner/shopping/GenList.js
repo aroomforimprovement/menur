@@ -32,12 +32,11 @@ export const GenList = () => {
     const copyList = async (list, heading) => {
         let copy = heading+"\n";
         list.forEach(item => {
-            //console.dir(item);
             copy += item.name + "\tx " + item.qty + "\n";
         });
         copyToClipboard(copy)
-            .then(() => console.log('copied'))
-            .catch(() => console.log('error'));
+            .then(() => console.debug('copied'))
+            .catch(() => console.debug('error'));
     }
     const copyGenList = () => {
         copyList([...state.genList], "GENERATED LIST");

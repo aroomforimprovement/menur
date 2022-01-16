@@ -27,8 +27,6 @@ export const Settings = () => {
                 }
             }).then(response => {
                 if(response.ok){
-                    console.log("response ok");
-                    console.dir(response);
                     return true;
                 }
             }, error => {
@@ -62,7 +60,6 @@ export const Settings = () => {
         }
 
         useEffect(() => {
-            console.dir(state.user);
         }, [state.user]);
         
         return(

@@ -37,7 +37,6 @@ export const MealGen = () => {
             score = 0;
         }
         let i = {name: nameField.value, type: type, qty: qtyField.value, score: score};
-        //console.dir(i);
         if(i.name.length > 0){
             ingr.push(i);
             toast(`Ingredient added to new meal ${name}`);
@@ -47,7 +46,6 @@ export const MealGen = () => {
     }
     const addSuggestion = (e) => {
         e.preventDefault();
-        console.log("addSuggestion");
         const meal = {
             name: name,
             ingredients: ingredients,
@@ -77,7 +75,6 @@ export const MealGen = () => {
             }
         }).then(response => {
             if(response.ok){
-                console.log(`meal saved ok`);
                 dispatch({type: 'ADD_SELECTOR_MEAL', data: body.meal});
                 toast.success("Meal saved ok");
                 return id;
@@ -113,7 +110,6 @@ export const MealGen = () => {
         }
     }
     const handleServingsChange = (e) => {
-        console.log(e.target.value);
         setServings(e.target.value);
     }
 

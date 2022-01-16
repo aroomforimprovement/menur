@@ -15,7 +15,7 @@ export const Footer = () => {
     const params = useParams();
     const mealPlanId = params.id;
     const isEdit = params.edit;
-    //console.log("isEDIT: "+params.edit);
+    
     const saveDataToAccount = async () => {
         if(state && state.user && state.user.isAuth){
             const name = new Date().toString();
@@ -41,7 +41,6 @@ export const Footer = () => {
                 }
             }).then(response => {
                 if(response.ok){
-                    console.log(`mealplan saved ok`);
                     setIsSaving(false);
                     setIsSaveFailed(false);
                     dispatch(

@@ -102,7 +102,6 @@ export const ClickAddToMealPlan = ({keyProp, dragData}) => {
 export const ClickToExpandMeal = ({ingredients, keyProp, dragData}) => {
     const {state, dispatch} = useMainContext();
     const handleToggle = (isOpen) => {
-        console.dir(isOpen);
         if(isOpen){
             dispatch({type: 'SET_SELECTED_SUGGESTION', data: dragData.meal});
         }else{

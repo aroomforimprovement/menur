@@ -18,7 +18,6 @@ export const MealPlanSlot = ({mealtime, day}) => {
         for(let i = 0; i < ings.length; i++){
             if(state.highlightedIngredient === ings[i].name){
                 hasHighlight = true;
-                console.log("highlighted: " + ings[i].name)
                 break;
             }
         }

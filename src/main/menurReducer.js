@@ -46,7 +46,6 @@ export const reducer = (state, action) => {
                 }
             });
         });
-        //console.log(suggestion.name + " " + score);
         return score;
     }   
 
@@ -62,7 +61,6 @@ export const reducer = (state, action) => {
     }
 
     const getItemRemoved = (arr, item) => {
-        console.log("getItemRemoved");
         const i = arr.indexOf(item);
         if(i > -1){
             arr.splice(i, 1);
@@ -79,7 +77,6 @@ export const reducer = (state, action) => {
 
     const hasLeftoverToRemove = (leftovers, day, mealtime) => {
         for(let i = 0; i < leftovers.length; i++){
-            //console.log(leftovers[i].day_tag +":"+ leftovers[i].mealtime_tag);
             if(leftovers[i].day_tag === day &&
                 leftovers[i].mealtime_tag === mealtime){
                     return true;
@@ -90,7 +87,6 @@ export const reducer = (state, action) => {
 
     const getLeftoverRemoved = (leftovers, day, mealtime) => {
         for(let i = 0; i < leftovers.length; i++){
-            console.log(leftovers[i].day_tag +":"+ leftovers[i].mealtime_tag);
             if(leftovers[i].day_tag === day &&
                 leftovers[i].mealtime_tag === mealtime){
                     leftovers.splice(i, 1);
@@ -100,8 +96,8 @@ export const reducer = (state, action) => {
         return leftovers;
     }
     
-    console.log(action.type+':'+action.data)
-    console.dir(action.data);
+    //console.log(action.type+':'+action.data)
+    //console.dir(action.data);
     switch(action.type){
         case 'COOKIES_APPROVED':{
             return({...state, cookiesApproved: action.data});
@@ -131,7 +127,6 @@ export const reducer = (state, action) => {
             return({...state, highlightedIngredient: action.data});
         }
         case 'GET_SUGGESTIONS':{
-            //console.log(action.data);
             if(state.selection.name === 'Pick a meal'){
                 return({...state, suggestions:[]});
             }
@@ -159,13 +154,9 @@ export const reducer = (state, action) => {
             });
             const rankedSuggestions = getRankedSuggestions(state.selection, newSuggestions);
             const sampleSuggestions = rankedSuggestions.slice(0, 10);
-            console.log("sampleSuggestions");
-            console.dir(sampleSuggestions);
             return ({...state, suggestions:sampleSuggestions});
         }
         case 'ADD_SUGGESTION':{
-            console.log('ADD_SUGGESTION: ');
-            console.dir(action.data)
             const suggestions = [...state.suggestions];
             suggestions.push(action.data);
             return ({...state, suggestions: suggestions});
@@ -214,17 +205,13 @@ export const reducer = (state, action) => {
             let leftoverMeals = [];
             // eslint-disable-next-line no-unused-vars
             for(let [key, value] of Object.entries(mealplan) ){
-                //console.log(key+":"+value);
                 // eslint-disable-next-line no-unused-vars
                 for(let [ke, val] of Object.entries(mealplan[key])){
-                    //console.log(ke+":"+val);
                     for(let [k, v] of Object.entries(mealplan[key][ke])){
-                        //console.log(k+":"+v);
                         if(k === 'name' && v.indexOf('Leftover') > -1){
                             let dayFound = false;
                             let mealtimeFound = false;
                             for(let [kee, vaa] of Object.entries(mealplan[key][ke])){
-                                //console.log(kee+":"+vaa);
                                 if(kee === 'day_tag' && vaa === action.data.day){
                                     dayFound = vaa;
                                 }
@@ -233,7 +220,6 @@ export const reducer = (state, action) => {
                                 }
                             }
                             if(dayFound && mealtimeFound){
-                                console.log(dayFound + ":" + mealtimeFound);
                                 let itemToRemove = {day: dayFound, mealtime: mealtimeFound};
                                 leftoverMeals.push(itemToRemove);
                             }
@@ -254,14 +240,11 @@ export const reducer = (state, action) => {
             
             for(let i = 0; i < ingredients.length; i++){
                 if(ingredients[i].name === action.data.ing.name){
-                    console.log("INGREDIENT: "+ingredients[i].name);
                     if(ingredients[i].name.indexOf('|') > 0){
                         const ingredientName = ingredients[i].name.replace(action.data.orIng, '')
                             .replace('||', '').replace(/^\|/, '').replace(/\|$/, '');
-                        console.log("INGREDIENT NAME: "+ingredientName);
                         ingredients[i].name = ingredientName;
                     }else{
-                        console.log("remove ingredient");
                         ingredients = getItemRemoved(ingredients, action.data.ing);
                     }
                 }
@@ -288,7 +271,6 @@ export const reducer = (state, action) => {
         case 'UPDATE_ON_LIST':{
             let list = [...state[action.data.old.list]];
             list = getItemQtyChanged(list, action.data.old, action.data.update);
-            console.dir(list);
             return ({...state, [action.data.old.list]: list});
         }
         case 'REMOVE_LEFTOVER':{

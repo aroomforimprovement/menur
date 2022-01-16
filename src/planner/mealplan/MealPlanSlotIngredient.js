@@ -11,7 +11,6 @@ export const MealPlanSlotIngredient = ({day, mealtime, ing}) => {
     }
 
     const OrIngredients = ({ing}) => {
-        //console.dir(ing);
         const orIngs = ing.name.split(DELIM);
         if(Array.isArray(orIngs) && orIngs.length > 1){
             const count = orIngs.length;

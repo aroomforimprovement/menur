@@ -9,7 +9,6 @@ export const LoginBtn = ({size}) => {
 
     const loginPop = async () => {
         loginWithPopup().then(() => {
-            console.log('loginWithPopup, then...');
             window.location.href = '/planner';
         });
     }

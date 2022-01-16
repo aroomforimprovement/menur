@@ -16,7 +16,7 @@ export const UserList = ({list}) => {
     }
 
     const handleDragEnter = () => {
-        //console.log("enter");
+        
     }
     const handleDragLeave = () => {
  

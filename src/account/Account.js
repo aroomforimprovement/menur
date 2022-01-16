@@ -63,7 +63,6 @@ const Account = () => {
 
     const meals = state && state.meals && state.meals.length > 0
     ? state.meals.map((meal, i) => {
-        console.log("meal.id: "+meal.id);
         return(
             <div key={meal.id} className='col col-3'>
                 <Meal meal={meal} showSpices={showSpices}/>

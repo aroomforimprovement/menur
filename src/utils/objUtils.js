@@ -1,9 +1,8 @@
-import { MEALS, DELIM } from '../shared/meals';
+import { DELIM } from '../shared/meals';
 import { v4 as uuidv4 } from 'uuid';
 
 
 export const getNewId = () => {
-    console.log("getNewAnimId");
     return uuidv4();
 }
 
@@ -20,8 +19,6 @@ export const getIngredientsFromMeal = (meal) => {
             ingredientArr.push(ingredient);
         }
     });
-    //console.log('getIngredientsFromMeal');
-    //console.log(ingredientArr);
     return ingredientArr;
 }
 
@@ -48,8 +45,6 @@ export const getMealsWithIngredient = (allMeals, ingredient) => {
             }
         }
     });
-    //console.log("Meals with "+ingredient+":");
-    //console.dir(meals);
     return meals;
 }
 
