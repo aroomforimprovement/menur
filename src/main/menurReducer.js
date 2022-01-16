@@ -1,31 +1,7 @@
-import toast from 'react-hot-toast';
 import { MEALS } from '../shared/meals';
 import { INIT_STATE, days, mealtimes } from '../shared/states';
 import { getIngredientsFromMeal, getMealsWithIngredient } from '../utils/objUtils';
 
-const apiUrl = process.env.REACT_APP_API_URL;
-let proxy = process.env.REACT_APP_PROXY_URL;
-
-export const updateDefaultServings = async (id, update, access) => {
-    return await fetch(`${proxy}${apiUrl}app/settings`, {
-        method: 'POST',
-        mode: 'cors',
-        body: JSON.stringify({userid: id, settings: {defaultServings: update}}),
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${access}`,
-        }
-    }).then(response => {
-        if(response.ok){
-            toast.success("defaultServings updated ok");
-            return response.json();
-        }
-    }, error => {
-        console.error(error);
-    }).catch((error) => {
-        console.error(error);
-    })
-}
 
 export const reducer = (state, action) => {
     const noop = () => {return};
@@ -124,8 +100,8 @@ export const reducer = (state, action) => {
         return leftovers;
     }
     
-    //console.log(action.type+':'+action.data)
-    //console.dir(action.data);
+    console.log(action.type+':'+action.data)
+    console.dir(action.data);
     switch(action.type){
         case 'COOKIES_APPROVED':{
             return({...state, cookiesApproved: action.data});
@@ -413,8 +389,13 @@ export const reducer = (state, action) => {
         case 'SET_HIDE_SETTINGS':{
             return({...state, hideSettings: action.data});
         }
-        default:
-            break;
+        case 'SET_DEFAULT_SERVINGS':{
+            return({...state, defaultServings: action.data});
+        }
+        default:{
+            console.error("Reached default case - menurReducer.js");
+            return state;
+        }
     }
     
 }
