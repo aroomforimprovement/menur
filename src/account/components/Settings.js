@@ -66,7 +66,7 @@ export const Settings = () => {
         }, [state.user]);
         
         return(
-            <Container className='row mt-5 mb-5 default-servings-area'>
+            <Container className='mt-5 mb-5 default-servings-area'>
                 <Row>
                     <Col xs={3} className='mt-1 default-servings-heading'>
                         <Row><h6>Default servings:</h6></Row>
@@ -81,20 +81,22 @@ export const Settings = () => {
                                     className='default-servings'>
                                         <h4>{state.defaultServings}</h4>
                                 </Col>
-                                <Form onSubmit={handleUpdate} hidden={isEditHidden} className='col col-12'>
-                                    <Form.Group >
-                                        <Form.Control className='col col-7' size='sm' type='number' name='defaultServings' id='defaultServings' defaultValue={state.defaultValue} />
-                                        <Button className='col col-2' size='sm' variant='secondary' onClick={handleEdit}>Cancel</Button>
-                                        <Button className='col col-2'size='sm' variant='primary' type='submit' >Save</Button>
-                                    </Form.Group>
+                                <Row>
+                                <Form onSubmit={handleUpdate} hidden={isEditHidden} >
+                                    <Row >
+                                        <Col xs={6} md={4} lg={2} className='mx-0'><Form.Control size='sm' type='number' name='defaultServings' id='defaultServings' defaultValue={state.defaultServings} /></Col>
+                                        <Col xs={3} md={2} lg={1} className='mx-0'><Button size='sm' variant='secondary' onClick={handleEdit}>Cancel</Button></Col>
+                                        <Col xs={3} md={2} lg={1} className='mx-0'><Button size='sm' variant='primary' type='submit' >Save</Button></Col>
+                                    </Row>
                                 </Form>
+                                </Row>
                             </Row>
                         }
                     </Col>
-                    <div className='col fa fa-edit mt-1 edit-name'
+                    <Col xs={1} className='col fa fa-lg fa-edit mt-1 edit-setting'
                     onClick={handleEdit}>
                         {''}
-                    </div>
+                    </Col>
                 </Row>
             </Container>
         );

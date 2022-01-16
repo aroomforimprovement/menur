@@ -4,6 +4,20 @@
     min-height:100vh;
 }
 
+.edit-setting:hover{
+    transform: scale(1.2);
+    color:rgba(14, 141, 201, 0.7);
+    cursor:pointer;
+}
+
+.default-servings-heading{
+    text-align: start;
+}
+
+.default-servings-heading small{
+    font-size: small;
+}
+
 .account-plans{
     background-color:rgba(216, 216, 250, 0.3);
 }
