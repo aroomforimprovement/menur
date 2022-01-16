@@ -177,6 +177,7 @@ export const MealGen = () => {
                                 <FormControl type='number' id='servings' defaultValue={2}
                                     onChange={handleServingsChange} size="sm"
                                     className='col col-5 py-0'></FormControl>
+                                <small>{`${state.defaultServings} servings + ${servings - state.defaultServings} leftovers`}</small>
                             </InputGroup>
                         </div>
                     </div>

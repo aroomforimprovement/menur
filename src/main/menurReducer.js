@@ -322,7 +322,7 @@ export const reducer = (state, action) => {
             return({...state, user: user});
         }
         case 'SET_ACCOUNT_INFO':{
-            return ({...state, meals: action.data.meals, plans: action.data.plans, 
+            return ({...state, meals: action.data.meals, plans: action.data.plans, defaultServings: action.data.defaultServings,
                 user: {...state.user, username: action.data.username}, isSet: action.data.isSet});
         }
         case 'UNSET':{
