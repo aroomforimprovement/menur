@@ -85,7 +85,7 @@ const Account = () => {
                                     onClick={handleShowSettings}>
                                     <h5>Settings:</h5>
                                 </div>
-                                <Settings />
+                                <Settings hidden={state.hideSettings}/>
                             </div>
                             <div className='row account-plans my-4 px-2 shadow shadow-lg border border-light '>
                                 <div className='account-plans-header text-center p-4'
