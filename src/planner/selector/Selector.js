@@ -63,11 +63,13 @@ export const Selector = () => {
 
     const handleCheckBasic = (e) => {
         dispatch({type: 'SET_SHOW_BASIC', data: e.target.checked});
+        dispatch({type: 'GET_SUGGESTIONS'});
     }
 
     const handleCheckMine = (e) => {
         if(state.meals && state.meals.length > 0){
             dispatch({type: 'SET_SHOW_MINE', data: e.target.checked});
+            dispatch({type: 'GET_SUGGESTIONS'});
         }else{
             toast("Create an account to add and use own meals");
         }

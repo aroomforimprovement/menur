@@ -136,7 +136,13 @@ export const reducer = (state, action) => {
                 return({...state, suggestions:[]});
             }
             const newSuggestions = [];
-            const allMeals = state.meals ? MEALS.concat(state.meals) : MEALS;
+            let allMeals = [];
+            if(state.showBasic){
+                allMeals = MEALS;
+            }
+            if(state.meals && state.showMine){
+                allMeals = allMeals.concat(state.meals);
+            }
             getIngredientsFromMeal(state.selection).forEach((ingredient) => {
                 const suggestions = getMealsWithIngredient(allMeals, ingredient.name);
                 suggestions.forEach((suggestion) => {
@@ -180,11 +186,11 @@ export const reducer = (state, action) => {
             mealplan[action.data.day][action.data.mealtime] = action.data.meal; 
             const servings = parseInt(action.data.meal.servings);
             let leftovers = [...state.leftovers];
-            //should abstract 2 into defaultServings var and 
-            //allow user to set that
             if(servings > state.defaultServings){
+                const name = action.data.meal.name.indexOf("Leftover") > -1 
+                    ? action.data.meal.name : `Leftover ${action.data.meal.name}` 
                 let leftover = {
-                    "name": "Leftover " + action.data.meal.name,
+                    "name": name,
                     "servings": servings - state.defaultServings,
                     "ingredients": [],
                     "score": "100",
