@@ -380,6 +380,9 @@ export const reducer = (state, action) => {
         case 'SET_DEFAULT_SERVINGS':{
             return({...state, defaultServings: action.data});
         }
+        case 'SET_DISPLAY_NAME':{
+            return({...state, user: {...state.user, username: action.data}});
+        }
         default:{
             console.error("Reached default case - menurReducer.js");
             return state;
