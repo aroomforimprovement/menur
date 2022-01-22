@@ -11,6 +11,8 @@ import Account from '../account/Account';
 import { Toast } from '../common/Toasts';
 import toast from 'react-hot-toast';
 import Cookies from 'cookies-js';
+import { isMobile } from 'react-device-detect';
+import { PlannerMobile } from '../mobile/planner/PlannerMobile';
 
 
 let apiUrl = process.env.REACT_APP_API_URL;
@@ -30,8 +32,8 @@ const MenurRouter = () => {
     const history = useHistory();
     const [cookieWarning, setCookieWarning] = useState(false);
 
-    const MainPage = () => {return <Planner edit={false}/>}
-    const ContPage = () => {return <Planner edit={true}/>}
+    const MainPage = () => {return isMobile ? <PlannerMobile edit={false}/> : <Planner edit={false}/>}
+    const ContPage = () => {return isMobile ? <PlannerMobile edit={true}/> : <Planner edit={true}/>}
     const AccountPage = () => {return <Account/>}
     const HelpPage = () => {return <Help />}
 
