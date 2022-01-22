@@ -5,6 +5,16 @@
   padding-top:1%;
   background-color: whitesmoke;
 }
+.mealplan-container-o{
+  max-width:100vh;
+}
+.mealplan-o{
+  max-width:100vh;
+}
+.mealplan-o-target-container span .droptarget{
+  min-height:100px;
+  min-width:100px;
+}
 .toggle-orientation-ls{
    font-size: xx-small;
    min-width:55px;
@@ -70,8 +80,18 @@
    color:rgb(153, 153, 153);
    min-width:40px;
  }
+
+ .mealplan-header-o{
+
+ }
+
  .header-x{
   max-width:20px;
+ }
+
+ .header-x-o{
+  min-width:12%;
+  max-width:12%;
  }
  
  .mealplan-slot{
@@ -79,6 +99,19 @@
    margin-left:5px;
    margin-bottom:5px;
    padding:0px;
+ }
+
+ .mealplan-slot-o{
+    min-width:12%;
+    max-width:12%;
+ }
+
+ .mealplan-target-m{
+   min-height:100%;
+ }
+
+ span .droptarget{
+   min-height:200px;
  }
 
  .mealtime{

@@ -172,6 +172,10 @@ export const reducer = (state, action) => {
                 });
             return ({...state, });
         }
+        case 'OPEN_ADD_MEAL':{
+            console.debug('OPEN_ADD_MEAL');
+            return({...state});
+        }
         case 'ADD_MEAL':{
             let mealplan = {...state.mealplan};
             mealplan[action.data.day][action.data.mealtime] = action.data.meal; 
