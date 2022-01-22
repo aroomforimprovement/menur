@@ -14,6 +14,8 @@
 .mealplan-o-target-container span .droptarget{
   min-height:100px;
   min-width:100px;
+  padding:100px;
+  margin:100px;
 }
 .toggle-orientation-ls{
    font-size: xx-small;

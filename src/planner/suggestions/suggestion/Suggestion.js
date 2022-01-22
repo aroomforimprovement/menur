@@ -137,11 +137,14 @@ export const Suggestion = ({dragData, keyProp}) => {
     }
     const { state, dispatch } = useMainContext();
     const handleDragStart = (e) => {
+        console.debug("handleDragStart");
     }
     const handleDragEnd = (e) => {
+        console.debug("handleDragEnd");
         dispatch({type: 'UNSET_SELECTED_SUGGESTION', data: dragData.meal});
     }
     const handleDrop = (e) => {
+        console.debug("handleDrop");
         if(e.dragData.meal.name.indexOf('Leftover') > -1){
             dispatch({type: 'REMOVE_LEFTOVER', data: e.dragData.meal});
         }

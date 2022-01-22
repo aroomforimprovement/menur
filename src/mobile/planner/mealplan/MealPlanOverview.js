@@ -73,13 +73,13 @@ export const MealPlanOverview = () => {
         );
     }
     return(
-        <div className='mealplan-o-target-container'>
-        <DropTarget targetKey='meal' 
+        <div className='container mealplan-target-m mb-2' onClick={handleClick} >
+        <DropTarget targetKey='meal' as='div'
             onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
-            onHit={handleDrop} className='container mealplan-target-m mb-2'
-            style={{minHeight:'100px'}}
+            onHit={handleDrop} 
+            style={{minHeight:'100px', minWidth:'100px'}}
             > 
-            <Plan onClick={handleClick} className='mealtime mb-2 mt-1'/>
+            <Plan className='mealtime mb-2 mt-1'/>
         </DropTarget>
         </div>
     )
