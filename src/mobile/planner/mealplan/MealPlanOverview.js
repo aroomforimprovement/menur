@@ -2,7 +2,7 @@ import React from 'react';
 import { useMainContext } from '../../../main/MenurRouter';
 import { days, mealtimes } from '../../../shared/states';
 import { DropTarget } from 'react-drag-drop-container';
-export const MealPlanOverview = () => {
+export const MealPlanOverview = ({setIsMealPlanClosed, setIsPickerClosed}) => {
 
     const { state, dispatch } = useMainContext();
 
@@ -23,10 +23,12 @@ export const MealPlanOverview = () => {
     }
     const handleDrop = (e) => {
         console.debug("handleDrop");
-        dispatch({type: 'OPEN_ADD_MEAL', data: e.dragData})
+        setIsPickerClosed(false);
+        //dispatch({type: 'OPEN_ADD_MEAL', data: e.dragData})
     }
     const handleClick = (e) => {
         console.debug("handleClick");
+        setIsMealPlanClosed(false);
     }
 
     const MealPlanRow = ({mealtime}) => {
