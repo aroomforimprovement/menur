@@ -10,8 +10,8 @@ import { MealPlanFull } from './mealplan/MealPlanFull';
 
 export const PlannerMobile = () => {
     const { state, dispatch } = useMainContext();
-    const [isMealPlanClosed, setIsMealPlanClosed] = useState(true);
-    const [isPickerClosed, setIsPickerClosed] = useState(true);
+    //const [isMealPlanClosed, setIsMealPlanClosed] = useState(true);
+    //const [isPickerClosed, setIsPickerClosed] = useState(true);
     const params = useParams();
     const splat = params.id;
 
@@ -22,26 +22,27 @@ export const PlannerMobile = () => {
         if(splat && !state.splatSet){
             setSplat();
         }
-    }, [splat, dispatch, state.splatSet]);
+        console.debug(state.isMealPlanClosed + " | " + state.isPickerClosed);
+    }, [splat, dispatch, state.splatSet, state.isMealPlanClosed, state.isPickerClosed]);
 
     return(
         <div>
-            <div hidden={(!isMealPlanClosed)} 
+            <div hidden={(!state.isMealPlanClosed)} 
                 className='container mt-3 mb-2 planner-page'>
                 <div className='container mealplan-row-m col col-12 p-0 shadow shadow my-3 pb-2 border border'>
-                    <MealPlanOverview className='col col-12 ms-md-4 my-2 p-0' 
-                        setIsMealPlanClosed={setIsMealPlanClosed} setIsPickerClosed={setIsPickerClosed}/>
+                    <MealPlanOverview className='col col-12 ms-md-4 my-2 p-0' />
                 </div>
+            </div>
+            <div hidden={!state.isMealPlanClosed || !state.isPickerClosed}>
                 <div className='row'>
                     <Selector/>
                     <Suggestions/>
                 </div>
-                
             </div>
-            <div hidden={isPickerClosed}>
+            <div hidden={state.isPickerClosed}>
                 <MealPlanPicker/>
             </div>
-            <div hidden={isMealPlanClosed} 
+            <div hidden={state.isMealPlanClosed} 
                 className='container mealplan-page'>
                 <MealPlanFull/>
             </div>

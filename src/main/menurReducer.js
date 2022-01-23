@@ -387,6 +387,14 @@ export const reducer = (state, action) => {
         case 'SET_DISPLAY_NAME':{
             return({...state, user: {...state.user, username: action.data}});
         }
+        case 'SET_MEALPLAN_CLOSED':{
+            return({...state, isMealPlanClosed: action.data});
+        }
+        case 'SET_PICKER_CLOSED':{
+            console.debug('SET_PICKER_CLOSED');
+            console.dir(action.data);
+            return({...state, isPickerClosed: action.data.isPickerClosed, pickerMeal: action.data.pickerMeal});
+        }
         default:{
             console.error("Reached default case - menurReducer.js");
             return state;

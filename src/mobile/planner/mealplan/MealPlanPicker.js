@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useMainContext } from '../../../main/MenurRouter';
 import { days, mealtimes } from '../../../shared/states';
 
 
 
+export const MealPlanPicker = ({meal}) => {
+    
+    const { state, dispatch } = useMainContext();
+    const [isDayPicked, setIsDayPicked] = useState(false);
 
-export const MealPlanPicker = () => {
-    const MealPlanDayPicker = () => {
+    const MealPlanDayPicker = ({meal}) => {
+        
         const MealPlanDaySlot = ({day}) => {
+            
+            const handleClick = () => {
+                meal.day = day;
+                setIsDayPicked(true);
+            } 
+            
             return(
                 <div>
-                    <button>{day}</button>
+                    <button onClick={handleClick}>{day}</button>
                 </div>
             )
         }
@@ -27,11 +38,16 @@ export const MealPlanPicker = () => {
         );
     }
     
-    const MealPlanMealtimePicker = ({time}) => {
-        const MealPlanMealtimeSlot = () => {
+    const MealPlanMealtimePicker = ({meal, day}) => {
+        const MealPlanMealtimeSlot = ({time}) => {
+            const handleClick = () => {
+                meal.mealtime = time;
+                setIsDayPicked(false);
+                dispatch({type: 'ADD_MEAL', data: meal});
+            }
             return(
                 <div>
-                    <button>{time}</button>
+                    <button onClick={handleClick}>{time}</button>
                 </div>
             )
         }
@@ -51,7 +67,7 @@ export const MealPlanPicker = () => {
 
     return(
         <div>
-            
+            {isDayPicked ? <MealPlanMealtimePicker /> : <MealPlanDayPicker />}
         </div>
     )
 }
