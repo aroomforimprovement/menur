@@ -177,6 +177,7 @@ export const reducer = (state, action) => {
             return({...state});
         }
         case 'ADD_MEAL':{
+            console.debug(action.data);
             let mealplan = {...state.mealplan};
             mealplan[action.data.day][action.data.mealtime] = action.data.meal; 
             const servings = parseInt(action.data.meal.servings);
@@ -194,7 +195,7 @@ export const reducer = (state, action) => {
                 }
                 leftovers.push(leftover);
             }
-            return ({...state, mealplan: mealplan, leftovers: leftovers});
+            return ({...state, mealplan: mealplan, leftovers: leftovers, isPickerClosed: true});
         }
         case 'REMOVE_MEAL':{
             let mealplan = {...state.mealplan};

@@ -5,29 +5,30 @@ import { days, mealtimes } from '../../../shared/states';
 
 
 export const MealPlanPicker = ({meal}) => {
-    
+    console.debug("MealPlanPicker");
+    console.dir(meal);
     const { state, dispatch } = useMainContext();
     const [isDayPicked, setIsDayPicked] = useState(false);
 
     const MealPlanDayPicker = ({meal}) => {
         
-        const MealPlanDaySlot = ({day}) => {
-            
-            const handleClick = () => {
+        const MealPlanDaySlot = ({meal, day}) => {
+            const handleClick = (e) => {
                 meal.day = day;
                 setIsDayPicked(true);
             } 
             
             return(
                 <div>
-                    <button onClick={handleClick}>{day}</button>
+                    <button className={'btn btn-outline-secondary col col-10 m-1'}
+                        onClick={handleClick}>{day}</button>
                 </div>
             )
         }
         const daySlots = days.map((day) => {
             return(
                 <li key={day}>
-                    <MealPlanDaySlot day={day}/>
+                    <MealPlanDaySlot meal={meal} day={day}/>
                 </li>
             );
         });
@@ -38,23 +39,24 @@ export const MealPlanPicker = ({meal}) => {
         );
     }
     
-    const MealPlanMealtimePicker = ({meal, day}) => {
-        const MealPlanMealtimeSlot = ({time}) => {
-            const handleClick = () => {
+    const MealPlanMealtimePicker = ({meal}) => {
+        const MealPlanMealtimeSlot = ({meal, time}) => {
+            const handleClick = (e) => {
                 meal.mealtime = time;
                 setIsDayPicked(false);
                 dispatch({type: 'ADD_MEAL', data: meal});
             }
             return(
                 <div>
-                    <button onClick={handleClick}>{time}</button>
+                    <button className={'btn btn-outline-success col col-10 m-1'}
+                        onClick={handleClick}>{time}</button>
                 </div>
             )
         }
         const timeSlots = mealtimes.map((time) => {
             return(
                 <li key={time}>
-                    <MealPlanMealtimeSlot time={time}/>
+                    <MealPlanMealtimeSlot meal={meal} time={time}/>
                 </li>
             );
         });
@@ -67,7 +69,9 @@ export const MealPlanPicker = ({meal}) => {
 
     return(
         <div>
-            {isDayPicked ? <MealPlanMealtimePicker /> : <MealPlanDayPicker />}
+            {isDayPicked 
+            ? <MealPlanMealtimePicker meal={meal}/> 
+            : <MealPlanDayPicker meal={meal}/>}
         </div>
     )
 }

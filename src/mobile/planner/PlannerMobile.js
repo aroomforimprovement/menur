@@ -40,7 +40,7 @@ export const PlannerMobile = () => {
                 </div>
             </div>
             <div hidden={state.isPickerClosed}>
-                <MealPlanPicker/>
+                <MealPlanPicker meal={state.pickerMeal}/>
             </div>
             <div hidden={state.isMealPlanClosed} 
                 className='container mealplan-page'>
