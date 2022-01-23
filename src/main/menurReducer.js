@@ -173,11 +173,9 @@ export const reducer = (state, action) => {
             return ({...state, });
         }
         case 'OPEN_ADD_MEAL':{
-            console.debug('OPEN_ADD_MEAL');
             return({...state});
         }
         case 'ADD_MEAL':{
-            console.debug(action.data);
             let mealplan = {...state.mealplan};
             mealplan[action.data.day][action.data.mealtime] = action.data.meal; 
             const servings = parseInt(action.data.meal.servings);
@@ -238,7 +236,6 @@ export const reducer = (state, action) => {
             return ({...state, mealplan: mealplan, leftovers: leftovers});
         }
         case 'REMOVE_MEALPLAN_ING':{
-            console.error("Not implemented");
             let mealplan = {...state.mealplan};
             let meal = {...mealplan[action.data.day][action.data.mealtime]};
             let ingredients = [...meal.ingredients];
@@ -392,8 +389,6 @@ export const reducer = (state, action) => {
             return({...state, isMealPlanClosed: action.data});
         }
         case 'SET_PICKER_CLOSED':{
-            console.debug('SET_PICKER_CLOSED');
-            console.dir(action.data);
             return({...state, isPickerClosed: action.data.isPickerClosed, pickerMeal: action.data.pickerMeal});
         }
         default:{

@@ -22,7 +22,6 @@ export const Plan = ({plan, isLandscape}) => {
             }
         }).then(response => {
             if(response.ok){
-                console.dir(response);
                 return response;
             }
         }, error => {

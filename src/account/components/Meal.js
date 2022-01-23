@@ -20,7 +20,6 @@ export const Meal = ({meal, showSpices}) => {
             }
         }).then(response => {
             if(response.ok){
-                console.dir(response);
                 return response;
             }
         }, error => {

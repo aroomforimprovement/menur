@@ -16,13 +16,10 @@ export const MealPlanOverview = () => {
     }
 
     const handleDragEnter = (e) => {
-        console.debug("handleDragEnter");
     }
     const handleDragLeave = (e) => {
-        console.debug("handleDragLeave");
     }
     const handleDrop = (e) => {
-        console.debug("handleDrop");
         dispatch({
             type: 'SET_PICKER_CLOSED', 
             data: {
@@ -32,8 +29,10 @@ export const MealPlanOverview = () => {
         });
     }
     const handleClick = (e) => {
-        console.debug("handleClick");
-        //setIsMealPlanClosed(false);
+        dispatch({
+            type: 'SET_MEALPLAN_CLOSED',
+            data: false
+        })
     }
 
     const MealPlanRow = ({mealtime}) => {

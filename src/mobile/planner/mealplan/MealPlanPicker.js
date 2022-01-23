@@ -5,8 +5,7 @@ import { days, mealtimes } from '../../../shared/states';
 
 
 export const MealPlanPicker = ({meal}) => {
-    console.debug("MealPlanPicker");
-    console.dir(meal);
+    
     const { state, dispatch } = useMainContext();
     const [isDayPicked, setIsDayPicked] = useState(false);
 
@@ -25,6 +24,7 @@ export const MealPlanPicker = ({meal}) => {
                 </div>
             )
         }
+
         const daySlots = days.map((day) => {
             return(
                 <li key={day}>
@@ -32,27 +32,33 @@ export const MealPlanPicker = ({meal}) => {
                 </li>
             );
         });
+
         return(
             <div>
+                <div><h6>{`Add ${meal.meal.name} to your meal plan:`}</h6></div>
                 <ul className={'list-unstyled'}>{daySlots}</ul>
             </div>
         );
     }
     
     const MealPlanMealtimePicker = ({meal}) => {
+    
         const MealPlanMealtimeSlot = ({meal, time}) => {
+    
             const handleClick = (e) => {
                 meal.mealtime = time;
                 setIsDayPicked(false);
                 dispatch({type: 'ADD_MEAL', data: meal});
             }
+    
             return(
                 <div>
-                    <button className={'btn btn-outline-success col col-10 m-1'}
+                    <button className={'btn btn-outline-secondary col col-10 m-1'}
                         onClick={handleClick}>{time}</button>
                 </div>
             )
         }
+    
         const timeSlots = mealtimes.map((time) => {
             return(
                 <li key={time}>
@@ -60,8 +66,10 @@ export const MealPlanPicker = ({meal}) => {
                 </li>
             );
         });
+    
         return(
             <div>
+                <div><h6>{`Add ${meal.meal.name} to your meal plan on ${meal.day}:`}</h6></div>
                 <ul className={'list-unstyled'}>{timeSlots}</ul>
             </div>
         );
