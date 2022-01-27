@@ -4,6 +4,7 @@ import { MealPlanSlot } from './MealPlanSlot';
 import { Leftovers } from './Leftovers.js';
 import { useMainContext } from '../../main/MenurRouter';
 import { days, mealtimes } from '../../shared/states';
+import { isMobile } from 'react-device-detect';
 
 export const MealPlan = () => {
 
@@ -11,6 +12,13 @@ export const MealPlan = () => {
 
     const toggleOrientation = () => {
         dispatch({type: 'SET_IS_LANDSCAPE', data: !state.isLandscape})
+    }
+
+    const toggleMealPlanClosed = () => {
+        dispatch({
+            type: 'SET_MEALPLAN_CLOSED',
+            data: true
+        });
     }
 
     const LandscapeRow = ({mealtime}) =>{
@@ -93,10 +101,15 @@ export const MealPlan = () => {
             <div className='container'>
                 <div className='row'>
                     <div className={'col col-2 mealplan-header header-xy m-1'}>
-                    <button onClick={toggleOrientation} 
-                        className={`mt-2 ms-0 ms-md-2 p-3 border rounded rounded-circle shadow toggle-orientation-pt`}>
+                    {isMobile 
+                        ? <div onClick={toggleMealPlanClosed} 
+                            className={`mt-2 ms-0 ms-md-2 p-3 border rounded rounded-circle shadow fa fa-chevron-left`}>
+                            
+                        </div>
+                        : <button onClick={toggleOrientation} 
+                            className={`mt-2 ms-0 ms-md-2 p-3 border rounded rounded-circle shadow toggle-orientation-pt`}>
                                 <span>{state.isLandscape ? "[ ||| ] " : "[ = ] "}</span>
-                    </button>
+                          </button>}
                     </div>
                     {header}
                 </div>
@@ -113,8 +126,11 @@ export const MealPlan = () => {
     return(
         <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'} `}>
             <div className='mt-2'>
-            {
-                state.isLandscape ? <LandscapePlan /> : <PortraitPlan />
+            {isMobile 
+                ? <PortraitPlan /> 
+                : state.isLandscape 
+                    ? <LandscapePlan /> 
+                    : <PortraitPlan />
             }
             </div>
         </div>

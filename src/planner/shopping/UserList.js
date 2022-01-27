@@ -5,7 +5,7 @@ import { ListItem } from "./ListItem";
 import { useMainContext } from "../../main/MenurRouter";
 
 
-export const UserList = ({list}) => {
+export const ShoppingList = ({list}) => {
     const { state, dispatch } = useMainContext();
 
     
@@ -45,11 +45,11 @@ export const UserList = ({list}) => {
             state[list].length > 0
                 ? 
                 <li key={ingredient.name}>
-                    <div className='fa fa-caret-left me-1'
+                    <div className='fa fa-caret-left mx-2'
                         onClick={() => decrement(ingredient)}>{' '}</div>
                     <ListItem dragData={ingredient}/>
                     
-                    <div className='fa fa-caret-right ms-1'
+                    <div className='fa fa-caret-right mx-2'
                         onClick={() => increment(ingredient)}>{' '}</div>
                     <div className='btn btn-sm rounded rounded-circle border mx-1 p-0 highlight-ingredient'
                         onClick={() => {handleHighlightIngredient(ingredient.name)}}>

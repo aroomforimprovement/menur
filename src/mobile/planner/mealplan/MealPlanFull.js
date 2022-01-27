@@ -1,7 +1,11 @@
 import React from 'react';
+import { MealPlan } from '../../../planner/mealplan/MealPlan';
+
 
 export const MealPlanFull = () => {
     return(
-        <div>{'MealPlanFull'}</div>
+        <div>
+            <MealPlan />
+        </div>
     )
 }

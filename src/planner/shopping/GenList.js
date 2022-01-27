@@ -1,7 +1,8 @@
 import React from 'react';
 import './shopping.css';
 import { useMainContext } from '../../main/MenurRouter';
-import { UserList } from './UserList';
+import { ShoppingList } from './UserList';
+import { isMobile } from 'react-device-detect';
 
 export const GenList = () => {
 
@@ -51,7 +52,7 @@ export const GenList = () => {
     const ListTemplate = ({list, title, copyFunc}) => {
 
         return(
-            <div className='gen-list col-4 mt-2 border border-2 shadow shadow-sm'>
+            <div className={`gen-list ${isMobile ? 'col-12' : 'col-4'} mt-2 border border-2 shadow shadow-sm`}>
             <div>
                 <div className='row mb-1 border pt-2 bg-theme-primary'>
                     <h6 className='list-heading col mt-1'>{title}</h6>
@@ -62,7 +63,7 @@ export const GenList = () => {
                         </button>
                     </div>
                 </div>
-                <UserList  list={list} />
+                <ShoppingList  list={list} />
             </div>
         </div>
         );
@@ -70,9 +71,13 @@ export const GenList = () => {
 
     return(
         <div className='row'>
-            <ListTemplate list={'genList'} title={'Generated list'} copyFunc={copyGenList}/>
-            <ListTemplate list={'userList1'} title={'User list 1'} copyFunc={copyUserList1}/>
-            <ListTemplate list={'userList2'} title={'User list 2'} copyFunc={copyUserList2}/>
+            <ListTemplate list={'genList'} title={isMobile ? 'Shopping List' : 'Generated list'} copyFunc={copyGenList}/>
+            {isMobile ? <div></div> :
+                <div>
+                    <ListTemplate list={'userList1'} title={'User list 1'} copyFunc={copyUserList1}/>
+                    <ListTemplate list={'userList2'} title={'User list 2'} copyFunc={copyUserList2}/>
+                </div>
+            }
         </div>
     );
 }

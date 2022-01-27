@@ -32,7 +32,7 @@ export const MealPlanOverview = () => {
         dispatch({
             type: 'SET_MEALPLAN_CLOSED',
             data: false
-        })
+        });
     }
 
     const MealPlanRow = ({mealtime}) => {
