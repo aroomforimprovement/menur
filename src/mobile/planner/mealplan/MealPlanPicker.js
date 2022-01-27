@@ -35,7 +35,7 @@ export const MealPlanPicker = ({meal}) => {
 
         return(
             <div>
-                <div><h6>{`Add ${meal.meal.name} to your meal plan:`}</h6></div>
+                <div><h6>{meal && meal.meal ? `Add ${meal.meal.name} to your meal plan:` : ''}</h6></div>
                 <ul className={'list-unstyled'}>{daySlots}</ul>
             </div>
         );
@@ -69,7 +69,7 @@ export const MealPlanPicker = ({meal}) => {
     
         return(
             <div>
-                <div><h6>{`Add ${meal.meal.name} to your meal plan on ${meal.day}:`}</h6></div>
+                <div><h6>{meal && meal.meal ? `Add ${meal.meal.name} to your meal plan on ${meal.day}:` : ''}</h6></div>
                 <ul className={'list-unstyled'}>{timeSlots}</ul>
             </div>
         );
