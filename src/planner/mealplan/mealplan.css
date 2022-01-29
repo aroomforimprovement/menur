@@ -143,6 +143,12 @@
   position:relative;
 }
 
+.mealtime-click{
+  min-height:50px;
+  min-width:50px;
+  cursor: pointer;
+}
+
 .mealtime-ingredients{
   font-weight: normal;
   font-size: small;

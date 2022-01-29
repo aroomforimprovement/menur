@@ -18,7 +18,6 @@ export const MealtimePicker = () => {
             </div>
             <Selector />
             <Suggestions />
-            <MealGen />
         </div>
     );
 }

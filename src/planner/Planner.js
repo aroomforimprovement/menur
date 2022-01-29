@@ -9,6 +9,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useMainContext } from '../main/MenurRouter';
 import { Footer } from './Footer';
 import { useParams } from 'react-router';
+import { MealtimePicker } from '../mobile/planner/mealplan/MealtimePicker';
 
 
 
@@ -33,6 +34,7 @@ const Planner = ({edit}) => {
 
     return(  
             <div className='container mt-3 planner-page'>
+                <div hidden={!state.isMealtimePickerClosed}>
                 <div className='row'>
                     <Selector />
                     <Suggestions/>                        
@@ -65,6 +67,10 @@ const Planner = ({edit}) => {
                     <GenList className='col col-3'/>
                 </div>
                 <Footer className='footer'/>
+                </div>
+                <div hidden={state.isMealtimePickerClosed}>
+                    <MealtimePicker />
+                </div>
             </div>                    
     );
 }
