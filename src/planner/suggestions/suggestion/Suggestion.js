@@ -84,7 +84,17 @@ export const dropSelectDays = (keyProp, dragData) => {
 }
 
 export const ClickAddToMealPlan = ({keyProp, dragData}) => {
+    const {state, dispatch} = useMainContext();
     const days = dropSelectDays(keyProp, dragData);
+
+    const handleMealtimePickerSelect = () => {
+        dragData.day = state.mealtimePickerDay;
+        dragData.mealtime = state.mealtimePickerMealtime;
+        dispatch({
+            type: 'ADD_MEAL',
+            data: dragData
+        });
+    }
     return(
         <Dropdown drop={'left'} className='sugg-drop' >           
             <Dropdown.Toggle
@@ -92,9 +102,20 @@ export const ClickAddToMealPlan = ({keyProp, dragData}) => {
                 id={`suggDrop_${keyProp}_days`} 
                 size='sm' >
             </Dropdown.Toggle>  
-            <Dropdown.Menu  >
-                {days}
-            </Dropdown.Menu>
+            {state.isMealtimePickerClosed 
+                ?
+                <Dropdown.Menu  >
+                    {days}
+                </Dropdown.Menu>
+                :
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={handleMealtimePickerSelect}>
+                        <span>{`Add to plan for ${state.mealtimePickerMealtime} 
+                            on ${state.mealtimePickerDay}`}</span>
+                    </Dropdown.Item>
+                </Dropdown.Menu>
+            }
+            
         </Dropdown>
     );
 }

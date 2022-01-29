@@ -40,9 +40,20 @@ export const MealPlanSlot = ({mealtime, day}) => {
     const handleRemoveMeal = () => {
         dispatch({type: 'REMOVE_MEAL', data: {day: day, mealtime: mealtime}});
     }
-    const handleClick = () => {
+    const toggleShowIngredients = () => {
         setShowIngredients(!showIngredients);
     }
+    const setMealtimePickerOpen = () => {
+        dispatch({
+            type: 'SET_MEALTIME_PICKER_CLOSED', 
+            data: {
+                isMealtimePickerClosed: false,
+                mealtimePickerDay: day,
+                mealtimePickerMealtime: mealtime
+            }
+        });
+    }
+
     const ingredients = state.mealplan[day][mealtime].name 
         ? 
         state.mealplan[day][mealtime].ingredients.map((ing) => {
@@ -64,8 +75,9 @@ export const MealPlanSlot = ({mealtime, day}) => {
         <DropTarget targetKey='meal' as='div'
             onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>                
             <div className={`container mealtime border shadow shadow-sm ${state.isLandscape ? 'mealtime-ls' : 'mealtime-pt'} 
-                ${hasHighlightedIngredient ? 'border-success' : ''}`} >
-                <div>
+                ${hasHighlightedIngredient ? 'border-success' : ''}`} 
+                onClick={setMealtimePickerOpen}>
+                <div >
                     <div className='mealtime-text pt-0'>{state.mealplan[day][mealtime].name 
                         ? state.mealplan[day][mealtime].name  : ' '}
                     </div>   
@@ -83,7 +95,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
                     style={{ width:'3px', height:'3px', top:'2px', right:'2px', opacity: 0.4, '&:hover': {opacity: 1} }} aria-label='Remove'
                 >
                 </button>                
-                <div onClick={handleClick} className={'expand-ingredients'}>
+                <div onClick={toggleShowIngredients} className={'expand-ingredients'}>
                     <span className={`fa ${classes}`}>{' '}</span> 
                 </div>
             </div>

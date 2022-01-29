@@ -83,6 +83,11 @@
    min-width:40px;
  }
 
+ .mealplan-header-m{
+  color:rgb(153, 153, 153);
+  text-align:start;
+ }
+
  .mealplan-header-o{
 
  }

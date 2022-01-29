@@ -193,7 +193,9 @@ export const reducer = (state, action) => {
                 }
                 leftovers.push(leftover);
             }
-            return ({...state, mealplan: mealplan, leftovers: leftovers, isPickerClosed: true});
+            return ({...state, 
+                mealplan: mealplan, leftovers: leftovers, 
+                isPickerClosed: true, isMealtimePickerClosed: true});
         }
         case 'REMOVE_MEAL':{
             let mealplan = {...state.mealplan};
@@ -390,6 +392,14 @@ export const reducer = (state, action) => {
         }
         case 'SET_PICKER_CLOSED':{
             return({...state, isPickerClosed: action.data.isPickerClosed, pickerMeal: action.data.pickerMeal});
+        }
+        case 'SET_MEALTIME_PICKER_CLOSED':{
+            return({
+                    ...state, 
+                    isMealtimePickerClosed: action.data.isMealtimePickerClosed,
+                    mealtimePickerDay: action.data.mealtimePickerDay,
+                    mealtimePickerMealtime: action.data.mealtimePickerMealtime
+                });
         }
         default:{
             console.error("Reached default case - menurReducer.js");

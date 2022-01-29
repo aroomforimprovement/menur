@@ -74,13 +74,13 @@ export const MealPlan = () => {
         const mealslots = mealtimes.map((mealtime) => {
             return(
                 <div className={'col col-3 mealplan-slot mb-2'} key={mealtime}>
-                    <MealPlanSlot mealtime={mealtime} day={day}/>
+                    <MealPlanSlot mealtime={mealtime} day={day} />
                 </div>
             );
         });
         return(
             <div className='row'>
-                <div className='mealplan-header header-y col col-2 pt-3'>{day}</div>
+                <div className={`mealplan-header${isMobile ? '-m' : ''} header-y col col-2 pt-3`}>{isMobile ? day.substring(0,1) : day}</div>
                 {mealslots}
             </div>
         )
@@ -94,7 +94,7 @@ export const MealPlan = () => {
         });
         const header = mealtimes.map((day) => {
             return(
-                <div className={'col mealplan-header header-x-pt my-2'} key={day}>{day}</div>
+                <div className={`col  mealplan-header${isMobile ? '-m' : ' my-2'} header-x-pt`} key={day}>{day}</div>
             )
         });
         return(

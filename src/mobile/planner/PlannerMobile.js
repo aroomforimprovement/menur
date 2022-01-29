@@ -53,7 +53,7 @@ export const PlannerMobile = () => {
                 className='container mealplan-page'>
                 <MealPlanFull/>
             </div>
-                <div>
+            <div hidden={!state.isMealtimePickerClosed}>
                 <GenList />
                     {/**Below button needs to be abstracted - repeat from Planner.js */}
                     
@@ -76,7 +76,7 @@ export const PlannerMobile = () => {
                     {/**state && state.mealplan ? <MealPlanViewer mealplan={state.mealplan} isLandscape={state.isLandscape}/> : <div></div>*/}
                     </div>
                     <Footer className='footer'/>
-                </div>
             </div>
+        </div>
     );
 }

@@ -35,5 +35,8 @@ export const INIT_STATE = {
     defaultServings: DEFAULT_SERVINGS,
     isMealPlanClosed: true,
     isPickerClosed: true,
-    pickerMeal: undefined
+    pickerMeal: undefined,
+    isMealtimePickerClosed: true,
+    mealtimePickerDay: '',
+    mealtimePickerMealtime: ''
 }
