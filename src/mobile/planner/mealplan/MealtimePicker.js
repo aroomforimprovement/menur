@@ -7,9 +7,19 @@ import { days, mealtimes } from '../../../shared/states';
 
 export const MealtimePicker = () => {
     const { state, dispatch } = useMainContext();
-
+    const toggleMealtimePickerClosed = () => {
+        dispatch({
+            type: 'SET_MEALTIME_PICKER_CLOSED', 
+            data: {
+                isMealtimePickerClosed: !state.isMealtimePickerClosed,
+                mealtimePickerDay: '',
+                mealtimePickerMealtime: ''
+            }})
+    }
     return(
         <div>
+            <div onClick={toggleMealtimePickerClosed} 
+                            className={`mt-2 ms-0 ms-md-2 p-3 border rounded rounded-circle shadow fa fa-chevron-left`}></div>
             <div>
                 {
                     `For ${state.mealtimePickerMealtime} on 
