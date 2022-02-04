@@ -34,12 +34,7 @@ export const PlannerMobile = () => {
 
     return(
         <div>
-            <div hidden={(!state.isMealPlanClosed)} 
-                className='container mt-3 mb-2 planner-page'>
-                <div className='container mealplan-row-m col col-12 p-0 shadow shadow my-3 pb-2 border border'>
-                    <MealPlanOverview className='col col-12 ms-md-4 my-2 p-0' />
-                </div>
-            </div>
+            
             <div hidden={!state.isMealPlanClosed || !state.isPickerClosed}>
                 <div className='row'>
                     <Selector/>
@@ -52,6 +47,12 @@ export const PlannerMobile = () => {
             <div hidden={state.isMealPlanClosed} 
                 className='container mealplan-page'>
                 <MealPlanFull/>
+            </div>
+            <div hidden={(!state.isMealPlanClosed)} 
+                className='container mt-3 mb-2 planner-page'>
+                <div className='container mealplan-row-m col col-12 p-0 shadow shadow my-3 pb-2 border border'>
+                    <MealPlanOverview className='col col-12 ms-md-4 my-2 p-0' />
+                </div>
             </div>
             <div hidden={!state.isMealtimePickerClosed}>
                 <GenList />

@@ -154,7 +154,7 @@ export const MealGen = () => {
                     <span className={`fa ${showFormClasses} ms-3`}>{' '}</span>
                 </div>
             </div>
-            <div className={isFormVisible ? 'meal-gen-in' : 'meal-gen-out'} > {/*hidden={!isFormVisible} >*/}
+            <div hidden={!isFormVisible} className={isFormVisible ? 'meal-gen-in' : 'meal-gen-out'} > {/*hidden={!isFormVisible} >*/}
                 <div className='container meal-gen-container'>
                     <Form.Label className='mb-1 mt-2'>
                         <h5>Meal name:</h5>

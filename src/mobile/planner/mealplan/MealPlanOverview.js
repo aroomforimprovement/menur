@@ -29,6 +29,7 @@ export const MealPlanOverview = () => {
         });
     }
     const handleClick = (e) => {
+        e.preventDefault();
         dispatch({
             type: 'SET_MEALPLAN_CLOSED',
             data: false
