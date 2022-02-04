@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './planner.css';
 import { Selector } from './selector/Selector';
 import { Suggestions } from './suggestions/Suggestions';
 import { MealPlan } from './mealplan/MealPlan';
 import { GenList } from './shopping/GenList';
-import { DownloadableMealPlan, DownloadableMealPlanLandscape } from '../utils/pdfUtils'; 
-import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useMainContext } from '../main/MenurRouter';
-import { Footer } from './Footer';
 import { useParams } from 'react-router';
 import { MealtimePicker } from '../mobile/planner/mealplan/MealtimePicker';
-
+import { DownloadMealPlan } from './controls/DownloadMealPlan';
+import { GenerateList } from './controls/GenerateList';
+import { SaveToAccount } from './controls/SaveToAccount';
+import { ClearData } from './controls/ClearData';
 
 
 const Planner = ({edit}) => {
@@ -18,10 +18,6 @@ const Planner = ({edit}) => {
     const { state, dispatch } = useMainContext();
     const params = useParams();
     const splat = params.id;
-
-    const handleGenList = () => {
-        dispatch({type: 'GEN_LIST', data:true});
-    }
 
     useEffect(() => {
         const setSplat = () => {
@@ -45,28 +41,16 @@ const Planner = ({edit}) => {
                     </div>
                 </div>
                 <div className='row my-2'>
-                {state ? <PDFDownloadLink className={'btn btn-success'}
-                        document={state.isLandscape 
-                        ? <DownloadableMealPlanLandscape mealplan={state.mealplan}/> 
-                        : <DownloadableMealPlan mealplan={state.mealplan}/>}
-                            fileName={`mealplan_${new Date()}`}>
-                                {({blob, url, loading, error}) => 
-                                    loading ? 'Loading document...' : 'Download Meal Plan as PDF'
-                                }  
-                    </PDFDownloadLink> : <div></div>}
-                    {/**state && state.mealplan ? <MealPlanViewer mealplan={state.mealplan} isLandscape={state.isLandscape}/> : <div></div>*/}
-                
+                    <DownloadMealPlan />
                 </div>
-                <div className='row mt-2 mb-2'>
-                    <button onClick={handleGenList} 
-                        className='shadow btn btn-warning border border-success col col-12'>
-                        Generate shopping list (if you make changes to the meal plan, you'll have to do this again)
-                    </button>
-                </div>
+                <GenerateList />
                 <div className='row'>
                     <GenList className='col col-3'/>
                 </div>
-                <Footer className='footer'/>
+                <div className='mt-4'>
+                    <SaveToAccount />
+                    <ClearData />
+                </div>
                 </div>
                 <div hidden={state.isMealtimePickerClosed}>
                     <MealtimePicker />

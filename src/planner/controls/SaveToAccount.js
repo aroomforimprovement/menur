@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { useMainContext } from '../main/MenurRouter';
-import { Loading } from '../common/Loading';
-import { getNewId } from '../utils/objUtils';
+import { Loading } from '../../common/Loading';
+import { getNewId } from '../../utils/objUtils';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router';
+import { useMainContext } from '../../main/MenurRouter';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
 
-export const Footer = () => {
-    const { state, dispatch } = useMainContext();
+export const SaveToAccount = () => {
+    
+    const {state, dispatch} = useMainContext();
     const [isSaving, setIsSaving] = useState(false);
     const [isSaveFailed, setIsSaveFailed] = useState(false);
     const params = useParams();
@@ -69,40 +70,29 @@ export const Footer = () => {
         }
     }
 
-    const handleClearData = () => {
-        dispatch({type: 'CLEAR_DATA', data: true});
-    }
-
     const handleSaveData = () => {
         setIsSaving(true);
         saveDataToAccount();
     }
     return(
-        <div className='mt-4'>
-            <div className=''>
-                <div className='row'>
-                    {isSaveFailed 
-                    ? <div className='border border-danger'>Error saving the mealplan :(</div>
-                    : <div></div>}
-                </div>
-                <div className='row'>
-                {isSaving ? <Loading /> : 
-                    <div>
-                    {state && state.user && state.user.isAuth
-                    ? <button className='shadow col col-12 btn btn-sm btn-success border border-warning mx-auto my-2 shadow'
-                        onClick={handleSaveData}>
-                        <span className='fa fa-save me-2'></span> Save this mealplan to your account <span className='fa fa-save ms-2'></span>
-                    </button> : <div></div>}
-                    </div> 
-                }
-                </div>
+        <div>
+            <div className='row'>
+                {isSaveFailed 
+                ? <div className='border border-danger'>Error saving the mealplan :(</div>
+                : <div></div>}
             </div>
             <div className='row'>
-                <button className='shadow col col-11 btn btn-sm btn-danger border border-success mx-auto mt-2 mb-5 shadow'
-                    onClick={handleClearData}>
-                    <span className='fa fa-close me-2'></span> Clear data and start again <span className='fa fa-close ms-2'></span>
-                </button> 
+            {isSaving ? <Loading /> : 
+                <div>
+                {state && state.user && state.user.isAuth
+                ? <button className='shadow col col-12 btn btn-sm btn-success border border-warning mx-auto my-2 shadow'
+                    onClick={handleSaveData}>
+                    <span className='fa fa-save me-2'></span> Save this mealplan to your account <span className='fa fa-save ms-2'></span>
+                </button> : <div></div>}
+                </div> 
+            }
             </div>
         </div>
-    );
+    )
+
 }
