@@ -1,12 +1,18 @@
+@use '../sass/theme';
+
 .account-page{
     margin-top:0px;
     min-width:80vw;
     min-height:100vh;
 }
 
+.edit-setting{
+    color:theme.$action;
+}
+
 .edit-setting:hover{
-    transform: scale(1.2);
-    color:rgba(14, 141, 201, 0.7);
+    transform: scale(1.05);
+    color:theme.$action-hover;
     cursor:pointer;
 }
 
@@ -19,11 +25,11 @@
 }
 
 .account-plans{
-    background-color:rgba(216, 216, 250, 0.3);
+    background-color:theme.$bg;
 }
 
 .account-meals{
-    background-color:rgba(216, 216, 250, 0.3);
+    background-color:theme.$bg;
 }
 
 .account-plans-header{
