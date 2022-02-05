@@ -1,11 +1,10 @@
 import React from 'react';
-import './mealplan.css';
+import './mealplan.scss';
 import { MealPlanSlot } from './MealPlanSlot';
 import { Leftovers } from './Leftovers.js';
 import { useMainContext } from '../../main/MenurRouter';
 import { days, mealtimes } from '../../shared/states';
 import { isMobile } from 'react-device-detect';
-import { MealtimePicker } from '../../mobile/planner/mealplan/MealtimePicker';
 
 export const MealPlan = () => {
 

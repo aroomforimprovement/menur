@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './help.css';
+import './help.scss';
 import { PrivacyPolicy } from './PrivacyPolicy';
 
 export const Help = () => {

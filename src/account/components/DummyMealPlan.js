@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/dummy.css';
+import '../css/dummy.scss';
 import { DummyMealPlanSlot } from './DummyMealPlanSlot';
 import { days, mealtimes } from '../../shared/states';
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './searcher.css';
+import './searcher.scss';
 import SearchField from 'react-search-field';
 import { useMainContext } from '../../main/MenurRouter';
 import { MEALS } from '../../shared/meals';

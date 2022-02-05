@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, FormControl, InputGroup } from 'react-bootstrap';
-import './mealgen.css';
+import './mealgen.scss';
 import { useMainContext } from '../../../main/MenurRouter';
 import { getNewId } from '../../../utils/objUtils';
 import { toast } from 'react-hot-toast';

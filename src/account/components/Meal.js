@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import '../css/meal.css';
+import '../css/meal.scss';
 import { DELIM, OR } from '../../shared/meals';
 import { useMainContext } from '../../main/MenurRouter';
 

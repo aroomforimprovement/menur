@@ -1,5 +1,5 @@
 import React from 'react';
-import './shopping.css';
+import './shopping.scss';
 import { useMainContext } from '../../main/MenurRouter';
 import { ShoppingList } from './UserList';
 import { isMobile } from 'react-device-detect';

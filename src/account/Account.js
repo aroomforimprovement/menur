@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
-import './account.css';
+import './account.scss';
 import { useMainContext } from '../main/MenurRouter';
 import { accountReducer } from './accountReducer';
 import { Form } from 'react-bootstrap';

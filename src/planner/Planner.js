@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './planner.css';
+import './planner.scss';
 import { Selector } from './selector/Selector';
 import { Suggestions } from './suggestions/Suggestions';
 import { MealPlan } from './mealplan/MealPlan';

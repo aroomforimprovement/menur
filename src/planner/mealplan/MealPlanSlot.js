@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './mealplan.css';
+import './mealplan.scss';
 import { DropTarget } from 'react-drag-drop-container';
 import { useMainContext } from '../../main/MenurRouter';
 import { MealPlanSlotIngredient } from './MealPlanSlotIngredient';

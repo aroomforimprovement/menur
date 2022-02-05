@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-import './suggestion.css';
+import './suggestion.scss';
 import { useMainContext } from '../../../main/MenurRouter';
 import { DragDropContainer } from 'react-drag-drop-container';
 import { DELIM, OR} from '../../../shared/meals';

@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { ErrorBoudary } from './utils/errorUtils';
 import MenurRouter from './main/MenurRouter';
 import { BrowserRouter } from 'react-router-dom';

@@ -1,5 +1,5 @@
 import React from "react";
-import '../css/plan.css';
+import '../css/plan.scss';
 import { DownloadableMealPlanLandscape, DownloadableMealPlan } from "../../utils/pdfUtils";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useMainContext } from "../../main/MenurRouter";

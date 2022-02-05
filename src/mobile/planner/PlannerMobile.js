@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../../planner/planner.css';
+import '../../planner/planner.scss';
 import { Selector } from '../../planner/selector/Selector';
 import { Suggestions } from '../../planner/suggestions/Suggestions';
 import { useMainContext } from '../../main/MenurRouter';

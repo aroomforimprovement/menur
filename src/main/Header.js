@@ -1,5 +1,5 @@
 import React from 'react';
-import './header.css';
+import './header.scss';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useMainContext } from './MenurRouter';
