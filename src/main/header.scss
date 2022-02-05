@@ -1,4 +1,5 @@
+@use '../sass/theme';
 
 .bg-lavender{
-  background-color:rgba(216, 216, 250, 1);
+  background-color:theme.$bg-header;
 }

@@ -1,3 +1,5 @@
+@use 'sass/theme';
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', 'Roboto', 'Oxygen',
@@ -34,5 +36,5 @@ code {
 }
 
 .bg-theme-primary{
-  background-color:rgba(216, 216, 250, 0.3);
+  background-color: theme.$bg;
 }

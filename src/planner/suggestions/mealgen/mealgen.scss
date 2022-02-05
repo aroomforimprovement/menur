@@ -1,18 +1,20 @@
+@use '../../../sass/theme';
+
 .meal-gen{
   text-align:start;
   position:relative;
 }
 
 .meal-gen-container{
-  background-color: rgba(216, 216, 250, 0.3);
+  background-color: theme.$bg;
 }
     
 .meal-gen-toggle{
   text-align:center;
-  border-color:rgba(216, 216, 250);
+  border-color:theme.$action-border;
 }
 .meal-gen-toggle:hover{
-  background-color:rgba(216, 216, 250, 0.3); 
+  background-color:theme.$bg; 
 }
   
 .meal-gen-left{

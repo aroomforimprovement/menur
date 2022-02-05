@@ -1,9 +1,11 @@
+@use '../../sass/theme';
+
 .mealplan-container{
   min-width: 400px;
   margin:0px;
   padding:0px;
   padding-top:1%;
-  background-color: whitesmoke;
+  background-color: theme.$bg-work;
 }
 .mealplan-container-o{
   max-width:100vh;
@@ -23,7 +25,7 @@
    min-height:55px;
    border-radius:10px;
    opacity:0.8;
-   background-color:rgba(216, 216, 250, 0.3);
+   background-color: theme.$bg;
    position:absolute;
    left:-20px;
    top:-20px;
@@ -33,7 +35,7 @@
    min-width:60px;
    min-height:60px;
    opacity:0.8;
-   background-color:rgba(216, 216, 250, 0.3);
+   background-color: theme.$bg;
    position:absolute;
    left:0px;
  }
@@ -57,20 +59,20 @@
  }
  @media screen and (min-width: 992px){
   .toggle-orientation-pt{
-    background-color: rgb(255, 200, 200);
+    background-color: theme.$warn;
   }
 }
 
 
 @media screen and (max-width: 768px){
  .toggle-orientation-ls{
-   background-color: rgb(255, 200, 200);
+   background-color: theme.$warn;
  }
 }
 
 @media screen and (max-width: 400px) {
   .toggle-orientation-ls{
-    background-color:rgb(255, 43, 43);
+    background-color:theme.$err;
   }
 }
  
@@ -79,18 +81,15 @@
    font-size:xx-small;
    font-weight: bolder;
    text-align:start;
-   color:rgb(153, 153, 153);
+   color:theme.$head;
    min-width:40px;
  }
 
  .mealplan-header-m{
-  color:rgb(153, 153, 153);
+  color:theme.$head;
   text-align:start;
  }
 
- .mealplan-header-o{
-
- }
 
  .header-x{
   max-width:20px;
@@ -125,7 +124,7 @@
   min-height:50px;
   display:inline-flexbox;
   padding-bottom:15%;
-  background-color:rgba(216, 216, 250, 0.3);
+  background-color:theme.$bg;
   font-size:small;
   opacity: 0.8;
   border-radius: 8px;
@@ -138,8 +137,7 @@
   font-size:small;
   display:inline-flex;
   font-weight:normal;
-  color:rgb(50, 50, 126);
-  opacity: 0.8;
+  color:theme.$data;
   position:relative;
 }
 
@@ -153,7 +151,7 @@
   font-weight: normal;
   font-size: small;
   font-style: italic;
-  color: black;
+  color: theme.$data;
   text-align: start;
   position:relative;
   top:0px;
@@ -347,7 +345,7 @@
  
  .leftover-col{
    text-align: start;
-   color:rgb(109, 109, 109);
+   color:theme.$head-heavy;
  }
 
 .footer{

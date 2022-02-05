@@ -1,5 +1,6 @@
+@use 'sass/theme';
 
 .App {
   text-align: center;
-  background-color:rgba(216, 216, 250, 0.3);
+  background-color: theme.$bg;
 }
