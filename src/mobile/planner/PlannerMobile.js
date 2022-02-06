@@ -8,21 +8,13 @@ import { MealPlanOverview } from './mealplan/MealPlanOverview';
 import { MealPlanPicker } from './mealplan/MealPlanPicker';
 import { MealPlanFull } from './mealplan/MealPlanFull';
 import { GenList } from '../../planner/shopping/GenList';
-import { DownloadMealPlan } from '../../planner/controls/DownloadMealPlan';
-import { SaveToAccount } from '../../planner/controls/SaveToAccount';
-import { ClearData } from '../../planner/controls/ClearData';
-import { GenerateList } from '../../planner/controls/GenerateList';
+import { PlannerControls } from '../../planner/controls/PlannerControls';
 
 export const PlannerMobile = () => {
     const { state, dispatch } = useMainContext();
-    //const [isMealPlanClosed, setIsMealPlanClosed] = useState(true);
-    //const [isPickerClosed, setIsPickerClosed] = useState(true);
     const params = useParams();
     const splat = params.id;
 
-    const handleGenList = () => {
-        dispatch({type: 'GEN_LIST', data:true});
-    }
     useEffect(() => {
         const setSplat = () => {
             dispatch({type: 'SET_SPLAT', data: splat});
@@ -38,7 +30,7 @@ export const PlannerMobile = () => {
             
             <div hidden={!state.isMealPlanClosed || !state.isPickerClosed}>
                 <div className='row'>
-                    <Selector/>
+                    <Selector className='col col-12'/>
                     <Suggestions/>
                 </div>
             </div>
@@ -56,15 +48,8 @@ export const PlannerMobile = () => {
                 </div>
             </div>
             <div hidden={!state.isMealtimePickerClosed}>
+                <PlannerControls />
                 <GenList />
-                    <GenerateList />
-                    <div className='row my-2'>
-                        <DownloadMealPlan />
-                    </div>
-                    <div className='mt-4'>
-                    <SaveToAccount />
-                    <ClearData />
-                </div>
             </div>
         </div>
     );

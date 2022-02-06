@@ -66,7 +66,7 @@ export const Searcher = () => {
     
 
     return(
-        <div className={'searcher'}>
+        <div className={`searcher `}>
             <SearchField
                 classNames={'col col-12 shadow shadow-sm'}
                 placeholder='Search for meals...'

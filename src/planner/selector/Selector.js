@@ -6,6 +6,7 @@ import { getIngredientsFromMeal } from '../../utils/objUtils';
 import { useMainContext } from '../../main/MenurRouter';
 import { Searcher } from './Searcher';
 import toast from 'react-hot-toast';
+import { isMobile } from 'react-device-detect';
 
 export const Selector = () => {
     const { state, dispatch } = useMainContext();
@@ -43,10 +44,10 @@ export const Selector = () => {
             }
         }
         return(
-            <div key={i} className={classes}>
+            <div key={i} className={`classes ${isMobile ? 'selection-ingredient-m' : ''}`}>
                 {!state.showSpices && (ing.type === 'spice' || ing.type === 'cond')
                     ? <div></div> 
-                    : <li >{ing.name.replaceAll(DELIM, OR)}</li>}
+                    : <li >{ing.name.replaceAll(DELIM, OR)}{isMobile ? ',': ''}</li>}
             </div>
         );
     });
@@ -80,13 +81,15 @@ export const Selector = () => {
     }
 
     return(
-        <div className='selector col col-12 col-md-4' >
-            <Form.Group >
-                <Form.Label className='selector-heading'>What are you making?</Form.Label><br/>
-                <Form.Check inline type={"checkbox"} onChange={handleCheckBasic} label={'Basic meals'} 
-                    id="checkBasic" checked={state.showBasic}/>
-                <Form.Check inline type={"checkbox"} onChange={handleCheckMine} label={'My meals'} 
-                    id="checkMine" checked={state.showMine}/>
+        <div className={`selector col col-12 col-md-4 `} >
+            <Form.Group className={`${isMobile ? 'px-1' : ''}`}>
+                <div className={`${isMobile ? 'px-1' : ''}`}>
+                    <Form.Label className='selector-heading'><h5>What are you making?</h5></Form.Label><br/>
+                    <Form.Check inline type={"checkbox"} onChange={handleCheckBasic} label={'Basic meals'} 
+                        id="checkBasic" checked={state.showBasic}/>
+                    <Form.Check inline type={"checkbox"} onChange={handleCheckMine} label={'My meals'} 
+                        id="checkMine" checked={state.showMine}/>
+                </div>
                 <div>
                     <Searcher />
                 </div>
@@ -94,13 +97,16 @@ export const Selector = () => {
                     onChange={handleChange} value={state.selection.name}>
                     {meals}
                 </Form.Select>
+                <div className={`${isMobile ? 'px-1' : ''}`}>
+                    <Form.Check type="checkbox" onChange={handleCheckSpices} checked={state.showSpices}
+                        id={'showSpicesCheckbox'} label={'Shows spices / condiments'}
+                        />
+                    <strong>Ingredients</strong>
+                    <ul className='list-unstyled mt-2 mb-1 ms-2'>
+                        {selectionIngredients}
+                    </ul>
+                </div>
             </Form.Group>
-            <Form.Check type="checkbox" onChange={handleCheckSpices} checked={state.showSpices}
-                id={'showSpicesCheckbox'} label={'Shows spices / condiments'}/>
-            <strong>Ingredients</strong>
-            <ul className='list-unstyled mt-2 mb-1 ms-2'>
-                {selectionIngredients}
-            </ul>
         </div>
     );
 }

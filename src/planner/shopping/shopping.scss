@@ -3,7 +3,8 @@
 .gen-list{
     text-align:start;
     font-size:small;
-    background-color: theme.$bg-business; 
+    background-color: theme.$bg; 
+    display:inline-block;
  }
   
   .user-list{
@@ -13,7 +14,6 @@
     background:theme.$bg-shopping-list;
   }
   
-
   .user-list ul li{
     width:100%;
     position:relative;
@@ -38,5 +38,4 @@
   .highlight-ingredient{
     text-align:end;
   }
-  
   

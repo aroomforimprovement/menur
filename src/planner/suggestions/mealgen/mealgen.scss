@@ -1,7 +1,10 @@
 @use '../../../sass/theme';
 
+.meal-gen-toggle-btn{
+  cursor: pointer;
+}
+
 .meal-gen{
-  text-align:start;
   position:relative;
 }
 
@@ -10,7 +13,6 @@
 }
     
 .meal-gen-toggle{
-  text-align:center;
   border-color:theme.$action-border;
 }
 .meal-gen-toggle:hover{
@@ -22,7 +24,6 @@
 }
 
 .meal-gen-out{
-  /*visibility: hidden;*/
   opacity: 0;
   height:0px;
   transition: visibility 0s linear 500ms, opacity 500ms;
@@ -35,4 +36,3 @@
   transition:visibility 0s linear 0ms, opacity 500ms;
   transition: max-height 500ms;
 }
-

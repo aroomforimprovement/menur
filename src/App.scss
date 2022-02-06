@@ -1,6 +1,16 @@
 @use 'sass/theme';
 
+
 .App {
-  text-align: center;
+  text-align: start;
   background-color: theme.$bg;
+  color: theme.$head;
+}
+
+.App small {
+  font-size: x-small;
+}
+
+.App span {
+  font-size: smaller;
 }

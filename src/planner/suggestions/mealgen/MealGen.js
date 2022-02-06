@@ -147,17 +147,19 @@ export const MealGen = () => {
 
     return(
         <div className='container meal-gen shadow shadow-lg p-0 mt-3 mb-3'>
-            <div hidden={true} >{isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-down'}</div>
+            <div hidden={true} >{isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-right'}</div>
             <div className='col col-12 meal-gen-toggle border border-1 rounded-3'>
-                <div className='btn-sm col col-12 meal-gen-toggle-btn'
+                <div className='btn-sm col col-12 meal-gen-toggle-btn pt-2'
                     onClick={handleShowForm} text='Create a new meal'>
-                    <span className={`fa ${showFormClasses} ms-3`}>{' '}</span>
+                        <div className={`fa fa-lg ${showFormClasses} ms-2`}>{' '}</div>
+                        <h6 style={{display:'inline-block'}}className={'ms-3'}>{isFormVisible ? 'Close meal creation' : 'Create a new meal'}</h6>
+                        
                 </div>
             </div>
             <div hidden={!isFormVisible} className={isFormVisible ? 'meal-gen-in' : 'meal-gen-out'} > {/*hidden={!isFormVisible} >*/}
                 <div className='container meal-gen-container'>
                     <Form.Label className='mb-1 mt-2'>
-                        <h5>Meal name:</h5>
+                        <h6>Meal name:</h6>
                     </Form.Label>
                     <InputGroup size='sm'>
                         <FormControl type='text' id='name' placeholder='Meal name'
@@ -167,19 +169,19 @@ export const MealGen = () => {
                     <div className='row mt-2'>
                         <div className='col col-12'>
                             <InputGroup size='sm' >
-                                <Form.Label size='sm' htmlFor='servings' className='col col-8 mt-1'>
-                                    <h5>Servings:</h5>
+                                <Form.Label size='sm' htmlFor='servings' className='col col-8'>
+                                    <strong>Servings:</strong>
                                 </Form.Label>
                                 <FormControl type='number' id='servings' defaultValue={2}
                                     onChange={handleServingsChange} size="sm"
-                                    className='col col-5 py-0'></FormControl>
+                                    className='col col-5 ps-2 w-25'></FormControl>
                                 <small>{`${state.defaultServings} servings + ${servings - state.defaultServings} leftovers`}</small>
                             </InputGroup>
                         </div>
                     </div>
                     <Form.Label size='sm' className='mt-2'>
-                        <h5>Ingredients:</h5>
-                        <small>Use | character to separate options, like "Fresh tomatoes|Canned tomatoes"</small>
+                        <h6>Ingredients:</h6>
+                        <small>Use | character to separate options, like "Fresh tomatoes|Canned tomatoes", if either will do</small>
                     </Form.Label>
                     <div id='ingredient-slot'>
                         {ingredientFields}

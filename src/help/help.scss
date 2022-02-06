@@ -1,13 +1,16 @@
+@use '../sass/theme';
+
+/**
 .help-page{
     text-align:start;
     min-width: 100vw;
     width:100%;
-    background-color:rgba(216, 216, 250, 1);
+    background-color:theme.$bg-header;
 }
 
 .jum{
     min-height:80vh;
-    background-color:rgba(216, 216, 250, 0.3);
+    background-color: theme.$bg-header;
 }
 
 
@@ -25,3 +28,4 @@ img{
 .privacy-btn{
     text-align:center;
 }
+*/

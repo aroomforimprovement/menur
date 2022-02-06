@@ -7,7 +7,8 @@ export const DownloadMealPlan = () => {
     const { state } = useMainContext();
     
     return(
-        <div>
+        <div className={'btn btn-success shadow my-1 col col-11 py-0 mb-2 mx-auto'} style={{display:'inline-block'}}>
+            <span className={'fa fa-lg fa-download'}>{' '}</span>
             {state ? <PDFDownloadLink className={'btn btn-success'}
                         document={state.isLandscape 
                         ? <DownloadableMealPlanLandscape mealplan={state.mealplan}/> 
@@ -17,6 +18,7 @@ export const DownloadMealPlan = () => {
                                     loading ? 'Loading document...' : 'Download Meal Plan as PDF'
                                 }  
                     </PDFDownloadLink> : <div></div>}
+            <span className={'fa fa-lg fa-download'}>{' '}</span>
         </div>
     )
 }

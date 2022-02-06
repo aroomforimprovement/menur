@@ -1,6 +1,16 @@
 @use 'sass/theme';
 
 body {
+  font-family: -apple-system, 'Helvetica', 'Helvetica Neue', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width:100%;
+}
+
+/**
+body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 
@@ -38,3 +48,5 @@ code {
 .bg-theme-primary{
   background-color: theme.$bg;
 }
+
+*/

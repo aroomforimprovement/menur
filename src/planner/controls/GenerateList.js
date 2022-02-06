@@ -10,10 +10,10 @@ export const GenerateList = () => {
 
     return (
         <div>
-            <div className='row mt-2 mb-2'>
+            <div className='mt-2 mb-2'>
                     <button onClick={handleGenList} 
-                        className='shadow btn btn-warning border border-success col col-12'>
-                        Generate shopping list (if you make changes to the meal plan, you'll have to do this again)
+                        className='btn btn-warning border col col-11 mx-auto shadow'>
+                        Generate shopping list
                     </button>
                 </div>
         </div>

@@ -62,10 +62,14 @@ export const Settings = () => {
         return(
             <Container className='mt-5 mb-5 default-servings-area'>
                 <Row>
-                    <Col xs={3} className='mt-1 default-servings-heading'>
+                    <Col xs={10}  className='mt-1 default-servings-heading'>
                         <Row><h6>Account Name:</h6></Row>
                     </Col>
-                    <Col xs={8} >
+                    <Col xs={1} className='col fa fa-lg fa-edit mt-1 edit-setting'
+                    onClick={handleEdit}>
+                        {''}
+                    </Col>
+                    <Col xs={12} >
                         {isUpdating 
                         ? <Loading/>
                         : 
@@ -86,10 +90,7 @@ export const Settings = () => {
                             </Row>
                         }
                     </Col>
-                    <Col xs={1} className='col fa fa-lg fa-edit mt-1 edit-setting'
-                    onClick={handleEdit}>
-                        {''}
-                    </Col>
+                    
                 </Row>
             </Container>
         );
@@ -146,11 +147,14 @@ export const Settings = () => {
         return(
             <Container className='mt-5 mb-5 default-servings-area'>
                 <Row>
-                    <Col xs={3} className='mt-1 default-servings-heading'>
+                    <Col xs={10} className='mt-1 default-servings-heading'>
                         <Row><h6>Default servings:</h6></Row>
-                        <Row><small>Set this value to the number of people you normally cook for</small></Row>
                     </Col>
-                    <Col xs={8} >
+                    <Col xs={1} className='col fa fa-lg fa-edit mt-1 edit-setting'
+                    onClick={handleEdit}>
+                        {''}
+                    </Col>
+                    <Col xs={10}  >
                         {isUpdating 
                         ? <Loading/>
                         : 
@@ -171,17 +175,15 @@ export const Settings = () => {
                             </Row>
                         }
                     </Col>
-                    <Col xs={1} className='col fa fa-lg fa-edit mt-1 edit-setting'
-                    onClick={handleEdit}>
-                        {''}
-                    </Col>
+                    
                 </Row>
+                <Row><small>Set this value to the number of people you normally cook for</small></Row>
             </Container>
         );
     }
 
     return(
-        <div className={'container'}>
+        <div>
             <DisplayName/>
             <DefaultServings/>
         </div>

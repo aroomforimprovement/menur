@@ -1,7 +1,7 @@
 import React from 'react';
 import './shopping.scss';
 import { useMainContext } from '../../main/MenurRouter';
-import { ShoppingList } from './UserList';
+import { ShoppingList } from './ShoppingList';
 import { isMobile } from 'react-device-detect';
 
 export const GenList = () => {
@@ -52,9 +52,8 @@ export const GenList = () => {
     const ListTemplate = ({list, title, copyFunc}) => {
 
         return(
-            <div className={`gen-list ${isMobile ? 'col-12' : 'col-4'} mt-2 border border-2 shadow shadow-sm`}>
-            <div>
-                <div className='row mb-1 border pt-2 bg-theme-primary'>
+            <div className={`gen-list mt-2 border border-2 shadow shadow-sm ${isMobile ? 'col col-11' : 'col col-11 col-md-4'} mx-auto px-1`}>
+                <div className='row mb-1 pt-2'>
                     <h6 className='list-heading col mt-1'>{title}</h6>
                     <div className='col col-1 col-md-2 col-lg-1 me-4'>
                         <button className='btn btn-sm btn-outline-info copy-btn mb-2 bg-light'
@@ -65,17 +64,25 @@ export const GenList = () => {
                 </div>
                 <ShoppingList  list={list} />
             </div>
-        </div>
         );
     }
 
     return(
-        <div className='row'>
-            <ListTemplate list={'genList'} title={isMobile ? 'Shopping List' : 'Generated list'} copyFunc={copyGenList}/>
-            {isMobile ? <div></div> :
+        <div style={{display:'inline-block'}} className='col col-12'>
+            
+            {isMobile 
+            ?  <div>
+                    <ListTemplate list={'genList'} title='Shopping list' 
+                        copyFunc={copyGenList}/>
+                </div>
+            :
                 <div>
-                    <ListTemplate list={'userList1'} title={'User list 1'} copyFunc={copyUserList1}/>
-                    <ListTemplate list={'userList2'} title={'User list 2'} copyFunc={copyUserList2}/>
+                    <ListTemplate list={'genList'} title='Generated List' 
+                        copyFunc={copyGenList}/>
+                    <ListTemplate list={'userList1'} title={'User List 1'} 
+                        copyFunc={copyUserList1}/>
+                    <ListTemplate list={'userList2'} title={'User List 2'} 
+                        copyFunc={copyUserList2}/>
                 </div>
             }
         </div>

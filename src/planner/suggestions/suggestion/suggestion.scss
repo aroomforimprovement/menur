@@ -12,6 +12,8 @@
 /** messing with opacity and transform:scale 
 here created an issue with z-index of dropdown MENUR-73
 no longer using sugg-container in Suggestion.js*/
+
+
 .sugg-container{
   opacity: 0.75;
 }
@@ -47,14 +49,31 @@ no longer using sugg-container in Suggestion.js*/
   left:6px;
 }
 .plus-toggle small{
-  left:2.5px;
+  left: 3px;
+  top:-2px;
+  font-size:small;
+  font-weight: bold;
 }
 
 .info-toggle{
   right:6px;
 }
 .info-toggle small{
-  left:5.5px;
+  left:5.25px;
+  top:-1.5px;
+  font-size:small;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 12cm){
+  .info-toggle small{
+    top:-2px;
+    left:5.25px;
+  }    
+  .plus-toggle small{
+    top:-4.5px;
+    left:2px;
+  }
 }
 
 .suggestion{
@@ -93,11 +112,7 @@ no longer using sugg-container in Suggestion.js*/
 .sugg-none{
   background-color: theme.$neutral;
 }
-  
-.suggestions{
-  text-align:start;  
-}
-  
+
 .suggestion-text{
   color: theme.$data;
   opacity: 1;
@@ -139,7 +154,9 @@ no longer using sugg-container in Suggestion.js*/
     right:200px;
   }
   */
+  /**
 .sugg-ingredient{
   width:100%;
 }
+*/
   

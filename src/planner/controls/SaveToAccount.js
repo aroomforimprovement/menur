@@ -75,19 +75,19 @@ export const SaveToAccount = () => {
         saveDataToAccount();
     }
     return(
-        <div>
-            <div className='row'>
+        <div >
+            <div >
                 {isSaveFailed 
                 ? <div className='border border-danger'>Error saving the mealplan :(</div>
                 : <div></div>}
             </div>
-            <div className='row'>
+            <div >
             {isSaving ? <Loading /> : 
                 <div>
                 {state && state.user && state.user.isAuth
-                ? <button className='shadow col col-12 btn btn-sm btn-success border border-warning mx-auto my-2 shadow'
+                ? <button className='btn btn-primary shadow col col-11 mx-auto'
                     onClick={handleSaveData}>
-                    <span className='fa fa-save me-2'></span> Save this mealplan to your account <span className='fa fa-save ms-2'></span>
+                    <span className='fa fa-save me-2'></span> Save this Meal Plan to your Account <span className='fa fa-save ms-2'></span>
                 </button> : <div></div>}
                 </div> 
             }
