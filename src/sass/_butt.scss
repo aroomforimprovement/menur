@@ -1,0 +1,55 @@
+.butt{
+    border: 0;
+    padding: 0.3em;
+    border-radius: 5px;
+    background-color: theme.$neutral;
+    color: theme.$head-heavy;
+  }
+  
+  .butt-standard-outline{
+    background-color: theme.$neutral;
+    border: 2px solid theme.$action;
+  }
+  .butt-alternate-outline{
+    background-color: theme.$neutral;
+    border: 2px solid theme.$bg-action;
+  }
+  .butt-good-outline{
+    background-color: theme.$neutral;
+    border: 2px solid theme.$good;
+  }
+  .butt-warn-outline{
+    background-color: theme.$neutral;
+    border: 2px solid theme.$warn;
+  }
+  .butt-bad-outline{
+    background-color: theme.$neutral;
+    border: 2px solid theme.$err;
+  }
+  .butt-good{
+    background-color: theme.$good;
+    color:white;
+    border-color: theme.$good;
+  }
+  
+  
+  .butt-warn{
+    background-color: theme.$warn;
+    border-color: theme.$warn;
+  }
+  
+  .butt-bad{
+    background-color: theme.$err;
+    color:white;
+    border-color: theme.$err;
+  }
+  
+  .butt-standard{
+    background-color: theme.$bg-action;
+    border-color: theme.$action;
+  }
+  
+  .butt-alter{
+    background-color: theme.$bg-work;
+    border-color: theme.$bg-action;
+  }

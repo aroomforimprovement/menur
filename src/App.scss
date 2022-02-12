@@ -1,5 +1,5 @@
 @use 'sass/theme';
-
+@import 'sass/butt';
 
 .App {
   text-align: start;
@@ -14,3 +14,8 @@
 .App span {
   font-size: smaller;
 }
+
+.App h1, h2, h3, h4, h5, h6{
+  color:theme.$head-heavy;
+} 
+

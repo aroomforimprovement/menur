@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useMainContext } from '../../main/MenurRouter';
 
 export const LoginBtn = ({size}) => {
-    const classes = `btn btn-secondary ${size} m-1`;
+    const classes = `butt butt-alternate ${size} m-1`;
     
     const { loginWithPopup } = useAuth0();
 
@@ -21,7 +21,7 @@ export const LoginBtn = ({size}) => {
 
 export const LogoutBtn = ({size}) => {
     const {dispatch} = useMainContext();
-    const classes = `btn btn-secondary ${size} m-1`;
+    const classes = `butt butt-alternate ${size} m-1`;
     const url = `/planner`;
     const { logout } = useAuth0();
     const logoutMenur = async () => {
@@ -38,7 +38,7 @@ export const LogoutBtn = ({size}) => {
 }
 
 export const SignupBtn = ({size}) => {
-    const classes = `btn btn-success ${size} m-1`;
+    const classes = `butt butt-good ${size} m-1`;
     const { loginWithPopup } = useAuth0();
     return <button
             onClick={() => loginWithPopup(

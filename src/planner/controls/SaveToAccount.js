@@ -85,7 +85,7 @@ export const SaveToAccount = () => {
             {isSaving ? <Loading /> : 
                 <div>
                 {state && state.user && state.user.isAuth
-                ? <button className='btn btn-primary shadow col col-11 mx-auto'
+                ? <button className='butt butt-standard shadow col col-11 mx-auto'
                     onClick={handleSaveData}>
                     <span className='fa fa-save me-2'></span> Save this Meal Plan to your Account <span className='fa fa-save ms-2'></span>
                 </button> : <div></div>}

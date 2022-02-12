@@ -69,16 +69,16 @@ export const Plan = ({plan, isLandscape}) => {
                 <DummyMealPlan mealplan={plan.mealplan} name={plan.name} leftovers={plan.mealplan.leftovers}/>
                 {/*<MealPlanViewer mealplan={plan.mealplan} isLandscape={true}/>*/}
             {/*</div>*/}
-            <div className='row plan-controls border rounded border'>
-                <button className='btn btn-sm btn-warning border border-light shadow shadow-sm col col-3 m-auto'
+            <div className='row plan-controls py-2 col-10 m-auto'>
+                <button className='butt butt-warn shadow shadow-sm col col-4 m-auto'
                     onClick={handleDeletePlan}>
                         Delete
                 </button>
-                <button className='btn btn-sm btn-outline-primary open-plan border border-primary shadow shadow-sm col col-3 m-auto'
+                <button className='butt butt-outline-standard open-plan shadow shadow-sm col col-4 m-auto'
                     onClick={handleOpenPlan}>
                         Open
                 </button>
-                {state && plan ? <PDFDownloadLink className={'btn btn-sm btn-success border border-light shadow shadow-sm col col-3 m-auto'}
+                {state && plan ? <PDFDownloadLink className={'butt butt-good pdf-download shadow shadow-sm col col-4 m-auto'}
                     document={isLandscape 
                     ? <DownloadableMealPlanLandscape mealplan={plan.mealplan}/> 
                     : <DownloadableMealPlan mealplan={plan.mealplan}/>} 

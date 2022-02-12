@@ -1,5 +1,9 @@
 @use '../sass/theme';
 
+.site-header{
+  background-color:theme.$bg-header;
+}
+
 /**
 .bg-lavender{
   background-color:theme.$bg-header;

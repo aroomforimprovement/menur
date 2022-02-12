@@ -16,7 +16,7 @@ export const Header = () => {
 
     return(
         <div className='site-header'>
-            <Navbar collapseOnSelect expand='md' bg='lavender' variant='light'
+            <Navbar collapseOnSelect expand='md' variant='light'
                 className=''>
                 <Container>
                 <Navbar.Brand className='mr-auto' href='/'>

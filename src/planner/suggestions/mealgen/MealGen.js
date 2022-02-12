@@ -149,7 +149,7 @@ export const MealGen = () => {
         <div className='container meal-gen shadow shadow-lg p-0 mt-3 mb-3'>
             <div hidden={true} >{isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-right'}</div>
             <div className='col col-12 meal-gen-toggle border border-1 rounded-3'>
-                <div className='btn-sm col col-12 meal-gen-toggle-btn pt-2'
+                <div className='butt butt-standard col col-12 meal-gen-toggle-btn pt-2'
                     onClick={handleShowForm} text='Create a new meal'>
                         <div className={`fa fa-lg ${showFormClasses} ms-2`}>{' '}</div>
                         <h6 style={{display:'inline-block'}}className={'ms-3'}>{isFormVisible ? 'Close meal creation' : 'Create a new meal'}</h6>
@@ -190,14 +190,14 @@ export const MealGen = () => {
                         <div className='col col-11 me-0'>
                             <IngredientField i={ingredients.length} />
                         </div>
-                        <div className='col col-1 btn btn-outline-primary btn-sm fa fa-plus my-1 py-1 ms-0'
-                                onClick={handleAddIngredient}>
+                        <div className='col col-1 butt butt-standard-outline fa fa-plus my-1 py-1 mx-0'
+                                onClick={handleAddIngredient}>{' '}
                         </div>
                         
                     </div>
-                    <div className='row ing-row'>
+                    <div className='row ing-row pb-3'>
                         <div className='col col-3'></div>                       
-                        <button className='btn btn-sm btn-primary col col-12 mx-1 mt-3'
+                        <button className='butt butt-standard col col-12 mx-1 mt-3'
                             onClick={handleAdd}>Add new meal to suggestions</button>
                         {state && state.user && state.user.isAuth ?
                             <button className='btn btn-sm btn-success col col-12 mx-1 mt-1 mb-3'
