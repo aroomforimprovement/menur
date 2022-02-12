@@ -1,6 +1,14 @@
 @use '../sass/theme';
 
-/**
+.account-plans-header{
+    cursor: pointer;
+}
+
+.account-meals-header{
+    cursor: pointer;
+}
+
+
 .account-page{
     margin-top:0px;
     min-width:80vw;
@@ -33,17 +41,8 @@
     background-color:theme.$bg;
 }
 
-.account-plans-header{
-    cursor: pointer;
-}
-
-.account-meals-header{
-    cursor: pointer;
-}
-
 .plan-container{
     position:relative;
     padding-bottom: 50px;
     margin-bottom:10px;
 }
-*/
