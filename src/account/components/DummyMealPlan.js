@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../css/dummy.scss';
 import { DummyMealPlanSlot } from './DummyMealPlanSlot';
 import { days, mealtimes } from '../../shared/states';
+import { MealPlanOverview } from '../../mobile/planner/mealplan/MealPlanOverview';
 
 
 export const DummyMealPlan = ({mealplan, name}) => {
@@ -108,10 +109,11 @@ export const DummyMealPlan = ({mealplan, name}) => {
             <div className='col col-12'>
                 <div className='row mt-2 ms-1'>
                     
-                    <div className='col col-9'><strong>{name}</strong></div>
+                    <div className='col col-9'><small>{name}</small></div>
                 </div>
             </div>
-            {isLandscape ? <LandscapePlan /> : <PortraitPlan />}
+            <MealPlanOverview mealplan={mealplan} />
+            {/**isLandscape ? <LandscapePlan /> : <PortraitPlan /> */}
         </div>
     );
 }

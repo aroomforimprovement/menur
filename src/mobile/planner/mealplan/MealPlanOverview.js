@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMainContext } from '../../../main/MenurRouter';
 import { days, mealtimes } from '../../../shared/states';
 import { DropTarget } from 'react-drag-drop-container';
-export const MealPlanOverview = () => {
+export const MealPlanOverview = ({mealplan}) => {
 
     const { state, dispatch } = useMainContext();
+    const [isTextDisplayed, setIsTextDisplayed] = useState(false);
 
     const MealPlanOverviewSlot = ({mealtime, day}) => {
+        const meal = mealplan 
+            ? mealplan[day][mealtime].name
+            : state.mealplan[day][mealtime].name; 
         return(
             <div>
-                {state.mealplan[day][mealtime].name 
-                ? '✓' : 'X'}
+                {isTextDisplayed 
+                ? <div className={`tiny`}>
+                    {meal
+                    ? meal : 'XXXX'}
+                  </div>
+                : <div>
+                    {meal 
+                    ? '✓' : 'X'}
+                  </div>
+                }
+                
             </div>
         );
     }
@@ -55,6 +68,7 @@ export const MealPlanOverview = () => {
     }
 
     const Plan = () => {
+
         const rows = mealtimes.map((mealtime) => {
             return(
                 <MealPlanRow key={mealtime} mealtime={mealtime}/>
@@ -80,14 +94,20 @@ export const MealPlanOverview = () => {
         );
     }
     return(
-        <div className='container mealplan-target-m mb-2' onClick={handleClick} >
-        <DropTarget targetKey='meal' as='div'
-            onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
-            onHit={handleDrop} 
-            style={{minHeight:'100px', minWidth:'100px'}}
-            > 
-            <Plan className='mealtime mb-2 mt-1'/>
-        </DropTarget>
+        <div>
+            <div >
+                <button className={`butt butt-standard col col-12`} onClick={() => setIsTextDisplayed(!isTextDisplayed)}>
+                    {`${isTextDisplayed ? 'Hide text' : 'Show text'}`}
+                </button>
+            </div>
+            <div className='container mealplan-target-m mb-2' onClick={handleClick} >
+            <DropTarget targetKey='meal' as='div'
+                onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
+                onHit={handleDrop} 
+                style={{minHeight:'100px', minWidth:'100px'}} > 
+                <Plan className='mealtime mb-2 mt-1'/>
+            </DropTarget>
+            </div>
         </div>
     )
 }
