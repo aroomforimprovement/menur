@@ -100,7 +100,7 @@ export const MealPlan = () => {
         return(
             <div className='container'>
                 <div className='row'>
-                    <div className={'col col-2 mealplan-header header-xy m-1'}>
+                    <div className={`col col-2 mealplan-header header-xy ${isMobile ? 'm-1' : state.isLandscape ? 'mb-1' : 'mb-2'} `}>
                     {isMobile 
                         ? <div onClick={toggleMealPlanClosed} 
                             className={`mt-2 ms-0 ms-md-2 p-3 border rounded rounded-circle shadow fa fa-chevron-left`}>

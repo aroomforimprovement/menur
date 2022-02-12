@@ -77,7 +77,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
             <div className={`container mealtime border shadow shadow-sm ${state.isLandscape ? 'mealtime-ls' : 'mealtime-pt'} 
                 ${hasHighlightedIngredient ? 'border-success' : ''}`} >
                 <div onClick={setMealtimePickerOpen} className='mealtime-click'>
-                    <div className='mealtime-text pt-0'>{state.mealplan[day][mealtime].name 
+                    <div className='mealtime-text'>{state.mealplan[day][mealtime].name 
                         ? state.mealplan[day][mealtime].name  : ' '}
                     </div>   
                 </div>

@@ -126,18 +126,20 @@
   background-color:theme.$bg;
   font-size:small;
   opacity: 0.8;
-  border-radius: 8px;
   vertical-align: bottom;
   position: relative;
   cursor: pointer;
+  border-radius:3em;
+  border: 2px solid black;
 }
 
 .mealtime-text{
   font-size:small;
-  display:inline-flex;
+  display:block;
   font-weight:normal;
   color:theme.$data;
-  position:relative;
+  position:absolute;
+  left:0em;
 }
 
 .mealtime-click{
@@ -201,7 +203,7 @@
    }
    .mealtime-text{
      font-size:xx-small;
-     position:absolute;
+     //position:absolute;
      left:0%;
    }
  }
@@ -223,7 +225,7 @@
    }
    .mealtime-text{
      font-size:xx-small;
-     position:absolute;
+     //position:absolute;
      left:0%;
    }
  }
@@ -244,7 +246,7 @@
   }
   .mealtime-text{
     font-size:x-small;
-    position:absolute;
+    //position:absolute;
     left:0%;
   }
   .mealtime-ingredients{
@@ -263,12 +265,9 @@
     min-width:80px;
   }
   .mealtime{
-    font-size:x-small;
+    font-size:normal;
     min-width:90px;
     vertical-align: middle;
-   }
-   .mealtime-text{
-     font-size:x-small;
    }
  }
 
@@ -283,7 +282,7 @@
     min-width:100px;
   }
   .mealtime{
-    font-size:normal;
+    font-size:larger;
     min-width:106px;
    }
    
@@ -301,8 +300,11 @@
     min-width:130px;
   }
   .mealtime{
-    font-size:normal;
+    font-size:larger;
     min-width:135px;
+   }
+   .mealtime-text{
+    margin-top:5em;
    }
  }  
 
@@ -317,7 +319,7 @@
     min-width:150px;
   }
   .mealtime{
-    font-size:normal;
+    font-size:larger;
     min-width:155px;
  } 
 } 
@@ -333,7 +335,7 @@
     min-width:150px;
   }
   .mealtime{
-    font-size:normal;
+    font-size:large;
     min-width:150px; 
   } 
  }
