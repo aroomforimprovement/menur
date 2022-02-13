@@ -8,7 +8,8 @@
   
   .butt-standard-outline{
     background-color: theme.$neutral;
-    border: 2px solid theme.$action;
+    border: 2px solid theme.$action-border;
+    color: theme.$action-text;
   }
   .butt-alternate-outline{
     background-color: theme.$neutral;

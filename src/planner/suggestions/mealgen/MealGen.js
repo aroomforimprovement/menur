@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, FormControl, InputGroup } from 'react-bootstrap';
+import { Form, FormControl, InputGroup, Container, Row, Col } from 'react-bootstrap';
 import './mealgen.scss';
 import { useMainContext } from '../../../main/MenurRouter';
 import { getNewId } from '../../../utils/objUtils';
@@ -115,24 +115,33 @@ export const MealGen = () => {
 
     const IngredientField = ({ingredient, i}) => {
         return(
-            <div className='container p-0'>
-                <InputGroup size='sm' onKeyDown={handleIngredientKeyDown} className='row'>
-                    <FormControl size='sm' type='text' id={`ingredient_${i}`} placeholder='Ingredient'
-                        defaultValue={ingredient && ingredient.name ? ingredient.name : ''} 
-                        className='w-50'></FormControl>
-                    
-                    <Form.Select size='sm' type='select' id={`type_${i}`} 
-                        defaultValue={ingredient && ingredient.type ? ingredient.type : 'fresh'}>
-                        <option>fresh</option>
-                        <option>dry</option>
-                        <option>tin</option>
-                        <option>spice</option>
-                        <option>cond</option>
-                    </Form.Select>
-                    <FormControl size='sm' type='number' id={`qty_${i}`} placeholder={1}
-                        defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1}></FormControl>
-                </InputGroup>
-            </div>
+            <Container className='p-0'>
+                <Row>
+                    <Col xs={10}>
+                        <InputGroup size='sm' onKeyDown={handleIngredientKeyDown} className='row'>
+                            <FormControl size='sm' type='text' id={`ingredient_${i}`} placeholder='Ingredient'
+                                defaultValue={ingredient && ingredient.name ? ingredient.name : ''} 
+                                className='w-50'></FormControl>
+                            
+                            <Form.Select size='sm' type='select' id={`type_${i}`} 
+                                defaultValue={ingredient && ingredient.type ? ingredient.type : 'fresh'}>
+                                <option>fresh</option>
+                                <option>dry</option>
+                                <option>tin</option>
+                                <option>spice</option>
+                                <option>cond</option>
+                            </Form.Select>
+                            <FormControl size='sm' type='number' id={`qty_${i}`} placeholder={1}
+                                defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1}></FormControl>
+                        </InputGroup>
+                    </Col>
+                    <Col xs={2}>
+                        <button className='butt butt-standard-outline fa fa-plus my-1 py-1 mx-auto px-auto center'
+                            style={{minWidth:'100%'}} onClick={handleAddIngredient}>{' '}
+                        </button>
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 
@@ -186,15 +195,7 @@ export const MealGen = () => {
                     <div id='ingredient-slot'>
                         {ingredientFields}
                     </div>
-                    <div className='row'>
-                        <div className='col col-11 me-0'>
-                            <IngredientField i={ingredients.length} />
-                        </div>
-                        <div className='col col-1 butt butt-standard-outline fa fa-plus my-1 py-1 mx-0'
-                                onClick={handleAddIngredient}>{' '}
-                        </div>
-                        
-                    </div>
+                    <IngredientField i={ingredients.length} />
                     <div className='row ing-row pb-3'>
                         <div className='col col-3'></div>                       
                         <button className='butt butt-standard col col-12 mx-1 mt-3'
