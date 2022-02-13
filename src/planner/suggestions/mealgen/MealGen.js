@@ -4,6 +4,7 @@ import './mealgen.scss';
 import { useMainContext } from '../../../main/MenurRouter';
 import { getNewId } from '../../../utils/objUtils';
 import { toast } from 'react-hot-toast';
+import { DEFAULT_SERVINGS } from '../../../shared/meals';
 
 export const MealGen = () => {
     const { state, dispatch } = useMainContext();
@@ -181,10 +182,10 @@ export const MealGen = () => {
                                 <Form.Label size='sm' htmlFor='servings' className='col col-8'>
                                     <strong>Servings:</strong>
                                 </Form.Label>
-                                <FormControl type='number' id='servings' defaultValue={2}
+                                <FormControl type='number' id='servings' defaultValue={DEFAULT_SERVINGS}
                                     onChange={handleServingsChange} size="sm"
                                     className='col col-5 ps-2 w-25'></FormControl>
-                                <small>{`${state.defaultServings} servings + ${servings - state.defaultServings} leftovers`}</small>
+                                <small>{`${state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings ? servings - state.defaultServings : servings - DEFAULT_SERVINGS} leftovers`}</small>
                             </InputGroup>
                         </div>
                     </div>

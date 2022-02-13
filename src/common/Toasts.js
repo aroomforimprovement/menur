@@ -37,7 +37,6 @@ export const ToastConfirm = ({t, approve, dismiss, message, approveBtn, dismissB
                         {dismissBtn}
                 </button>
                 <button className='butt butt-standard col col-6'
-                    
                     onClick={() => approve(t.id)}>
                         {approveBtn}
                 </button>

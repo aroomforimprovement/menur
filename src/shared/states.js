@@ -32,7 +32,7 @@ export const INIT_STATE = {
     hideMeals: true,
     hidePlans: true,
     cookiesApproved: false,
-    defaultServings: DEFAULT_SERVINGS,
+    defaultServings: 2,
     isMealPlanClosed: true,
     isPickerClosed: true,
     pickerMeal: undefined,
