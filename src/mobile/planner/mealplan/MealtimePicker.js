@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useMainContext } from '../../../main/MenurRouter';
 import { Selector } from '../../../planner/selector/Selector';
-import { MealGen } from '../../../planner/suggestions/mealgen/MealGen';
 import { Suggestions } from '../../../planner/suggestions/Suggestions';
-import { days, mealtimes } from '../../../shared/states';
 
 export const MealtimePicker = () => {
     const { state, dispatch } = useMainContext();
@@ -19,14 +17,10 @@ export const MealtimePicker = () => {
     return(
         <div>
             <div onClick={toggleMealtimePickerClosed} 
-                            className={`mt-2 ms-0 ms-md-2 p-3 border rounded rounded-circle shadow fa fa-chevron-left`}></div>
-            <div>
-                {
-                    `For ${state.mealtimePickerMealtime} on 
-                        ${state.mealtimePickerDay}...`
-                }
-            </div>
-            <Selector />
+                className={`mt-2 ms-0 ms-md-2 p-3 border rounded rounded-circle shadow fa fa-chevron-left`}></div>
+            <Selector 
+                message={`for 
+                        ${state.mealtimePickerMealtime} on ${state.mealtimePickerDay}`}/>
             <Suggestions />
         </div>
     );

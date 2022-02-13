@@ -78,7 +78,7 @@ export const Plan = ({plan, isLandscape}) => {
                     onClick={handleOpenPlan}>
                         Open
                 </button>
-                {state && plan ? <PDFDownloadLink className={'butt butt-good pdf-download shadow shadow-sm col col-4 m-auto'}
+                {state && plan ? <PDFDownloadLink className={'butt butt-good pdf-download shadow shadow-sm col col-4 m-auto center'}
                     document={isLandscape 
                     ? <DownloadableMealPlanLandscape mealplan={plan.mealplan}/> 
                     : <DownloadableMealPlan mealplan={plan.mealplan}/>} 

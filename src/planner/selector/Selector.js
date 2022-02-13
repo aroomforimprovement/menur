@@ -8,7 +8,7 @@ import { Searcher } from './Searcher';
 import toast from 'react-hot-toast';
 import { isMobile } from 'react-device-detect';
 
-export const Selector = () => {
+export const Selector = ({message}) => {
     const { state, dispatch } = useMainContext();
     //const { selection, setSelection } = useState(MEALS[0]);
     
@@ -84,7 +84,7 @@ export const Selector = () => {
         <div className={`selector col col-12 col-md-4 `} >
             <Form.Group className={`${isMobile ? 'px-1' : ''}`}>
                 <div className={`${isMobile ? 'px-1' : ''}`}>
-                    <Form.Label className='selector-heading'><h5>What are you making?</h5></Form.Label><br/>
+                    <Form.Label className='selector-heading'><h5>{`What are you making${message ? ' ' + message : ''}?`}</h5></Form.Label><br/>
                     <Form.Check inline type={"checkbox"} onChange={handleCheckBasic} label={'Basic meals'} 
                         id="checkBasic" checked={state.showBasic}/>
                     <Form.Check inline type={"checkbox"} onChange={handleCheckMine} label={'My meals'} 
