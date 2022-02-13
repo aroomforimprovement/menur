@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMainContext } from '../../../main/MenurRouter';
 import { days, mealtimes } from '../../../shared/states';
 
@@ -6,7 +6,7 @@ import { days, mealtimes } from '../../../shared/states';
 
 export const MealPlanPicker = ({meal}) => {
     
-    const { state, dispatch } = useMainContext();
+    const { dispatch } = useMainContext();
     const [isDayPicked, setIsDayPicked] = useState(false);
 
     const MealPlanDayPicker = ({meal}) => {
@@ -19,7 +19,7 @@ export const MealPlanPicker = ({meal}) => {
             
             return(
                 <div>
-                    <button className={'btn btn-outline-secondary col col-10 m-1'}
+                    <button className={'butt butt-standard-outline col col-12 my-1'}
                         onClick={handleClick}>{day}</button>
                 </div>
             )
@@ -27,15 +27,15 @@ export const MealPlanPicker = ({meal}) => {
 
         const daySlots = days.map((day) => {
             return(
-                <li key={day}>
+                <li key={day} className={'col col-12'}>
                     <MealPlanDaySlot meal={meal} day={day}/>
                 </li>
             );
         });
 
         return(
-            <div>
-                <div><h6>{meal && meal.meal ? `Add ${meal.meal.name} to your meal plan:` : ''}</h6></div>
+            <div className={'container'}>
+                <div className='row mt-3 mb-1 mx-auto'><h6>{meal && meal.meal ? `Add ${meal.meal.name} to your meal plan:` : ''}</h6></div>
                 <ul className={'list-unstyled'}>{daySlots}</ul>
             </div>
         );
@@ -53,7 +53,7 @@ export const MealPlanPicker = ({meal}) => {
     
             return(
                 <div>
-                    <button className={'btn btn-outline-secondary col col-10 m-1'}
+                    <button className={'butt butt-standard-outline col col-12 my-1'}
                         onClick={handleClick}>{time}</button>
                 </div>
             )
@@ -68,13 +68,16 @@ export const MealPlanPicker = ({meal}) => {
         });
     
         return(
-            <div>
-                <div><h6>{meal && meal.meal ? `Add ${meal.meal.name} to your meal plan on ${meal.day}:` : ''}</h6></div>
+            <div className={'container'}>
+                <div className='row mt-3 mb-1'><h6>{meal && meal.meal ? `Add ${meal.meal.name} to your meal plan on ${meal.day}:` : ''}</h6></div>
                 <ul className={'list-unstyled'}>{timeSlots}</ul>
             </div>
         );
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [isDayPicked]);
     return(
         <div>
             {isDayPicked 
