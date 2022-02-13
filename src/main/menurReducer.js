@@ -237,6 +237,11 @@ export const reducer = (state, action) => {
             });
             return ({...state, mealplan: mealplan, leftovers: leftovers});
         }
+        case 'SET_MEALPLAN_INGS_OPEN':{
+            let mealplan = {...state.mealplan};
+            mealplan[action.data.day][action.data.mealtime].showIngredients = action.data.showIngredients;
+            return({...state, mealplan: mealplan})
+        }
         case 'REMOVE_MEALPLAN_ING':{
             let mealplan = {...state.mealplan};
             let meal = {...mealplan[action.data.day][action.data.mealtime]};

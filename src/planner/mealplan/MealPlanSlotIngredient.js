@@ -33,7 +33,7 @@ export const MealPlanSlotIngredient = ({day, mealtime, ing}) => {
         }else{
             return(
                 <div className='row'>
-                    <button type='button' className='btn-close ing-remove col col-1' onClick={() => {handleRemoveIngredient(ing)}}
+                    <button type='button' className='btn-close ing-remove col col-1' onClick={(e) => {e.preventDefault(); handleRemoveIngredient(ing)}}
                         style={{ width:'3px', height:'3px', top:'2px', right:'2px', opacity: 0.4, '&:hover': {opacity: 1} }} aria-label='Remove'></button>
                     <small className='col'>{ing.name}</small>
                 </div>

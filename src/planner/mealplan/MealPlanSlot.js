@@ -7,7 +7,7 @@ import { MealPlanSlotIngredient } from './MealPlanSlotIngredient';
 export const MealPlanSlot = ({mealtime, day}) => {
     const { state, dispatch } = useMainContext();
 
-    const [showIngredients, setShowIngredients] = useState(false);
+    //const [showIngredients, setShowIngredients] = useState(false);
     const [hasHighlightedIngredient, setHasHighlightedIngredient] = useState(false);
     
     useEffect(() => {
@@ -41,7 +41,9 @@ export const MealPlanSlot = ({mealtime, day}) => {
         dispatch({type: 'REMOVE_MEAL', data: {day: day, mealtime: mealtime}});
     }
     const toggleShowIngredients = () => {
-        setShowIngredients(!showIngredients);
+        dispatch({type: 'SET_MEALPLAN_INGS_OPEN',
+            data: {day: day, mealtime: mealtime, showIngredients: !state.mealplan[day][mealtime].showIngredients}});
+        //setShowIngredients(!showIngredients);
     }
     const setMealtimePickerOpen = () => {
         dispatch({
@@ -69,7 +71,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
         <div></div>
     
     let classes = '';
-    classes = showIngredients ? 'fa-angle-up' : 'fa-angle-down';
+    classes = state.mealplan[day][mealtime].showIngredients ? 'fa-angle-up' : 'fa-angle-down';
     
     return(
         <DropTarget targetKey='meal' as='div'
@@ -84,7 +86,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
                 <div>
             </div>
             <div className={'row'}> 
-                <div hidden={!showIngredients}>
+                <div hidden={!state.mealplan[day][mealtime].showIngredients}>
                     <ul className='list-unstyled mealtime-ingredients mx-0 px-0 mt-5 col col-12'>
                         <small>{ingredients}</small>
                     </ul>
