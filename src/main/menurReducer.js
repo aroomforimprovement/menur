@@ -1,4 +1,4 @@
-import { MEALS } from '../shared/meals';
+import { DEFAULT_SERVINGS, MEALS } from '../shared/meals';
 import { INIT_STATE, days, mealtimes } from '../shared/states';
 import { getIngredientsFromMeal, getMealsWithIngredient } from '../utils/objUtils';
 
@@ -179,13 +179,14 @@ export const reducer = (state, action) => {
             let mealplan = {...state.mealplan};
             mealplan[action.data.day][action.data.mealtime] = action.data.meal; 
             const servings = parseInt(action.data.meal.servings);
+            const defaultServings = state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS;
             let leftovers = [...state.leftovers];
-            if(servings > state.defaultServings){
+            if(servings > defaultServings){
                 const name = action.data.meal.name.indexOf("Leftover") > -1 
                     ? action.data.meal.name : `Leftover ${action.data.meal.name}` 
                 let leftover = {
                     "name": name,
-                    "servings": servings - state.defaultServings,
+                    "servings": servings - defaultServings,
                     "ingredients": [],
                     "score": "100",
                     "day_tag": action.data.day,
