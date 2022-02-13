@@ -58,23 +58,23 @@ export const Header = () => {
                                 {!state 
                                 ? <Col><Loading /></Col> 
                                 : <div className='row float-end'>
-                                    {/**<Nav navbar>*/}
+                                    <Nav navbar>
                                             <div className={`col`} >
                                                 <Navbar.Text className='nav-item' >
-                                                    {!state || (state && state.user && state.user.isAuth) ? null : <LoginBtn size='btn-sm mt-2' />}
+                                                    {!state || (state && state.user && state.user.isAuth) ? null : <LoginBtn size=' mt-2 px-3 ' />}
                                                 </Navbar.Text>
                                             </div>
                                             <div className='col'>
                                                 <Navbar.Text className='nav-item'>
-                                                    {!state || (state && state.user && state.user.isAuth) ? <LogoutBtn size='btn-sm mt-2' /> : null}
+                                                    {!state || (state && state.user && state.user.isAuth) ? <LogoutBtn size=' mt-2 px-3 ' /> : null}
                                                 </Navbar.Text>
                                             </div>
                                             <div className='col' >
                                                 <Navbar.Text className='nav-item'>
-                                                    {!state || (state && state.user && state.user.isAuth) ? null : <SignupBtn size='btn-sm mt-2' />}
+                                                    {!state || (state && state.user && state.user.isAuth) ? null : <SignupBtn size=' mt-2 px-3 ' />}
                                                 </Navbar.Text>
                                             </div>
-                                    {/**</Nav>*/}
+                                    </Nav>
                                 </div>
                                 }
                             </div>

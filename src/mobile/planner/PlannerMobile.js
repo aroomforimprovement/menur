@@ -26,8 +26,7 @@ export const PlannerMobile = () => {
     }, [splat, dispatch, state.splatSet, state.isMealPlanClosed, state.isPickerClosed]);
 
     return(
-        <div>
-            
+        <div className='mt-3'>
             <div hidden={!state.isMealPlanClosed || !state.isPickerClosed}>
                 <div className='row'>
                     <Selector className='col col-12'/>
