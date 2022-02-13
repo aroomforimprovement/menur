@@ -139,12 +139,13 @@
   font-weight:normal;
   color:theme.$data;
   position:absolute;
-  left:0em;
+  top:-1em;
 }
 
 .mealtime-click{
   min-height:50px;
   min-width:50px;
+  position:relative;
   cursor: pointer;
 }
 
@@ -247,6 +248,7 @@
   .mealtime-text{
     font-size:x-small;
     //position:absolute;
+    padding-top:0px;
     left:0%;
   }
   .mealtime-ingredients{
@@ -303,9 +305,7 @@
     font-size:larger;
     min-width:135px;
    }
-   .mealtime-text{
-    margin-top:5em;
-   }
+
  }  
 
  @media screen and (min-width: 1400px) and (max-width: 1599px){
