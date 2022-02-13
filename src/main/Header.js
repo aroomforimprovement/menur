@@ -53,36 +53,29 @@ export const Header = () => {
                             </Row>
                         </Nav>
                         <Row>
-                            <Col>
-                                <div className='col col-2 col-md-3 col-lg-4 mt-2 float-start'>
-                                    <h5 className='mb-2'>Menur</h5>
-                                </div>
-                            </Col>
-                            <Col xs={6}>
-                                <div className={`col col-4 col-md-3 float-end`}>
+                            <Col xs={12}>
+                                <div >
                                 {!state 
                                 ? <Col><Loading /></Col> 
-                                : <Col>
-                                    <Nav navbar>
-                                        <Row>
-                                            <Col xs={5} className={`float-start`}>
+                                : <div className='row float-end'>
+                                    {/**<Nav navbar>*/}
+                                            <div className={`col`} >
                                                 <Navbar.Text className='nav-item' >
                                                     {!state || (state && state.user && state.user.isAuth) ? null : <LoginBtn size='btn-sm mt-2' />}
                                                 </Navbar.Text>
-                                            </Col>
-                                            <Col xs={12}>
+                                            </div>
+                                            <div className='col'>
                                                 <Navbar.Text className='nav-item'>
                                                     {!state || (state && state.user && state.user.isAuth) ? <LogoutBtn size='btn-sm mt-2' /> : null}
                                                 </Navbar.Text>
-                                            </Col>
-                                            <Col xs={5}>
+                                            </div>
+                                            <div className='col' >
                                                 <Navbar.Text className='nav-item'>
                                                     {!state || (state && state.user && state.user.isAuth) ? null : <SignupBtn size='btn-sm mt-2' />}
                                                 </Navbar.Text>
-                                            </Col>
-                                        </Row>
-                                    </Nav>
-                                </Col>
+                                            </div>
+                                    {/**</Nav>*/}
+                                </div>
                                 }
                             </div>
                             </Col>
