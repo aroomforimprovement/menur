@@ -201,7 +201,7 @@ export const MealGen = () => {
                         <button className='butt butt-standard col col-12 mx-1 mt-3'
                             onClick={handleAdd}>Add new meal to suggestions</button>
                         {state && state.user && state.user.isAuth ?
-                            <button className='btn btn-sm btn-success col col-12 mx-1 mt-1 mb-3'
+                            <button className='butt butt-good col col-12 mx-1 mt-1 mb-3'
                             onClick={handleSave}>Save new meal to account</button> : <div></div>
                         }
                     </div>

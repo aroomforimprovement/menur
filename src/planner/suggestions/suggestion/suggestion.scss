@@ -85,6 +85,9 @@ no longer using sugg-container in Suggestion.js*/
 }
 
 .sugg-good{
+  background-color: rgba(theme.$good, 0.8);
+}
+.sugg-good:hover{
   background-color: theme.$good;
 }
   
@@ -93,23 +96,34 @@ no longer using sugg-container in Suggestion.js*/
 }
   
 .sugg-ok{
-  background-color: theme.$warn;
+  background-color: rgba(theme.$warn, 0.9);
 }
  
+.sugg-ok:hover{
+  background-color: theme.$warn;
+}
+
 .sugg-ok .suggestion-text{
   color:theme.$on-dark;
 }
  
 .sugg-bad{
-  //background-color: rgb(155, 29, 29);
-  background-color: theme.$err;
+  background-color: rgba(theme.$err, 0.9);
 }
  
+.sugg-bad:hover{
+  background-color: theme.$err;
+}
+
 .sugg-bad .suggestion-text{
   color:theme.$on-dark;
 }
   
 .sugg-none{
+  background-color: rgba(theme.$neutral, 0.5);
+}
+
+.sugg-none:hover{
   background-color: theme.$neutral;
 }
 
