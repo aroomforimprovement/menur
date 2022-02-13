@@ -81,7 +81,7 @@ export const Selector = ({message}) => {
     }
 
     return(
-        <div className={`selector col col-12 col-md-4 `} >
+        <div className={`selector col col-12 ${state.isMealtimePickerClosed ? 'col-md-4' : 'col-md-8' }`} >
             <Form.Group className={`${isMobile ? 'px-1' : ''}`}>
                 <div className={`${isMobile ? 'px-1' : ''}`}>
                     <Form.Label className='selector-heading'><h5>{`What are you making${message ? ' ' + message : ''}?`}</h5></Form.Label><br/>
