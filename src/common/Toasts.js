@@ -1,23 +1,21 @@
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 
-
 export const Toast = () => {
     return (
             <Toaster />
     )
 }
 
-
-
 export const toastConfirmStyle = () => {
+    const style = {
+        paddingBottom: 12, 
+        border: `2px solid #550000`, 
+        backgroundColor: 'rgba(170, 170, 214)',
+        fontWeight: 'bold'
+    }
     return {duration: 60000, 
-        style: {
-            padding: 40, 
-            border: '2px solid #550000', 
-            backgroundColor: '#555',
-            color: '#eee'
-        }
+        style: style
     };    
 }
 
@@ -26,21 +24,20 @@ export const ToastConfirm = ({t, approve, dismiss, message, approveBtn, dismissB
     return (
         <div className='container'>
             <div className='row'>
-                <h6>Confirm</h6>
+                <h5>Confirm</h5>
             </div>
             <div className='row'>
-                <span>
+                <h6>
                     {message}
-                </span>
+                </h6>
             </div>
             <div className='row mt-4 mx-auto end-zone'>
-                <button className='btn btn-sm btn-outline-secondary col col-5 mx-2' 
-                    style={{backgroundColor: '#333', color: '#ddd'}} 
+                <button className='butt butt-alternate-outline col col-6' 
                     onClick={() => dismiss(t.id)}>
                         {dismissBtn}
                 </button>
-                <button className='btn btn-sm btn-outline-danger col col-5 mx-2'
-                    style={{backgroundColor: '#ddd', color: '#333'}} 
+                <button className='butt butt-standard col col-6'
+                    
                     onClick={() => approve(t.id)}>
                         {approveBtn}
                 </button>
