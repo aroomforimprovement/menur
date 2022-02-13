@@ -64,21 +64,23 @@ export const Header = () => {
                                 ? <Col><Loading /></Col> 
                                 : <Col>
                                     <Nav navbar>
-                                        <Col xs={6}>
-                                            <Navbar.Text className='nav-item' >
-                                                {!state || (state && state.user && state.user.isAuth) ? null : <LoginBtn size='btn-sm mt-2' />}
-                                            </Navbar.Text>
-                                        </Col>
-                                        <Col xs={12}>
-                                            <Navbar.Text className='nav-item'>
-                                                {!state || (state && state.user && state.user.isAuth) ? <LogoutBtn size='btn-sm mt-2' /> : null}
-                                            </Navbar.Text>
-                                        </Col>
-                                        <Col xs={6}>
-                                            <Navbar.Text className='nav-item'>
-                                                {!state || (state && state.user && state.user.isAuth) ? null : <SignupBtn size='btn-sm mt-2' />}
-                                            </Navbar.Text>
-                                        </Col>
+                                        <Row>
+                                            <Col xs={5} className={`float-start`}>
+                                                <Navbar.Text className='nav-item' >
+                                                    {!state || (state && state.user && state.user.isAuth) ? null : <LoginBtn size='btn-sm mt-2' />}
+                                                </Navbar.Text>
+                                            </Col>
+                                            <Col xs={12}>
+                                                <Navbar.Text className='nav-item'>
+                                                    {!state || (state && state.user && state.user.isAuth) ? <LogoutBtn size='btn-sm mt-2' /> : null}
+                                                </Navbar.Text>
+                                            </Col>
+                                            <Col xs={5}>
+                                                <Navbar.Text className='nav-item'>
+                                                    {!state || (state && state.user && state.user.isAuth) ? null : <SignupBtn size='btn-sm mt-2' />}
+                                                </Navbar.Text>
+                                            </Col>
+                                        </Row>
                                     </Nav>
                                 </Col>
                                 }
