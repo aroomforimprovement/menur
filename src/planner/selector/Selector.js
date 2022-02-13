@@ -98,10 +98,10 @@ export const Selector = ({message}) => {
                     {meals}
                 </Form.Select>
                 <div className={`${isMobile ? 'px-1' : ''}`}>
+                    <strong>Ingredients</strong>
                     <Form.Check type="checkbox" onChange={handleCheckSpices} checked={state.showSpices}
                         id={'showSpicesCheckbox'} label={'Shows spices / condiments'}
                         />
-                    <strong>Ingredients</strong>
                     <ul className='list-unstyled mt-2 mb-1 ms-2'>
                         {selectionIngredients}
                     </ul>
