@@ -33,16 +33,28 @@ export const Plan = ({plan, isLandscape}) => {
         });
     }
     const handleDeletePlan = () => {
-        deletePlan().then((response) => {
-            if(response && response.ok){
-                toast.success('Mealplan deleted ok');
-                //window.location.href = '/account';
-                dispatch({type: 'REMOVE_SAVED_PLAN', data: plan.id});
-            }else{
-                toast.error('Error deleting Mealplan');
-                console.error("handleDeletePlan: response not ok");
-            }
-        });
+        const setPlanDeleted = (id) => {
+            toast.dismiss(id);
+            deletePlan().then((response) => {
+                if(response && response.ok){
+                    toast.success('Mealplan deleted ok');
+                    //window.location.href = '/account';
+                    dispatch({type: 'REMOVE_SAVED_PLAN', data: plan.id});
+                }else{
+                    toast.error('Error deleting Mealplan');
+                    console.error("handleDeletePlan: response not ok");
+                }
+            });
+        }
+        const setIsCancelled = (id) => {
+            toast.dismiss(id);
+        }
+        toast((t) => (
+            <ToastConfirm t={t} approve={setPlanDeleted} dismiss={setIsCancelled}
+                message={'Are you sure you want to delete this meal plan?'}
+                approveBtn={'Delete'} dismissBtn={'Cancel'}
+            />
+        ), toastConfirmStyle());
     }
     const handleOpenPlan = () => {
 
