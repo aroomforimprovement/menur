@@ -32,7 +32,7 @@ export const LogoutBtn = ({size}) => {
             onClick={() => logoutMenur()}
             type='button' 
             className={classes}>
-                Log out
+                Logout
             </button>
                         
 }
@@ -48,7 +48,7 @@ export const SignupBtn = ({size}) => {
             )}
             type='button'
             className={classes}
-            >Sign up</button>
+            >Signup</button>
 
 }
 
