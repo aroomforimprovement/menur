@@ -38,5 +38,6 @@ export const INIT_STATE = {
     pickerMeal: undefined,
     isMealtimePickerClosed: true,
     mealtimePickerDay: '',
-    mealtimePickerMealtime: ''
+    mealtimePickerMealtime: '',
+    isSaveOpen: false
 }

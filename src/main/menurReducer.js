@@ -198,6 +198,12 @@ export const reducer = (state, action) => {
                 mealplan: mealplan, leftovers: leftovers, 
                 isPickerClosed: true, isMealtimePickerClosed: true});
         }
+        case 'NAME':{
+            return({...state, mealplanName: action.data});
+        }
+        case 'SET_SAVE_OPEN':{
+            return({...state, isSaveOpen: action.data});
+        }
         case 'REMOVE_MEAL':{
             let mealplan = {...state.mealplan};
             mealplan[action.data.day][action.data.mealtime] = {};

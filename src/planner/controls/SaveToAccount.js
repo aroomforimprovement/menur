@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Loading } from '../../common/Loading';
 import { getNewId } from '../../utils/objUtils';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router';
 import { useMainContext } from '../../main/MenurRouter';
+import { Form, Modal } from 'react-bootstrap';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
@@ -13,13 +14,15 @@ export const SaveToAccount = () => {
     const {state, dispatch} = useMainContext();
     const [isSaving, setIsSaving] = useState(false);
     const [isSaveFailed, setIsSaveFailed] = useState(false);
+    const [mealplanName, setMealplanName] = useState(state.mealplan.name ? state.mealplan.name : undefined);
+
     const params = useParams();
     const mealPlanId = params.id;
     const isEdit = params.edit;
     
     const saveDataToAccount = async () => {
         if(state && state.user && state.user.isAuth){
-            const name = new Date().toString();
+            const name = mealplanName ? mealplanName : new Date().toString();
             const id = isEdit > 0 ? mealPlanId : getNewId();
             const body = {
                 userid: state.user.userid,
@@ -70,9 +73,28 @@ export const SaveToAccount = () => {
         }
     }
 
-    const handleSaveData = () => {
+    const handleSaveData = (e) => {
         setIsSaving(true);
         saveDataToAccount();
+        e.preventDefault();
+    }
+
+    const handleNameChange = (e) => {
+        //dispatch({type: 'NAME', data: e.target.value});
+        setMealplanName(e.target.value);
+        e.preventDefault();
+    }
+
+    const NameInput = () => {
+        const inputRef = useRef();
+        useEffect(() => {inputRef.current && inputRef.current.focus()});
+        return(
+            <Form.Control type='text' id='name' name='name' autoFocus={true}
+                onChange={handleNameChange} 
+                ref={inputRef}
+                value={mealplanName ? mealplanName : undefined}
+                />
+        );
     }
     return(
         <div >
@@ -86,12 +108,29 @@ export const SaveToAccount = () => {
                 <div>
                 {state && state.user && state.user.isAuth
                 ? <button className='butt butt-standard shadow col col-11 mx-auto'
-                    onClick={handleSaveData}>
+                    onClick={() => dispatch({type: 'SET_SAVE_OPEN', data: true})}>
                     <span className='fa fa-save me-2'></span> Save this Meal Plan to your Account <span className='fa fa-save ms-2'></span>
                 </button> : <div></div>}
                 </div> 
             }
             </div>
+            <Modal show={state.isSaveOpen} //onShow={() => {dispatch({type: 'SET_SAVE_OPEN', data: true})}} 
+                //onHide={() => {dispatch({type: 'SET_SAVE_OPEN', data: false})}} 
+                >
+                <Modal.Header>
+                    Save this meal plan to your account
+                </Modal.Header>
+                <Modal.Body>
+                    <Form.Group>
+                        <Form.Label htmlFor="name">Name your meal plan</Form.Label>
+                        <NameInput />
+                    </Form.Group>
+                </Modal.Body>
+                <Modal.Footer>
+                    <button className='butt butt-alternate' onClick={() => dispatch({type: 'SET_SAVE_OPEN', data: false})}>Cancel</button>
+                    <button className='butt butt-standard' onClick={handleSaveData}>Save</button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 

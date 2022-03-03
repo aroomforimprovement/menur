@@ -56,7 +56,7 @@ export const Searcher = () => {
         setSelection(selection, v);
     }
 
-    const handleBlured = (v, e) => {
+    const handleBlur = (v, e) => {
         if(showResults && !mouseOver){setShowResults(false)};
     }
 
@@ -72,7 +72,7 @@ export const Searcher = () => {
                 placeholder='Search for meals...'
                 onChange={handleChanged}
                 onEnter={handleEntered}
-                onBlur={handleBlured}
+                onBlur={handleBlur}
                 onSearchClick={handleSearchClick}
             />
             <div hidden={!showResults} className={'col col-12 search-results'}>
