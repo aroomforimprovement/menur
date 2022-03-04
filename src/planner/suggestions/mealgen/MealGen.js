@@ -218,8 +218,8 @@ export const MealGen = ({meal, edit, open}) => {
                         </div>
                     </div>
                     <Form.Label size='sm' className='mt-2'>
-                        <h6>Ingredients:</h6>
-                        <small>Use | character to separate options, like "Fresh tomatoes|Canned tomatoes", if either will do</small>
+                        <h6 style={{display:'inline'}} className='me-1'>Ingredients:</h6>
+                        <small style={{fontSize: 'small', fontStyle:'italic'}}>Use | character to separate options, like "Fresh tomatoes|Canned tomatoes", if either will do</small>
                     </Form.Label>
                     <div id='ingredient-slot'>
                         {ingredientFields}

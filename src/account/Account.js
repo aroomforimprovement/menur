@@ -42,11 +42,11 @@ const Account = () => {
     
     const ShowSpices = () => {
         return(<div className='row mb-4'>    
-            <div className='col col-7 col-sm-5 col-md-4 col-lg-3'>
+            <small className='col col-7 col-sm-5 col-md-4 col-lg-3'>
                 <Form.Check type="checkbox" onChange={handleCheckSpices} checked={showSpices}
                     className={'show-spices ms-3 p-0'}
                     id={'showSpicesCheckbox'} label={'Shows spices / condiments'}/>
-            </div>
+            </small>
         </div>)
     }
 
@@ -64,7 +64,7 @@ const Account = () => {
     const meals = state && state.meals && state.meals.length > 0
     ? state.meals.map((meal, i) => {
         return(
-            <div key={meal.id} className='col col-3'>
+            <div key={meal.id} className='col col-6 col-md-3 mb-2'>
                 <Meal meal={meal} showSpices={showSpices}/>
             </div>
         );

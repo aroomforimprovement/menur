@@ -65,16 +65,18 @@ export const Meal = ({meal, showSpices}) => {
 
     return(
         <div className='container dummy-meal border shadow-sm m-0 p-0'>
+            <div onClick={handleEditMeal} className='mealtime-click fa fa-edit float-start'>
+            </div> 
             <div className='row meal-row m-0 px-0'>
-                <div className='mealtime-text'>
+                <div className='meal-heading'>
                     {meal.name ? meal.name  : 'NAME MISSING'}
                 </div>  
-                <div onClick={handleEditMeal} className='mealtime-click fa fa-edit'>
-                </div> 
+                
                 <button type='button' className='btn-close meal-remove' onClick={handleDeleteMeal} 
                     style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} aria-label='Delete'>
                 </button> 
-                <div onClick={handleShowIngredients} className={'expand-ingredients'}>
+                <div onClick={handleShowIngredients} className={'expand-ingredients float-start'}
+                    aria-label='Show ingredients' style={{ bottom:'-2px' }}>
                     {showIngredients 
                     ? <span className='fa fa-angle-up'>{' '}</span> 
                     : <span className='fa fa-angle-down'>{' '}</span>}
@@ -93,7 +95,7 @@ export const Meal = ({meal, showSpices}) => {
             <Modal show={isEditing}>
                 <Modal.Header className='float-end'>
                     <div className='col col-12'>
-                        <button className='butt fa fa-close float-end px-2 me-0'
+                        <button className='butt fa fa-close float-end px-2 me-0' aria-label='Close'
                             onClick={() => {setIsEditing(false)}}></button>
                     </div>                
                 </Modal.Header>
