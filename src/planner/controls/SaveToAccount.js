@@ -14,8 +14,11 @@ export const SaveToAccount = () => {
     const {state, dispatch} = useMainContext();
     const [isSaving, setIsSaving] = useState(false);
     const [isSaveFailed, setIsSaveFailed] = useState(false);
-    const [mealplanName, setMealplanName] = useState(state.backupPlan && state.backupPlan.name ? state.backupPlan.name : undefined);
-
+    const [mealplanName, setMealplanName] = useState(
+        state.backupPlan && state.backupPlan.name 
+        && window.location.href.toString().indexOf('/0') === window.location.href.toString().length-2
+        ? `Copy of ${state.backupPlan.name}` : state.backupPlan && state.backupPlan.name ? state.backupPlan.name : undefined);
+console.log(window.location.href.toString());
     const params = useParams();
     const mealPlanId = params.id;
     const isEdit = params.edit;

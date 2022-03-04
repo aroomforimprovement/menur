@@ -121,13 +121,18 @@ export const MealPlan = () => {
             </div>
         );
     }
-console.dir(state);
-    
+   
     return(
         <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'} `}>
             <div className='mt-2'>
             <div className='float-center'>
-                    <h6 >{state.backupPlan && state.backupPlan.name ? state.backupPlan.name : ''}</h6>
+                    <h6 >
+                        {state.backupPlan && state.backupPlan.name 
+                        && window.location.href.toString().indexOf('/0') === window.location.href.toString().length-2
+                        ? `Copy of ${state.backupPlan.name}` 
+                        : state.backupPlan && state.backupPlan.name 
+                        ? state.backupPlan.name 
+                        : undefined}</h6>
                 </div>
             {isMobile 
                 ? <PortraitPlan /> 
