@@ -198,6 +198,16 @@ export const reducer = (state, action) => {
                 mealplan: mealplan, leftovers: leftovers, 
                 isPickerClosed: true, isMealtimePickerClosed: true});
         }
+        case 'UPDATE_SAVED_MEAL':{
+            console.dir(state);
+            let meals = [...state.meals];
+            for(let i = 0; i < meals.length; i++){
+                if(meals[i].id === action.data.id){
+                    meals[i] = action.data;
+                }
+            }
+            return({...state, meals: meals});
+        }
         case 'NAME':{
             return({...state, mealplanName: action.data});
         }
