@@ -18,7 +18,7 @@ export const SaveToAccount = () => {
         state.backupPlan && state.backupPlan.name 
         && window.location.href.toString().indexOf('/0') === window.location.href.toString().length-2
         ? `Copy of ${state.backupPlan.name}` : state.backupPlan && state.backupPlan.name ? state.backupPlan.name : undefined);
-console.log(window.location.href.toString());
+
     const params = useParams();
     const mealPlanId = params.id;
     const isEdit = params.edit;

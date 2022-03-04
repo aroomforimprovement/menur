@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './searcher.scss';
-import SearchField from 'react-search-field';
+//import SearchField from 'react-search-field';
+import ReactSearchBox from 'react-search-box';
 import { useMainContext } from '../../main/MenurRouter';
 import { MEALS } from '../../shared/meals';
 
@@ -40,7 +41,7 @@ export const Searcher = () => {
         );
     }) : <div></div>;
 
-    const handleChanged = (v, e) => {
+    const handleChanged = (v) => {
         const meals = v.length > 0 
             ? mealsIncluded.filter(meal => meal.name.indexOf(v) > -1)
             : null;
@@ -50,6 +51,8 @@ export const Searcher = () => {
             setShowResults(true);
         }
     }
+
+    
 
     const handleEntered = (v, e) => {
         const selection = displayMeals[0];
@@ -64,16 +67,38 @@ export const Searcher = () => {
         displayMeals ? handleEntered(v, null) : console.debug("eating handleSearchClick");
     }
     
+    useEffect(() => {
+        const checkArrows = (e) => {
+            if(showResults){
+                if(e.keyCode === 38){
+                    setSearchHighlightIndex(searchHighlightIndex - 1);
+                }else if(e.keyCode === 40){
+                    setSearchHighlightIndex(searchHighlightIndex + 1);
+                }else if(e.keyCode === 13){
+                    displayMeals && displayMeals[searchHighlightIndex] 
+                    ? setSelection(displayMeals[searchHighlightIndex]) : 
+                        console.log("useEffect: no displayMeals");
+                } 
+            }
+        }
+
+        document.addEventListener('keydown', checkArrows, false);
+
+        return () => {
+            document.removeEventListener('keydown', checkArrows, false);
+        }
+    });
 
     return(
         <div className={`searcher `}>
-            <SearchField
+            <ReactSearchBox
                 classNames={'col col-12 shadow shadow-sm'}
                 placeholder='Search for meals...'
                 onChange={handleChanged}
-                onEnter={handleEntered}
+                onSelect={handleEntered}
                 onBlur={handleBlur}
                 onSearchClick={handleSearchClick}
+                
             />
             <div hidden={!showResults} className={'col col-12 search-results'}>
                 {mealDisplay}

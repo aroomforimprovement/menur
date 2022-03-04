@@ -21,27 +21,29 @@ export const Selector = ({message}) => {
         );
     });
 
-    const selectionIngredients = state.selection.ingredients.map((ing, i) => {
-        const meal = {...state.selectedSuggestion};
-        let classes = 'selection-ingredients ';
-        const mealIngredients = getIngredientsFromMeal(meal);
-        outer: for(let ind = 0; ind < mealIngredients.length; ind++){
-            if(ing.name.indexOf(DELIM) > -1){
-                const splits = ing.name.split(DELIM);
-                for(let index = 0; index < splits.length; index++){
-                    if(mealIngredients[ind].name.toLowerCase() === splits[index].toLowerCase()){
-                        if(!classes.indexOf('bold') > -1){
-                            classes += 'bold';
-                            break outer;
-                        }        
+    const selectionIngredients = state && state.selection && state.selection.ingredients 
+        ? state.selection.ingredients.map((ing, i) => {
+        
+            const meal = {...state.selectedSuggestion};
+            let classes = 'selection-ingredients ';
+            const mealIngredients = getIngredientsFromMeal(meal);
+            outer: for(let ind = 0; ind < mealIngredients.length; ind++){
+                if(ing.name.indexOf(DELIM) > -1){
+                    const splits = ing.name.split(DELIM);
+                    for(let index = 0; index < splits.length; index++){
+                        if(mealIngredients[ind].name.toLowerCase() === splits[index].toLowerCase()){
+                            if(!classes.indexOf('bold') > -1){
+                                classes += 'bold';
+                                break outer;
+                            }        
+                        }
+                    }
+                }else if(mealIngredients[ind].name.toLowerCase() === ing.name.toLowerCase()){
+                    if(!classes.indexOf('bold') > -1){
+                        classes += 'bold';
+                        break;
                     }
                 }
-            }else if(mealIngredients[ind].name.toLowerCase() === ing.name.toLowerCase()){
-                if(!classes.indexOf('bold') > -1){
-                    classes += 'bold';
-                    break;
-                }
-            }
         }
         return(
             <div key={i} className={`classes ${isMobile ? 'selection-ingredient-m' : ''}`}>
@@ -50,7 +52,7 @@ export const Selector = ({message}) => {
                     : <li >{ing.name.replaceAll(DELIM, OR)}{isMobile ? ',': ''}</li>}
             </div>
         );
-    });
+    }) : <div></div>;
 
     const handleChange = (e) => {
         mealsIncluded.forEach((meal) => {
