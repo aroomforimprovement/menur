@@ -51,7 +51,7 @@ const Account = () => {
     }
 
     const plans = state && state.plans && state.plans.length > 0
-        ? state.plans.map((plan, i) => {
+        ? state.plans.slice(0).reverse().map((plan, i) => {
             const link = `/planner/${plan.id}`;
             return(
                 <div key={plan.id} 
