@@ -121,11 +121,14 @@ export const MealPlan = () => {
             </div>
         );
     }
-
+console.dir(state);
     
     return(
         <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'} `}>
             <div className='mt-2'>
+            <div className='float-center'>
+                    <h6 >{state.backupPlan && state.backupPlan.name ? state.backupPlan.name : ''}</h6>
+                </div>
             {isMobile 
                 ? <PortraitPlan /> 
                 : state.isLandscape 

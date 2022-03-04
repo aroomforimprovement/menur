@@ -14,7 +14,7 @@ export const SaveToAccount = () => {
     const {state, dispatch} = useMainContext();
     const [isSaving, setIsSaving] = useState(false);
     const [isSaveFailed, setIsSaveFailed] = useState(false);
-    const [mealplanName, setMealplanName] = useState(state.mealplan.name ? state.mealplan.name : undefined);
+    const [mealplanName, setMealplanName] = useState(state.backupPlan && state.backupPlan.name ? state.backupPlan.name : undefined);
 
     const params = useParams();
     const mealPlanId = params.id;
@@ -114,9 +114,7 @@ export const SaveToAccount = () => {
                 </div> 
             }
             </div>
-            <Modal show={state.isSaveOpen} //onShow={() => {dispatch({type: 'SET_SAVE_OPEN', data: true})}} 
-                //onHide={() => {dispatch({type: 'SET_SAVE_OPEN', data: false})}} 
-                >
+            <Modal show={state.isSaveOpen} >
                 <Modal.Header>
                     Save this meal plan to your account
                 </Modal.Header>
