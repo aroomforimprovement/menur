@@ -113,10 +113,10 @@ export const GenList = () => {
                 <div>
                     <ListTemplate list={'genList'} title='Generated List' 
                         copyFunc={() => copyList([...state.genList], "GENERATED LIST")} downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}/>
-                    <ListTemplate list={'userList1'} title={'User List 1'} 
-                        copyFunc={copyUserList1}/>
-                    <ListTemplate list={'userList2'} title={'User List 2'} 
-                        copyFunc={copyUserList2}/>
+                    <ListTemplate list={'userList1'} title={'User List 1'} downloadFunc={() => downloadList([...state.userList1], "LIST 1")}
+                        copyFunc={() => copyList([...state.userList1], "LIST 1")} />
+                    <ListTemplate list={'userList2'} title={'User List 2'} downloadFunc={() => downloadList([...state.userList2], "LIST 2")}
+                        copyFunc={() => copyList([...state.userList2], "LIST 2")} />
                 </div>
             }
         </div>
