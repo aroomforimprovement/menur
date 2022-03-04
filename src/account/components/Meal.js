@@ -9,7 +9,7 @@ import { MealGen } from '../../planner/suggestions/mealgen/MealGen';
 const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
 
-export const Meal = ({meal, showSpices}) => {
+export const Meal = ({meal, showSpices, index}) => {
     const { state, dispatch } = useMainContext();
     const [showIngredients, setShowIngredients] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
@@ -64,7 +64,8 @@ export const Meal = ({meal, showSpices}) => {
         <div></div>
 
     return(
-        <div className='container dummy-meal border shadow-sm m-0 p-0'>
+        <div className='container dummy-meal border shadow-sm m-0 p-0'
+            style={{zIndex:1000-index}}>
             <div onClick={handleEditMeal} className='mealtime-click fa fa-edit float-start'>
             </div> 
             <div className='row meal-row m-0 px-0'>
@@ -81,17 +82,19 @@ export const Meal = ({meal, showSpices}) => {
                     ? <span className='fa fa-angle-up'>{' '}</span> 
                     : <span className='fa fa-angle-down'>{' '}</span>}
                 </div>
+            </div>
             {showIngredients 
                 ? 
-                <div className='px-0 py-1'>
-                    <ul className='list-unstyled dummy-ingredients col col-12 ps-2'>
+                <div className='dummy-ingredients'
+                    style={showIngredients ? {position:'absolute'} : {position:'relative'}} 
+                    >
+                    <ul className='list-unstyled col col-12 ps-2'>
                         {ingredients}
                     </ul>
                 </div> 
                 :
                 <div></div>
             }
-            </div>
             <Modal show={isEditing}>
                 <Modal.Header className='float-end'>
                     <div className='col col-12'>

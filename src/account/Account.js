@@ -65,7 +65,7 @@ const Account = () => {
     ? state.meals.map((meal, i) => {
         return(
             <div key={meal.id} className='col col-6 col-md-3 mb-2'>
-                <Meal meal={meal} showSpices={showSpices}/>
+                <Meal meal={meal} showSpices={showSpices} index={i}/>
             </div>
         );
     }) : <div>No saved meals here.</div>;

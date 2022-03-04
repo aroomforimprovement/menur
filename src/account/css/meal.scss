@@ -17,15 +17,23 @@
   margin-bottom:1em;
 }
 
+
+.meal-heading{
+  font-weight: bold;
+  padding-top:0.5em;
+}
+
 .dummy-ingredients{
     text-align: start;
     font-weight: normal;
     font-size: small;
     color: black;
     background-color:inherit;
-    margin-top:1em;
+    margin-top:2em;
     position:relative;
     min-width:100%;
+    background:rgb(255, 255, 211);
+    
 }
 
 .meal-remove{
