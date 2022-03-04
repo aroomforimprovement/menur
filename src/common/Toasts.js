@@ -44,3 +44,41 @@ export const ToastConfirm = ({t, approve, dismiss, message, approveBtn, dismissB
         </div>
     );
 }
+
+export const ToastOptions = ({t, options, dismiss, message, optionBtns, dismissBtn}) => {
+
+    const optionButtons = options.map((option, i) => {
+
+        return(
+            <button key={i} onClick={option}
+                className={`butt butt-standard${i%2 === 0 ? '-outline ' : ' '} col col-6`}>
+                {optionBtns[i]}
+            </button>    
+        );
+    })
+
+    return(
+        <div className='container'>
+            <div className='row'>
+                <h5>Options</h5>    
+            </div>
+            <div className='row'>
+                <h6>
+                    {message}
+                </h6>
+            </div>
+            <div className='row mt-4 mx-auto'>
+                <div className={`col col-${12/(options.length+1)} float-start ms-0`}>
+                    <button className='butt butt-alternate-outline col col-12'
+                        onClick={() => dismiss(t.id)}>
+                        {dismissBtn}        
+                    </button>
+                </div> 
+                <div className={`col float-end me-0`}>
+                    {optionButtons}   
+                </div>
+                
+            </div>
+        </div>
+    );
+}

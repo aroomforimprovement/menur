@@ -3,6 +3,8 @@ import './shopping.scss';
 import { useMainContext } from '../../main/MenurRouter';
 import { ShoppingList } from './ShoppingList';
 import { isMobile } from 'react-device-detect';
+import toast from 'react-hot-toast';
+import { ToastConfirm, toastConfirmStyle, ToastOptions } from '../../common/Toasts';
 
 export const GenList = () => {
 
@@ -30,14 +32,21 @@ export const GenList = () => {
             });
         }
     }
-    const copyList = async (list, heading) => {
-        let copy = heading+"\n";
+    const getListText = (list, heading) => {
+        let text = heading+"\n";
         list.forEach(item => {
-            copy += item.name + "\tx " + item.qty + "\n";
+            text += item.name + "\tx " + item.qty + "\n";
         });
+        return text;
+    }
+    const copyList = async (list, heading) => {
+        let copy = getListText(list, heading);
         copyToClipboard(copy)
-            .then(() => console.debug('copied'))
-            .catch(() => console.debug('error'));
+            .then(() => {
+                toast.success(`${heading} copied to clipboard`);    
+                console.debug('copied')
+            })
+            .catch((err) => console.debug('error'));
     }
     const copyGenList = () => {
         copyList([...state.genList], "GENERATED LIST");
@@ -48,13 +57,38 @@ export const GenList = () => {
     const copyUserList2 = () => {
         copyList([...state.userList2], "LIST 2");
     }
+    const downloadList = async (list, heading) => {
+        let listText = getListText(list, heading);
+        const setIsCancelled = (id) => {
+            toast.dismiss(id);
+        }
+        const text = () => {
+            console.log("text");
+        }
+        const pdf = () => {
+            console.log("pdf");
+        }
 
-    const ListTemplate = ({list, title, copyFunc}) => {
+        toast((t) => (
+            <ToastOptions t={t} dismiss={setIsCancelled}
+                options={[text, pdf]} optionBtns={["Text", "PDF"]}
+                message={`Would you like download this list as a text file or a pdf?`}
+                dismissBtn={'Cancel'} /> 
+        ), toastConfirmStyle());
+    }
+
+    const ListTemplate = ({list, title, copyFunc, downloadFunc}) => {
 
         return(
             <div className={`gen-list mt-2 border border-2 shadow shadow-sm ${isMobile ? 'col col-11' : 'col col-11 col-md-4'} mx-auto px-1`}>
                 <div className='row mb-1 pt-2'>
                     <h6 className='list-heading col mt-1'>{title}</h6>
+                    <div className='col col-1 col-md-2 col-lg-1 me-4'>
+                        <button className='btn btn-sm btn-outline-info copy-btn mb-2 bg-light'
+                            onClick={downloadFunc}>
+                            <span className='fa fa-download fa-xs'>{' '}</span>
+                        </button>
+                    </div>
                     <div className='col col-1 col-md-2 col-lg-1 me-4'>
                         <button className='btn btn-sm btn-outline-info copy-btn mb-2 bg-light'
                             onClick={copyFunc}>
@@ -78,7 +112,7 @@ export const GenList = () => {
             :
                 <div>
                     <ListTemplate list={'genList'} title='Generated List' 
-                        copyFunc={copyGenList}/>
+                        copyFunc={() => copyList([...state.genList], "GENERATED LIST")} downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}/>
                     <ListTemplate list={'userList1'} title={'User List 1'} 
                         copyFunc={copyUserList1}/>
                     <ListTemplate list={'userList2'} title={'User List 2'} 
