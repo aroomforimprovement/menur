@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet  } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, pdf  } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
     page: {
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
 });
 
 
-export const DownloadableMealPlan = (mealplan) => {
+export const DownloadableMealPlan = ({mealplan}) => {
 
     return(
         <Document >
@@ -152,7 +152,7 @@ export const DownloadableMealPlan = (mealplan) => {
     )
 };
 
-export const DownloadableMealPlanLandscape = (mealplan) => {
+export const DownloadableMealPlanLandscape = ({mealplan}) => {
     return(
         <Document >
             <Page size="A4" orientation={'landscape'} style={styles.page}>
@@ -209,17 +209,17 @@ export const DownloadableMealPlanLandscape = (mealplan) => {
     )
 };
 
-export const DownloadableShoppingList = (list, heading) => {
+export const DownloadableShoppingList = ({list, heading}) => {
     
     const listItems = list ? list.map((item, i) => {
         return(
             <Text  key={i} style={styles.line}>{`${item.name} \tx ${item.qty}`}</Text>
         )
     }) : <div></div>;
-    
+
     return(
         <Document>
-            <Page size="A5" orientation={'portrait'} style={styles.page}>
+            <Page size="A4" orientation={'portrait'} style={styles.page}>
                 <View style={styles.shoppingList} >
                     <Text style={styles.line}>{heading}</Text>
                     {listItems}
@@ -227,4 +227,31 @@ export const DownloadableShoppingList = (list, heading) => {
             </Page>
         </Document>
     );
+}
+
+export const DownloadableMealPlanWithShoppingList = ({mealplan, lists, isLandscape}) => {
+    const listDocs = lists ? lists.map((list, i) => {
+        return(
+            <DownloadableShoppingList key={i} 
+                list={list.list} heading={list.heading} />
+        );
+    }) : undefined;
+
+    return(
+        <Document>
+            {isLandscape ? <DownloadableMealPlanLandscape mealplan={mealplan}/> 
+                : <DownloadableMealPlan mealplan={mealplan}/>}
+            {listDocs}
+        </Document>
+    );
+}
+
+const GetSingleShoppingList = async (list) => {
+    console.dir(list);
+    return await pdf(DownloadableShoppingList({list:list.list, heading:list.heading})).toBlob();
+}
+
+export const MultipleShoppingLists = async ({lists}) => {
+    console.dir(lists);
+    return await Promise.all(lists.map(GetSingleShoppingList));
 }

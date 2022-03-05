@@ -6,7 +6,7 @@ import { isMobile } from 'react-device-detect';
 import toast from 'react-hot-toast';
 import { toastConfirmStyle, ToastOptions } from '../../common/Toasts';
 import { saveAs } from 'file-saver';
-import { Document, Page, pdf, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { pdf } from '@react-pdf/renderer';
 import { DownloadableShoppingList } from '../../utils/pdfUtils';
 
 export const GenList = () => {
@@ -64,7 +64,7 @@ export const GenList = () => {
             toast.dismiss(id);
         }
         const downloadPdf = async (id) => {
-            const blob = await pdf(DownloadableShoppingList(list, heading)).toBlob();
+            const blob = await pdf(DownloadableShoppingList({list:list, heading:heading})).toBlob();
             saveAs(blob, `Shopping List ${Date.now()}`);
             toast.dismiss(id);
         }
