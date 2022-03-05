@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet,  } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet  } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
     page: {
@@ -84,6 +84,19 @@ const styles = StyleSheet.create({
         minHeight: '50px',
         textAlign: 'center'
     },
+    shoppingList: {
+        flexGrow: 1,
+        verticalAlign: 'middle',
+        marginTop: '20px'
+    },
+    line:{
+        width: '100%',
+        minHeight: '50px',
+        overflowWrap: 'break-line',
+    },
+    ingredient:{
+        
+    }
 });
 
 
@@ -188,3 +201,22 @@ export const DownloadableMealPlanLandscape = ({mealplan}) => (
         </Page>
     </Document>
 );
+
+export const DownloadableShoppingList = ({list, heading}) => {
+    
+    const listItems = list.map((item, i) => {
+        return(
+            <Text key={i} style={styles.line}>{`${item.name} \tx ${item.qty}`}</Text>
+        )
+    });
+    return(
+        <Document>
+            <Page size="A4" orientation={'portrait'} style={styles.page}>
+                <View style={styles.shoppingList}>
+                    <Text style={styles.line}>{heading}</Text>
+                    {listItems}
+                </View>
+            </Page>
+        </Document>
+    );
+}

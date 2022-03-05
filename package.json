@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^5.1.1",
     "cookies-js": "^1.2.3",
+    "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
     "mdb-ui-kit": "^3.9.0",
     "nginx": "^1.0.3",

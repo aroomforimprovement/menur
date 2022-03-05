@@ -15,8 +15,9 @@ export const DownloadMealPlan = () => {
                             ? <DownloadableMealPlanLandscape mealplan={state.mealplan}/> 
                             : <DownloadableMealPlan mealplan={state.mealplan}/>}
                                 fileName={`mealplan_${new Date()}`}>
-                                    {({blob, url, loading, error}) => 
-                                        loading ? 'Loading document...' : 'Download Meal Plan as PDF'
+                                    {({blob, url, loading, error}) => {
+                                        return loading ? 'Loading document...' : 'Download Meal Plan as PDF'
+                                    }
                                     }  
                         </PDFDownloadLink> : <div></div>}
                 <span className={'fa fa-lg fa-download'}>{' '}</span>

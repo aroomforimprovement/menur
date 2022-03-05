@@ -4,11 +4,14 @@ import { useMainContext } from '../../main/MenurRouter';
 import { ShoppingList } from './ShoppingList';
 import { isMobile } from 'react-device-detect';
 import toast from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle, ToastOptions } from '../../common/Toasts';
+import { toastConfirmStyle, ToastOptions } from '../../common/Toasts';
+import { saveAs } from 'file-saver';
+import { Document, Page, pdf, Text, View, StyleSheet } from '@react-pdf/renderer';
 
 export const GenList = () => {
 
     const { state } = useMainContext();
+
     function copyToClipboard(textToCopy) {
         // navigator clipboard api needs a secure context (https)
         if (navigator.clipboard && window.isSecureContext) {
@@ -33,7 +36,7 @@ export const GenList = () => {
         }
     }
     const getListText = (list, heading) => {
-        let text = heading+"\n";
+        let text = heading+"\n\n";
         list.forEach(item => {
             text += item.name + "\tx " + item.qty + "\n";
         });
@@ -48,30 +51,34 @@ export const GenList = () => {
             })
             .catch((err) => console.debug('error'));
     }
-    const copyGenList = () => {
-        copyList([...state.genList], "GENERATED LIST");
-    }
-    const copyUserList1 = () => {
-        copyList([...state.userList1], "LIST 1");
-    }
-    const copyUserList2 = () => {
-        copyList([...state.userList2], "LIST 2");
-    }
+    
     const downloadList = async (list, heading) => {
         let listText = getListText(list, heading);
         const setIsCancelled = (id) => {
             toast.dismiss(id);
         }
-        const text = () => {
+        const downloadText = (id) => {
             console.log("text");
+            const blob = new Blob([listText], {type: 'text/plain;charset=utf-8'});
+            saveAs(blob, `Shopping List ${Date.now().toString()}`);
+            toast.dismiss(id);
         }
-        const pdf = () => {
+        const downloadPdf = async (id) => {
             console.log("pdf");
+            const style = StyleSheet.create({
+                list:{margin: '5%'}
+            });
+            const blob = await pdf(
+                <Document>
+                    <Page size="A5"><View style={style.list}><Text>{listText}</Text></View></Page>
+                </Document>).toBlob();
+            saveAs(blob, `Shopping List ${Date.now()}`);
+            toast.dismiss(id);
         }
 
         toast((t) => (
             <ToastOptions t={t} dismiss={setIsCancelled}
-                options={[text, pdf]} optionBtns={["Text", "PDF"]}
+                options={[downloadText, downloadPdf]} optionBtns={["Text", "PDF"]}
                 message={`Would you like download this list as a text file or a pdf?`}
                 dismissBtn={'Cancel'} /> 
         ), toastConfirmStyle());
@@ -102,20 +109,23 @@ export const GenList = () => {
     }
 
     return(
-        <div style={{display:'inline-block'}} className='col col-12'>
-            
+        <div style={{display:'inline-block'}} className='col col-12'> 
             {isMobile 
             ?  <div>
                     <ListTemplate list={'genList'} title='Shopping list' 
-                        copyFunc={copyGenList}/>
+                        copyFunc={copyList([...state.genList], "GENERATED LIST")} 
+                        downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}/>
                 </div>
             :
                 <div>
                     <ListTemplate list={'genList'} title='Generated List' 
-                        copyFunc={() => copyList([...state.genList], "GENERATED LIST")} downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}/>
-                    <ListTemplate list={'userList1'} title={'User List 1'} downloadFunc={() => downloadList([...state.userList1], "LIST 1")}
+                        copyFunc={() => copyList([...state.genList], "GENERATED LIST")} 
+                        downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}/>
+                    <ListTemplate list={'userList1'} title={'User List 1'} 
+                    downloadFunc={() => downloadList([...state.userList1], "LIST 1")}
                         copyFunc={() => copyList([...state.userList1], "LIST 1")} />
-                    <ListTemplate list={'userList2'} title={'User List 2'} downloadFunc={() => downloadList([...state.userList2], "LIST 2")}
+                    <ListTemplate list={'userList2'} title={'User List 2'} 
+                        downloadFunc={() => downloadList([...state.userList2], "LIST 2")}
                         copyFunc={() => copyList([...state.userList2], "LIST 2")} />
                 </div>
             }

@@ -50,7 +50,7 @@ export const ToastOptions = ({t, options, dismiss, message, optionBtns, dismissB
     const optionButtons = options.map((option, i) => {
 
         return(
-            <button key={i} onClick={option}
+            <button key={i} onClick={() => option(t.id)}
                 className={`butt butt-standard${i%2 === 0 ? '-outline ' : ' '} col col-6`}>
                 {optionBtns[i]}
             </button>    
