@@ -86,13 +86,15 @@ const styles = StyleSheet.create({
     },
     shoppingList: {
         flexGrow: 1,
-        verticalAlign: 'middle',
-        marginTop: '20px'
+        verticalAlign: 'top',
+        margin: '5%'
+
     },
     line:{
-        width: '100%',
-        minHeight: '50px',
         overflowWrap: 'break-line',
+        marginTop: '0px',
+        marginBottom: '0px',
+        padding: '0px'
     },
     ingredient:{
         
@@ -202,20 +204,20 @@ export const DownloadableMealPlanLandscape = ({mealplan}) => (
     </Document>
 );
 
-export const DownloadableShoppingList = ({list, heading}) => {
+export const DownloadableShoppingList = (list, heading) => {
     
-    const listItems = list.map((item, i) => {
+    const listItems = list ? list.map((item, i) => {
         return(
-            <Text key={i} style={styles.line}>{`${item.name} \tx ${item.qty}`}</Text>
+            <Text  key={i} style={styles.line}>{`${item.name} \tx ${item.qty}`}</Text>
         )
-    });
+    }) : <div></div>;
     return(
         <Document>
-            <Page size="A4" orientation={'portrait'} style={styles.page}>
-                <View style={styles.shoppingList}>
+            <Page size="A5" orientation={'portrait'} style={styles.page}>
+                <View style={styles.shoppingList} >
                     <Text style={styles.line}>{heading}</Text>
                     {listItems}
-                </View>
+                </View>          
             </Page>
         </Document>
     );

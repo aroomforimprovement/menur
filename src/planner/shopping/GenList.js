@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { toastConfirmStyle, ToastOptions } from '../../common/Toasts';
 import { saveAs } from 'file-saver';
 import { Document, Page, pdf, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { DownloadableShoppingList } from '../../utils/pdfUtils';
 
 export const GenList = () => {
 
@@ -58,20 +59,12 @@ export const GenList = () => {
             toast.dismiss(id);
         }
         const downloadText = (id) => {
-            console.log("text");
             const blob = new Blob([listText], {type: 'text/plain;charset=utf-8'});
             saveAs(blob, `Shopping List ${Date.now().toString()}`);
             toast.dismiss(id);
         }
         const downloadPdf = async (id) => {
-            console.log("pdf");
-            const style = StyleSheet.create({
-                list:{margin: '5%'}
-            });
-            const blob = await pdf(
-                <Document>
-                    <Page size="A5"><View style={style.list}><Text>{listText}</Text></View></Page>
-                </Document>).toBlob();
+            const blob = await pdf(DownloadableShoppingList(list, heading)).toBlob();
             saveAs(blob, `Shopping List ${Date.now()}`);
             toast.dismiss(id);
         }
