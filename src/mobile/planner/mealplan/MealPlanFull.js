@@ -6,7 +6,7 @@ import { MealtimePicker } from './MealtimePicker';
 
 export const MealPlanFull = () => {
    
-    const { state, dispatch } = useMainContext();
+    const { state } = useMainContext();
 
     return(
         <div>

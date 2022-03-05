@@ -2,7 +2,7 @@ import React from 'react';
 import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import { useMainContext } from '../../main/MenurRouter';
-import { DownloadableMealPlan, DownloadableMealPlanLandscape, DownloadableShoppingList, MultipleShoppingLists } from '../../utils/pdfUtils';
+import { DownloadableMealPlan, DownloadableMealPlanLandscape,  MultipleShoppingLists } from '../../utils/pdfUtils';
 import toast from 'react-hot-toast';
 import { toastConfirmStyle, ToastOptions } from '../../common/Toasts';
 import PDFMerger from 'pdf-merger-js';
@@ -16,7 +16,6 @@ export const DownloadMealPlan = () => {
             toast.dismiss(id);
         }
         const downloadWithShoppingList = async (id) => {
-            console.log("with");
             const lists = [];
             if(state.genList.length > 0){
                 lists.push({list: state.genList, heading: "GENERATED LIST"});
@@ -33,28 +32,20 @@ export const DownloadMealPlan = () => {
                 ? lists.push({list: state.genList, heading: "GENERATED LIST"}) 
                 : console.warn("no shopping lists generated");
             }
-            console.log("mealplanBlob")
             const mealplanBlob = await pdf(
                 state.isLandscape 
                 ? DownloadableMealPlanLandscape({mealplan: state.mealplan})
                 : DownloadableMealPlan({mealplan: state.mealplan})).toBlob();
-            console.dir(mealplanBlob);
-            console.log("shoppingListBlobs");
             const shoppingListBlobs = await MultipleShoppingLists({lists: lists});
-            console.dir(shoppingListBlobs);
-            console.log("merger");
             const merger = new PDFMerger();
             await merger.add(mealplanBlob);
             for(const blob in shoppingListBlobs) {
-                console.dir(shoppingListBlobs[blob]);
                 await merger.add(shoppingListBlobs[blob]);
             };
-            console.log("blob");
             const blob = await merger.saveAsBlob();
-            console.log("saveAs");
             blob instanceof Blob
                 ? saveAs(blob, `Menur Plan - ${state.mealplan.name ? state.mealplan.name : Date.now()}`)
-                : console.log("no blob");
+                : console.warn("no blob");
             toast.dismiss(id);
         }
 

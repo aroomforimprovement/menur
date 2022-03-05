@@ -1,4 +1,4 @@
-import { DEFAULT_SERVINGS, MEALS } from "./meals";
+import { MEALS } from "./meals";
 
 
 export const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];

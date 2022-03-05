@@ -62,8 +62,7 @@ export const MealGen = ({meal, edit, open}) => {
     }
     
 
-    const saveMeal = async () => { 
-        console.log("saveMeal");
+    const saveMeal = async () => {
         const id = edit && meal && meal.id ? meal.id : getNewId();
         const body = {
             userid: state.user.userid,
@@ -111,10 +110,7 @@ export const MealGen = ({meal, edit, open}) => {
         }
     }
     const handleSave = async (e) => {
-        console.log("handleSave");
-        console.log(name);
         e.preventDefault();
-        
         if(name && name !== ''){
             await saveMeal();
             edit ? console.log() : addSuggestion(e);
