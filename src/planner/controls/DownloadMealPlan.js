@@ -1,25 +1,26 @@
-import { PDFDownloadLink } from '@react-pdf/renderer';
 import React from 'react';
+import { pdf } from '@react-pdf/renderer';
+import { saveAs } from 'file-saver';
 import { useMainContext } from '../../main/MenurRouter';
 import { DownloadableMealPlan, DownloadableMealPlanLandscape } from '../../utils/pdfUtils';
 
 export const DownloadMealPlan = () => {
     const { state } = useMainContext();
-    
+
+    const handleDownload = async () => {
+        const blob = await pdf(
+            state.isLandscape 
+            ? DownloadableMealPlanLandscape(state.mealplan)
+            : DownloadableMealPlan(state.mealplan)).toBlob();
+        saveAs(blob, `Menur Plan - ${state.mealplan.name ? state.mealplan.name : Date.now()}`)
+    }
+
     return(
         <div>
-            <button className={'butt butt-good shadow my-1 col col-11 mb-2 mx-auto'} style={{display:'inline-block'}}>
+            <button onClick={handleDownload} 
+                className={'butt butt-good shadow my-1 col col-11 mb-2 mx-auto'} style={{display:'inline-block'}}>
                 <span className={'fa fa-lg fa-download'}>{' '}</span>
-                {state ? <PDFDownloadLink className={'pdf-download'}
-                            document={state.isLandscape 
-                            ? <DownloadableMealPlanLandscape mealplan={state.mealplan}/> 
-                            : <DownloadableMealPlan mealplan={state.mealplan}/>}
-                                fileName={`mealplan_${new Date()}`}>
-                                    {({blob, url, loading, error}) => {
-                                        return loading ? 'Loading document...' : 'Download Meal Plan as PDF'
-                                    }
-                                    }  
-                        </PDFDownloadLink> : <div></div>}
+                    Download Meal Plan
                 <span className={'fa fa-lg fa-download'}>{' '}</span>
             </button>
         </div>
