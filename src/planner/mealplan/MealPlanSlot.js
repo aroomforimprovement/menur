@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './mealplan.scss';
-import { DropTarget } from 'react-drag-drop-container';
+import { DropTarget, DragDropContainer } from 'react-drag-drop-container';
 import { useMainContext } from '../../main/MenurRouter';
 import { MealPlanSlotIngredient } from './MealPlanSlotIngredient';
 
@@ -37,6 +37,11 @@ export const MealPlanSlot = ({mealtime, day}) => {
         e.target.style.color = 'blue';
         e.target.style.fontWeight = 'bold';
     }
+
+    const handleDropOver = (e) => {
+        handleRemoveMeal();
+    }
+
     const handleRemoveMeal = () => {
         dispatch({type: 'REMOVE_MEAL', data: {day: day, mealtime: mealtime}});
     }
@@ -78,9 +83,11 @@ export const MealPlanSlot = ({mealtime, day}) => {
             onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>                
             <div className={`mealtime border shadow shadow-sm ${state.isLandscape ? 'mealtime-ls' : 'mealtime-pt'} 
                 ${hasHighlightedIngredient ? 'border-success' : ''}`} >
-                <div className='mealtime-text'>{state.mealplan[day][mealtime].name 
-                    ? state.mealplan[day][mealtime].name  : ' '}
-                </div>
+                <DragDropContainer targetKey='meal' onDrop={handleDropOver} dragData={{meal: state.mealplan[day][mealtime]}}>
+                    <div className='mealtime-text'>{state.mealplan[day][mealtime].name 
+                        ? state.mealplan[day][mealtime].name  : ' '}
+                    </div>
+                </DragDropContainer>
                 <div onClick={setMealtimePickerOpen} className='mealtime-click fa fa-edit'>
                        
                 </div>
