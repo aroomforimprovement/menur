@@ -106,7 +106,7 @@ export const GenList = () => {
             {isMobile 
             ?  <div>
                     <ListTemplate list={'genList'} title='Shopping list' 
-                        copyFunc={copyList([...state.genList], "GENERATED LIST")} 
+                        copyFunc={() => copyList([...state.genList], "GENERATED LIST")} 
                         downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}/>
                 </div>
             :
