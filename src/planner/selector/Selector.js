@@ -53,7 +53,80 @@ export const Selector = ({message}) => {
         );
     }) : <div></div>;
 
-    const handleChange = (e) => {
+    
+
+    
+    const SelectorHeader = ({message}) => {
+        return(
+            <Form.Label className='selector-heading'>
+                <h5>{`What are you making${message ? ' ' + message : ''}?`}</h5>
+            </Form.Label>
+        );
+    }
+
+    
+
+    const DataSwitcher = ({showBasic, showMine}) => {
+
+        const handleCheckBasic = (e) => {
+            dispatch({type: 'SET_SHOW_BASIC', data: e.target.checked});
+            dispatch({type: 'GET_SUGGESTIONS'});
+        }
+    
+        const handleCheckMine = (e) => {
+            if(state.meals && state.meals.length > 0){
+                dispatch({type: 'SET_SHOW_MINE', data: e.target.checked});
+                dispatch({type: 'GET_SUGGESTIONS'});
+            }else{
+                toast("Create an account to add and use own meals");
+            }
+        }
+
+        return(
+            <div className={`${isMobile ? 'px-1' : ''}`}>
+                    <Form.Check inline type={"checkbox"} onChange={handleCheckBasic} label={'Basic meals'} 
+                        id="checkBasic" checked={showBasic}/>
+                    <Form.Check inline type={"checkbox"} onChange={handleCheckMine} label={'My meals'} 
+                        id="checkMine" checked={showMine}/>
+                </div>
+        );
+    }
+
+    const Ingredients = ({hideSelectorIngredients, showSpices}) => {
+
+        const handleHideIngredients = (e) => {
+            dispatch({type: 'HIDE_SELECTOR_INGREDIENTS', data: true});
+        }
+    
+        const handleShowIngredients = (e) => {
+            dispatch({type: 'HIDE_SELECTOR_INGREDIENTS', data: false});
+        }
+
+        const handleCheckSpices = (e) => {
+            dispatch({type: 'SET_SHOW_SPICES', data: e.target.checked});
+        }
+
+        return(
+            <div className={`${isMobile ? 'px-1' : ''}`}>
+                <div style={hideSelectorIngredients ? {opacity:'0.6'} : {opacity: '1'}}>
+                    <strong>Ingredients</strong>
+                    <button className={`butt rounded rounded-circle float-end 
+                        fa ${hideSelectorIngredients ? 'fa-eye':'fa-eye-slash'}`}
+                        onClick={hideSelectorIngredients ? handleShowIngredients : handleHideIngredients}>{' '}</button>
+                </div>                
+                <div hidden={state.hideSelectorIngredients}>
+                    <Form.Check type="checkbox" onChange={handleCheckSpices} checked={showSpices}
+                        id={'showSpicesCheckbox'} label={'Shows spices / condiments'}
+                        />
+                    <ul className='list-unstyled mt-2 mb-1 ms-2'>
+                        {selectionIngredients}
+                    </ul>
+                </div>
+            </div>
+        );
+    }
+
+    const handleChangeSelection = (e) => {
         mealsIncluded.forEach((meal) => {
             if(meal.name === e.target.value){
                 dispatch({type: 'CHANGE_SELECTION', data: meal});
@@ -63,65 +136,24 @@ export const Selector = ({message}) => {
         dispatch({type: 'GET_SUGGESTIONS', data: e.target.value});
     }
 
-    const handleHideIngredients = (e) => {
-        dispatch({type: 'HIDE_SELECTOR_INGREDIENTS', data: true});
-    }
-
-    const handleShowIngredients = (e) => {
-        dispatch({type: 'HIDE_SELECTOR_INGREDIENTS', data: false});
-    }
-
-    const handleCheckBasic = (e) => {
-        dispatch({type: 'SET_SHOW_BASIC', data: e.target.checked});
-        dispatch({type: 'GET_SUGGESTIONS'});
-    }
-
-    const handleCheckMine = (e) => {
-        if(state.meals && state.meals.length > 0){
-            dispatch({type: 'SET_SHOW_MINE', data: e.target.checked});
-            dispatch({type: 'GET_SUGGESTIONS'});
-        }else{
-            toast("Create an account to add and use own meals");
-        }
-    }
-
-    const handleCheckSpices = (e) => {
-        dispatch({type: 'SET_SHOW_SPICES', data: e.target.checked});
+    const ListSelector = ({name, meals}) => {
+        return(
+            <Form.Select  id='mealSelect' className='my-2'
+                onChange={handleChangeSelection} value={name}>
+                {meals}
+            </Form.Select>
+        );
     }
 
     return(
         <div className={`selector col col-12 ${state.isMealtimePickerClosed ? 'col-md-4' : 'col-md-8' }`} >
             <Form.Group className={`${isMobile ? 'px-1' : ''}`}>
-                <div className={`${isMobile ? 'px-1' : ''}`}>
-                    <Form.Label className='selector-heading'><h5>{`What are you making${message ? ' ' + message : ''}?`}</h5></Form.Label><br/>
-                    <Form.Check inline type={"checkbox"} onChange={handleCheckBasic} label={'Basic meals'} 
-                        id="checkBasic" checked={state.showBasic}/>
-                    <Form.Check inline type={"checkbox"} onChange={handleCheckMine} label={'My meals'} 
-                        id="checkMine" checked={state.showMine}/>
-                </div>
-                <div>
-                    <Searcher />
-                </div>
-                <Form.Select  id='mealSelect' className='my-2'
-                    onChange={handleChange} value={state.selection.name}>
-                    {meals}
-                </Form.Select>
-                <div className={`${isMobile ? 'px-1' : ''}`}>
-                    <div style={state.hideSelectorIngredients ? {opacity:'0.6'} : {opacity: '1'}}>
-                        <strong>Ingredients</strong>
-                        <button className={`butt rounded rounded-circle float-end 
-                            fa ${state.hideSelectorIngredients ? 'fa-eye':'fa-eye-slash'}`}
-                            onClick={state.hideSelectorIngredients ? handleShowIngredients : handleHideIngredients}>{' '}</button>
-                    </div>                
-                    <div hidden={state.hideSelectorIngredients}>
-                        <Form.Check type="checkbox" onChange={handleCheckSpices} checked={state.showSpices}
-                            id={'showSpicesCheckbox'} label={'Shows spices / condiments'}
-                            />
-                        <ul className='list-unstyled mt-2 mb-1 ms-2'>
-                            {selectionIngredients}
-                        </ul>
-                    </div>
-                </div>
+                <SelectorHeader message={message} />
+                <DataSwitcher showBasic={state.showBasic} showMine={state.showMine}/>
+                <Searcher mealsIncluded={mealsIncluded}/>
+                <ListSelector name={state.selection.name} meals={meals}/>
+                <Ingredients hideSelectorIngredients={state.hideSelectorIngredients}
+                    showSpices={state.showSpices}/>
             </Form.Group>
         </div>
     );

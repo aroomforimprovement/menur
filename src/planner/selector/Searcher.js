@@ -1,22 +1,16 @@
 import { useEffect, useState } from 'react';
 import './searcher.scss';
-//import SearchField from 'react-search-field';
 import ReactSearchBox from 'react-search-box';
 import { useMainContext } from '../../main/MenurRouter';
-import { MEALS } from '../../shared/meals';
 
-export const Searcher = () => {
-    const {state, dispatch} = useMainContext();
+export const Searcher = ({mealsIncluded}) => {
+    const { dispatch } = useMainContext();
 
     const [displayMeals, setDisplayMeals] = useState(null);
     const [searchHighlightIndex, setSearchHighlightIndex] = useState(0);
     const [showResults, setShowResults] = useState(true);
     const [mouseOver, setMouseOver] = useState(false);
     
-    const mealsIncluded = state.showBasic ? state.showMine 
-        ? MEALS.concat(state.meals)
-        : MEALS : state.showMine ? state.meals : [];
-
     const setSelection = (selection) => {
         setDisplayMeals(null);
         dispatch({type: 'CHANGE_SELECTION', data: selection});

@@ -124,7 +124,6 @@ export const reducer = (state, action) => {
             return(state);
         }
         case 'HIDE_SELECTOR_INGREDIENTS':{
-            console.log("hide selector ingredients")
             return({...state, hideSelectorIngredients: action.data})
         }
         case 'SET_HIGHLIGHTED_INGREDIENT':{
