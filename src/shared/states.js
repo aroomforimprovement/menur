@@ -1,3 +1,4 @@
+import { isMobile } from "react-device-detect";
 import { MEALS } from "./meals";
 
 
@@ -39,5 +40,6 @@ export const INIT_STATE = {
     isMealtimePickerClosed: true,
     mealtimePickerDay: '',
     mealtimePickerMealtime: '',
-    isSaveOpen: false
+    isSaveOpen: false,
+    hideSelectorIngredients: isMobile ? true : false
 }

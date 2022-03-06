@@ -10,7 +10,6 @@ import { isMobile } from 'react-device-detect';
 
 export const Selector = ({message}) => {
     const { state, dispatch } = useMainContext();
-    //const { selection, setSelection } = useState(MEALS[0]);
     
     const mealsIncluded = state.showBasic ? state.showMine ? MEALS.concat(state.meals) :
         MEALS : state.showMine ? state.meals : [];
@@ -64,6 +63,14 @@ export const Selector = ({message}) => {
         dispatch({type: 'GET_SUGGESTIONS', data: e.target.value});
     }
 
+    const handleHideIngredients = (e) => {
+        dispatch({type: 'HIDE_SELECTOR_INGREDIENTS', data: true});
+    }
+
+    const handleShowIngredients = (e) => {
+        dispatch({type: 'HIDE_SELECTOR_INGREDIENTS', data: false});
+    }
+
     const handleCheckBasic = (e) => {
         dispatch({type: 'SET_SHOW_BASIC', data: e.target.checked});
         dispatch({type: 'GET_SUGGESTIONS'});
@@ -100,13 +107,20 @@ export const Selector = ({message}) => {
                     {meals}
                 </Form.Select>
                 <div className={`${isMobile ? 'px-1' : ''}`}>
-                    <strong>Ingredients</strong>
-                    <Form.Check type="checkbox" onChange={handleCheckSpices} checked={state.showSpices}
-                        id={'showSpicesCheckbox'} label={'Shows spices / condiments'}
-                        />
-                    <ul className='list-unstyled mt-2 mb-1 ms-2'>
-                        {selectionIngredients}
-                    </ul>
+                    <div style={state.hideSelectorIngredients ? {opacity:'0.6'} : {opacity: '1'}}>
+                        <strong>Ingredients</strong>
+                        <button className={`butt rounded rounded-circle float-end 
+                            fa ${state.hideSelectorIngredients ? 'fa-eye':'fa-eye-slash'}`}
+                            onClick={state.hideSelectorIngredients ? handleShowIngredients : handleHideIngredients}>{' '}</button>
+                    </div>                
+                    <div hidden={state.hideSelectorIngredients}>
+                        <Form.Check type="checkbox" onChange={handleCheckSpices} checked={state.showSpices}
+                            id={'showSpicesCheckbox'} label={'Shows spices / condiments'}
+                            />
+                        <ul className='list-unstyled mt-2 mb-1 ms-2'>
+                            {selectionIngredients}
+                        </ul>
+                    </div>
                 </div>
             </Form.Group>
         </div>
