@@ -287,6 +287,9 @@ export const reducer = (state, action) => {
             const genList = getIngredientsFromMealPlan();
             return ({...state, genList: genList, userList1: [], userList2: []});
         }
+        case 'SET_IS_GENERATING_LIST':{
+            return({...state, isGeneratingList: action.data});
+        }
         case 'ADD_TO_LIST':{
             let list = [...state[action.data.list]];
             list.push(action.data);

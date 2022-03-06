@@ -41,5 +41,6 @@ export const INIT_STATE = {
     mealtimePickerDay: '',
     mealtimePickerMealtime: '',
     isSaveOpen: false,
-    hideSelectorIngredients: isMobile ? true : false
+    hideSelectorIngredients: isMobile ? true : false,
+    isGeneratingList: false
 }

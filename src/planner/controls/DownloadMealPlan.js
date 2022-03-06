@@ -1,15 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import { useMainContext } from '../../main/MenurRouter';
-import { DownloadableMealPlan, DownloadableMealPlanLandscape,  MultipleShoppingLists } from '../../utils/pdfUtils';
+import { DownloadableMealPlan, DownloadableMealPlanLandscape,  MultipleShoppingLists, GetSingleShoppingList } from '../../utils/pdfUtils';
 import toast from 'react-hot-toast';
 import { toastConfirmStyle, ToastOptions } from '../../common/Toasts';
 import PDFMerger from 'pdf-merger-js';
 
 export const DownloadMealPlan = () => {
     const { state, dispatch } = useMainContext();
-
+    
+    useEffect(() => {
+        console.log(state.isGeneratingList);
+        const download = async () => {
+            const mealplanBlob = await pdf(
+                state.isLandscape 
+                ? DownloadableMealPlanLandscape({mealplan: state.mealplan})
+                : DownloadableMealPlan({mealplan: state.mealplan})).toBlob();
+            const shoppingListBlob = await GetSingleShoppingList({list: state.genList});
+            const merger = new PDFMerger();
+            await merger.add(mealplanBlob);
+            await merger.add(shoppingListBlob);
+            
+            const blob = await merger.saveAsBlob();
+            blob instanceof Blob
+                ? saveAs(blob, `Menur Plan - ${state.mealplan.name ? state.mealplan.name : Date.now()}`)
+                : console.warn("no blob");
+            dispatch({type: 'SET_IS_GENERATING_LIST', data: false});
+        }
+        if(state.isGeneratingList){
+            if(state.genList && state.genList.length > 0){
+                download();
+                
+            }
+        }
+    }, [state.isGeneratingList, state.genList, state.isLandscape, state.mealplan, dispatch]);
 
     const handleDownload = async () => {
         const cancel = (id) => {
@@ -27,27 +52,31 @@ export const DownloadMealPlan = () => {
                 lists.push({list: state.userList2, heading: "LIST 2"});
             }
             if(lists.length === 0){
+                dispatch({type: 'SET_IS_GENERATING_LIST', data: true});
                 dispatch({type: 'GEN_LIST', data:true});
-                state.genList 
+                state.genList && state.genList.length > 0
                 ? lists.push({list: state.genList, heading: "GENERATED LIST"}) 
                 : console.warn("no shopping lists generated");
+            }else{
+                const mealplanBlob = await pdf(
+                    state.isLandscape 
+                    ? DownloadableMealPlanLandscape({mealplan: state.mealplan})
+                    : DownloadableMealPlan({mealplan: state.mealplan})).toBlob();
+                const shoppingListBlobs = await MultipleShoppingLists({lists: lists});
+                const merger = new PDFMerger();
+                await merger.add(mealplanBlob);
+                for(const blob in shoppingListBlobs) {
+                    await merger.add(shoppingListBlobs[blob]);
+                };
+                const blob = await merger.saveAsBlob();
+                blob instanceof Blob
+                    ? saveAs(blob, `Menur Plan - ${state.mealplan.name ? state.mealplan.name : Date.now()}`)
+                    : console.warn("no blob");
             }
-            const mealplanBlob = await pdf(
-                state.isLandscape 
-                ? DownloadableMealPlanLandscape({mealplan: state.mealplan})
-                : DownloadableMealPlan({mealplan: state.mealplan})).toBlob();
-            const shoppingListBlobs = await MultipleShoppingLists({lists: lists});
-            const merger = new PDFMerger();
-            await merger.add(mealplanBlob);
-            for(const blob in shoppingListBlobs) {
-                await merger.add(shoppingListBlobs[blob]);
-            };
-            const blob = await merger.saveAsBlob();
-            blob instanceof Blob
-                ? saveAs(blob, `Menur Plan - ${state.mealplan.name ? state.mealplan.name : Date.now()}`)
-                : console.warn("no blob");
+            
             toast.dismiss(id);
         }
+
 
         const downloadWithoutShoppingList = async (id) => {
             const blob = await pdf(
@@ -69,9 +98,9 @@ export const DownloadMealPlan = () => {
         <div>
             <button onClick={handleDownload} 
                 className={'butt butt-good shadow my-1 col col-11 mb-2 mx-auto'} style={{display:'inline-block'}}>
-                <span className={'fa fa-lg fa-download'}>{' '}</span>
+                <span className={'fa fa-lg fa-download me-2'}>{' '}</span>
                     Download Meal Plan
-                <span className={'fa fa-lg fa-download'}>{' '}</span>
+                <span className={'fa fa-lg fa-download ms-2'}>{' '}</span>
             </button>
         </div>
     )

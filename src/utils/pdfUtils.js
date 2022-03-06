@@ -4,7 +4,8 @@ import { Page, Text, View, Document, StyleSheet, pdf  } from '@react-pdf/rendere
 const styles = StyleSheet.create({
     page: {
         flexDirection: 'row',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        color: '#464646'
     },
     section: {
         flexGrow: 1,
@@ -19,13 +20,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding: '10px',
         verticalAlign: 'middle',
-        backgroundColor: 'blanchedalmond',
-        color: 'darkblue',
+        backgroundColor: '#ece8fd',
+        color: '#6464c8',
         marginBottom: '10px',
         fontSize: '16',
-        borderColor: 'silver',
+        borderColor: '#6464c8',
         borderStyle: 'solid',
-        borderWidth: '1px'
+        borderWidth: '1px',
+        borderRadius: '20px'
     },
     xhead:{
         width: '120px',
@@ -58,13 +60,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding: '10px',
         verticalAlign: 'middle',
-        backgroundColor: 'blanchedalmond',
-        color: 'darkblue',
+        backgroundColor: '#ece8fd',
+        color: '#6464c8',
         marginBottom: '10px',
         fontSize: '16',
-        borderColor: 'silver',
+        borderColor: '#aaaaff',
         borderStyle: 'solid',
-        borderWidth: '1px'
+        borderWidth: '1px',
+        borderRadius: '20px'
     },
     xheadL:{
         width: '80px',
@@ -246,12 +249,10 @@ export const DownloadableMealPlanWithShoppingList = ({mealplan, lists, isLandsca
     );
 }
 
-const GetSingleShoppingList = async (list) => {
-    console.dir(list);
+export const GetSingleShoppingList = async (list) => {
     return await pdf(DownloadableShoppingList({list:list.list, heading:list.heading})).toBlob();
 }
 
 export const MultipleShoppingLists = async ({lists}) => {
-    console.dir(lists);
     return await Promise.all(lists.map(GetSingleShoppingList));
 }
