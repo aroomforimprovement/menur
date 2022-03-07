@@ -11,13 +11,12 @@ export const DownloadMealPlan = () => {
     const { state, dispatch } = useMainContext();
     
     useEffect(() => {
-        console.log(state.isGeneratingList);
         const download = async () => {
             const mealplanBlob = await pdf(
                 state.isLandscape 
                 ? DownloadableMealPlanLandscape({mealplan: state.mealplan})
                 : DownloadableMealPlan({mealplan: state.mealplan})).toBlob();
-            const shoppingListBlob = await GetSingleShoppingList({list: state.genList});
+            const shoppingListBlob = await GetSingleShoppingList({list: state.genList, heading: "GENERATED LIST"});
             const merger = new PDFMerger();
             await merger.add(mealplanBlob);
             await merger.add(shoppingListBlob);

@@ -5,7 +5,13 @@ const styles = StyleSheet.create({
     page: {
         flexDirection: 'row',
         backgroundColor: '#fff',
-        color: '#464646'
+        color: '#464678',
+        paddingLeft: '10px',
+        paddingRight: '25px',
+        borderColor:'#6464c8',
+        borderStyle:'solid',
+        borderWidth:'5px',
+        borderRadius: '20px'
     },
     section: {
         flexGrow: 1,
@@ -13,8 +19,8 @@ const styles = StyleSheet.create({
         marginTop: '20px'
     },
     slot:{
-        width: '140px',
-        minHeight: '100px',
+        width: '100px',
+        minHeight: '80px',
         overflowWrap: 'break-word',
         overflow: 'wrap',
         textAlign: 'center',
@@ -30,20 +36,20 @@ const styles = StyleSheet.create({
         borderRadius: '20px'
     },
     xhead:{
-        width: '120px',
-        minHeight: '100px',
+        width: '100px',
+        minHeight: '80px',
         borderBottom: 'solid',
         marginBottom: '10px',
         marginLeft: '10px',
         paddingTop: '20px'
     },
     yhead:{
-        width: '140px',
+        width: '100px',
         minHeight: '50px',
         textAlign: 'center'
     },
     corner:{
-        width: '120px',
+        width: '100px',
         minHeight: '50px',
         textAlign: 'center'
     },
@@ -54,7 +60,7 @@ const styles = StyleSheet.create({
     },
     slotL:{
         width: '100px',
-        minHeight: '100px',
+        minHeight: '80px',
         overflowWrap: 'break-word',
         overflow: 'wrap',
         textAlign: 'center',
@@ -71,7 +77,7 @@ const styles = StyleSheet.create({
     },
     xheadL:{
         width: '80px',
-        minHeight: '100px',
+        minHeight: '80px',
         borderBottom: 'solid',
         marginBottom: '10px',
         marginLeft: '10px',
@@ -101,9 +107,20 @@ const styles = StyleSheet.create({
     },
     ingredient:{
         
+    },
+    brand:{
+        display:'block',
+        position:'absolute',
+        bottom:'50px',
+        left:'20px'
     }
 });
 
+export const Brand = () => {
+    return(
+        <Text style={styles.brand}>Generated with MENUR</Text>    
+    )
+}
 
 export const DownloadableMealPlan = ({mealplan}) => {
 
@@ -150,6 +167,7 @@ export const DownloadableMealPlan = ({mealplan}) => {
                     <Text style={styles.slot}>{mealplan ? mealplan.Saturday.Dinner.name : 'nothing'}</Text>
                     <Text style={styles.slot}>{mealplan ? mealplan.Sunday.Dinner.name : 'nothing'}</Text>
                 </View>
+                <Brand />
             </Page>
         </Document>
     )
@@ -207,6 +225,7 @@ export const DownloadableMealPlanLandscape = ({mealplan}) => {
                     <Text style={styles.slotL}>{mealplan ? mealplan.Sunday.Lunch.name : 'nothing'}</Text>
                     <Text style={styles.slotL}>{mealplan ? mealplan.Sunday.Dinner.name : 'nothing'}</Text>
                 </View>
+                <Brand />
             </Page>
         </Document>
     )
@@ -226,7 +245,8 @@ export const DownloadableShoppingList = ({list, heading}) => {
                 <View style={styles.shoppingList} >
                     <Text style={styles.line}>{heading}</Text>
                     {listItems}
-                </View>          
+                </View>   
+                <Brand />       
             </Page>
         </Document>
     );
