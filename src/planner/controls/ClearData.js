@@ -19,7 +19,7 @@ export const ClearData = () => {
         toast((t) => (
             <ToastConfirm t={t} approve={setDataCleared} dismiss={setIsCancelled}
                 message={'Are you sure you want to clear all data from this screen and start again?'}
-                approveBtn={'Clear data'} dismissBtn={'Cancel'} />
+                approveBtn={'Clear data'} dismissBtn={'Cancel'} canHide={false}/>
         ), toastConfirmStyle());
     }
 

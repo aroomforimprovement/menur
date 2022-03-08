@@ -88,7 +88,7 @@ export const DownloadMealPlan = () => {
 
         toast((t) => (
             <ToastOptions t={t} dismiss={cancel} options={[downloadWithShoppingList, downloadWithoutShoppingList]}
-            optionBtns={["With", "Without"]} dismissBtn={'Cancel'} 
+            optionBtns={["With", "Without"]} dismissBtn={'Cancel'} canHide={false}
             message={'Would you like to download the meal plan with your shopping list(s) attached?'} />
         ), toastConfirmStyle());
     }

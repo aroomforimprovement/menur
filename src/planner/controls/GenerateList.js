@@ -2,22 +2,31 @@ import React from 'react';
 import { toast } from 'react-hot-toast';
 import { ToastConfirm, toastConfirmStyle } from "../../common/Toasts";
 import { useMainContext } from '../../main/MenurRouter';
+import { dontShowAgain } from '../../utils/userUtils';
 
 export const GenerateList = () => {
     const {state, dispatch} = useMainContext();
 
     const handleGenList = () => {
-        const setIsCancelled = (id) => {
-            toast.dismiss(id);
-            dispatch({type: 'GEN_LIST', data:{main: true, mealplan: state.mealplan}});
+        const generateList = () => {
+            dispatch({type: 'GEN_LIST', data: {main: true, mealplan: state.mealplan}});
             toast.success("Shopping list generated");
         }
-        toast((t) => (
-            <ToastConfirm t={t} approve={setIsCancelled} dismiss={setIsCancelled}
-                message={`FYI - If you change anything in the mealplan, it won't update the shopping list.
-                    You'll have to use this button again and generate a new shopping list.`}
-                approveBtn={'OK'} dismissBtn={'Cool'}  />
-        ), toastConfirmStyle());
+
+        const setIsCancelled = (id, dontshow) => {
+            toast.dismiss(id);
+            dontshow ? dontShowAgain('GEN_LIST') : console.clear();
+            generateList();
+        }
+
+        window.localStorage.getItem('dontshow_GEN_LIST') 
+            ? generateList()
+            : toast((t) => (
+                <ToastConfirm t={t} approve={setIsCancelled} dismiss={setIsCancelled}
+                    message={`FYI - If you change anything in the mealplan, it won't update the shopping list.
+                        You'll have to use this button again and generate a new shopping list.`}
+                    approveBtn={'OK'} dismissBtn={'Cool'} canHide={true} />
+                ), toastConfirmStyle());
     }
 
     return (

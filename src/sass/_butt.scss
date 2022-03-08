@@ -5,6 +5,10 @@
     background-color: theme.$neutral;
     color: theme.$head-heavy;
   }
+
+  .butt:hover{
+    transform: scale(1.05);
+  }
   
   .butt-standard-outline{
     background-color: theme.$neutral;

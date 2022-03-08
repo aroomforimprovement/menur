@@ -77,7 +77,7 @@ export const Plan = ({plan, isLandscape}) => {
         toast((t) => (
             <ToastOptions t={t} options={[setIsEdit, setIsCopy]} dismiss={setIsCancelled}
                 message={'Would you like to edit this mealplan or create a copy and edit that?'}
-                optionBtns={['Edit this one', 'Create a copy']} dismissBtn={'Cancel'} />
+                optionBtns={['Edit this one', 'Create a copy']} dismissBtn={'Cancel'} canHide={false}/>
         ), toastConfirmStyle());
     }
 

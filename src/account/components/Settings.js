@@ -182,10 +182,30 @@ export const Settings = () => {
         );
     }
 
+    const ResetChoices = () => {
+        const resetChoices = () => {
+            window.localStorage.clear();
+            toast.success("Choices cleared from browser memory");
+        }
+        return(
+            <Container className='mt-5 mb-5 default-servings-area'>
+                <Row><h5>Reset choices:</h5></Row>
+                <Row>
+                    <Col xs={8} className='mt-2'>Push this button to clear all "don't show this again" choices you've made in the app.</Col>
+                    <Col xs={3} className='float-end'>
+                        <button className='butt butt-warn fa fa-lg fa-check-circle border shadow p-4'
+                            onClick={resetChoices}></button>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
+
     return(
         <div>
             <DisplayName/>
             <DefaultServings/>
+            <ResetChoices />
         </div>
     );
 }
