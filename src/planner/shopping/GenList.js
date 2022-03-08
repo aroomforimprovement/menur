@@ -80,7 +80,7 @@ export const GenList = () => {
     const ListTemplate = ({list, title, copyFunc, downloadFunc}) => {
 
         return(
-            <div className={`gen-list mt-2 border border-2 shadow shadow-sm ${isMobile ? 'col col-11' : 'col col-11 col-md-4'} mx-auto px-1`}>
+            <div className={`gen-list mt-2 border border-2 shadow shadow-sm ${isMobile ? 'col col-12' : 'col col-12 col-md-4'} mx-auto px-1`}>
                 <div className='row mb-1 pt-2'>
                     <h6 className='list-heading col mt-1'>{title}</h6>
                     <div className='col col-1 col-md-2 col-lg-1 me-4'>
@@ -104,13 +104,12 @@ export const GenList = () => {
     return(
         <div style={{display:'inline-block'}} className='col col-12'> 
             {isMobile 
-            ?  <div>
-                    <ListTemplate list={'genList'} title='Shopping list' 
-                        copyFunc={() => copyList([...state.genList], "GENERATED LIST")} 
-                        downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}/>
-                </div>
+            ? 
+                <ListTemplate list={'genList'} title='Shopping list' 
+                    copyFunc={() => copyList([...state.genList], "GENERATED LIST")} 
+                    downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}/>
             :
-                <div>
+                <div >
                     <ListTemplate list={'genList'} title='Generated List' 
                         copyFunc={() => copyList([...state.genList], "GENERATED LIST")} 
                         downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}/>
