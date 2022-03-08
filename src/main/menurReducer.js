@@ -6,15 +6,15 @@ import { getIngredientsFromMeal, getMealsWithIngredient } from '../utils/objUtil
 export const reducer = (state, action) => {
     const noop = () => {return};
 
-    const getIngredientsFromMealPlan = () => {
-        if(!state.mealplan){
+    const getIngredientsFromMealPlan = (mealplan) => {
+        if(!mealplan){
             return [{"name": "Add some meals to the week to start generating a list", "qty": ":)"}];
         }
         let ingArr = [];
         days.forEach((day) => {
             mealtimes.forEach((mealtime) => {
-                const meal = state.mealplan[day] && state.mealplan[day][mealtime] 
-                    ? state.mealplan[day][mealtime] : {};
+                const meal = mealplan[day] && mealplan[day][mealtime] 
+                    ? mealplan[day][mealtime] : {};
                 
                 meal.ingredients ? meal.ingredients.forEach((ingredient) => {
                     if(ingredient.type !== 'spice' && ingredient.type !== 'cond'){
@@ -284,11 +284,17 @@ export const reducer = (state, action) => {
             return({...state, mealplan: mealplan});
         }
         case 'GEN_LIST':{
-            const genList = getIngredientsFromMealPlan();
-            return ({...state, genList: genList, userList1: [], userList2: []});
+            const genList = getIngredientsFromMealPlan(action.data.mealplan);
+            
+            return ({...state, genList: action.data.main ? genList : [],
+                genListTemp: action.data.main ? [] : genList, 
+                userList1: [], userList2: []});
         }
         case 'SET_IS_GENERATING_LIST':{
-            return({...state, isGeneratingList: action.data});
+            return({...state, 
+                isGeneratingList: action.data.isGenerating, 
+                mealplanDownloading: action.data.mealplanDownloading
+            });
         }
         case 'ADD_TO_LIST':{
             let list = [...state[action.data.list]];

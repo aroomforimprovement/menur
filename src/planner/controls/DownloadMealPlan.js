@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import { useMainContext } from '../../main/MenurRouter';
@@ -25,7 +25,7 @@ export const DownloadMealPlan = () => {
             blob instanceof Blob
                 ? saveAs(blob, `Menur Plan - ${state.mealplan.name ? state.mealplan.name : Date.now()}`)
                 : console.warn("no blob");
-            dispatch({type: 'SET_IS_GENERATING_LIST', data: false});
+            dispatch({type: 'SET_IS_GENERATING_LIST', data: {isGenerating: false, mealplanDownloading: null}});
         }
         if(state.isGeneratingList){
             if(state.genList && state.genList.length > 0){
@@ -51,8 +51,8 @@ export const DownloadMealPlan = () => {
                 lists.push({list: state.userList2, heading: "LIST 2"});
             }
             if(lists.length === 0){
-                dispatch({type: 'SET_IS_GENERATING_LIST', data: true});
-                dispatch({type: 'GEN_LIST', data:true});
+                dispatch({type: 'SET_IS_GENERATING_LIST', data: {isGenerating: true, mealplanDowloading: state.mealplan.id}});
+                dispatch({type: 'GEN_LIST', data:{main: true, mealplan: state.mealplan}});
                 state.genList && state.genList.length > 0
                 ? lists.push({list: state.genList, heading: "GENERATED LIST"}) 
                 : console.warn("no shopping lists generated");

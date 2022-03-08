@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../css/plan.scss';
-import { DownloadableMealPlanLandscape, DownloadableMealPlan } from "../../utils/pdfUtils";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { DownloadableMealPlanLandscape, DownloadableMealPlan, GetSingleShoppingList } from "../../utils/pdfUtils";
+import { pdf } from "@react-pdf/renderer";
 import { useMainContext } from "../../main/MenurRouter";
 import { toast } from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle } from "../../common/Toasts";
+import { ToastConfirm, toastConfirmStyle, ToastOptions } from "../../common/Toasts";
 import { DummyMealPlan } from "./DummyMealPlan";
+import PDFMerger from "pdf-merger-js";
+import { saveAs } from "file-saver";
 
 const apiUrl = process.env.REACT_APP_API_URL;
-let proxy = process.env.REACT_APP_PROXY_URL;
+const proxy = process.env.REACT_APP_PROXY_URL;
 
 export const Plan = ({plan, isLandscape}) => {
     const {state, dispatch} = useMainContext();
@@ -75,12 +77,68 @@ export const Plan = ({plan, isLandscape}) => {
         ), toastConfirmStyle());
     }
 
+    useEffect(() => {
+        const download = async () => {
+                const mealplanBlob = await pdf(
+                    state.isLandscape 
+                        ? DownloadableMealPlanLandscape({mealplan: plan.mealplan})
+                        : DownloadableMealPlan({mealplan: plan.mealplan})).toBlob();
+                const shoppingListBlob = await GetSingleShoppingList({list: state.genListTemp, heading: "GENERATED LIST"});
+                const merger = new PDFMerger();
+                await merger.add(mealplanBlob);
+                await merger.add(shoppingListBlob);
+            
+                const blob = await merger.saveAsBlob();
+                blob instanceof Blob
+                    ? saveAs(blob, `Menur Plan - ${plan.mealplan.name ? plan.mealplan.name : Date.now()}`)
+                    : console.warn("no blob");
+                dispatch({type: 'SET_IS_GENERATING_LIST', 
+                    data: {isGenerating: false, mealplanDownloading: null}});
+            }
+        if(state.isGeneratingList && state.mealplanDownloading === plan.id){
+            if(state.genListTemp && state.genListTemp.length > 0){
+                download();
+            }
+        }
+    }, [state.isGeneratingList, state.genListTemp, state.isLandscape, 
+            state.mealplan, dispatch, plan.mealplan, state.mealplanDownloading]);
+
+    
+    const handleDownload = async () => {
+        const cancel = (id) => {
+            toast.dismiss(id);
+        }
+        const downloadWithShoppingList = async (id) => {
+            console.log(`downloadWithShoppingList: ${plan.id}`);
+
+            dispatch({type: 'SET_IS_GENERATING_LIST', data: {isGenerating: true, mealplanDownloading: plan.id}});
+            dispatch({type: 'GEN_LIST', data: {main: false, mealplan: plan.mealplan}});
+            toast.dismiss(id);
+        }
+
+
+        const downloadWithoutShoppingList = async (id) => {
+            const blob = await pdf(
+                state.isLandscape 
+                ? DownloadableMealPlanLandscape({mealplan: state.mealplan})
+                : DownloadableMealPlan({mealplan: state.mealplan})).toBlob();
+            saveAs(blob, `Menur Plan - ${state.mealplan.name ? state.mealplan.name : Date.now()}`)
+            toast.dismiss(id);
+        }
+
+        toast((t) => (
+            <ToastOptions t={t} dismiss={cancel} options={[downloadWithShoppingList, downloadWithoutShoppingList]}
+            optionBtns={["With", "Without"]} dismissBtn={'Cancel'} 
+            message={'Would you like to download this meal plan with a generated shopping list attached?'} />
+        ), toastConfirmStyle());
+    }
+
+
+    
+
     return(
         <div className='container m-0 p-0 col col-12'>
-            {/*<div className='row'>*/}
-                <DummyMealPlan mealplan={plan.mealplan} name={plan.name} leftovers={plan.mealplan.leftovers}/>
-                {/*<MealPlanViewer mealplan={plan.mealplan} isLandscape={true}/>*/}
-            {/*</div>*/}
+            <DummyMealPlan mealplan={plan.mealplan} name={plan.name} leftovers={plan.mealplan.leftovers}/>
             <div className='row plan-controls py-2 col-10 m-auto'>
                 <button className='butt butt-warn shadow shadow-sm col col-4 m-auto'
                     onClick={handleDeletePlan}>
@@ -90,15 +148,10 @@ export const Plan = ({plan, isLandscape}) => {
                     onClick={handleOpenPlan}>
                         Open
                 </button>
-                {state && plan ? <PDFDownloadLink className={'butt butt-good pdf-download shadow shadow-sm col col-4 m-auto center'}
-                    document={isLandscape 
-                    ? <DownloadableMealPlanLandscape mealplan={plan.mealplan}/> 
-                    : <DownloadableMealPlan mealplan={plan.mealplan}/>} 
-                        fileName={`mealplan_${plan.name}`}>
-                            {({blob, url, loading, error}) => 
-                                loading ? 'Loading document...' : 'Download'
-                            }
-                </PDFDownloadLink> : <div></div>}
+                <button className='butt butt-outline-standard open-plan shadow shadow-sm col col-4 m-auto'
+                    onClick={handleDownload}>
+                    Download        
+                </button>
             </div>
         </div>
     );

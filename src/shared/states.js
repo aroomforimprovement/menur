@@ -23,6 +23,7 @@ export const INIT_STATE = {
     genList: [],
     userList1: [],
     userList2: [],
+    genListTemp: [],
     isLandscape: true,
     showSpices: false,
     showBasic: true,
@@ -42,5 +43,6 @@ export const INIT_STATE = {
     mealtimePickerMealtime: '',
     isSaveOpen: false,
     hideSelectorIngredients: isMobile ? true : false,
-    isGeneratingList: false
+    isGeneratingList: false,
+    mealplanDownloading: null
 }

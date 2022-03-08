@@ -4,12 +4,12 @@ import { ToastConfirm, toastConfirmStyle } from "../../common/Toasts";
 import { useMainContext } from '../../main/MenurRouter';
 
 export const GenerateList = () => {
-    const {dispatch} = useMainContext();
+    const {state, dispatch} = useMainContext();
 
     const handleGenList = () => {
         const setIsCancelled = (id) => {
             toast.dismiss(id);
-            dispatch({type: 'GEN_LIST', data:true});
+            dispatch({type: 'GEN_LIST', data:{main: true, mealplan: state.mealplan}});
             toast.success("Shopping list generated");
         }
         toast((t) => (
