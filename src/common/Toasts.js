@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 export const Toast = () => {
     return (
@@ -24,7 +24,9 @@ export const ToastConfirm = ({t, approve, dismiss, message, approveBtn, dismissB
     return (
         <div className='container'>
             <div className='row'>
-                <h5>Confirm</h5>
+            <h5 className={'col col-11'}>Confirm</h5> 
+                <button className='btn btn-sm btn-close col col-1'
+                    onClick={() => toast.dismiss(t.id)}></button>
             </div>
             <div className='row'>
                 <h6>
@@ -60,7 +62,9 @@ export const ToastOptions = ({t, options, dismiss, message, optionBtns, dismissB
     return(
         <div className='container'>
             <div className='row'>
-                <h5>Options</h5>    
+                <h5 className={'col col-11'}>Options</h5> 
+                <button className='btn btn-sm btn-close col col-1'
+                    onClick={() => toast.dismiss(t.id)}></button>   
             </div>
             <div className='row'>
                 <h6>

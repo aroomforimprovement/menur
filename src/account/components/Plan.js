@@ -52,7 +52,7 @@ export const Plan = ({plan, isLandscape}) => {
             toast.dismiss(id);
         }
         toast((t) => (
-            <ToastConfirm t={t} approve={setPlanDeleted} dismiss={setIsCancelled}
+            <ToastConfirm t={t} options={setPlanDeleted} dismiss={setIsCancelled}
                 message={'Are you sure you want to delete this meal plan?'}
                 approveBtn={'Delete'} dismissBtn={'Cancel'}
             />
@@ -70,10 +70,14 @@ export const Plan = ({plan, isLandscape}) => {
             window.location.href = `/planner/${plan.id}/0`;
         }
 
+        const setIsCancelled = (id) => {
+            toast.dismiss(id);
+        }
+
         toast((t) => (
-            <ToastConfirm t={t} approve={setIsEdit} dismiss={setIsCopy}
+            <ToastOptions t={t} options={[setIsEdit, setIsCopy]} dismiss={setIsCancelled}
                 message={'Would you like to edit this mealplan or create a copy and edit that?'}
-                approveBtn={'Edit this one'} dismissBtn={'Create a copy'} />
+                optionBtns={['Edit this one', 'Create a copy']} dismissBtn={'Cancel'} />
         ), toastConfirmStyle());
     }
 
@@ -141,15 +145,15 @@ export const Plan = ({plan, isLandscape}) => {
             <div className='row plan-controls py-2 col-10 m-auto'>
                 <button className='butt butt-warn shadow shadow-sm col col-2 m-auto'
                     onClick={handleDeletePlan}>
-                    <span className='fa fa-trash'></span>
+                    <span className='fa fa-lg fa-trash'></span>
                 </button>
                 <button className='butt butt-outline-standard open-plan shadow shadow-sm col col-2 m-auto'
                     onClick={handleOpenPlan}>
-                    <span className='fa fa-edit'></span>
+                    <span className='fa fa-lg fa-edit'></span>
                 </button>
                 <button className='butt butt-good open-plan shadow shadow-sm col col-2 m-auto'
                     onClick={handleDownload}>
-                    <span className='fa fa-sm fa-download'></span>        
+                    <span className='fa fa-lg fa-download'></span>        
                 </button>
             </div>
         </div>
