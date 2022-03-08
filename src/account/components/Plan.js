@@ -100,8 +100,7 @@ export const Plan = ({plan, isLandscape}) => {
                 download();
             }
         }
-    }, [state.isGeneratingList, state.genListTemp, state.isLandscape, 
-            state.mealplan, dispatch, plan.mealplan, state.mealplanDownloading]);
+    }, [state.isGeneratingList, state.genListTemp, state.isLandscape, state.mealplan, dispatch, plan.mealplan, state.mealplanDownloading, plan.id]);
 
     
     const handleDownload = async () => {
@@ -140,17 +139,17 @@ export const Plan = ({plan, isLandscape}) => {
         <div className='container m-0 p-0 col col-12'>
             <DummyMealPlan mealplan={plan.mealplan} name={plan.name} leftovers={plan.mealplan.leftovers}/>
             <div className='row plan-controls py-2 col-10 m-auto'>
-                <button className='butt butt-warn shadow shadow-sm col col-4 m-auto'
+                <button className='butt butt-warn shadow shadow-sm col col-2 m-auto'
                     onClick={handleDeletePlan}>
-                        Delete
+                    <span className='fa fa-trash'></span>
                 </button>
-                <button className='butt butt-outline-standard open-plan shadow shadow-sm col col-4 m-auto'
+                <button className='butt butt-outline-standard open-plan shadow shadow-sm col col-2 m-auto'
                     onClick={handleOpenPlan}>
-                        Open
+                    <span className='fa fa-edit'></span>
                 </button>
-                <button className='butt butt-outline-standard open-plan shadow shadow-sm col col-4 m-auto'
+                <button className='butt butt-good open-plan shadow shadow-sm col col-2 m-auto'
                     onClick={handleDownload}>
-                    Download        
+                    <span className='fa fa-sm fa-download'></span>        
                 </button>
             </div>
         </div>
