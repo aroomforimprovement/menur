@@ -39,7 +39,7 @@ export const SaveToAccount = () => {
                     userList2: state.userList2
                 }
             }
-            return await fetch(`${proxy}${apiUrl}app/plan`, {
+            return await fetch(`${proxy}${apiUrl}plan`, {
                 method: 'POST',
                 body: JSON.stringify(body),
                 headers: {
@@ -100,7 +100,7 @@ export const SaveToAccount = () => {
         );
     }
     return(
-        <div >
+        <div className='mt-1 mb-2'>
             <div >
                 {isSaveFailed 
                 ? <div className='border border-danger'>Error saving the mealplan :(</div>

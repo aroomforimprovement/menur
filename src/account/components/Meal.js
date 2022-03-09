@@ -15,7 +15,7 @@ export const Meal = ({meal, showSpices, index}) => {
     const [isEditing, setIsEditing] = useState(false);
 
     const deleteMeal = async () => {
-        return await fetch(`${proxy}${apiUrl}app/meal/${meal.id}`, {
+        return await fetch(`${proxy}${apiUrl}meal/${meal.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

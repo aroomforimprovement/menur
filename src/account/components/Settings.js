@@ -17,7 +17,7 @@ export const Settings = () => {
         const [isEditHidden, setIsEditHidden] = useState(true);
 
         const updateDisplayName = async (id, update, access) => {
-            return await fetch(`${proxy}${apiUrl}app/settings`, {
+            return await fetch(`${proxy}${apiUrl}settings`, {
                 method: 'POST',
                 mode: 'cors',
                 body: JSON.stringify({userid: id, settings: {displayName: update}}),
@@ -102,7 +102,7 @@ export const Settings = () => {
         const [isEditHidden, setIsEditHidden] = useState(true);
 
         const updateDefaultServings = async (id, update, access) => {
-            return await fetch(`${proxy}${apiUrl}app/settings`, {
+            return await fetch(`${proxy}${apiUrl}settings`, {
                 method: 'POST',
                 mode: 'cors',
                 body: JSON.stringify({userid: id, settings: {defaultServings: update}}),

@@ -73,7 +73,7 @@ export const MealGen = ({meal, edit, open}) => {
                 servings: servings
             }
         }
-        return await fetch(`${proxy}${apiUrl}app/meal${edit ? '/' + id : ''}`, {
+        return await fetch(`${proxy}${apiUrl}meal${edit ? '/' + id : ''}`, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {

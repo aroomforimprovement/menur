@@ -8,8 +8,8 @@ export const PlannerControls = () => {
 
     return(
         <div style={{textAlign:'center'}}>
-            <DownloadMealPlan />
             <SaveToAccount />
+            <DownloadMealPlan />
             <ClearData />
             <GenerateList />
         </div>

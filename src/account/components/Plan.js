@@ -16,7 +16,7 @@ export const Plan = ({plan, isLandscape}) => {
     const {state, dispatch} = useMainContext();
 
     const deletePlan = async () => {
-        return await fetch(`${proxy}${apiUrl}app/plan/${plan.id}`, {
+        return await fetch(`${proxy}${apiUrl}plan/${plan.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export const Plan = ({plan, isLandscape}) => {
             toast.dismiss(id);
         }
         toast((t) => (
-            <ToastConfirm t={t} options={setPlanDeleted} dismiss={setIsCancelled}
+            <ToastConfirm t={t} approve={setPlanDeleted} dismiss={setIsCancelled}
                 message={'Are you sure you want to delete this meal plan?'}
                 approveBtn={'Delete'} dismissBtn={'Cancel'}
             />
