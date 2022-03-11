@@ -22,8 +22,7 @@ export const PlannerMobile = () => {
         if(splat && !state.splatSet){
             setSplat();
         }
-        console.debug(state.isMealPlanClosed + " | " + state.isPickerClosed);
-    }, [splat, dispatch, state.splatSet, state.isMealPlanClosed, state.isPickerClosed]);
+    }, [splat, dispatch, state.splatSet]);
 
     return(
         <div className='mt-3'>
@@ -46,7 +45,7 @@ export const PlannerMobile = () => {
                     <MealPlanOverview className='col col-12 ms-md-4 my-2 p-0' />
                 </div>
             </div>
-            <div hidden={!state.isMealtimePickerClosed}>
+            <div hidden={!state.isMealtimePickerClosed || !state.isPickerClosed}>
                 <PlannerControls />
                 <GenList />
             </div>
