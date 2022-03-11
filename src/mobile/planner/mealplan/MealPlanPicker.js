@@ -9,6 +9,10 @@ export const MealPlanPicker = ({meal}) => {
     const { dispatch } = useMainContext();
     const [isDayPicked, setIsDayPicked] = useState(false);
 
+    const toggleMealplanPickerClosed = () => {
+        dispatch({type: 'SET_PICKER_CLOSED', data: {isPickerClosed : true}})
+    }
+
     const MealPlanDayPicker = ({meal}) => {
         
         const MealPlanDaySlot = ({meal, day}) => {
@@ -80,6 +84,8 @@ export const MealPlanPicker = ({meal}) => {
     }, [isDayPicked]);
     return(
         <div>
+            <div onClick={toggleMealplanPickerClosed} 
+                className={`clickable mt-2 ms-2 p-3 border rounded rounded-circle shadow fa fa-chevron-left`}></div>
             {isDayPicked 
             ? <MealPlanMealtimePicker meal={meal}/> 
             : <MealPlanDayPicker meal={meal}/>}

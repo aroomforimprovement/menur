@@ -17,7 +17,7 @@ export const MealtimePicker = () => {
     return(
         <div>
             <div onClick={toggleMealtimePickerClosed} 
-                className={`mt-2 ms-0 ms-md-2 p-3 border rounded rounded-circle shadow fa fa-chevron-left`}></div>
+                className={`clickable mt-2 ms-0 ms-md-2 p-3 border rounded rounded-circle shadow fa fa-chevron-left`}></div>
             <Selector 
                 message={`for 
                         ${state.mealtimePickerMealtime} on ${state.mealtimePickerDay}`}/>

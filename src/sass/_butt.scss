@@ -9,6 +9,10 @@
   .butt:hover{
     transform: scale(1.05);
   }
+
+  .clickable:hover{
+    transform: scale(1.01);
+  }
   
   .butt-standard-outline{
     background-color: theme.$neutral;
