@@ -256,7 +256,7 @@ export const MealGen = ({meal, edit, open}) => {
                     <div className={`row mt-${isViewer ? '0' : '2'}`}>
                         <div className='col col-10'>
                             {isViewer 
-                            ? <small>{`${state.defaultServings ? state.defaultServings : 2} servings + ${state.defaultServings ? parseInt(servings) - parseInt(state.defaultServings) : parseInt(servings) - 2} leftovers`}</small>
+                            ? <small>{`${state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings ? parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - parseInt(state.defaultServings) : parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - DEFAULT_SERVINGS} leftovers`}</small>
                             : <InputGroup size='sm' >
                                 <Form.Label size='sm' htmlFor='servings' className='col col-8'>
                                     <strong>Servings:</strong>
@@ -264,7 +264,7 @@ export const MealGen = ({meal, edit, open}) => {
                                 <FormControl type='number' id='servings' defaultValue={DEFAULT_SERVINGS}
                                     onChange={handleServingsChange} size="sm"
                                     className='col col-5 ps-2 w-25'></FormControl>
-                                <small>{`${state.defaultServings ? state.defaultServings : 2} servings + ${state.defaultServings ? parseInt(servings) - parseInt(state.defaultServings) : parseInt(servings) - 2} leftovers`}</small>
+                                <small>{`${state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings ? parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - parseInt(state.defaultServings) : parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - DEFAULT_SERVINGS} leftovers`}</small>
                             </InputGroup>}
                         </div>
                     </div>
@@ -288,19 +288,20 @@ export const MealGen = ({meal, edit, open}) => {
                                 <Col xs={11}>
                                     <h6 style={{display:'inline'}} className='me-1'>Steps:</h6>                                
                                 </Col>
-                                <Col xs={1}>
+                                {isViewer ? <div></div>
+                                : <Col xs={1}>
                                     <button className={`butt butt-standard rounded rounded-circle
                                         fa ${ hideSteps ? 'fa-eye' : 'fa-eye-slash'}`}
                                         onClick={() => {setHideSteps(!hideSteps)}}
                                     ></button>
-                                </Col>
+                                </Col>}
                             </Row>
                                 {isViewer ? <div></div>
                                 : <small style={{fontSize: 'small', fontStyle:'italic'}}>
                                     Optionally add some notes on the steps to make your meal
                                 </small>}
                             </Form.Label>
-                        {hideSteps 
+                        {hideSteps && !isViewer
                         ? <div></div> 
                         : <div>
                             <div id='step-slot'>
