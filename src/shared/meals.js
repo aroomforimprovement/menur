@@ -81,7 +81,8 @@ export const MEALS = [{
             "score": "1"
         }
 
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1002",
@@ -148,7 +149,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "4"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1003",
@@ -227,7 +229,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "0"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1004",
@@ -294,7 +297,8 @@ export const MEALS = [{
             "qty": "0.5",
             "score": "2"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1005",
@@ -403,7 +407,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "2"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1006",
@@ -470,7 +475,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "0"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1007",
@@ -531,7 +537,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "2"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1008",
@@ -580,7 +587,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "2"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1009",
@@ -616,7 +624,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "3"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1010",
@@ -713,7 +722,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "1"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1011",
@@ -786,7 +796,8 @@ export const MEALS = [{
             "qty": "0.5",
             "score": "2"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1012",
@@ -835,7 +846,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "4"
         }
-    ]
+    ],
+    "steps":[]
 },  {
     "id": "1013",
     "name": "Italian Chilli",
@@ -895,7 +907,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "2"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1014",
@@ -974,8 +987,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "1"
         }
-
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1015",
@@ -1042,11 +1055,12 @@ export const MEALS = [{
             "qty": "1",
             "score": "1"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1016",
-    "name": "Lentil Shepard’s Pie",
+    "name": "Lentil Shepard's Pie",
     "mealtime": "Dinner",
     "servings": "3",
     "ingredients": [{
@@ -1097,7 +1111,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "2"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1017",
@@ -1134,7 +1149,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "2"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1018",
@@ -1190,7 +1206,8 @@ export const MEALS = [{
             "score": "0"
         }
 
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1019",
@@ -1227,7 +1244,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "2"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1020",
@@ -1258,7 +1276,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "0"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1021",
@@ -1270,7 +1289,8 @@ export const MEALS = [{
         "type": "frozen",
         "qty": "2",
         "score": "2"
-    }]
+    }],
+    "steps":[]
 },
 
 {
@@ -1326,7 +1346,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "2"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1023",
@@ -1393,7 +1414,8 @@ export const MEALS = [{
             "qty": "1",
             "score": "4"
         }
-    ]
+    ],
+    "steps":[]
 },
 {
     "id": "1024",
@@ -1484,6 +1506,7 @@ export const MEALS = [{
             "qty": "1",
             "score": "1"
         }
-    ]
+    ],
+    "steps":[]
 }
 ]

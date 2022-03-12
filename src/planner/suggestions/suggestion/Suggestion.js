@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import './suggestion.scss';
 import { useMainContext } from '../../../main/MenurRouter';
@@ -72,7 +72,9 @@ export const Suggestion = ({dragData, keyProp}) => {
         );
     });
 
-    
+    useEffect(() => {
+        console.dir(state);
+    }, [state])
     return(
         <DragDropContainer targetKey='meal' onDrop={handleDrop} 
             onDragStart={handleDragStart} onDragEnd={handleDragEnd}

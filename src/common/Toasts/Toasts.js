@@ -49,7 +49,7 @@ export const ToastConfirm = ({t, approve, dismiss, message, approveBtn, dismissB
                 <input type='checkbox' id='dontshow' name='dontshow'
                     onChange={() => {setDontShowAgain(!dontShowAgain)}}
                     className='col col-1 mt-1'></input>
-                <label for='dontshow' className='col col-10 ms-0 px-0'>Don't show this again</label>
+                <label htmlFor='dontshow' className='col col-10 ms-0 px-0'>Don't show this again</label>
             </div> : <div></div>}
         </div>
     );

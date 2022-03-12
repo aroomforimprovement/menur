@@ -37,6 +37,7 @@ export const addMealToast = async ({showBasic, meals, dispatch, meal, day, mealt
     const hasMeal = (meal) => {
         if(meals && meal.id){
           for(let i = 0; i < meals.length; i++){
+              console.log(meals[i].id+"\n"+meal.id+"\n");
             if(meals[i].id && meals[i].id === meal.id){
               return true;
             }

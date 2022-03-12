@@ -36,7 +36,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
     const handleDrop = (e) => {
         addMealToast({
             showBasic: state.showBasic,
-            meals: state.meals,
+            meals: [...state.meals],
             dispatch: dispatch,
             meal: e.dragData.meal,
             day: day,

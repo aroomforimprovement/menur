@@ -12,7 +12,8 @@ export const MealGen = ({meal, edit, open}) => {
     const [isFormVisible, setIsFormVisible] = useState(edit);
     const [name, setName] = useState(meal && meal.name ? meal.name : '');
     const [ingredients, setIng] = useState(meal && meal.ingredients ? meal.ingredients : []);
-    const [servings, setServings] = useState(meal && meal.servings ? meal.servings : 2);
+    const [steps, setSteps] = useState(meal && meal.steps ? meal.steps : []);
+    const [servings, setServings] = useState(meal && meal.servings ? meal.servings : DEFAULT_SERVINGS);
     
 
     const handleShowForm = () => {
@@ -51,13 +52,26 @@ export const MealGen = ({meal, edit, open}) => {
         setIng(ing);
     }
 
-    const addSuggestion = (e) => {
-        e.preventDefault();
-        const meal = {
-            name: name,
-            ingredients: ingredients,
-            servings: servings
+    const handleAddStep = (i) => {
+        console.dir(steps);
+        const stepField = document.getElementById(`step_${steps.length}`);
+        let savedSteps = [...steps];
+        const step = stepField ? stepField.value : '';
+        console.log(step);
+        if(step.length > 0){
+            savedSteps.push(step);
         }
+        //console.dir(savedSteps);
+        setSteps(savedSteps);
+    }
+
+    const handleRemoveStep = (index) => {
+        let savedSteps = [...steps];
+        savedSteps.splice(index, 1);
+        setSteps(savedSteps);
+    }
+
+    const addSuggestion = (meal) => {
         dispatch({type: 'ADD_SUGGESTION', data: meal});
     }
     
@@ -74,8 +88,9 @@ export const MealGen = ({meal, edit, open}) => {
     
     const handleAdd = (e) => {
         e.preventDefault();
+        const mealToAdd = getMealForSaving();
         if(name && name !== ''){
-            addSuggestion(e);
+            addSuggestion(mealToAdd);
             setName('');
             setIng([]);
             if(open !== undefined){
@@ -87,29 +102,34 @@ export const MealGen = ({meal, edit, open}) => {
     }
     const handleSave = async (e) => {
         e.preventDefault();
+        const mealForSaving = getMealForSaving();
+        console.dir(mealForSaving);
         if(name && name !== ''){
-            saveMeal(getMealForSaving(), state.user, edit).then((meal) => {
+            saveMeal(mealForSaving, state.user, edit).then((meal) => {
                 edit 
-                ? dispatch({type: 'UPDATE_SAVED_MEAL', data: meal})
-                : dispatch({type: 'ADD_SELECTOR_MEAL', data: meal});
+                ? dispatch({type: 'UPDATE_SAVED_MEAL', data: mealForSaving})
+                : dispatch({type: 'ADD_SELECTOR_MEAL', data: mealForSaving});
                 toast.success("Meal saved ok");
                 return meal.id;
             });
-            edit ? console.log() : addSuggestion(e);
+            edit ? console.log() : addSuggestion(mealForSaving);
             setName('');
             setIng([]);
         }
     }
-    const handleIngredientKeyDown = (e) => {
-        if(e.key === 'Enter'){
-            handleAddIngredient(e);
-        }
-    }
+    
     const handleServingsChange = (e) => {
         setServings(e.target.value);
     }
 
     const IngredientField = ({ingredient, i}) => {
+        
+        const handleIngredientKeyDown = (e) => {
+            if(e.key === 'Enter'){
+                handleAddIngredient(e);
+            }
+        }
+
         return(
             <Container className='p-0'>
                 <Row>
@@ -132,7 +152,7 @@ export const MealGen = ({meal, edit, open}) => {
                         </InputGroup>
                     </Col>
                     <Col xs={2}>
-                        <button className='butt butt-standard-outline fa fa-plus my-1 py-1 mx-auto px-auto center'
+                        <button className='butt butt-standard-outline fa fa-plus my-1 py-2 mx-auto px-auto center'
                             style={{minWidth:'100%'}} onClick={handleAddIngredient}>{' '}
                         </button>
                     </Col>
@@ -153,7 +173,42 @@ export const MealGen = ({meal, edit, open}) => {
 
     let showFormClasses = ''
 
+    const StepField = ({step, i}) => {
 
+        const handleStepKeyDown = (e) => {
+            if(e.key === 'Enter'){
+                handleAddStep(i);
+            }
+        }
+
+        return(
+            <Container className='p-0'>
+                <Row>
+                    <Col xs={10}>
+                        <InputGroup size='sm' onKeyDown={handleStepKeyDown} className='row'>
+                            <FormControl size='sm' as={'textarea'} id={`step_${i}`} placeholder={`Step ${i+1}`}
+                                defaultValue={step ? step : ''} className='w-75'></FormControl>
+                        </InputGroup>
+                    </Col>
+                    <Col xs={2}>
+                        <button className={`butt butt-standard-outline fa fa-plus my-1 py-2 mx-auto px-auto center`}
+                            style={{minWidth:'100%', display:'inline'}} onClick={handleAddStep}
+                        ></button>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
+
+    const stepFields = steps ? steps.map((step, i) => {
+        return(
+            <div key={i} className='row hover-fade'>
+                <p className='col col-11'>{step}</p>
+                <button className='btn btn-sm btn-close col col-1 clickable'
+                    onClick={() => handleRemoveStep(i)}></button>
+            </div>
+        );
+    }) : <div></div>;
 
     return(
         <div className='container meal-gen shadow shadow-lg p-0 mt-3 mb-3'>
@@ -195,14 +250,26 @@ export const MealGen = ({meal, edit, open}) => {
                             </InputGroup>
                         </div>
                     </div>
-                    <Form.Label size='sm' className='mt-2'>
-                        <h6 style={{display:'inline'}} className='me-1'>Ingredients:</h6>
-                        <small style={{fontSize: 'small', fontStyle:'italic'}}>Use | character to separate options, like "Fresh tomatoes|Canned tomatoes", if either will do</small>
-                    </Form.Label>
-                    <div id='ingredient-slot'>
-                        {ingredientFields}
+                    <div>
+                        <Form.Label size='sm' className='mt-2'>
+                            <h6 style={{display:'inline'}} className='me-1'>Ingredients:</h6>
+                            <small style={{fontSize: 'small', fontStyle:'italic'}}>Use | character to separate options, like "Fresh tomatoes|Canned tomatoes", if either will do</small>
+                        </Form.Label>
+                        <div id='ingredient-slot'>
+                            {ingredientFields}
+                        </div>
+                        <IngredientField i={ingredients.length} />
+                    </div>    
+                    <div>
+                        <Form.Label size='sm' className='mt-2'>
+                            <h6 style={{display:'inline'}} className='me-1'>Steps / Notes:</h6>
+                            <small style={{fontSize: 'small', fontStyle:'italic'}}>Optionally add some notes on the steps to make your meal</small>
+                        </Form.Label>
+                        <div id='step-slot'>
+                            {stepFields}
+                        </div>
+                        <StepField i={steps.length} />
                     </div>
-                    <IngredientField i={ingredients.length} />
                     <div className='row ing-row pb-3'>
                         <div className='col col-3'></div>                       
                         {edit ? <div></div> : <button className='butt butt-standard col col-12 mx-1 mt-3'
