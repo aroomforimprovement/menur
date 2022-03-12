@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { ToastConfirm, toastConfirmStyle } from '../../../common/Toasts';
 import { useMainContext } from '../../../main/MenurRouter';
 import { days, mealtimes } from '../../../shared/states';
 
@@ -6,7 +8,7 @@ import { days, mealtimes } from '../../../shared/states';
 
 export const MealPlanPicker = ({meal}) => {
     
-    const { dispatch } = useMainContext();
+    const { state, dispatch } = useMainContext();
     const [isDayPicked, setIsDayPicked] = useState(false);
 
     const toggleMealplanPickerClosed = () => {
@@ -44,15 +46,48 @@ export const MealPlanPicker = ({meal}) => {
             </div>
         );
     }
-    
+
     const MealPlanMealtimePicker = ({meal}) => {
     
         const MealPlanMealtimeSlot = ({meal, time}) => {
     
             const handleClick = (e) => {
-                meal.mealtime = time;
-                setIsDayPicked(false);
-                dispatch({type: 'ADD_MEAL', data: meal});
+                
+                const addMeal = (t) => {
+                    toast.dismiss(t);
+                    meal.mealtime = time;
+                    setIsDayPicked(false);
+                    dispatch({type: 'ADD_MEAL', data: meal});
+                    
+                }
+                const addAndSaveMeal = (t) => {
+                    toast.dismiss(t);
+                    meal.mealtime = time;
+                    setIsDayPicked(false);
+                    dispatch({type: 'ADD_MEAL', data: meal});
+                    //save
+                }
+                
+                const hasMeal = (meal) => {
+                    if(state.meals && meal.id){
+                        for(let i = 0; i < state.meals.length; i++){
+                            if(state.meals[i].id && state.meal.id === meal.id){
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                }
+
+                state.showBasic && state.meals 
+                && !window.localStorage.getItem(`dontshow_SAVE_MEAL`) && !hasMeal(meal)
+                ? toast((t) => (
+                    <ToastConfirm t={t} approve={addAndSaveMeal} approveBtn={'Save to account'}
+                        dismiss={addMeal} dismissBtn={`Don't save`}
+                        message={`Would you like to save this meal to your account so you can customize it later?`}
+                    />
+                ), toastConfirmStyle())
+                : addMeal();        
             }
     
             return(
