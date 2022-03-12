@@ -57,11 +57,9 @@ export const MealGen = ({meal, edit, open}) => {
         const stepField = document.getElementById(`step_${steps.length}`);
         let savedSteps = [...steps];
         const step = stepField ? stepField.value : '';
-        console.log(step);
         if(step.length > 0){
             savedSteps.push(step);
         }
-        //console.dir(savedSteps);
         setSteps(savedSteps);
     }
 
@@ -81,7 +79,8 @@ export const MealGen = ({meal, edit, open}) => {
             id: id,
             name: name,
             ingredients: ingredients,
-            servings: servings
+            servings: servings,
+            steps: steps
         }
     }
 
@@ -203,7 +202,7 @@ export const MealGen = ({meal, edit, open}) => {
     const stepFields = steps ? steps.map((step, i) => {
         return(
             <div key={i} className='row hover-fade'>
-                <p className='col col-11'>{step}</p>
+                <p className='col col-11'>{`${i+1}. ${step}`}</p>
                 <button className='btn btn-sm btn-close col col-1 clickable'
                     onClick={() => handleRemoveStep(i)}></button>
             </div>
