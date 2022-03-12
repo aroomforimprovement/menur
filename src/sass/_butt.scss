@@ -4,14 +4,18 @@
     border-radius: 5px;
     background-color: theme.$neutral;
     color: theme.$head-heavy;
+    cursor: pointer;
   }
 
   .butt:hover{
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 
+  .clickable{
+    cursor: pointer;
+  }
   .clickable:hover{
-    transform: scale(1.01);
+    transform: scale(1.02);
   }
   
   .butt-standard-outline{

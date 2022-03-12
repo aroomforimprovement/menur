@@ -7,12 +7,13 @@ import { Modal } from 'react-bootstrap';
 import { MealGen } from '../../planner/suggestions/mealgen/MealGen';
 
 const apiUrl = process.env.REACT_APP_API_URL;
-let proxy = process.env.REACT_APP_PROXY_URL;
+const proxy = process.env.REACT_APP_PROXY_URL;
 
 export const Meal = ({meal, showSpices, index}) => {
     const { state, dispatch } = useMainContext();
     const [showIngredients, setShowIngredients] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    const [isViewing, setIsViewing] = useState(false);
 
     const deleteMeal = async () => {
         return await fetch(`${proxy}${apiUrl}meal/${meal.id}`, {
@@ -95,11 +96,11 @@ export const Meal = ({meal, showSpices, index}) => {
                 :
                 <div></div>
             }
-            <Modal show={isEditing}>
+            <Modal show={isEditing || isViewing}>
                 <Modal.Header className='float-end'>
                     <div className='col col-12'>
                         <button className='butt fa fa-close float-end px-2 me-0' aria-label='Close'
-                            onClick={() => {setIsEditing(false)}}></button>
+                            onClick={() => {setIsEditing(false); setIsViewing(false)}}></button>
                     </div>                
                 </Modal.Header>
                 <Modal.Body>
