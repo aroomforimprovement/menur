@@ -14,7 +14,7 @@ export const MealGen = ({meal, edit, open}) => {
     const [ingredients, setIng] = useState(meal && meal.ingredients ? meal.ingredients : []);
     const [steps, setSteps] = useState(meal && meal.steps ? meal.steps : []);
     const [servings, setServings] = useState(meal && meal.servings ? meal.servings : DEFAULT_SERVINGS);
-    
+    const [hideSteps, setHideSteps] = useState(true);
 
     const handleShowForm = () => {
         setIsFormVisible(!isFormVisible);
@@ -262,13 +262,29 @@ export const MealGen = ({meal, edit, open}) => {
                     </div>    
                     <div>
                         <Form.Label size='sm' className='mt-2'>
-                            <h6 style={{display:'inline'}} className='me-1'>Steps / Notes:</h6>
-                            <small style={{fontSize: 'small', fontStyle:'italic'}}>Optionally add some notes on the steps to make your meal</small>
-                        </Form.Label>
-                        <div id='step-slot'>
-                            {stepFields}
-                        </div>
-                        <StepField i={steps.length} />
+                            <Row >
+                                <Col xs={11}>
+                                    <h6 style={{display:'inline'}} className='me-1'>Steps / Notes:</h6>                                
+                                </Col>
+                                <Col xs={1}>
+                                    <button className={`butt butt-standard rounded rounded-circle
+                                        fa ${ hideSteps ? 'fa-eye' : 'fa-eye-slash'}`}
+                                        onClick={() => {setHideSteps(!hideSteps)}}
+                                    ></button>
+                                </Col>
+                            </Row>
+                                <small style={{fontSize: 'small', fontStyle:'italic'}}>
+                                    Optionally add some notes on the steps to make your meal
+                                </small>
+                            </Form.Label>
+                        {hideSteps 
+                        ? <div></div> 
+                        : <div>
+                            <div id='step-slot'>
+                                {stepFields}
+                            </div>
+                            <StepField i={steps.length} />
+                        </div>}
                     </div>
                     <div className='row ing-row pb-3'>
                         <div className='col col-3'></div>                       

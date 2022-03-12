@@ -44,5 +44,6 @@ export const INIT_STATE = {
     isSaveOpen: false,
     hideSelectorIngredients: isMobile ? true : false,
     isGeneratingList: false,
-    mealplanDownloading: null
+    mealplanDownloading: null,
+    hideSteps: true
 }
