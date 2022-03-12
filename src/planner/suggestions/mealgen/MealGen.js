@@ -15,7 +15,7 @@ export const MealGen = ({meal, edit, open}) => {
     const [steps, setSteps] = useState(meal && meal.steps ? meal.steps : []);
     const [servings, setServings] = useState(meal && meal.servings ? meal.servings : DEFAULT_SERVINGS);
     const [hideSteps, setHideSteps] = useState(true);
-    const [isViewer, setIsViewer] = useState(true);
+    const [isViewer, setIsViewer] = useState(edit);
 
     const handleShowForm = () => {
         setIsFormVisible(!isFormVisible);
