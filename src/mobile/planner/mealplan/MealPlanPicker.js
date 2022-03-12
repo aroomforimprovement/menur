@@ -52,20 +52,17 @@ export const MealPlanPicker = ({meal}) => {
         const MealPlanMealtimeSlot = ({meal, time}) => {
     
             const handleClick = (e) => {
-                
+                meal.mealtime = time;
+                setIsDayPicked(false);
                 const addMeal = (t) => {
-                    toast.dismiss(t);
-                    meal.mealtime = time;
-                    setIsDayPicked(false);
+                    toast.dismiss(t);    
                     dispatch({type: 'ADD_MEAL', data: meal});
                     
                 }
                 const addAndSaveMeal = (t) => {
                     toast.dismiss(t);
-                    meal.mealtime = time;
-                    setIsDayPicked(false);
                     dispatch({type: 'ADD_MEAL', data: meal});
-                    //save
+                    //saveMealToAccount
                 }
                 
                 const hasMeal = (meal) => {

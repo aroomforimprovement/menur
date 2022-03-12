@@ -180,6 +180,8 @@ export const reducer = (state, action) => {
         }
         case 'ADD_MEAL':{
             let mealplan = {...state.mealplan};
+            console.dir(mealplan);
+            console.dir(action.data);
             mealplan[action.data.day][action.data.mealtime] = action.data.meal; 
             const servings = parseInt(action.data.meal.servings);
             const defaultServings = state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS;
