@@ -2,8 +2,9 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { ToastConfirm, toastConfirmStyle } from '../common/Toasts/Toasts';
 import { saveMeal } from './apiUtils';
+import { dontShowAgain } from './userUtils';
 
-export const addMealToast = ({showBasic, meals, dispatch, meal, day, mealtime, user}) => {
+export const addMealToast = async ({showBasic, meals, dispatch, meal, day, mealtime, user}) => {
 
     const setMealAdded = (save) => {
         dispatch({type: 'ADD_MEAL', data: {
@@ -18,16 +19,21 @@ export const addMealToast = ({showBasic, meals, dispatch, meal, day, mealtime, u
         }
     }
 
-    const addMeal = (t) => {
+    const addMeal = (t, dontshow) => {
         toast.dismiss(t);
         setMealAdded(false);
+        captureDontShow(dontshow, false);
     }
 
-    const addAndSaveMeal = (t) => {
+    const addAndSaveMeal = (t, dontshow) => {
         toast.dismiss(t);
         setMealAdded(true);
+        captureDontShow(dontshow, true);
     }
 
+    const captureDontShow = (dontshow, choice) => {
+        dontshow ? dontShowAgain('SAVE_MEAL', choice) : console.log();
+    }
     const hasMeal = (meal) => {
         if(meals && meal.id){
           for(let i = 0; i < meals.length; i++){
@@ -39,15 +45,24 @@ export const addMealToast = ({showBasic, meals, dispatch, meal, day, mealtime, u
         return false;
     }
 
-    showBasic && meals 
-        && !window.localStorage.getItem(`dontshow_SAVE_MEAL`) 
-        && !hasMeal(meal)
-    ? toast((t) => (
-        <ToastConfirm t={t} approve={addAndSaveMeal} approveBtn={'Save to account'}
-          dismiss={addMeal} dismissBtn={`Don't save`}
-          message={`Would you like to save this meal to your account so you can customize it later?`}
-        />
-        ), toastConfirmStyle())
-        : addMeal(); 
+    if(showBasic && meals && !hasMeal(meal)){
+         if(window.localStorage.getItem(`dontshow_SAVE_MEAL`)){
+            const choice = await JSON.parse(window.localStorage.getItem(`dontshow_SAVE_MEAL`)).choice;
+            if(choice){
+                setMealAdded(true);
+            }else{
+                setMealAdded(false);
+            }
+         }else{
+            toast((t) => (
+                <ToastConfirm t={t} approve={addAndSaveMeal} approveBtn={'Save to account'}
+                  dismiss={addMeal} dismissBtn={`Don't save`} canHide={true}
+                  message={`Would you like to save this meal to your account so you can customize it later?`}
+                />
+                ), toastConfirmStyle())
+         }
+    }else{
+        setMealAdded(false);
+    }
 
 }
