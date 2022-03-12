@@ -5,6 +5,7 @@ import { useMainContext } from '../../../main/MenurRouter';
 import { getNewId } from '../../../utils/objUtils';
 import { toast } from 'react-hot-toast';
 import { DEFAULT_SERVINGS } from '../../../shared/meals';
+import { saveMeal } from '../../../utils/apiUtils';
 
 export const MealGen = ({meal, edit, open}) => {
     const { state, dispatch } = useMainContext();
@@ -12,8 +13,7 @@ export const MealGen = ({meal, edit, open}) => {
     const [name, setName] = useState(meal && meal.name ? meal.name : '');
     const [ingredients, setIng] = useState(meal && meal.ingredients ? meal.ingredients : []);
     const [servings, setServings] = useState(meal && meal.servings ? meal.servings : 2);
-    const apiUrl = process.env.REACT_APP_API_URL;
-    let proxy = process.env.REACT_APP_PROXY_URL;
+    
 
     const handleShowForm = () => {
         setIsFormVisible(!isFormVisible);
@@ -61,41 +61,17 @@ export const MealGen = ({meal, edit, open}) => {
         dispatch({type: 'ADD_SUGGESTION', data: meal});
     }
     
-
-    const saveMeal = async () => {
+    const getMealForSaving = () => {
         const id = edit && meal && meal.id ? meal.id : getNewId();
-        const body = {
-            userid: state.user.userid,
-            meal: {
-                id: id,
-                name: name,
-                ingredients: ingredients,
-                servings: servings
-            }
+        return{
+            id: id,
+            name: name,
+            ingredients: ingredients,
+            servings: servings
         }
-        return await fetch(`${proxy}${apiUrl}meal${edit ? '/' + id : ''}`, {
-            method: 'POST',
-            body: JSON.stringify(body),
-            headers: {
-                Authorization: `Bearer ${state.user.access}`,
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            if(response.ok){
-                edit 
-                ? dispatch({type: 'UPDATE_SAVED_MEAL', data: body.meal})
-                : dispatch({type: 'ADD_SELECTOR_MEAL', data: body.meal});
-                toast.success("Meal saved ok");
-                return id;
-            }else{
-                console.error(`response not ok`);
-                toast.error("Error saving the meal");
-            }
-        }, error => {
-            console.error(error);
-            return false;
-        }).catch((error) => {console.error(error)});
     }
+
+    
     const handleAdd = (e) => {
         e.preventDefault();
         if(name && name !== ''){
@@ -112,7 +88,13 @@ export const MealGen = ({meal, edit, open}) => {
     const handleSave = async (e) => {
         e.preventDefault();
         if(name && name !== ''){
-            await saveMeal();
+            saveMeal(getMealForSaving(), state.user, edit).then((meal) => {
+                edit 
+                ? dispatch({type: 'UPDATE_SAVED_MEAL', data: meal})
+                : dispatch({type: 'ADD_SELECTOR_MEAL', data: meal});
+                toast.success("Meal saved ok");
+                return meal.id;
+            });
             edit ? console.log() : addSuggestion(e);
             setName('');
             setIng([]);

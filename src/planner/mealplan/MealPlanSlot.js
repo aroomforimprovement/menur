@@ -4,7 +4,8 @@ import { DropTarget, DragDropContainer } from 'react-drag-drop-container';
 import { useMainContext } from '../../main/MenurRouter';
 import { MealPlanSlotIngredient } from './MealPlanSlotIngredient';
 import toast from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle } from '../../common/Toasts';
+import { ToastConfirm, toastConfirmStyle } from '../../common/Toasts/Toasts';
+import { addMealToast } from '../../utils/toastUtils';
 
 export const MealPlanSlot = ({mealtime, day}) => {
     const { state, dispatch } = useMainContext();
@@ -33,39 +34,15 @@ export const MealPlanSlot = ({mealtime, day}) => {
         e.target.style.color = 'darkblue';
     }    
     const handleDrop = (e) => {
-        e.dragData.day = day;
-        e.dragData.mealtime = mealtime;
-
-        const addMeal = (t) => {
-            toast.dismiss(t);
-            dispatch({type: 'ADD_MEAL', data: e.dragData});    
-        }
-        const addAndSaveMeal = (t) => {
-            toast.dismiss(t);
-            dispatch({type: 'ADD_MEAL', data: e.dragData});
-            //saveMealToAccount
-        }
-
-        const hasMeal = (meal) => {
-            if(state.meals && meal.id){
-              for(let i = 0; i < state.meals.length; i++){
-                if(state.meals[i].id && state.meal.id === meal.id){
-                  return true;
-                }
-              }
-            }
-            return false;
-          }
-              
-          state.showBasic && state.meals 
-            && !window.localStorage.getItem(`dontshow_SAVE_MEAL`) && !hasMeal(e.dragData.meal)
-          ? toast((t) => (
-              <ToastConfirm t={t} approve={addAndSaveMeal} approveBtn={'Save to account'}
-                dismiss={addMeal} dismissBtn={`Don't save`}
-                message={`Would you like to save this meal to your account so you can customize it later?`}
-              />
-              ), toastConfirmStyle())
-              : addMeal(); 
+        addMealToast({
+            showBasic: state.showBasic,
+            meals: state.meals,
+            dispatch: dispatch,
+            meal: e.dragData.meal,
+            day: day,
+            mealtime: mealtime,
+            user: state.user
+        })
     }
 
     const handleDropOver = (e) => {

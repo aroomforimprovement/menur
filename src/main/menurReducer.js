@@ -1,6 +1,7 @@
 import { DEFAULT_SERVINGS, MEALS } from '../shared/meals';
 import { INIT_STATE, days, mealtimes } from '../shared/states';
-import { getIngredientsFromMeal, getMealsWithIngredient } from '../utils/objUtils';
+import { saveMeal } from '../utils/apiUtils';
+import { getIngredientsFromMeal, getMealsWithIngredient, getNewId } from '../utils/objUtils';
 
 
 export const reducer = (state, action) => {
@@ -95,9 +96,7 @@ export const reducer = (state, action) => {
         }
         return leftovers;
     }
-    
-    //console.log(action.type+':'+action.data)
-    //console.dir(action.data);
+
     switch(action.type){
         case 'COOKIES_APPROVED':{
             return({...state, cookiesApproved: action.data});
@@ -180,15 +179,16 @@ export const reducer = (state, action) => {
         }
         case 'ADD_MEAL':{
             let mealplan = {...state.mealplan};
-            console.dir(mealplan);
-            console.dir(action.data);
-            mealplan[action.data.day][action.data.mealtime] = action.data.meal; 
-            const servings = parseInt(action.data.meal.servings);
+            let meal = {...action.data.meal};
+            const id = meal.id ? meal.id : getNewId();
+            meal.id = id;
+            mealplan[action.data.day][action.data.mealtime] = meal; 
+            const servings = parseInt(meal.servings === 'DEFAULT' ? state.defaultServings : meal.servings);
             const defaultServings = state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS;
             let leftovers = [...state.leftovers];
             if(servings > defaultServings){
-                const name = action.data.meal.name.indexOf("Leftover") > -1 
-                    ? action.data.meal.name : `Leftover ${action.data.meal.name}` 
+                const name = meal.name.indexOf("Leftover") > -1 
+                    ? meal.name : `Leftover ${meal.name}` 
                 let leftover = {
                     "name": name,
                     "servings": servings - defaultServings,
@@ -198,6 +198,9 @@ export const reducer = (state, action) => {
                     "mealtime_tag": action.data.mealtime
                 }
                 leftovers.push(leftover);
+            }
+            if(action.data.save){ 
+                saveMeal(meal, state.user, false);
             }
             return ({...state, 
                 mealplan: mealplan, leftovers: leftovers, 

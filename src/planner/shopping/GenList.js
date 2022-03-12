@@ -4,7 +4,7 @@ import { useMainContext } from '../../main/MenurRouter';
 import { ShoppingList } from './ShoppingList';
 import { isMobile } from 'react-device-detect';
 import toast from 'react-hot-toast';
-import { toastConfirmStyle, ToastOptions } from '../../common/Toasts';
+import { toastConfirmStyle, ToastOptions } from '../../common/Toasts/Toasts';
 import { saveAs } from 'file-saver';
 import { pdf } from '@react-pdf/renderer';
 import { DownloadableShoppingList } from '../../utils/pdfUtils';

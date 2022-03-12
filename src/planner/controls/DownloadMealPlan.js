@@ -4,7 +4,7 @@ import { saveAs } from 'file-saver';
 import { useMainContext } from '../../main/MenurRouter';
 import { DownloadableMealPlan, DownloadableMealPlanLandscape,  MultipleShoppingLists, GetSingleShoppingList } from '../../utils/pdfUtils';
 import toast from 'react-hot-toast';
-import { toastConfirmStyle, ToastOptions } from '../../common/Toasts';
+import { toastConfirmStyle, ToastOptions } from '../../common/Toasts/Toasts';
 import PDFMerger from 'pdf-merger-js';
 
 export const DownloadMealPlan = () => {

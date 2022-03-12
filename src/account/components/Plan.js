@@ -4,7 +4,7 @@ import { DownloadableMealPlanLandscape, DownloadableMealPlan, GetSingleShoppingL
 import { pdf } from "@react-pdf/renderer";
 import { useMainContext } from "../../main/MenurRouter";
 import { toast } from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle, ToastOptions } from "../../common/Toasts";
+import { ToastConfirm, toastConfirmStyle, ToastOptions } from "../../common/Toasts/Toasts";
 import { DummyMealPlan } from "./DummyMealPlan";
 import PDFMerger from "pdf-merger-js";
 import { saveAs } from "file-saver";

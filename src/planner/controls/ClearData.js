@@ -1,6 +1,6 @@
 import React from 'react';
 import toast from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle } from '../../common/Toasts';
+import { ToastConfirm, toastConfirmStyle } from '../../common/Toasts/Toasts';
 import { useMainContext } from '../../main/MenurRouter';
 
 export const ClearData = () => {

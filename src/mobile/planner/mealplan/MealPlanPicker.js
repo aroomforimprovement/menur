@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle } from '../../../common/Toasts';
+import { ToastConfirm, toastConfirmStyle } from '../../../common/Toasts/Toasts';
 import { useMainContext } from '../../../main/MenurRouter';
 import { days, mealtimes } from '../../../shared/states';
+import { addMealToast } from '../../../utils/toastUtils';
 
 
 
@@ -50,41 +51,16 @@ export const MealPlanPicker = ({meal}) => {
     const MealPlanMealtimePicker = ({meal}) => {
     
         const MealPlanMealtimeSlot = ({meal, time}) => {
-    
+            
             const handleClick = (e) => {
-                meal.mealtime = time;
-                setIsDayPicked(false);
-                const addMeal = (t) => {
-                    toast.dismiss(t);    
-                    dispatch({type: 'ADD_MEAL', data: meal});
-                    
-                }
-                const addAndSaveMeal = (t) => {
-                    toast.dismiss(t);
-                    dispatch({type: 'ADD_MEAL', data: meal});
-                    //saveMealToAccount
-                }
-                
-                const hasMeal = (meal) => {
-                    if(state.meals && meal.id){
-                        for(let i = 0; i < state.meals.length; i++){
-                            if(state.meals[i].id && state.meal.id === meal.id){
-                                return true;
-                            }
-                        }
-                    }
-                    return false;
-                }
-
-                state.showBasic && state.meals 
-                && !window.localStorage.getItem(`dontshow_SAVE_MEAL`) && !hasMeal(meal)
-                ? toast((t) => (
-                    <ToastConfirm t={t} approve={addAndSaveMeal} approveBtn={'Save to account'}
-                        dismiss={addMeal} dismissBtn={`Don't save`}
-                        message={`Would you like to save this meal to your account so you can customize it later?`}
-                    />
-                ), toastConfirmStyle())
-                : addMeal();        
+                addMealToast({
+                    showBasic: state.showBasic,
+                    meals: state.meals,
+                    dispatch: dispatch,
+                    meal: meal.meal,
+                    day: meal.day,
+                    mealtime: time
+                });
             }
     
             return(

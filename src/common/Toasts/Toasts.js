@@ -28,7 +28,7 @@ export const ToastConfirm = ({t, approve, dismiss, message, approveBtn, dismissB
             <div className='row'>
             <h5 className={'col col-11'}>Confirm</h5> 
                 <button className='btn btn-sm btn-close col col-1'
-                    onClick={() => toast.dismiss(t.id, dontShowAgain)}></button>
+                    onClick={() => dismiss(t.id, dontShowAgain)}></button>
             </div>
             <div className='row'>
                 <h6>

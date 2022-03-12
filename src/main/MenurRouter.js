@@ -8,7 +8,7 @@ import Planner from '../planner/Planner';
 import { Help } from '../help/Help';
 import { Loading } from '../common/Loading';
 import Account from '../account/Account';
-import { Toast } from '../common/Toasts';
+import { Toast } from '../common/Toasts/Toasts';
 import toast from 'react-hot-toast';
 import Cookies from 'cookies-js';
 import { isMobile } from 'react-device-detect';

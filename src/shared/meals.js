@@ -4,6 +4,7 @@ export const OR = ' or ';
 export const DEFAULT_SERVINGS = 2;
 
 export const MEALS = [{
+    "id": "1000",
     "name": "Pick a meal",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -15,6 +16,7 @@ export const MEALS = [{
     }]
 },
 {
+    "id": "1001",
     "name": "Arrabiata",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -82,6 +84,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1002",
     "name": "Burgers",
     "mealtime": "Dinner",
     "servings": "4",
@@ -148,6 +151,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1003",
     "name": "Butternut Squash Soup",
     "mealtime": "Dinner",
     "servings": "5",
@@ -226,6 +230,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1004",
     "name": "Carbonara",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -292,6 +297,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1005",
     "name": "Cauliflower Wings",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -400,6 +406,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1006",
     "name": "Chicken Curry",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -466,6 +473,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1007",
     "name": "Chinese Curry",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -526,6 +534,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1008",
     "name": "Fajitas",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -574,6 +583,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1009",
     "name": "Fish 'n' Chips",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -609,6 +619,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1010",
     "name": "Goat's Cheese Pastabake",
     "mealtime": "Dinner",
     "servings": "4",
@@ -705,6 +716,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1011",
     "name": "Goat's Cheese Salad",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -777,6 +789,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1012",
     "name": "Halloumi Burgers",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -824,6 +837,7 @@ export const MEALS = [{
         }
     ]
 },  {
+    "id": "1013",
     "name": "Italian Chilli",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -884,6 +898,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1014",
     "name": "Lasagne",
     "mealtime": "Dinner",
     "servings": "4",
@@ -963,6 +978,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1015",
     "name": "Lentils",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -1029,6 +1045,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1016",
     "name": "Lentil Shepard’s Pie",
     "mealtime": "Dinner",
     "servings": "3",
@@ -1083,6 +1100,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1017",
     "name": "Mince Gravy",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -1119,6 +1137,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1018",
     "name": "Omlette",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -1174,6 +1193,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1019",
     "name": "Pastabake",
     "mealtime": "Dinner",
     "servings": "4",
@@ -1210,6 +1230,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1020",
     "name": "Pasta Pesto",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -1240,6 +1261,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1021",
     "name": "Pizza",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -1252,6 +1274,7 @@ export const MEALS = [{
 },
 
 {
+    "id": "1022",
     "name": "Quesadillas",
     "mealtime": "Dinner",
     "servings": "3",
@@ -1306,6 +1329,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1023",
     "name": "Thai Curry",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
@@ -1372,6 +1396,7 @@ export const MEALS = [{
     ]
 },
 {
+    "id": "1024",
     "name": "Vegetarian Chilli",
     "mealtime": "Dinner",
     "servings": "DEFAULT",

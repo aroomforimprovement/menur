@@ -16,7 +16,7 @@ export const Selector = ({message}) => {
 
     const meals = mealsIncluded.map((meal, i) => {
         return(
-            <option key={meal.name}>{meal.name}</option>
+            <option key={i}>{meal.name}</option>
         );
     });
 
