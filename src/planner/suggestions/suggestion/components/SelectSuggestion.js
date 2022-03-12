@@ -24,6 +24,7 @@ export const SelectSuggestion = ({keyProp, dragData}) => {
     const addMealFromSuggestion = (day, mealtime) => {
         dragData.day = day;
         dragData.mealtime = mealtime;
+        
         const addMeal = (t) => {
           toast.dismiss(t);
           dispatch({type: 'ADD_MEAL', data: dragData});
