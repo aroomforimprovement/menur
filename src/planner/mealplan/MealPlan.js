@@ -49,7 +49,7 @@ export const MealPlan = () => {
             );
         });
         return(
-            <div className='container mealplan-container'>
+            <div className='container mealplan-container ps-4'>
                 <div className='row'>
                 <div className='row '>
                     <div className={'col col-1 mealplan-header header-xy m-1 center'}>
