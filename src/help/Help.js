@@ -34,14 +34,14 @@ export const Help = () => {
                                 Basic Meals we've provided or creating new meals every time
                                 you want to plan your week.
                             </p>
-                            <p>With a free account, you can create and save meals to your as well
+                            <p>With a free account, you can create and save meals as well
                                 as saving your meal plans to re-use or edit later.
                             </p>
                         </div>
                         <div className='p-5'>
-                            <h3>Ok, so what are doing my data?</h3>
+                            <h3>Ok, so what are you doing with my data?</h3>
                             <p>When you create an account, you authorise it via <a href='https://auth0.com' alt='auth0' target='_blank' rel='noreferrer'>auth0</a>, the industry
-                                standard in authentication. The Menur app uses saves your email address and name in order to 
+                                standard in authentication. The Menur app saves your email address and name in order to 
                                 ensure no duplicate accounts. Otherwise, the only data we store 
                                 is the data you create - your meals and meal plans.
                             </p>
@@ -52,8 +52,9 @@ export const Help = () => {
                         <div className='p-5 jim'>
                             <h3>And what about cookies? I've heard of cookies.</h3>
                             <p>Cookies are small files stored in your browser that facilitate certain
-                                website functionality. Menur uses ONE such cookie to record whether you have 
-                                acknowledged that it's ok for the app to use cookies.
+                                website functionality. Menur uses these types of files to record 
+                                some choices you make to make the site work the way you want to, 
+                                like whether you have acknowledged that it's ok for the app to use cookies.
                                 We'll probably need to add more in the future but we'll let you know about that.
                                 </p><p>Auth0 stores a cookie to let it know whether you are logged into the app.
                                 </p><p>Menur does NOT use cookies or any other method to track your activity on
@@ -70,8 +71,6 @@ export const Help = () => {
                 <div className='col col-12 col-md-6 m-0'>
                     <div className='p-5 jum'>
                         <h3>How do I use this app?</h3>
-                        <p>Before you start, although a mobile-optimised version is on the way, 
-                            <br/>it's recommended you use a larger screen to use the app.</p>
                         <ul className='list-unstyled'>
                             <div className='p-5'>
                                 <li>
