@@ -77,7 +77,11 @@ export const GenList = () => {
         ), toastConfirmStyle());
     }
 
-    const ListTemplate = ({list, title, copyFunc, downloadFunc}) => {
+    const addList = (list, heading) => {
+        //modal stuff
+    }
+
+    const ListTemplate = ({list, title, copyFunc, downloadFunc, addFunc}) => {
 
         return(
             <div className={`gen-list mt-2 border border-2 shadow shadow-sm ${isMobile ? 'col col-12' : 'col col-12 col-md-4'} mx-auto px-1`}>
@@ -95,6 +99,12 @@ export const GenList = () => {
                             <span className='fa fa-copy fa-xs'>{' '}</span>
                         </button>
                     </div>
+                    <div className='col col-1 col-md-2 col-lg-1 me-4'>
+                        <button className='btn btn-sm btn-outline-info copy-btn mb-2 bg-light'
+                            onClick={addFunc}>
+                            <span className='fa fa-plus fa-xs'>{' '}</span>
+                        </button>
+                    </div>
                 </div>
                 <ShoppingList  list={list} />
             </div>
@@ -103,24 +113,10 @@ export const GenList = () => {
 
     return(
         <div style={{display:'inline-block'}} className='col col-12'> 
-            {isMobile 
-            ? 
-                <ListTemplate list={'genList'} title='Shopping list' 
-                    copyFunc={() => copyList([...state.genList], "GENERATED LIST")} 
-                    downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}/>
-            :
-                <div >
-                    <ListTemplate list={'genList'} title='Generated List' 
-                        copyFunc={() => copyList([...state.genList], "GENERATED LIST")} 
-                        downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}/>
-                    <ListTemplate list={'userList1'} title={'User List 1'} 
-                    downloadFunc={() => downloadList([...state.userList1], "LIST 1")}
-                        copyFunc={() => copyList([...state.userList1], "LIST 1")} />
-                    <ListTemplate list={'userList2'} title={'User List 2'} 
-                        downloadFunc={() => downloadList([...state.userList2], "LIST 2")}
-                        copyFunc={() => copyList([...state.userList2], "LIST 2")} />
-                </div>
-            }
+            <ListTemplate list={'genList'} title='Shopping list' 
+                copyFunc={() => copyList([...state.genList], "GENERATED LIST")} 
+                downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}
+                addFunc={() => addList([...state.genList], "GENERATED LIST")}/>
         </div>
     );
 }
