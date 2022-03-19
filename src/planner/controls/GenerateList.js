@@ -25,7 +25,7 @@ export const GenerateList = () => {
                 <ToastConfirm t={t} approve={setIsCancelled} dismiss={setIsCancelled}
                     message={`FYI - If you change anything in the mealplan, it won't update the shopping list.
                         You'll have to use this button again and generate a new shopping list.`}
-                    approveBtn={'OK'} dismissBtn={'Cool'} canHide={true} />
+                    approveBtn={'Cool'} dismissBtn={'OK'} canHide={true} />
                 ), toastConfirmStyle());
     }
 
