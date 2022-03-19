@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle } from '../../../common/Toasts/Toasts';
 import { useMainContext } from '../../../main/MenurRouter';
 import { days, mealtimes } from '../../../shared/states';
 import { addMealToast } from '../../../utils/toastUtils';

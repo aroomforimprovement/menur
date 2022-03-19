@@ -3,7 +3,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { reducer } from './menurReducer';
 import { INIT_STATE } from '../shared/states';
 import { Header } from './Header';
-import { Switch, useHistory, Route, withRouter, Redirect } from 'react-router';
+import { Routes, useNavigate, Route, Navigate } from 'react-router-dom';
+import { withRouter } from '../utils/routerUtils';
 import Planner from '../planner/Planner';
 import { Help } from '../help/Help';
 import { Loading } from '../common/Loading';
@@ -13,6 +14,7 @@ import toast from 'react-hot-toast';
 import Cookies from 'cookies-js';
 import { isMobile } from 'react-device-detect';
 import { PlannerMobile } from '../mobile/planner/PlannerMobile';
+import { Nav } from 'react-bootstrap';
 
 let apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
@@ -28,13 +30,8 @@ const MenurRouter = () => {
     const { isLoading, isAuthenticated, user, getAccessTokenSilently } = useAuth0();
     const [state, dispatch] = useReducer(reducer, INIT_STATE);
     const mainState = { state, dispatch };
-    const history = useHistory();
+    const history = useNavigate();
     const [cookieWarning, setCookieWarning] = useState(false);
-
-    const MainPage = () => {return isMobile ? <PlannerMobile edit={false}/> : <Planner edit={false}/>}
-    const ContPage = () => {return isMobile ? <PlannerMobile edit={true}/> : <Planner edit={true}/>}
-    const AccountPage = () => {return <Account/>}
-    const HelpPage = () => {return <Help />}
 
     const approveCookies = (id) => {
         Cookies.set('cookies_approved', true, {expires: 28*34*60*1000});
@@ -158,13 +155,13 @@ const MenurRouter = () => {
                     <div>
                         <Header />
                         <Toast />
-                        <Switch>
-                            <Route path='/planner/:id/:edit' histor={history} component={ContPage} />
-                            <Route path='/planner' history={history} component={MainPage} />
-                            <Route path='/account' history={history} component={AccountPage} />
-                            <Route path='/help' history={history} component={HelpPage} />
-                            <Redirect to='/planner' history={history} />
-                        </Switch>
+                        <Routes>
+                            <Route path='/planner/:id/:edit' history={history} element={isMobile ? <PlannerMobile edit={true} /> : <Planner edit={true}/>} />
+                            <Route path='/planner' history={history} element={isMobile ? <PlannerMobile edit={false}/> : <Planner edit={false}/>} />
+                            <Route path='/account' history={history} element={<Account />} />
+                            <Route path='/help' history={history} element={<Help />} />
+                            <Route path='/*' history={history} element={<Navigate to='/planner' replace />} />
+                        </Routes>
                     </div>        
                     )}      
                 </MainContext.Consumer>

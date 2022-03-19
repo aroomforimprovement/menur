@@ -3,8 +3,6 @@ import './mealplan.scss';
 import { DropTarget, DragDropContainer } from 'react-drag-drop-container';
 import { useMainContext } from '../../main/MenurRouter';
 import { MealPlanSlotIngredient } from './MealPlanSlotIngredient';
-import toast from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle } from '../../common/Toasts/Toasts';
 import { addMealToast } from '../../utils/toastUtils';
 
 export const MealPlanSlot = ({mealtime, day}) => {

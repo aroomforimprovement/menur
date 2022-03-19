@@ -72,9 +72,6 @@ export const Suggestion = ({dragData, keyProp}) => {
         );
     });
 
-    useEffect(() => {
-        console.dir(state);
-    }, [state])
     return(
         <DragDropContainer targetKey='meal' onDrop={handleDrop} 
             onDragStart={handleDragStart} onDragEnd={handleDragEnd}
