@@ -14,7 +14,6 @@ import toast from 'react-hot-toast';
 import Cookies from 'cookies-js';
 import { isMobile } from 'react-device-detect';
 import { PlannerMobile } from '../mobile/planner/PlannerMobile';
-import { Nav } from 'react-bootstrap';
 
 let apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
