@@ -326,7 +326,8 @@ export const reducer = (state, action) => {
 
             const listToPush = {
                 list: newList,
-                heading: action.data.heading,
+                heading: action.data.heading && action.data.heading.length > 0
+                    ? action.data.heading : `Shopping list ${userLists.length+2}`,
                 index: userLists.length
             }
             userLists.push(listToPush);
