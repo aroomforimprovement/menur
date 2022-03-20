@@ -35,7 +35,14 @@
     display:inline;
   }
 
+  .list-item small{
+    font-size:large;
+  }
+
   .highlight-ingredient{
     text-align:end;
   }
   
+  .highlighted{
+    color: theme.$good;
+  }

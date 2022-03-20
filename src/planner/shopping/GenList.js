@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './shopping.scss';
 import { useMainContext } from '../../main/MenurRouter';
 import { ShoppingList } from './ShoppingList';
@@ -96,7 +96,7 @@ export const GenList = () => {
     const ListTemplate = ({list, title, tag, copyFunc, downloadFunc, addFunc}) => {
 
         return(
-            <div className={`gen-list mt-2 border border-2 shadow shadow-sm ${isMobile ? 'col col-12' : 'col col-12 col-md-4'} mx-auto px-1`}>
+            <div className={`gen-list mt-2 border border-2 shadow shadow-sm ${isMobile ? 'col col-12' : 'col col-12 col-md-6 col-xl-4'} mx-auto px-1`}>
                 <div className='row mb-1 pt-2'>
                     <h6 className='list-heading col mt-1'>{title}</h6>
                     <div className='col col-1 col-md-2 col-lg-1 me-4'>
@@ -134,7 +134,7 @@ export const GenList = () => {
     }) : <div></div>
 
     return(
-        <div style={{display:'inline-block'}} className='col col-12 mb-3'> 
+        <div style={{display:'inline-block'}} className='col col-12 mt-3 mb-5'> 
             <ListTemplate list={state.genList.list} title='Shopping list' tag='genList'
                 copyFunc={() => copyList([...state.genList.list], "GENERATED LIST")} 
                 downloadFunc={() => downloadList([...state.genList.list], "GENERATED LIST")}

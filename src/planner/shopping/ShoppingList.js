@@ -3,11 +3,10 @@ import './shopping.scss';
 import { DropTarget } from 'react-drag-drop-container';
 import { ListItem } from "./ListItem";
 import { useMainContext } from "../../main/MenurRouter";
-
+import ReactTooltip from 'react-tooltip';
 
 export const ShoppingList = ({ list, tag }) => {
-    const { dispatch } = useMainContext();
-
+    const { state, dispatch } = useMainContext();
     
     const highlightDispatch = useCallback(dispatch, [dispatch]);
 
@@ -49,15 +48,20 @@ export const ShoppingList = ({ list, tag }) => {
                     
                     <div className='fa fa-caret-right mx-2'
                         onClick={() => increment(ingredient)}>{' '}</div>
-                    <div className='btn btn-sm rounded rounded-circle border mx-1 p-0 highlight-ingredient'
+                    <button className={`btn btn-sm rounded rounded-circle border mx-1 py-0 mb-1 clickable
+                        highlight-ingredient ${state.highlightedIngredient === ingredient.name 
+                            ? 'highlighted' : ''}`}
+                        data-tip="Click to highlight meals that use this"
                         onClick={() => {handleHighlightIngredient(ingredient.name)}}>
                         <small>?</small>
-                    </div>
+                    </button>
                     <button type='button' className='btn-close meal-remove' 
                         onClick={() => remove(ingredient)} 
                         style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} 
                         aria-label='Remove'>
                     </button> 
+                    <ReactTooltip type='info' delayShow='500' data-effect='float'
+                        place='right'/>
                 </li>
             );
     }) : <div></div>;

@@ -11,11 +11,18 @@
     transform: scale(1.02);
   }
 
+  .butt:active{
+    transform:scale(1);
+  }
+
   .clickable{
     cursor: pointer;
   }
   .clickable:hover{
     transform: scale(1.02);
+  }
+  .clickable:active{
+    transform:scale(1);
   }
   
   .butt-standard-outline{
