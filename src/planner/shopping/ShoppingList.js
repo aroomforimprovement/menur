@@ -5,8 +5,8 @@ import { ListItem } from "./ListItem";
 import { useMainContext } from "../../main/MenurRouter";
 
 
-export const ShoppingList = ({list}) => {
-    const { state, dispatch } = useMainContext();
+export const ShoppingList = ({ list, tag }) => {
+    const { dispatch } = useMainContext();
 
     
     const highlightDispatch = useCallback(dispatch, [dispatch]);
@@ -23,7 +23,7 @@ export const ShoppingList = ({list}) => {
     }
     const handleDrop = async (e) => {
         await dispatch({type: 'REMOVE_FROM_LIST', data: e.dragData});
-        e.dragData.list = list;
+        e.dragData.list = tag;
         dispatch({type: 'ADD_TO_LIST', data: e.dragData});
     }
     const decrement = (old) => {
@@ -36,15 +36,13 @@ export const ShoppingList = ({list}) => {
         update.qty = parseFloat(old.qty) + 1;
         dispatch({type: 'UPDATE_ON_LIST', data: {old: old, update: update}});
     }
-    const remove = (i) => {
-        dispatch({type: 'REMOVE_FROM_LIST', data: i});
+    const remove = (ingredient) => {
+        dispatch({type: 'REMOVE_FROM_LIST', data: ingredient});
     }
 
-    const ingredients = state[list].map((ingredient, i) => {
+    const ingredients = list ? list.map((ingredient, i) => {
         return(
-            state[list].length > 0
-                ? 
-                <li key={ingredient.name}>
+                <li key={i}>
                     <div className='fa fa-caret-left mx-2'
                         onClick={() => decrement(ingredient)}>{' '}</div>
                     <ListItem dragData={ingredient}/>
@@ -61,9 +59,8 @@ export const ShoppingList = ({list}) => {
                         aria-label='Remove'>
                     </button> 
                 </li>
-                : <div></div>
-        );
-    });
+            );
+    }) : <div></div>;
 
     return(
         <DropTarget targetKey='list' 

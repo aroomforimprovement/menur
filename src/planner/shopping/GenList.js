@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './shopping.scss';
 import { useMainContext } from '../../main/MenurRouter';
 import { ShoppingList } from './ShoppingList';
@@ -11,7 +11,7 @@ import { DownloadableShoppingList } from '../../utils/pdfUtils';
 
 export const GenList = () => {
 
-    const { state } = useMainContext();
+    const { state, dispatch } = useMainContext();
 
     function copyToClipboard(textToCopy) {
         // navigator clipboard api needs a secure context (https)
@@ -77,11 +77,23 @@ export const GenList = () => {
         ), toastConfirmStyle());
     }
 
-    const addList = (list, heading) => {
+    
+    const addList = (list, heading, index) => {
         //modal stuff
+        dispatch({
+            type: 'SHOW_LIST_CREATOR', 
+            data: {
+                list: list, 
+                heading: heading, 
+                index: index, 
+                showListCreator: true
+            }});
+        const element = document.getElementById(`userList_${index}`);
+        element ? element.scrollIntoView() : console.log();
     }
 
-    const ListTemplate = ({list, title, copyFunc, downloadFunc, addFunc}) => {
+
+    const ListTemplate = ({list, title, tag, copyFunc, downloadFunc, addFunc}) => {
 
         return(
             <div className={`gen-list mt-2 border border-2 shadow shadow-sm ${isMobile ? 'col col-12' : 'col col-12 col-md-4'} mx-auto px-1`}>
@@ -106,17 +118,28 @@ export const GenList = () => {
                         </button>
                     </div>
                 </div>
-                <ShoppingList  list={list} />
+                <ShoppingList  list={list} tag={tag}/>
             </div>
         );
     }
 
+    const userLists = state.userLists ? state.userLists.map((list, i) => {
+        return(
+            <ListTemplate key={i} id={`userList_${i}`}
+                list={list.list} title={list.heading} tag={`userList_${i}`}
+                copyFunc={() => copyList([list.list], list.heading)}
+                downloadFunc={() => downloadList(list.list, list.heading)}
+                addFunc={() => addList(list.list, list.heading, i)} />
+        )
+    }) : <div></div>
+
     return(
-        <div style={{display:'inline-block'}} className='col col-12'> 
-            <ListTemplate list={'genList'} title='Shopping list' 
-                copyFunc={() => copyList([...state.genList], "GENERATED LIST")} 
-                downloadFunc={() => downloadList([...state.genList], "GENERATED LIST")}
-                addFunc={() => addList([...state.genList], "GENERATED LIST")}/>
+        <div style={{display:'inline-block'}} className='col col-12 mb-3'> 
+            <ListTemplate list={state.genList.list} title='Shopping list' tag='genList'
+                copyFunc={() => copyList([...state.genList.list], "GENERATED LIST")} 
+                downloadFunc={() => downloadList([...state.genList.list], "GENERATED LIST")}
+                addFunc={() => addList([...state.genList.list], "MENUR Generated Shopping List", -1)}/>
+                {userLists}
         </div>
     );
 }

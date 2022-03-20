@@ -20,7 +20,7 @@ export const INIT_STATE = {
         "Sunday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}}
     },
     leftovers: [],
-    genList: [],
+    genList: {},
     userLists: [],
     genListTemp: [],
     isLandscape: true,
@@ -44,5 +44,11 @@ export const INIT_STATE = {
     hideSelectorIngredients: isMobile ? true : false,
     isGeneratingList: false,
     mealplanDownloading: null,
-    hideSteps: true
+    hideSteps: true,
+    showListCreator: false,
+    listCreator: {
+        list: [],
+        heading: '',
+        index: -1
+    }
 }

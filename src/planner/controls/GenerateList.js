@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { ToastConfirm, toastConfirmStyle } from "../../common/Toasts/Toasts";
 import { useMainContext } from '../../main/MenurRouter';
 import { dontShowAgain } from '../../utils/userUtils';
+import { ListCreator } from '../shopping/components/ListCreator';
 
 export const GenerateList = () => {
     const {state, dispatch} = useMainContext();
@@ -32,11 +33,12 @@ export const GenerateList = () => {
     return (
         <div>
             <div className='mt-2 mb-2'>
-                    <button onClick={handleGenList} 
-                        className='butt butt-warn border col col-11 mx-auto shadow'>
-                        <span className='fa fa-list me-2'></span>Generate shopping list<span className='fa fa-list ms-2'></span>
-                    </button>
-                </div>
+                <button onClick={handleGenList} 
+                    className='butt butt-warn border col col-11 mx-auto shadow'>
+                    <span className='fa fa-list me-2'></span>Generate shopping list<span className='fa fa-list ms-2'></span>
+                </button>
+            </div>
+            <ListCreator />
         </div>
     )
 }

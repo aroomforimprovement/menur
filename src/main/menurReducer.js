@@ -207,7 +207,6 @@ export const reducer = (state, action) => {
                 isPickerClosed: true, isMealtimePickerClosed: true});
         }
         case 'UPDATE_SAVED_MEAL':{
-            console.dir(state);
             let meals = [...state.meals];
             for(let i = 0; i < meals.length; i++){
                 if(meals[i].id === action.data.id){
@@ -289,11 +288,15 @@ export const reducer = (state, action) => {
             return({...state, mealplan: mealplan});
         }
         case 'GEN_LIST':{
-            const genList = getIngredientsFromMealPlan(action.data.mealplan);
-            
+            const list = getIngredientsFromMealPlan(action.data.mealplan);
+            const genList = {
+                list: list,
+                heading: "MENUR Generated Shopping List",
+                index: -1
+            }
             return ({...state, genList: action.data.main ? genList : [],
                 genListTemp: action.data.main ? [] : genList, 
-                userList1: [], userList2: []});
+                userLists: []});
         }
         case 'SET_IS_GENERATING_LIST':{
             return({...state, 
@@ -301,15 +304,99 @@ export const reducer = (state, action) => {
                 mealplanDownloading: action.data.mealplanDownloading
             });
         }
+        case 'CREATE_NEW_LIST':{
+            let userLists = [...state.userLists];
+            let inputList = [...state.listCreator.list];
+            let outputList = [...action.data.list];
+            let genList = {...state.genList};
+            let inputTag = inputList[0] 
+            ? `${inputList[0].list}` 
+            : `userList_${userLists.length-1}`;
+            const outputTag = action.data.tag;
+            let newList = [];
+            outputList.forEach((ing) => {
+                inputList = getItemRemoved(inputList, ing);
+                let newIng = {...ing};
+                newIng.list = outputTag;
+                newList.push(newIng);
+            });
+            inputTag === 'genList'
+            ? genList.list = inputList
+            : userLists[state.listCreator.index].list = inputList;
+
+            const listToPush = {
+                list: newList,
+                heading: action.data.heading,
+                index: userLists.length
+            }
+            userLists.push(listToPush);
+            
+            return({...state,
+                genList: inputTag === 'genList' 
+                    ? genList 
+                    : {...state.genList}, 
+                userLists: userLists, 
+                showListCreator: false,
+                listCreator: {
+                    list: [],
+                    heading: '',
+                    index: -1
+                }
+            });
+        }
         case 'ADD_TO_LIST':{
-            let list = [...state[action.data.list]];
-            list.push(action.data);
-            return ({...state, [action.data.list]: list});
+            let list = [];
+            let index = -1;
+            const tag = action.data.list;
+            const ingredient = action.data;
+            if(tag === 'genList'){
+                list = [...state.genList.list];
+            }else{
+                index = parseInt(tag.replace('userList_', ''));
+                list = [...state.userLists[index].list];
+            }
+            list.push(ingredient);
+            if(tag === 'genList'){
+                return({...state, 
+                    genList: {
+                        list: list,
+                        heading: state.genList.heading
+                    }
+                });
+            }else{
+                const lists = [...state.userLists];
+                const newList = {
+                    list: list,
+                    heading: state.userLists[index].heading,
+                    index: index
+                }
+                lists[index] = newList;
+                return({...state, userLists: lists});
+            }
         }
         case 'REMOVE_FROM_LIST':{
-            let list = [...state[action.data.list]];
+            let list = [];
+            let index = -1;
+            const tag = action.data.list;
+            if(tag === 'genList'){
+                list = [...state.genList.list];
+            }else{
+                index = parseInt(tag.replace('userList_', ''));
+                list = [...state.userLists[index].list];
+            }
             list = getItemRemoved(list, action.data);
-            return ({...state, [action.data.list] : list})
+            if(tag === 'genList'){
+                return({...state, genList: {list: list, heading: state.genList.heading}});
+            }else{
+                const lists = [...state.userLists];
+                const newList = {
+                    heading: state.userLists[index].heading,
+                    list: list,
+                    index: index
+                }
+                lists[index] = newList;
+                return({...state, userLists: lists});
+            }
         }
         case 'UPDATE_ON_LIST':{
             let list = [...state[action.data.old.list]];
@@ -439,6 +526,16 @@ export const reducer = (state, action) => {
                     mealtimePickerDay: action.data.mealtimePickerDay,
                     mealtimePickerMealtime: action.data.mealtimePickerMealtime
                 });
+        }
+        case 'SHOW_LIST_CREATOR':{
+            return({...state, 
+                showListCreator: action.data.showListCreator,
+                listCreator: {
+                    list: action.data.list,
+                    heading: action.data.heading,
+                    index: action.data.index
+                }
+            })
         }
         default:{
             console.error("Reached default case - menurReducer.js");
