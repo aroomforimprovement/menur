@@ -41,19 +41,16 @@ export const DownloadMealPlan = () => {
         }
         const downloadWithShoppingList = async (id) => {
             const lists = [];
-            if(state.genList.length > 0){
-                lists.push({list: state.genList, heading: "GENERATED LIST"});
+            if(state.genList && state.genList.list && state.genList.list.length > 0){
+                lists.push({list: state.genList.list, heading: "Shopping list"});
             }
-            if(state.userList1.length > 0){
-                lists.push({list: state.userList1, heading: "LIST 1"});
-            }
-            if(state.userList2.length > 0){
-                lists.push({list: state.userList2, heading: "LIST 2"});
-            }
+            state.userLists.forEach((list) => {
+                lists.push({list: list.list, heading: list.heading})
+            })
             if(lists.length === 0){
                 dispatch({type: 'SET_IS_GENERATING_LIST', data: {isGenerating: true, mealplanDowloading: state.mealplan.id}});
                 dispatch({type: 'GEN_LIST', data:{main: true, mealplan: state.mealplan}});
-                state.genList && state.genList.length > 0
+                state.genList && state.genList.list && state.genList.list.length > 0
                 ? lists.push({list: state.genList, heading: "GENERATED LIST"}) 
                 : console.warn("no shopping lists generated");
             }else{

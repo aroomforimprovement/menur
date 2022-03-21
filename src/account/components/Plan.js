@@ -87,7 +87,7 @@ export const Plan = ({plan, isLandscape}) => {
                     state.isLandscape 
                         ? DownloadableMealPlanLandscape({mealplan: plan.mealplan})
                         : DownloadableMealPlan({mealplan: plan.mealplan})).toBlob();
-                const shoppingListBlob = await GetSingleShoppingList({list: state.genListTemp, heading: "GENERATED LIST"});
+                const shoppingListBlob = await GetSingleShoppingList({list: state.genListTemp.list, heading: state.genListTemp.heading});
                 const merger = new PDFMerger();
                 await merger.add(mealplanBlob);
                 await merger.add(shoppingListBlob);
@@ -100,7 +100,7 @@ export const Plan = ({plan, isLandscape}) => {
                     data: {isGenerating: false, mealplanDownloading: null}});
             }
         if(state.isGeneratingList && state.mealplanDownloading === plan.id){
-            if(state.genListTemp && state.genListTemp.length > 0){
+            if(state.genListTemp && state.genListTemp.list && state.genListTemp.list.length > 0){
                 download();
             }
         }
@@ -112,8 +112,6 @@ export const Plan = ({plan, isLandscape}) => {
             toast.dismiss(id);
         }
         const downloadWithShoppingList = async (id) => {
-            console.log(`downloadWithShoppingList: ${plan.id}`);
-
             dispatch({type: 'SET_IS_GENERATING_LIST', data: {isGenerating: true, mealplanDownloading: plan.id}});
             dispatch({type: 'GEN_LIST', data: {main: false, mealplan: plan.mealplan}});
             toast.dismiss(id);

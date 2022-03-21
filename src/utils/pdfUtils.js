@@ -112,13 +112,14 @@ const styles = StyleSheet.create({
         display:'block',
         position:'absolute',
         bottom:'50px',
-        left:'20px'
+        left:'20px',
+        width:'100%'
     }
 });
 
 export const Brand = () => {
     return(
-        <Text style={styles.brand}>Generated with MENUR</Text>    
+        <Text style={styles.brand}>MENUR</Text>    
     )
 }
 

@@ -60,7 +60,7 @@ export const ShoppingList = ({ list, tag }) => {
                         style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} 
                         aria-label='Remove'>
                     </button> 
-                    <ReactTooltip type='info' delayShow='500' data-effect='float'
+                    <ReactTooltip type='info' delayShow={500} data-effect='float'
                         place='right'/>
                 </li>
             );

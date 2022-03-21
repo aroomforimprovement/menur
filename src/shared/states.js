@@ -20,7 +20,7 @@ export const INIT_STATE = {
         "Sunday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}}
     },
     leftovers: [],
-    genList: {},
+    genList: {list: [], heading: 'Shopping list', index: -1},
     userLists: [],
     genListTemp: [],
     isLandscape: true,
