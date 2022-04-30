@@ -9,7 +9,8 @@ import Planner from '../planner/Planner';
 import { Help } from '../help/Help';
 import { Loading } from '../common/Loading';
 import Account from '../account/Account';
-import { Toast } from '../common/Toasts/Toasts';
+//import { Toast } from '../common/Toasts/Toasts';
+import { ToastRack } from 'buttoned-toaster';
 import toast from 'react-hot-toast';
 import Cookies from 'cookies-js';
 import { isMobile } from 'react-device-detect';
@@ -153,7 +154,7 @@ const MenurRouter = () => {
                     {() => (
                     <div>
                         <Header />
-                        <Toast />
+                        <ToastRack />
                         <Routes>
                             <Route path='/planner/:id/:edit' history={history} element={isMobile ? <PlannerMobile edit={true} /> : <Planner edit={true}/>} />
                             <Route path='/planner' history={history} element={isMobile ? <PlannerMobile edit={false}/> : <Planner edit={false}/>} />

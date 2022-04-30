@@ -3,17 +3,20 @@ import '../css/plan.scss';
 import { DownloadableMealPlanLandscape, DownloadableMealPlan, GetSingleShoppingList } from "../../utils/pdfUtils";
 import { pdf } from "@react-pdf/renderer";
 import { useMainContext } from "../../main/MenurRouter";
-import { toast } from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle, ToastOptions } from "../../common/Toasts/Toasts";
+import { useToastRack } from 'buttoned-toaster';
+//import { ToastConfirm, toastConfirmStyle, ToastOptions } from "../../common/Toasts/Toasts";
 import { DummyMealPlan } from "./DummyMealPlan";
 import PDFMerger from "pdf-merger-js";
 import { saveAs } from "file-saver";
+import { toastConfirmStyle, ToastOptions } from "../../common/Toasts/Toasts";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 const proxy = process.env.REACT_APP_PROXY_URL;
 
 export const Plan = ({plan, isLandscape}) => {
+    
     const {state, dispatch} = useMainContext();
+    const toast = useToastRack();
 
     const deletePlan = async () => {
         return await fetch(`${proxy}${apiUrl}plan/${plan.id}`, {
@@ -51,12 +54,14 @@ export const Plan = ({plan, isLandscape}) => {
         const setIsCancelled = (id) => {
             toast.dismiss(id);
         }
-        toast((t) => (
-            <ToastConfirm t={t} approve={setPlanDeleted} dismiss={setIsCancelled}
-                message={'Are you sure you want to delete this meal plan?'}
-                approveBtn={'Delete'} dismissBtn={'Cancel'}
-            />
-        ), toastConfirmStyle());
+        toast.fire({
+            approveFunc: setPlanDeleted, 
+            dismissFunc: setIsCancelled,
+            message: 'Are you sure you want to delete this meal plan?',
+            approveBtn: 'Delete', 
+            dismissBtn: 'Cancel'
+            }
+        );
     }
     const handleOpenPlan = () => {
 
@@ -133,9 +138,6 @@ export const Plan = ({plan, isLandscape}) => {
             message={'Would you like to download this meal plan with a generated shopping list attached?'} />
         ), toastConfirmStyle());
     }
-
-
-    
 
     return(
         <div className='container m-0 p-0 col col-12'>
