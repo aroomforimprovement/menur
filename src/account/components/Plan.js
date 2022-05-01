@@ -83,11 +83,11 @@ export const Plan = ({plan, isLandscape}) => {
             dismissText: 'Cancel',
             moreOptions: [
                 {
-                    handler: setIsEdit,
+                    handler: () => setIsEdit(plan.id),
                     btnText: 'Edit this one'
                 },
                 {
-                    handler: setIsCopy,
+                    handler: () => setIsCopy(plan.id),
                     btnText: 'Create a copy',
                 }
             ]
@@ -149,7 +149,7 @@ export const Plan = ({plan, isLandscape}) => {
                 dismissTxt: 'Cancel', 
                 moreOptions: [
                     {
-                        handle: downloadWithShoppingList,
+                        handler: downloadWithShoppingList,
                         btnText: "With",
                     }, 
                     {
