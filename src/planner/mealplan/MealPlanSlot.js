@@ -4,10 +4,11 @@ import { DropTarget, DragDropContainer } from 'react-drag-drop-container';
 import { useMainContext } from '../../main/MenurRouter';
 import { MealPlanSlotIngredient } from './MealPlanSlotIngredient';
 import { addMealToast } from '../../utils/toastUtils';
+import { useToastRack } from 'buttoned-toaster';
 
 export const MealPlanSlot = ({mealtime, day}) => {
     const { state, dispatch } = useMainContext();
-
+    const toast = useToastRack();
     //const [showIngredients, setShowIngredients] = useState(false);
     const [hasHighlightedIngredient, setHasHighlightedIngredient] = useState(false);
     
@@ -40,7 +41,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
             day: day,
             mealtime: mealtime,
             user: state.user
-        })
+        }, toast)
     }
 
     const handleDropOver = (e) => {

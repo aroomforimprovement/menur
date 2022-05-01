@@ -9,9 +9,7 @@ import Planner from '../planner/Planner';
 import { Help } from '../help/Help';
 import { Loading } from '../common/Loading';
 import Account from '../account/Account';
-//import { Toast } from '../common/Toasts/Toasts';
-import { ToastRack } from 'buttoned-toaster';
-import toast from 'react-hot-toast';
+import { useToastRack, ToastRack } from 'buttoned-toaster';
 import Cookies from 'cookies-js';
 import { isMobile } from 'react-device-detect';
 import { PlannerMobile } from '../mobile/planner/PlannerMobile';
@@ -26,7 +24,7 @@ export const useMainContext = () => {
 }
 
 const MenurRouter = () => {
-
+    const toast = useToastRack();
     const { isLoading, isAuthenticated, user, getAccessTokenSilently } = useAuth0();
     const [state, dispatch] = useReducer(reducer, INIT_STATE);
     const mainState = { state, dispatch };
@@ -111,7 +109,7 @@ const MenurRouter = () => {
         }else if(!isLoading && !isAuthenticated && !state.user){
             dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
         }
-    },[isLoading, isAuthenticated, state.user, state.isSet]);
+    },[isLoading, isAuthenticated, state.user, state.isSet, toast]);
 
     const cookieToast = () => {
         setCookieWarning(true);

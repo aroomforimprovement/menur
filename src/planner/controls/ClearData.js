@@ -1,10 +1,9 @@
 import React from 'react';
-import toast from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle } from '../../common/Toasts/Toasts';
+import { useToastRack } from 'buttoned-toaster';
 import { useMainContext } from '../../main/MenurRouter';
 
 export const ClearData = () => {
-    
+    const toast = useToastRack();    
     const {dispatch} = useMainContext();
 
     const handleClearData = () => {
@@ -16,11 +15,16 @@ export const ClearData = () => {
             dispatch({type: 'CLEAR_DATA', data: true});
             toast.success("You're ready to start fresh!");
         }
-        toast((t) => (
-            <ToastConfirm t={t} approve={setDataCleared} dismiss={setIsCancelled}
-                message={'Are you sure you want to clear all data from this screen and start again?'}
-                approveBtn={'Clear data'} dismissBtn={'Cancel'} canHide={false}/>
-        ), toastConfirmStyle());
+        toast.error(
+            { 
+                approveFunc: setDataCleared, 
+                dismissFunc: setIsCancelled,
+                message: 'Are you sure you want to clear all changes from this screen and start again?',
+                approveBtn: 'Clear data',
+                dismissBtn: 'Cancel',
+                canHide: false
+            }
+        );
     }
 
     return(

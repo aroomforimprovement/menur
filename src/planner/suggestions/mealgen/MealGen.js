@@ -3,7 +3,7 @@ import { Form, FormControl, InputGroup, Container, Row, Col } from 'react-bootst
 import './mealgen.scss';
 import { useMainContext } from '../../../main/MenurRouter';
 import { getNewId } from '../../../utils/objUtils';
-import { toast } from 'react-hot-toast';
+import { useToastRack } from 'buttoned-toaster';
 import { DEFAULT_SERVINGS } from '../../../shared/meals';
 import { saveMeal } from '../../../utils/apiUtils';
 
@@ -16,6 +16,7 @@ export const MealGen = ({meal, edit, open}) => {
     const [servings, setServings] = useState(meal && meal.servings ? meal.servings : DEFAULT_SERVINGS);
     const [hideSteps, setHideSteps] = useState(true);
     const [isViewer, setIsViewer] = useState(edit);
+    const toast = useToastRack();
 
     const handleShowForm = () => {
         setIsFormVisible(!isFormVisible);
@@ -105,7 +106,7 @@ export const MealGen = ({meal, edit, open}) => {
         const mealForSaving = getMealForSaving();
         console.dir(mealForSaving);
         if(name && name !== ''){
-            saveMeal(mealForSaving, state.user, edit).then((meal) => {
+            saveMeal(mealForSaving, state.user, edit, toast).then((meal) => {
                 edit 
                 ? dispatch({type: 'UPDATE_SAVED_MEAL', data: mealForSaving})
                 : dispatch({type: 'ADD_SELECTOR_MEAL', data: mealForSaving});

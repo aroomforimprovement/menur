@@ -2,10 +2,11 @@ import React from "react";
 import { Dropdown } from "react-bootstrap";
 import { useMainContext } from "../../../../main/MenurRouter";
 import { addMealToast } from "../../../../utils/toastUtils";
-
+import { useToastRack } from 'buttoned-toaster';
 
 export const SelectSuggestion = ({keyProp, dragData}) => {
     const {state, dispatch} = useMainContext();
+    const toast = useToastRack();
 
     const PlusToggle = React.forwardRef(({ children, onClick }, ref) => (
       <div className='border rounded-circle custom-toggle plus-toggle'
@@ -29,7 +30,7 @@ export const SelectSuggestion = ({keyProp, dragData}) => {
         day: state.mealtimePickerDay, 
         mealtime: state.mealtimePickerMealtime,
         user: state.user
-      });
+      }, toast);
     }
 
     const DropToSelectDay = ({day, keyProp, dragData}) => {
@@ -46,7 +47,7 @@ export const SelectSuggestion = ({keyProp, dragData}) => {
               day: day,
               mealtime: mealtime,
               user: state.user
-            });
+            }, toast);
         }
 
           return(

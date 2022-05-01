@@ -4,7 +4,6 @@ import { DownloadableMealPlanLandscape, DownloadableMealPlan, GetSingleShoppingL
 import { pdf } from "@react-pdf/renderer";
 import { useMainContext } from "../../main/MenurRouter";
 import { useToastRack } from 'buttoned-toaster';
-//import { ToastConfirm, toastConfirmStyle, ToastOptions } from "../../common/Toasts/Toasts";
 import { DummyMealPlan } from "./DummyMealPlan";
 import PDFMerger from "pdf-merger-js";
 import { saveAs } from "file-saver";
@@ -79,11 +78,22 @@ export const Plan = ({plan, isLandscape}) => {
             toast.dismiss(id);
         }
 
-        toast((t) => (
-            <ToastOptions t={t} options={[setIsEdit, setIsCopy]} dismiss={setIsCancelled}
-                message={'Would you like to edit this mealplan or create a copy and edit that?'}
-                optionBtns={['Edit this one', 'Create a copy']} dismissBtn={'Cancel'} canHide={false}/>
-        ), toastConfirmStyle());
+        toast.fire({
+            dismissFunc: setIsCancelled,
+            dismissText: 'Cancel',
+            moreOptions: [
+                {
+                    handler: setIsEdit,
+                    btnText: 'Edit this one'
+                },
+                {
+                    handler: setIsCopy,
+                    btnText: 'Create a copy',
+                }
+            ]
+        })
+
+        
     }
 
     useEffect(() => {

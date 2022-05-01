@@ -31,8 +31,9 @@ export const ListCreator = () => {
         const index = state.userLists.length;
         const include = state.listCreator.list.filter((ing, i) => {
             if(included[i]){
-                return ing;
+                return true;
             }
+            return false;
         });
         dispatch({
             type: 'CREATE_NEW_LIST',

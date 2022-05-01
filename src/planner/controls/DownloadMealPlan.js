@@ -3,13 +3,13 @@ import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import { useMainContext } from '../../main/MenurRouter';
 import { DownloadableMealPlan, DownloadableMealPlanLandscape,  MultipleShoppingLists, GetSingleShoppingList } from '../../utils/pdfUtils';
-import toast from 'react-hot-toast';
-import { toastConfirmStyle, ToastOptions } from '../../common/Toasts/Toasts';
+import { useToastRack } from 'buttoned-toaster';
 import PDFMerger from 'pdf-merger-js';
 
 export const DownloadMealPlan = () => {
     const { state, dispatch } = useMainContext();
-    
+    const toast = useToastRack();
+
     useEffect(() => {
         const download = async () => {
             const mealplanBlob = await pdf(
@@ -83,11 +83,23 @@ export const DownloadMealPlan = () => {
             toast.dismiss(id);
         }
 
-        toast((t) => (
-            <ToastOptions t={t} dismiss={cancel} options={[downloadWithShoppingList, downloadWithoutShoppingList]}
-            optionBtns={["With", "Without"]} dismissBtn={'Cancel'} canHide={false}
-            message={'Would you like to download the meal plan with your shopping list(s) attached?'} />
-        ), toastConfirmStyle());
+        toast.info(
+            {
+                message: 'Would you like to download the meal plan with your shopping list(s) attached?',
+                dismissFunc: cancel, 
+                dismissTxt: 'Cancel',
+                moreOptions:[
+                    {
+                        handler: downloadWithShoppingList,
+                        btnText: "With",
+                    }, 
+                    {
+                        handler: downloadWithoutShoppingList,
+                        btnText: "Without"
+                    }
+                ]
+            }
+        )
     }
 
     return(

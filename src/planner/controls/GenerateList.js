@@ -1,12 +1,12 @@
 import React from 'react';
-import { toast } from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle } from "../../common/Toasts/Toasts";
+import { useToastRack } from 'buttoned-toaster';
 import { useMainContext } from '../../main/MenurRouter';
 import { dontShowAgain } from '../../utils/userUtils';
 import { ListCreator } from '../shopping/components/ListCreator';
 
 export const GenerateList = () => {
     const {state, dispatch} = useMainContext();
+    const toast = useToastRack();
 
     const handleGenList = () => {
         const generateList = () => {
@@ -22,12 +22,18 @@ export const GenerateList = () => {
 
         window.localStorage.getItem('dontshow_GEN_LIST') 
             ? generateList()
-            : toast((t) => (
-                <ToastConfirm t={t} approve={setIsCancelled} dismiss={setIsCancelled}
-                    message={`FYI - If you change anything in the mealplan, it won't update the shopping list.
-                        You'll have to use this button again and generate a new shopping list.`}
-                    approveBtn={'Cool'} dismissBtn={'OK'} canHide={true} />
-                ), toastConfirmStyle());
+            : toast.warn(
+                { 
+                    approveFunc: setIsCancelled,
+                    dismissFunc: setIsCancelled,
+                    message: `FYI - If you change anything in the mealplan, it won't update the shopping list.
+                        You'll have to use this button again and generate a new shopping list.`,
+                    approveTxt:'Cool', 
+                    dismissTxt: 'OK',
+                    canHide: true,
+                    dontShowType: 'GEN_LIST'
+                }
+            );
     }
 
     return (

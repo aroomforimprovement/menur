@@ -1,10 +1,7 @@
-import React from 'react';
-import toast from 'react-hot-toast';
-import { ToastConfirm, toastConfirmStyle } from '../common/Toasts/Toasts';
 import { saveMeal } from './apiUtils';
 import { dontShowAgain } from './userUtils';
 
-export const addMealToast = async ({showBasic, meals, dispatch, meal, day, mealtime, user}) => {
+export const addMealToast = async ({showBasic, meals, dispatch, meal, day, mealtime, user}, toast) => {
 
     const setMealAdded = (save) => {
         dispatch({type: 'ADD_MEAL', data: {
@@ -13,7 +10,7 @@ export const addMealToast = async ({showBasic, meals, dispatch, meal, day, mealt
             mealtime: mealtime
         }});
         if(save){
-            saveMeal(meal, user, false).then((meal) => {
+            saveMeal(meal, user, false, toast).then((meal) => {
                 dispatch({type: 'ADD_SELECTOR_MEAL', data: meal});
             });
         }
@@ -55,12 +52,17 @@ export const addMealToast = async ({showBasic, meals, dispatch, meal, day, mealt
                 setMealAdded(false);
             }
          }else{
-            toast((t) => (
-                <ToastConfirm t={t} approve={addAndSaveMeal} approveBtn={'Save to account'}
-                  dismiss={addMeal} dismissBtn={`Don't save`} canHide={true}
-                  message={`Would you like to save this meal to your account so you can customize it later?`}
-                />
-                ), toastConfirmStyle())
+            toast.fire(
+                {
+                    approveFunc: addAndSaveMeal, 
+                    approveTxt: 'Save to account',
+                    dismissFunc: addMeal,
+                    dismissTxt:`Don't save`,
+                    canHide: true,
+                    dontShowType: 'SAVE_MEAL',
+                    message: `Would you like to save this meal to your account so you can customize it later?`,
+                }
+            )
          }
     }else{
         setMealAdded(false);

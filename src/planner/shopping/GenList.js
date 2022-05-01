@@ -3,8 +3,7 @@ import './shopping.scss';
 import { useMainContext } from '../../main/MenurRouter';
 import { ShoppingList } from './ShoppingList';
 import { isMobile } from 'react-device-detect';
-import toast from 'react-hot-toast';
-import { toastConfirmStyle, ToastOptions } from '../../common/Toasts/Toasts';
+import { useToastRack } from 'buttoned-toaster';
 import { saveAs } from 'file-saver';
 import { pdf } from '@react-pdf/renderer';
 import { DownloadableShoppingList } from '../../utils/pdfUtils';
@@ -12,6 +11,7 @@ import { DownloadableShoppingList } from '../../utils/pdfUtils';
 export const GenList = () => {
 
     const { state, dispatch } = useMainContext();
+    const toast = useToastRack();
 
     function copyToClipboard(textToCopy) {
         // navigator clipboard api needs a secure context (https)
@@ -69,12 +69,23 @@ export const GenList = () => {
             toast.dismiss(id);
         }
 
-        toast((t) => (
-            <ToastOptions t={t} dismiss={setIsCancelled}
-                options={[downloadText, downloadPdf]} optionBtns={["Text", "PDF"]}
-                message={`Would you like download this list as a text file or a pdf?`}
-                dismissBtn={'Cancel'} /> 
-        ), toastConfirmStyle());
+        toast.info(
+            { 
+                message: `Would you like download this list as a text file or a pdf?`,
+                dismissTxt:'Cancel',
+                dismissFunc: setIsCancelled,
+                moreOptions: [
+                    {
+                        handler: downloadText,
+                        btnText: "Text",
+                    }, 
+                    {
+                        handler: downloadPdf,
+                        btnText: "PDF",
+                    }
+                ],
+            }
+        );
     }
 
     

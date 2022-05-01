@@ -1,9 +1,8 @@
-import toast from "react-hot-toast";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
 
-export const saveMeal = async (meal, user, edit) => {
+export const saveMeal = async (meal, user, edit, toast) => {
     const body = {
         userid: user.userid,
         meal: meal

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Loading } from '../../common/Loading';
 import { useMainContext } from '../../main/MenurRouter';
-import toast from 'react-hot-toast';
+import { useToastRack } from 'buttoned-toaster';
 
 export const Settings = () => {
-
+    const toast = useToastRack();
     const apiUrl = process.env.REACT_APP_API_URL;
     let proxy = process.env.REACT_APP_PROXY_URL;
 
