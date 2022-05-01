@@ -142,7 +142,10 @@
   font-weight:normal;
   color:theme.$data;
   position:absolute;
-  top:-0.5em;
+  top:-5px;
+  bottom:0px;
+  left:0px;
+  right:0px;
 }
 
 .mealtime-click{
