@@ -7,7 +7,6 @@ import { useToastRack } from 'buttoned-toaster';
 import { DummyMealPlan } from "./DummyMealPlan";
 import PDFMerger from "pdf-merger-js";
 import { saveAs } from "file-saver";
-import { toastConfirmStyle, ToastOptions } from "../../common/Toasts/Toasts";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 const proxy = process.env.REACT_APP_PROXY_URL;
@@ -142,11 +141,23 @@ export const Plan = ({plan, isLandscape}) => {
             toast.dismiss(id);
         }
 
-        toast((t) => (
-            <ToastOptions t={t} dismiss={cancel} options={[downloadWithShoppingList, downloadWithoutShoppingList]}
-            optionBtns={["With", "Without"]} dismissBtn={'Cancel'} 
-            message={'Would you like to download this meal plan with a generated shopping list attached?'} />
-        ), toastConfirmStyle());
+        toast.fire(
+            {   
+                message:'Would you like to download this meal plan with a generated shopping list attached?',        
+                dismissFunc: cancel,
+                dismissTxt: 'Cancel', 
+                moreOptions: [
+                    {
+                        handle: downloadWithShoppingList,
+                        btnText: "With",
+                    }, 
+                    {
+                        handler: downloadWithoutShoppingList,
+                        btnText: "Without"
+                    }
+                ]
+            }
+        );
     }
 
     return(
