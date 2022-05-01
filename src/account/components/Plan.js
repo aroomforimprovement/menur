@@ -78,6 +78,7 @@ export const Plan = ({plan, isLandscape}) => {
         }
 
         toast.fire({
+            message: `Would you like to edit and save over this meal plan or make a new copy?`,
             dismissFunc: setIsCancelled,
             dismissText: 'Cancel',
             moreOptions: [
