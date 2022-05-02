@@ -1,9 +1,8 @@
 import React from 'react';
-import { useToastRack } from 'buttoned-toaster';
+import toast from 'buttoned-toaster';
 import { useMainContext } from '../../main/MenurRouter';
 
 export const ClearData = () => {
-    const toast = useToastRack();    
     const {dispatch} = useMainContext();
 
     const handleClearData = () => {

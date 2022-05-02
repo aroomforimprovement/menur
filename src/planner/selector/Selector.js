@@ -5,12 +5,11 @@ import { DELIM, MEALS, OR } from '../../shared/meals';
 import { getIngredientsFromMeal } from '../../utils/objUtils';
 import { useMainContext } from '../../main/MenurRouter';
 import { Searcher } from './Searcher';
-import { useToastRack } from 'buttoned-toaster';
+import toast from 'buttoned-toaster';
 import { isMobile } from 'react-device-detect';
 
 export const Selector = ({message}) => {
     const { state, dispatch } = useMainContext();
-    const toast = useToastRack();
     const mealsIncluded = state.showBasic ? state.showMine ? MEALS.concat(state.meals) :
         MEALS : state.showMine ? state.meals : [];
 

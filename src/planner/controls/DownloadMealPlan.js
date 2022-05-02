@@ -3,13 +3,12 @@ import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import { useMainContext } from '../../main/MenurRouter';
 import { DownloadableMealPlan, DownloadableMealPlanLandscape,  MultipleShoppingLists, GetSingleShoppingList } from '../../utils/pdfUtils';
-import { useToastRack } from 'buttoned-toaster';
+import toast from 'buttoned-toaster';
 import PDFMerger from 'pdf-merger-js';
 
 export const DownloadMealPlan = () => {
     const { state, dispatch } = useMainContext();
-    const toast = useToastRack();
-
+    
     useEffect(() => {
         const download = async () => {
             const mealplanBlob = await pdf(

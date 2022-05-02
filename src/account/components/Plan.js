@@ -3,7 +3,7 @@ import '../css/plan.scss';
 import { DownloadableMealPlanLandscape, DownloadableMealPlan, GetSingleShoppingList } from "../../utils/pdfUtils";
 import { pdf } from "@react-pdf/renderer";
 import { useMainContext } from "../../main/MenurRouter";
-import { useToastRack } from 'buttoned-toaster';
+import toast from 'buttoned-toaster';
 import { DummyMealPlan } from "./DummyMealPlan";
 import PDFMerger from "pdf-merger-js";
 import { saveAs } from "file-saver";
@@ -14,8 +14,7 @@ const proxy = process.env.REACT_APP_PROXY_URL;
 export const Plan = ({plan, isLandscape}) => {
     
     const {state, dispatch} = useMainContext();
-    const toast = useToastRack();
-
+    
     const deletePlan = async () => {
         return await fetch(`${proxy}${apiUrl}plan/${plan.id}`, {
             method: 'DELETE',

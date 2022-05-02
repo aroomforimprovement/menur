@@ -1,13 +1,12 @@
 import React from 'react';
-import { useToastRack } from 'buttoned-toaster';
+import toast from 'buttoned-toaster';
 import { useMainContext } from '../../main/MenurRouter';
 import { dontShowAgain } from '../../utils/userUtils';
 import { ListCreator } from '../shopping/components/ListCreator';
 
 export const GenerateList = () => {
     const {state, dispatch} = useMainContext();
-    const toast = useToastRack();
-
+    
     const handleGenList = () => {
         const generateList = () => {
             dispatch({type: 'GEN_LIST', data: {main: true, mealplan: state.mealplan}});

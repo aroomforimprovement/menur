@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Loading } from '../../common/Loading';
 import { getNewId } from '../../utils/objUtils';
-import { useToastRack } from 'buttoned-toaster';
+import toast from 'buttoned-toaster';
 import { useParams } from 'react-router';
 import { useMainContext } from '../../main/MenurRouter';
 import { Form, Modal } from 'react-bootstrap';
@@ -10,7 +10,6 @@ const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
 
 export const SaveToAccount = () => {
-    const toast = useToastRack();
     const {state, dispatch} = useMainContext();
     const [isSaving, setIsSaving] = useState(false);
     const [isSaveFailed, setIsSaveFailed] = useState(false);

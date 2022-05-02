@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useMainContext } from '../../../main/MenurRouter';
 import { days, mealtimes } from '../../../shared/states';
 import { addMealToast } from '../../../utils/toastUtils';
-import { useToastRack } from 'buttoned-toaster';
+import toast from 'buttoned-toaster';
 
 
 export const MealPlanPicker = ({meal}) => {
     
     const { state, dispatch } = useMainContext();
     const [isDayPicked, setIsDayPicked] = useState(false);
-    const toast = useToastRack();
     
     const toggleMealplanPickerClosed = () => {
         dispatch({type: 'SET_PICKER_CLOSED', data: {isPickerClosed : true}})

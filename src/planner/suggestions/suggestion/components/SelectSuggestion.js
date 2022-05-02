@@ -2,12 +2,11 @@ import React from "react";
 import { Dropdown } from "react-bootstrap";
 import { useMainContext } from "../../../../main/MenurRouter";
 import { addMealToast } from "../../../../utils/toastUtils";
-import { useToastRack } from 'buttoned-toaster';
+import toast from 'buttoned-toaster';
 
 export const SelectSuggestion = ({keyProp, dragData}) => {
     const {state, dispatch} = useMainContext();
-    const toast = useToastRack();
-
+    
     const PlusToggle = React.forwardRef(({ children, onClick }, ref) => (
       <div className='border rounded-circle custom-toggle plus-toggle'
         ref={ref}

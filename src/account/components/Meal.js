@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useToastRack } from 'buttoned-toaster';
+import toast from 'buttoned-toaster';
 import '../css/meal.scss';
 import { DELIM, OR } from '../../shared/meals';
 import { useMainContext } from '../../main/MenurRouter';
@@ -14,8 +14,6 @@ export const Meal = ({meal, showSpices, index}) => {
     const [showIngredients, setShowIngredients] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [isViewing, setIsViewing] = useState(false);
-
-    const toast = useToastRack();
 
     const deleteMeal = async () => {
         return await fetch(`${proxy}${apiUrl}meal/${meal.id}`, {
