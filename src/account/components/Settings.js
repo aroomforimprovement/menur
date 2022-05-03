@@ -183,7 +183,10 @@ export const Settings = () => {
 
     const ResetChoices = () => {
         const resetChoices = () => {
-            window.localStorage.clear();
+            Object.keys(window.localStorage).forEach((key) => {
+                if(key.indexOf('dontshow_') > -1)
+                window.localStorage.removeItem(key);
+            })
             toast.success("Choices cleared from browser memory");
         }
         return(
