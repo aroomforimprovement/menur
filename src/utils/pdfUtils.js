@@ -105,6 +105,14 @@ const styles = StyleSheet.create({
         marginBottom: '0px',
         padding: '0px'
     },
+    heading:{
+        overflowWrap: 'break-line',
+        marginTop: '0px',
+        marginBottom: '0px',
+        padding: '0px',
+        fontWeight: 'bold',
+        fontStyle:'underline'
+    },
     ingredient:{
         
     },
@@ -244,7 +252,7 @@ export const DownloadableShoppingList = ({list, heading}) => {
         <Document>
             <Page size="A4" orientation={'portrait'} style={styles.page}>
                 <View style={styles.shoppingList} >
-                    <Text style={styles.line}>{heading}</Text>
+                    <Text style={styles.heading}>{heading}</Text>
                     {listItems}
                 </View>   
                 <Brand />       

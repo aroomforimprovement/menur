@@ -3,7 +3,7 @@ import './planner.scss';
 import { Selector } from './selector/Selector';
 import { Suggestions } from './suggestions/Suggestions';
 import { MealPlan } from './mealplan/MealPlan';
-import { GenList } from './shopping/GenList';
+import { ShoppingList } from './shopping/ShoppingList';
 import { useMainContext } from '../main/MenurRouter';
 import { useParams } from 'react-router';
 import { MealtimePicker } from '../mobile/planner/mealplan/MealtimePicker';
@@ -38,7 +38,7 @@ const Planner = ({edit}) => {
                     </div>
                 </div>
                 <PlannerControls />
-                <GenList className='col col-12'/>
+                <ShoppingList className='col col-12'/>
             </div>         
             <div hidden={state.isMealtimePickerClosed}>
                 <MealtimePicker />

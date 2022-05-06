@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { MealPlanOverview } from './mealplan/MealPlanOverview';
 import { MealPlanPicker } from './mealplan/MealPlanPicker';
 import { MealPlanFull } from './mealplan/MealPlanFull';
-import { GenList } from '../../planner/shopping/GenList';
+import { ShoppingList } from '../../planner/shopping/ShoppingList';
 import { PlannerControls } from '../../planner/controls/PlannerControls';
 
 export const PlannerMobile = () => {
@@ -47,7 +47,7 @@ export const PlannerMobile = () => {
             </div>
             <div hidden={!state.isMealtimePickerClosed || !state.isPickerClosed}>
                 <PlannerControls />
-                <GenList />
+                <ShoppingList />
             </div>
         </div>
     );
