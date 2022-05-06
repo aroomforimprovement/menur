@@ -75,6 +75,31 @@ export const SaveToAccount = () => {
         }
     }
 
+    const handleOpenSave = () => {
+
+        const dismiss = (id) => {
+            if(state.plans.length < 10){
+                dispatch({type: 'SET_SAVE_OPEN', data: true})
+            }
+            toast.dismiss(id);
+        }
+        if(state.plans.length >= 5){
+            console.log("Should toast")
+            const num = state.plans.length;
+            toast.warn({
+                message: "You have saved " + num + " meal plans." +
+                    "You can only have 10 saved plans until you verify your account." +
+                    "Check your email and follow the verfication link remove this limit.",
+                approveFunc: dismiss,
+                dismissFunc: dismiss,
+                dismissTxt: "OK",
+                approveTxt: "Cool",
+            })
+        }else{
+            dispatch({type: 'SET_SAVE_OPEN', data: true})
+        }
+    }
+
     const handleSaveData = (e) => {
         setIsSaving(true);
         saveDataToAccount();
@@ -110,7 +135,7 @@ export const SaveToAccount = () => {
                 <div>
                 {state && state.user && state.user.isAuth
                 ? <button className='butt butt-standard shadow col col-11 mx-auto'
-                    onClick={() => dispatch({type: 'SET_SAVE_OPEN', data: true})}>
+                    onClick={() => handleOpenSave()}>
                     <span className='fa fa-save me-2'></span> Save this Meal Plan to your Account <span className='fa fa-save ms-2'></span>
                 </button> : <div></div>}
                 </div> 
