@@ -425,9 +425,14 @@ export const reducer = (state, action) => {
             if(action.data.isAuthenticated){
                 const user = action.data.user;
                 const userid = user.sub.replace('auth0|', '');
-                storedUser = {userid: userid, email: user.email, 
-                    username: user.nickname, isAuth: true, 
-                    access: (state.user && state.user.access) ? state.user.access : null
+                const verified = user.email_verified;
+                storedUser = {
+                    userid: userid, 
+                    email: user.email, 
+                    username: user.nickname, 
+                    isAuth: true, 
+                    access: user.access,
+                    isVerified: verified,
                 }
             }
             return({...state, user: storedUser});

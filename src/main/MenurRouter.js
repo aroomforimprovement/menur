@@ -110,6 +110,30 @@ const MenurRouter = () => {
         }
     },[isLoading, isAuthenticated, state.user, state.isSet]);
 
+    useEffect(() => {
+        const dismissToast = (id) => {
+            toast.dismiss(id);
+        }
+        const setUnverifiedWarning = () => {
+            toast.warn(
+                {
+                    duration: 1661,
+                    approveFunc: dismissToast,
+                    message: `Thanks for signing up to Menur.
+                        You'll need to verify your account to access
+                        some features.
+                        Check your email and follow the link to verify`,
+                    dismissTxt: "OK",
+                    approveTxt: "Cool",
+                    toastId: "unverified"
+                }
+            )
+        }
+        if(state.user && state.user.isAuth && !state.user.isVerified){
+            setUnverifiedWarning();
+        }
+    }, [state.user])
+
     const cookieToast = () => {
         setCookieWarning(true);
         toast((t) => (
