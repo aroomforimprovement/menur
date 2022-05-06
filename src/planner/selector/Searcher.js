@@ -69,9 +69,8 @@ export const Searcher = ({mealsIncluded}) => {
                 }else if(e.keyCode === 40){
                     setSearchHighlightIndex(searchHighlightIndex + 1);
                 }else if(e.keyCode === 13){
-                    displayMeals && displayMeals[searchHighlightIndex] 
-                    ? setSelection(displayMeals[searchHighlightIndex]) : 
-                        console.log("useEffect: no displayMeals");
+                    if(displayMeals && displayMeals[searchHighlightIndex])
+                        setSelection(displayMeals[searchHighlightIndex])
                 } 
             }
         }
