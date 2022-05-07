@@ -30,10 +30,6 @@ const MenurRouter = () => {
     const history = useNavigate();
     const [cookieWarning, setCookieWarning] = useState(false);
 
-    useEffect(() => {
-        console.log(state.mealplan)
-    }, [state.mealplan])
-
     const approveCookies = (id) => {
         Cookies.set('cookies_approved', true, {expires: 28*34*60*1000});
         dispatch({type: 'COOKIES_APPROVED', data: true});
