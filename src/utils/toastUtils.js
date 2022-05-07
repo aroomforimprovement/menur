@@ -1,5 +1,4 @@
 import { saveMeal } from './apiUtils';
-import { dontShowAgain } from './userUtils';
 
 export const addMealToast = async ({showBasic, meals, dispatch, meal, day, mealtime, user}, toast) => {
 
@@ -19,18 +18,14 @@ export const addMealToast = async ({showBasic, meals, dispatch, meal, day, mealt
     const addMeal = (t, dontshow) => {
         toast.dismiss(t);
         setMealAdded(false);
-        captureDontShow(dontshow, false);
     }
 
     const addAndSaveMeal = (t, dontshow) => {
         toast.dismiss(t);
         setMealAdded(true);
-        captureDontShow(dontshow, true);
     }
 
-    const captureDontShow = (dontshow, choice) => {
-        dontshow ? dontShowAgain('SAVE_MEAL', choice) : console.log();
-    }
+ 
     const hasMeal = (meal) => {
         if(meals && meal.id){
           for(let i = 0; i < meals.length; i++){
@@ -42,9 +37,10 @@ export const addMealToast = async ({showBasic, meals, dispatch, meal, day, mealt
         return false;
     }
 
-    if(showBasic && meals && !hasMeal(meal)){
-         if(window.localStorage.getItem(`dontshow_SAVE_MEAL`)){
-            const choice = await JSON.parse(window.localStorage.getItem(`dontshow_SAVE_MEAL`)).choice;
+    if(showBasic && meals && !hasMeal(meal) && !(meal.name.indexOf('Leftover') > -1)){
+        const saveMeal = await toast.dontShow(`SAVE_MEAL_${user.userid}`); 
+        if(saveMeal){
+            const choice = saveMeal.choice;
             if(choice){
                 setMealAdded(true);
             }else{
@@ -58,7 +54,7 @@ export const addMealToast = async ({showBasic, meals, dispatch, meal, day, mealt
                     dismissFunc: addMeal,
                     dismissTxt:`Don't save`,
                     canHide: true,
-                    dontShowType: 'SAVE_MEAL',
+                    dontShowType: `SAVE_MEAL_${user.userid}`,
                     message: `Would you like to save this meal to your account so you can customize it later?`,
                 }
             )

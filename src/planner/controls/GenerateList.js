@@ -1,7 +1,6 @@
 import React from 'react';
 import toast from 'buttoned-toaster';
 import { useMainContext } from '../../main/MenurRouter';
-import { dontShowAgain } from '../../utils/userUtils';
 import { ListCreator } from '../shopping/components/ListCreator';
 
 export const GenerateList = () => {
@@ -15,7 +14,6 @@ export const GenerateList = () => {
 
         const setIsCancelled = (id, dontshow) => {
             toast.dismiss(id);
-            dontshow ? dontShowAgain('GEN_LIST') : console.clear();
             generateList();
         }
 
