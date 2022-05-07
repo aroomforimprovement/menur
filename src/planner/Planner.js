@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './planner.scss';
 import { Selector } from './selector/Selector';
 import { Suggestions } from './suggestions/Suggestions';
@@ -25,6 +25,16 @@ const Planner = ({edit}) => {
         }
     },[splat, dispatch, state.splatSet]);
 
+    const [unsaved, setUnsaved] = useState(false);
+
+    useEffect(() => {
+        if(state.backupPlan && state.mealplan === state.backupPlan.mealplan){
+            setUnsaved(false)
+        }else if(state.backupPlan){
+            setUnsaved(true);
+        }
+    }, [state.mealplan, state.backupPlan])
+
     return(  
         <div className='container mt-3 planner-page'>
             <div hidden={!state.isMealtimePickerClosed}>
@@ -34,7 +44,7 @@ const Planner = ({edit}) => {
                 </div>
                 <div className='container mealplan-row col col-12 p-0 shadow shadow my-3 pb-2 border border'>
                     <div className='row p-0'>
-                        <MealPlan className='col col-12 ms-md-4 my-2 p-0'/>
+                        <MealPlan unsaved={unsaved} className='col col-12 ms-md-4 my-2 p-0'/>
                     </div>
                 </div>
                 <PlannerControls />

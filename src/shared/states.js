@@ -19,6 +19,15 @@ export const INIT_STATE = {
         "Saturday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
         "Sunday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}}
     },
+    backupPlan: {
+        "Monday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Tuesday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Wednesday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Thursday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Friday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Saturday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Sunday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}}
+    },
     leftovers: [],
     genList: {list: [], heading: 'Shopping list', index: -1},
     userLists: [],

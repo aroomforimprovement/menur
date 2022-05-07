@@ -411,7 +411,13 @@ export const reducer = (state, action) => {
         }
         case 'CLEAR_DATA':{
             const clearedPlan = getClearedMealplan();
-            return {...state, mealplan: clearedPlan};
+            return {...state, 
+                mealplan: clearedPlan, 
+                leftovers: [],
+                genList: {list: [], heading: 'Shopping list', index: -1},
+                userLists: [],
+                genListTemp: [],
+            };
         }
         case 'DOWNLOAD_MEALPLAN':{
             return ({...state, download: action.data});

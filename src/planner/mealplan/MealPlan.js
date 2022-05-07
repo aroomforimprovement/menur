@@ -5,8 +5,9 @@ import { Leftovers } from './Leftovers.js';
 import { useMainContext } from '../../main/MenurRouter';
 import { days, mealtimes } from '../../shared/states';
 import { isMobile } from 'react-device-detect';
+import ReactTooltip from 'react-tooltip';
 
-export const MealPlan = () => {
+export const MealPlan = ({unsaved}) => {
 
     const { state, dispatch } = useMainContext();
 
@@ -126,13 +127,18 @@ export const MealPlan = () => {
         <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'} `}>
             <div className='mt-2'>
             <div className='float-center'>
-                    <h6 >
+                    <h6 style={{display: 'inline'}}>
                         {state.backupPlan && state.backupPlan.name 
                         && window.location.href.toString().indexOf('/0') === window.location.href.toString().length-2
                         ? `Copy of ${state.backupPlan.name}` 
                         : state.backupPlan && state.backupPlan.name 
                         ? state.backupPlan.name 
                         : undefined}</h6>
+                    
+                    <small 
+                        className='fa fa-save float-end' 
+                        style={{color:unsaved ? 'red' : 'green', marginLeft: '2rem'}}
+                        data-tip={unsaved ? "Unsaved Changes" : "No unsaved changes"}></small> 
                 </div>
             {isMobile 
                 ? <PortraitPlan /> 
@@ -141,6 +147,8 @@ export const MealPlan = () => {
                     : <PortraitPlan />
             }
             </div>
+            <ReactTooltip type='info' delayShow={500} data-effect='float'
+                place='right'/>
         </div>
     );
 }
