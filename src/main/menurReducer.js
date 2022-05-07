@@ -1,5 +1,5 @@
 import { DEFAULT_SERVINGS, MEALS } from '../shared/meals';
-import { INIT_STATE, days, mealtimes, getClearedMealplan } from '../shared/states';
+import { days, mealtimes, getClearedMealplan } from '../shared/states';
 import { saveMeal } from '../utils/apiUtils';
 import { getIngredientsFromMeal, getMealsWithIngredient, getNewId } from '../utils/objUtils';
 
@@ -457,7 +457,7 @@ export const reducer = (state, action) => {
                 return p.id === action.data;
             })
             return({...state, mealplan: plan.mealplan, leftovers: plan.leftovers,
-                genList: plan.genList, userList1: plan.userList1, userList2: plan.userList2, splatSet: true,
+                genList: plan.genList, userLists: plan.userLists, splatSet: true,
                 backupPlan: {...plan}});
         }
         case 'ADD_SELECTOR_MEAL':{

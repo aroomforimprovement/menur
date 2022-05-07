@@ -34,8 +34,7 @@ export const SaveToAccount = () => {
                     mealplan: state.mealplan,
                     leftovers: state.leftovers,
                     genList: state.genList,
-                    userList1: state.userList1,
-                    userList2: state.userList2
+                    userLists: state.userLists,
                 }
             }
             return await fetch(`${proxy}${apiUrl}plan`, {
@@ -84,7 +83,6 @@ export const SaveToAccount = () => {
             toast.dismiss(id);
         }
         if(state.plans.length >= 5){
-            console.log("Should toast")
             const num = state.plans.length;
             toast.warn({
                 message: "You have saved " + num + " meal plans." +
@@ -96,7 +94,7 @@ export const SaveToAccount = () => {
                 approveTxt: "Cool",
             })
         }else{
-            dispatch({type: 'SET_SAVE_OPEN', data: true})
+            dispatch({type: 'SET_SAVE_OPEN', data: true});
         }
     }
 
