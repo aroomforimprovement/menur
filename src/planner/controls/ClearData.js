@@ -5,15 +5,17 @@ import { useMainContext } from '../../main/MenurRouter';
 export const ClearData = () => {
     const {dispatch} = useMainContext();
 
-    const handleClearData = () => {
+    const handleClearData = async () => {
         const setIsCancelled = (id) => {
             toast.dismiss(id);
         }
-        const setDataCleared = (id) => {
-            toast.dismiss(id);
+        const setDataCleared = async (id) => {
+            if(id) toast.dismiss(id);
             dispatch({type: 'CLEAR_DATA', data: true});
             toast.success("You're ready to start fresh!");
         }
+        await toast.dontShow('CLEAR_PLANNER_DATA') ?
+        setDataCleared() :
         toast.error(
             { 
                 approveFunc: setDataCleared, 
@@ -21,7 +23,8 @@ export const ClearData = () => {
                 message: 'Are you sure you want to clear all changes from this screen and start again?',
                 approveBtn: 'Clear data',
                 dismissBtn: 'Cancel',
-                canHide: false
+                canHide: true,
+                dontShowType: 'CLEAR_PLANNER_DATA'
             }
         );
     }
