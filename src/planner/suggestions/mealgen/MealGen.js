@@ -277,10 +277,16 @@ export const MealGen = ({meal, edit, open}) => {
                                     <h6>Meal name:</h6>
                                 </Form.Label>
                                 <InputGroup size='sm'>
-                                    <FormControl type='text' id='name' placeholder='Meal name'
-                                        onChange={handleNameChange}
+                                    <FormControl 
+                                        type='text' 
+                                        id='name' 
+                                        placeholder='Meal name'
+                                        onChange={handleNameChange} 
+                                        style={name.toLowerCase().indexOf('leftover') > -1 ? {borderColor: 'red'}: {}}
                                         value={name}></FormControl>
                                 </InputGroup>
+                                <small style={{color:'red'}}>{name.toLowerCase().indexOf('leftover') > -1 
+                                    ? "Sorry, you can't use the word 'leftover' in a meal name" : ''}</small>
                             </div>}
                         </Col>
                         {edit ? <Col xs={1}>
