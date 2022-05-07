@@ -114,7 +114,11 @@ const MenurRouter = () => {
         const dismissToast = (id) => {
             toast.dismiss(id);
         }
-        const setUnverifiedWarning = () => {
+        const setUnverifiedWarning = async () => {
+            const dontShow = await toast.dontShow(`UNVERIFIED_WARNING_${state.user.userid}`);
+            if(dontShow){
+                return;
+            }
             toast.warn(
                 {
                     duration: 1661,
@@ -125,7 +129,9 @@ const MenurRouter = () => {
                         Check your email and follow the link to verify`,
                     dismissTxt: "OK",
                     approveTxt: "Cool",
-                    toastId: "unverified"
+                    toastId: "unverified",
+                    canHide: true,
+                    dontShowType: `UNVERIFIED_WARNING_${state.user.userid}`,
                 }
             )
         }
