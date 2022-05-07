@@ -36,6 +36,10 @@ export const Settings = () => {
         }
 
         const handleEdit = (e) => {
+            if(state.user && state.user.isAuth && !state.user.isVerified){
+                toast.error("Please verify your account to use this feature");
+                return;
+            }
             setIsEditHidden(!isEditHidden);
         }
         const handleUpdate = (e) => {
@@ -121,6 +125,10 @@ export const Settings = () => {
         }
         
         const handleEdit = (e) => {
+            if(state.user && state.user.isAuth && !state.user.isVerified){
+                toast.error("Please verify your account to use this feature");
+                return;
+            }
             setIsEditHidden(!isEditHidden);
         }
         const handleUpdate = (e) => {
