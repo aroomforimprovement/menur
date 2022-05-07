@@ -14,7 +14,7 @@ export const SaveToAccount = () => {
     const [isSaving, setIsSaving] = useState(false);
     const [isSaveFailed, setIsSaveFailed] = useState(false);
     const [mealplanName, setMealplanName] = useState(
-        state.backupPlan && state.backupPlan.name 
+        state.backupPlan && state.backupPlan.name && state.backupPlan.name.length > 0
         && window.location.href.toString().indexOf('/0') === window.location.href.toString().length-2
         ? `Copy of ${state.backupPlan.name}` : state.backupPlan && state.backupPlan.name ? state.backupPlan.name : undefined);
 
@@ -78,7 +78,7 @@ export const SaveToAccount = () => {
 
         const dismiss = (id) => {
             if(state.plans.length < 10){
-                dispatch({type: 'SET_SAVE_OPEN', data: true})
+                dispatch({type: 'SET_SAVE_OPEN', data: false})
             }
             toast.dismiss(id);
         }
