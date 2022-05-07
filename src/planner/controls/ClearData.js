@@ -3,7 +3,7 @@ import toast from 'buttoned-toaster';
 import { useMainContext } from '../../main/MenurRouter';
 
 export const ClearData = () => {
-    const {dispatch} = useMainContext();
+    const { state, dispatch} = useMainContext();
 
     const handleClearData = async () => {
         const setIsCancelled = (id) => {
@@ -14,7 +14,7 @@ export const ClearData = () => {
             dispatch({type: 'CLEAR_DATA', data: true});
             toast.success("You're ready to start fresh!");
         }
-        await toast.dontShow('CLEAR_PLANNER_DATA') ?
+        await toast.dontShow(`CLEAR_PLANNER_DATA_${state.user ? state.user.userid : ''}`) ?
         setDataCleared() :
         toast.error(
             { 
@@ -24,7 +24,7 @@ export const ClearData = () => {
                 approveBtn: 'Clear data',
                 dismissBtn: 'Cancel',
                 canHide: true,
-                dontShowType: 'CLEAR_PLANNER_DATA'
+                dontShowType: `CLEAR_PLANNER_DATA_${state.user ? state.user.userid : ''}`
             }
         );
     }

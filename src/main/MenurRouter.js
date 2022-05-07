@@ -17,7 +17,7 @@ import { PlannerMobile } from '../mobile/planner/PlannerMobile';
 let apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
 
-const MainContext = createContext(INIT_STATE);
+const MainContext = createContext({...INIT_STATE});
 
 export const useMainContext = () => {
     return useContext(MainContext);
@@ -29,6 +29,10 @@ const MenurRouter = () => {
     const mainState = { state, dispatch };
     const history = useNavigate();
     const [cookieWarning, setCookieWarning] = useState(false);
+
+    useEffect(() => {
+        console.log(state.mealplan)
+    }, [state.mealplan])
 
     const approveCookies = (id) => {
         Cookies.set('cookies_approved', true, {expires: 28*34*60*1000});
@@ -172,6 +176,7 @@ const MenurRouter = () => {
             checkCookieApproval();
         }
     });
+
 
     return (
         <div>

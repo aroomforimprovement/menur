@@ -1,5 +1,5 @@
 import { DEFAULT_SERVINGS, MEALS } from '../shared/meals';
-import { INIT_STATE, days, mealtimes } from '../shared/states';
+import { INIT_STATE, days, mealtimes, getClearedMealplan } from '../shared/states';
 import { saveMeal } from '../utils/apiUtils';
 import { getIngredientsFromMeal, getMealsWithIngredient, getNewId } from '../utils/objUtils';
 
@@ -410,9 +410,8 @@ export const reducer = (state, action) => {
             return ({...state, leftovers: leftovers});
         }
         case 'CLEAR_DATA':{
-            window.localStorage.removeItem('MENUR_STATE');
-            window.location.reload();
-            return INIT_STATE;
+            const clearedPlan = getClearedMealplan();
+            return {...state, mealplan: clearedPlan};
         }
         case 'DOWNLOAD_MEALPLAN':{
             return ({...state, download: action.data});

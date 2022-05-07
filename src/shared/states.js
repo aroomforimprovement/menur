@@ -52,3 +52,15 @@ export const INIT_STATE = {
         index: -1
     }
 }
+
+export const getClearedMealplan = () => {
+    return {
+        "Monday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Tuesday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Wednesday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Thursday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Friday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Saturday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}},
+        "Sunday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}}
+    }
+}
