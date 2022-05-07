@@ -126,6 +126,15 @@ export const MealGen = ({meal, edit, open}) => {
             }
             toast.dismiss(id)
         }
+
+        if(name.toLowerCase().indexOf('leftover') > -1){
+            toast.error(
+                {
+                    message: "Sorry, LEFTOVER is a reserved word. "+
+                        "Change the name to save the meal",
+                    duration: 4000,
+                });
+        }
         
         if(state.user && state.user.isAuth && !state.user.isVerified){
             if(num >= 5){
@@ -142,6 +151,7 @@ export const MealGen = ({meal, edit, open}) => {
                 doSave();
             }
         }
+
     }
     
     const handleServingsChange = (e) => {
