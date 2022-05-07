@@ -42,7 +42,7 @@ export const MealGen = ({meal, edit, open}) => {
         let i = {name: nameField.value, type: type, qty: qtyField.value, score: score};
         if(i.name.length > 0){
             ingr.push(i);
-            toast(`Ingredient added to new meal ${name}`);
+            toast.success(`Ingredient added to new meal ${name}`);
         }
         setIng(ingr);    
     }
@@ -103,18 +103,44 @@ export const MealGen = ({meal, edit, open}) => {
     const handleSave = async (e) => {
         e.preventDefault();
         const mealForSaving = getMealForSaving();
-        console.dir(mealForSaving);
-        if(name && name !== ''){
-            saveMeal(mealForSaving, state.user, edit, toast).then((meal) => {
-                edit 
-                ? dispatch({type: 'UPDATE_SAVED_MEAL', data: mealForSaving})
-                : dispatch({type: 'ADD_SELECTOR_MEAL', data: mealForSaving});
-                toast.success("Meal saved ok");
-                return meal.id;
-            });
-            edit ? console.log() : addSuggestion(mealForSaving);
-            setName('');
-            setIng([]);
+        const num = state.meals.length;
+
+        const doSave = () => {
+            if(name && name !== ''){
+                saveMeal(mealForSaving, state.user, edit, toast).then((meal) => {
+                    edit 
+                    ? dispatch({type: 'UPDATE_SAVED_MEAL', data: mealForSaving})
+                    : dispatch({type: 'ADD_SELECTOR_MEAL', data: mealForSaving});
+                    toast.success("Meal saved ok");
+                    return meal.id;
+                });
+                edit ? console.log() : addSuggestion(mealForSaving);
+                setName('');
+                setIng([]);
+            }
+        }
+
+        const dismiss = (id) => {
+            if(num < 10){
+                doSave();
+            }
+            toast.dismiss(id)
+        }
+        
+        if(state.user && state.user.isAuth && !state.user.isVerified){
+            if(num >= 5){
+                toast.warn({
+                    message: "You have saved " + num + " meals." +
+                        "You can only have 10 saved meals until you verify your account." +
+                        "Check your email and follow the verfication link remove this limit.",
+                    approveFunc: dismiss,
+                    dismissFunc: dismiss,
+                    dismissTxt: "OK",
+                    approveTxt: "Cool",
+                })
+            }else{
+                doSave();
+            }
         }
     }
     
