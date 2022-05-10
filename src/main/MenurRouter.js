@@ -142,23 +142,15 @@ const MenurRouter = () => {
 
     const cookieToast = () => {
         setCookieWarning(true);
-        toast((t) => (
-            <div className='container'>
-                <div className='row'>
-                    <div className='col col-11'>
-                        <span>
-                            By using this website, you accept the use of cookies
-                            to perform basic functionality. <br/>
-                            <a href='/help' target='_blank'>Privacy Policy</a>
-                        </span>
-                    </div>
-                    <div className='col col-1'>
-                        <button className='btn  btn-sm btn-success'
-                            onClick={() => approveCookies(t.id)}>OK</button>
-                    </div>
-                </div>
-            </div>
-        ), {duration: 60000000, position: 'bottom-center', style: {minWidth: 'fit-content', backgroundColor:'#ffa', textAlign: 'start'}})
+        toast.warn({
+            message: `By using this website, you accept the use of cookies
+            to perform basic functionality.`,
+            approveFunc:approveCookies,
+            dismissFunc:approveCookies,
+            approveTxt:'Cool',
+            dismissTxt:'OK',
+            duration:1661
+        })
         
     }
 
