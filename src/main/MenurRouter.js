@@ -58,7 +58,7 @@ const MenurRouter = () => {
             dispatch({type: 'SET_ACCESS', data: await getAccessTokenSilently()})
         }
         if(isAuthenticated && state.user && !state.user.access){
-            setAccessToken();
+            setAccessToken(); 
         }
     },[getAccessTokenSilently, isAuthenticated, state.user]);
 
