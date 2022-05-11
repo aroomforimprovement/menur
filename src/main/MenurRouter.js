@@ -69,6 +69,7 @@ const MenurRouter = () => {
                 username: state.user.username,
                 email: state.user.email
             }
+            
             return await fetch(`${proxy}${apiUrl}app/login`, {
                 method: 'POST',
                 body: JSON.stringify(body),
