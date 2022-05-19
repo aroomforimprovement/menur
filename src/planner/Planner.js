@@ -47,8 +47,8 @@ const Planner = ({edit}) => {
                         <MealPlan unsaved={unsaved} className='col col-12 ms-md-4 my-2 p-0'/>
                     </div>
                 </div>
-                <PlannerControls />
                 <ShoppingList className='col col-12'/>
+                <PlannerControls />
             </div>         
             <div hidden={state.isMealtimePickerClosed}>
                 <MealtimePicker />

@@ -147,14 +147,18 @@ export const ShoppingList = () => {
     }) : <div></div>
 
     return(
-        <div style={{display:'flex', flexWrap:'wrap', alignItems:'center'}} className='col col-12 mt-3 mb-5'> 
-            <ListTemplate 
-                list={state.genList.list} 
-                title='Shopping list' tag='genList'
-                copyFunc={() => copyList([...state.genList.list], "GENERATED LIST")} 
-                downloadFunc={() => downloadList([...state.genList.list], "GENERATED LIST")}
-                addFunc={() => addList([...state.genList.list], "MENUR Generated Shopping List", -1)}/>
-                {userLists}
+        <div>
+            { (state.genList && state.genList.list && state.genList.list.length > 0) || (state.userLists && state.userLists.length > 0)
+            ? <div style={{display:'flex', flexWrap:'wrap', alignItems:'center'}} className='col col-12 mt-3 mb-5'> 
+                <ListTemplate 
+                    list={state.genList.list} 
+                    title='Shopping list' tag='genList'
+                    copyFunc={() => copyList([...state.genList.list], "GENERATED LIST")} 
+                    downloadFunc={() => downloadList([...state.genList.list], "GENERATED LIST")}
+                    addFunc={() => addList([...state.genList.list], "MENUR Generated Shopping List", -1)}/>
+                    {userLists}
+            </div>
+            : <div></div>}
         </div>
     );
 }

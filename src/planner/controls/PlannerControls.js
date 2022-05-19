@@ -7,7 +7,7 @@ import { SaveToAccount } from './SaveToAccount';
 export const PlannerControls = () => {
 
     return(
-        <div style={{textAlign:'center'}}>
+        <div style={{textAlign:'center'}} className='mb-5'>
             <SaveToAccount />
             <DownloadMealPlan />
             <ClearData />

@@ -45,9 +45,9 @@ export const PlannerMobile = () => {
                     <MealPlanOverview className='col col-12 ms-md-4 my-2 p-0' />
                 </div>
             </div>
-            <div hidden={!state.isMealtimePickerClosed || !state.isPickerClosed}>
-                <PlannerControls />
+            <div hidden={!state.isMealtimePickerClosed || !state.isPickerClosed} >
                 <ShoppingList />
+                <PlannerControls />
             </div>
         </div>
     );
