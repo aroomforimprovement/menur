@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { useMainContext } from '../../../main/MenurRouter';
 import { ListDraggable } from './ListDraggable';
+import { DropTarget } from 'react-drag-drop-container';
 
-export const ListIngredient = ({ingredient}) => {
+export const ListIngredient = ({ingredient, index}) => {
 
     const { state, dispatch } = useMainContext();
 
@@ -27,11 +28,31 @@ export const ListIngredient = ({ingredient}) => {
         highlightDispatch({type: 'REMOVE_FROM_LIST', data: ingredient});
     }
 
+    const [classes, setClasses] = useState('');
+    
+    const handleEnter = () => {
+        setClasses(' pt-2 ');
+    }
+
+    const handleExit = () => {
+        setClasses('');
+    } 
+
+    const handleReorder = () => {
+        dispatch({type: 'DROPPED', data: index})
+    }
+
     return(
-        <li >
-            <div className='btn btn-sm fa fa-caret-left mx-1 border mb-2 pt-2'
+        <li className={`list-item-container my-0 ${classes}`}>
+            <DropTarget 
+                targetKey='list'
+                onDragEnter={handleEnter}
+                onDragLeave={handleExit}
+                onHit={handleReorder} >
+            <div className={`btn btn-sm fa fa-caret-left mx-1 border mb-2 pt-2`}
                 onClick={() => decrement(ingredient)}>{' '}</div>
-            <ListDraggable dragData={ingredient}/>        
+            <ListDraggable 
+                dragData={ingredient} />        
             <div className='btn btn-sm fa fa-caret-right mx-1 border mb-2 pt-2'
                 onClick={() => increment(ingredient)}>{' '}</div>
                 <div style={{
@@ -55,6 +76,7 @@ export const ListIngredient = ({ingredient}) => {
             </button> 
             <ReactTooltip type='info' delayShow={500} data-effect='float'
                 place='right'/>
+            </DropTarget>
         </li>
     );
 }

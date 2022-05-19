@@ -19,6 +19,7 @@ export const reducer = (state, action) => {
                 
                 meal.ingredients ? meal.ingredients.forEach((ingredient) => {
                     if(ingredient.type !== 'spice' && ingredient.type !== 'cond'){
+                        ingredient.pos = ingArr.length;
                         ingArr.push(ingredient);
                     }
                 }) : noop();
@@ -97,7 +98,22 @@ export const reducer = (state, action) => {
         return leftovers;
     }
 
+    const dropIntoList = (dropped, ingredient, list) => {
+        const newList = [];
+        for(let i = 0; i < dropped; i++){
+            newList.push(list[i]);
+        }
+        newList.push(ingredient);
+        for(let i = dropped; i < list.length; i++){
+            newList.push(list[i]);    
+        }
+        return newList;
+    }
+
     switch(action.type){
+        case 'DROPPED':{
+            return({...state, dropped: action.data})
+        }
         case 'COOKIES_APPROVED':{
             return({...state, cookiesApproved: action.data});
         }
@@ -356,7 +372,9 @@ export const reducer = (state, action) => {
                 index = parseInt(tag.replace('userList_', ''));
                 list = [...state.userLists[index].list];
             }
-            list.push(ingredient);
+            const dropped = state.dropped;
+            list = dropIntoList(dropped, ingredient, list);
+            //list.push(ingredient);
             if(tag === 'genList'){
                 return({...state, 
                     genList: {

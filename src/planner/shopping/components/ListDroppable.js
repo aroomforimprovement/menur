@@ -11,14 +11,15 @@ export const ListDroppable = ({ list, tag }) => {
         e.dragData.list = tag;
         dispatch({type: 'ADD_TO_LIST', data: e.dragData});
     }
-    
+
     const ingredients = list ? list.map((ingredient, i) => {
-        return <ListIngredient key={i} ingredient={ingredient} />
+        return <ListIngredient key={i} index={i} ingredient={ingredient} />
     }) : <></>;
 
     return(
-        <DropTarget targetKey='list' 
-                onHit={handleDrop}>
+        <DropTarget 
+            targetKey='list' 
+            onHit={handleDrop}>
             <div className='user-list' >
                 <ul className='list-unstyled'>{ingredients}</ul>
             </div>
