@@ -16,6 +16,7 @@
     "cookies-js": "^1.2.3",
     "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
+    "jose": "^4.8.1",
     "mdb-ui-kit": "^3.9.0",
     "nginx": "^1.0.3",
     "node-polyfill-webpack-plugin": "^1.1.4",
