@@ -82,7 +82,8 @@ export const SaveToAccount = () => {
             }
             toast.dismiss(id);
         }
-        if(state.plans.length >= 5){
+        if(state.user && state.user.isAuth && !state.user.isVerified 
+            && state.plans.length >= 5){
             const num = state.plans.length;
             toast.warn({
                 message: "You have saved " + num + " meal plans." +

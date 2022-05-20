@@ -104,7 +104,7 @@ export const MealGen = ({meal, edit, open}) => {
         e.preventDefault();
         const mealForSaving = getMealForSaving();
         const num = state.meals.length;
-
+        
         const doSave = () => {
             if(name && name !== ''){
                 saveMeal(mealForSaving, state.user, edit, toast).then((meal) => {
@@ -134,8 +134,8 @@ export const MealGen = ({meal, edit, open}) => {
                         "Change the name to save the meal",
                     duration: 4000,
                 });
+            return;
         }
-        
         if(state.user && state.user.isAuth && !state.user.isVerified){
             if(num >= 5){
                 toast.warn({
@@ -150,8 +150,9 @@ export const MealGen = ({meal, edit, open}) => {
             }else{
                 doSave();
             }
+        }else{
+            doSave();
         }
-
     }
     
     const handleServingsChange = (e) => {
