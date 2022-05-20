@@ -100,6 +100,7 @@ export const reducer = (state, action) => {
 
     const dropIntoList = (dropped, ingredient, list) => {
         const newList = [];
+        dropped = dropped ? dropped : 0;
         for(let i = 0; i < dropped; i++){
             newList.push(list[i]);
         }
