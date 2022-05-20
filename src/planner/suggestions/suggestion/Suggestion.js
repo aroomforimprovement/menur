@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import './suggestion.scss';
 import { useMainContext } from '../../../main/MenurRouter';
@@ -10,24 +10,30 @@ import { ExpandSuggestion } from './components/ExpandSuggestion';
 
 
 export const Suggestion = ({dragData, keyProp}) => {
-    let classes = '';
-    if(dragData.meal.score >= 10){
-        classes = classes + ' sugg-good';
-    }else if(dragData.meal.score >= 8){
-        classes = classes + ' sugg-ok';
-    }else if(dragData.meal.score >= 6){
-        classes = classes + ' sugg-bad';
-    }else{
-        classes = classes + ' sugg-none';
-    }
+    let classes = dragData.meal.score >= 10 
+        ? ' sugg-good' 
+        : dragData.meal.score >= 8
+        ? ' sugg-ok'
+        : dragData.meal.score >= 6
+        ? ' sugg-bad'
+        : ' sugg-none';
+
     const { state, dispatch } = useMainContext();
+    
     const handleDragStart = (e) => {
+    
     }
+    
     const handleDragEnd = (e) => {
         dispatch({type: 'UNSET_SELECTED_SUGGESTION', data: dragData.meal});
     }
+
+    //const [leftoverTaken, setLeftoverTaken] = useState(false);
+
     const handleDrop = (e) => {
+        e.preventDefault();
         if(e.dragData.meal.name.indexOf('Leftover') > -1){
+            //setLeftoverTaken(true)
             dispatch({type: 'REMOVE_LEFTOVER', data: e.dragData.meal});
         }
     }

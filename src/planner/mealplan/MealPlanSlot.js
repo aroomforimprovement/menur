@@ -3,8 +3,8 @@ import './mealplan.scss';
 import { DropTarget, DragDropContainer } from 'react-drag-drop-container';
 import { useMainContext } from '../../main/MenurRouter';
 import { MealPlanSlotIngredient } from './MealPlanSlotIngredient';
-import { addMealToast } from '../../utils/toastUtils';
 import toast from 'buttoned-toaster';
+import { saveMeal } from '../../utils/apiUtils';
 
 export const MealPlanSlot = ({mealtime, day}) => {
     const { state, dispatch } = useMainContext();
@@ -31,6 +31,84 @@ export const MealPlanSlot = ({mealtime, day}) => {
     const handleDragLeave = (e) => {
         e.target.style.color = 'darkblue';
     }    
+
+    const addMealToast = async (
+        {
+            showBasic, 
+            meals, 
+            meal, 
+            day, 
+            mealtime, 
+            user
+        }) => {
+    
+        const setMealAdded = (save) => {
+            dispatch({
+                type: 'ADD_MEAL', 
+                data: {
+                    meal: meal, 
+                    day: day, 
+                    mealtime: mealtime
+                }
+            });
+            if(save){
+                dispatch({type: 'ADD_SELECTOR_MEAL', data: meal});
+                saveMeal(meal, user, false, toast).then((meal) => {
+                    
+                });
+            }
+        }
+    
+        const addMeal = (t, dontshow) => {
+            toast.dismiss(t);
+            setMealAdded(false);
+        }
+    
+        const addAndSaveMeal = (t, dontshow) => {
+            toast.dismiss(t);
+            setMealAdded(true);
+        }
+    
+     
+        const hasMeal = (meal) => {
+            if(meals && meal.id){
+              for(let i = 0; i < meals.length; i++){
+                if(meals[i].id && meals[i].id === meal.id){
+                  return true;
+                }
+              }
+            }
+            return false;
+        }
+    
+        if(showBasic && meals && !hasMeal(meal) && !(meal.name.indexOf('Leftover') > -1)){
+            const saveMeal = await toast.dontShow(`SAVE_MEAL_${user.userid}`); 
+            if(saveMeal){
+                const choice = saveMeal.choice;
+                if(choice){
+                    setMealAdded(true);
+                }else{
+                    setMealAdded(false);
+                }
+             }else{
+                toast.fire(
+                    {
+                        approveFunc: addAndSaveMeal, 
+                        approveTxt: 'Save to account',
+                        dismissFunc: addMeal,
+                        dismissTxt:`Don't save`,
+                        canHide: true,
+                        dontShowType: `SAVE_MEAL_${user.userid}`,
+                        message: `Would you like to save this meal to your account so you can customize it later?`,
+                    }
+                )
+             }
+        }else{
+            setMealAdded(false);
+        }
+    
+    }
+
     const handleDrop = (e) => {
         addMealToast({
             showBasic: state.showBasic,
@@ -40,7 +118,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
             day: day,
             mealtime: mealtime,
             user: state.user
-        }, toast)
+        })
     }
 
     const handleDropOver = (e) => {
@@ -50,11 +128,18 @@ export const MealPlanSlot = ({mealtime, day}) => {
     const handleRemoveMeal = () => {
         dispatch({type: 'REMOVE_MEAL', data: {day: day, mealtime: mealtime}});
     }
+
     const toggleShowIngredients = () => {
         dispatch({type: 'SET_MEALPLAN_INGS_OPEN',
-            data: {day: day, mealtime: mealtime, showIngredients: !state.mealplan[day][mealtime].showIngredients}});
+            data: {
+                day: day, 
+                mealtime: mealtime, 
+                showIngredients: !state.mealplan[day][mealtime].showIngredients
+            }
+        });
         //setShowIngredients(!showIngredients);
     }
+    
     const setMealtimePickerOpen = () => {
         dispatch({
             type: 'SET_MEALTIME_PICKER_CLOSED', 
@@ -84,16 +169,25 @@ export const MealPlanSlot = ({mealtime, day}) => {
     classes = state.mealplan[day][mealtime].showIngredients ? 'fa-angle-up' : 'fa-angle-down';
     
     return(
-        <DropTarget targetKey='meal' as='div'
-            onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onHit={handleDrop}>                
+        <DropTarget 
+            as='div'     
+            targetKey='meal' 
+            onDragEnter={handleDragEnter} 
+            onDragLeave={handleDragLeave} 
+            onHit={handleDrop}>                
             <div className={`mealtime border shadow shadow-sm ${state.isLandscape ? 'mealtime-ls' : 'mealtime-pt'} 
                 ${hasHighlightedIngredient ? 'border-success' : ''}`} >
-                <div onClick={setMealtimePickerOpen} className='mealtime-click fa fa-edit'>
-                       
-                       </div>
-                <DragDropContainer targetKey='meal' onDrop={handleDropOver} dragData={{meal: state.mealplan[day][mealtime]}}>
-                    <div className='mealtime-text'>{state.mealplan[day][mealtime].name 
-                        ? state.mealplan[day][mealtime].name  : ' '}
+                <div 
+                    className='mealtime-click fa fa-edit'
+                    onClick={setMealtimePickerOpen} ></div>
+                <DragDropContainer 
+                    targetKey='meal' 
+                    onDrop={handleDropOver} 
+                    dragData={{meal: state.mealplan[day][mealtime]}}>
+                    <div className='mealtime-text'>
+                        {state.mealplan[day][mealtime].name 
+                        ? state.mealplan[day][mealtime].name  
+                        : ' '}
                     </div>
                 </DragDropContainer>
                 
