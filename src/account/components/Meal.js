@@ -40,10 +40,10 @@ export const Meal = ({meal, showSpices, index}) => {
     const handleDeleteMeal = () => {
         deleteMeal().then((response) => {
             if(response.ok){
-                toast.success("Meal deleted ok");
+                toast.success(`Meal, ${meal.name}, deleted ok`);
                 dispatch({type: 'REMOVE_SAVED_MEAL', data: meal.id});
             }else{
-                toast.error("Error deleting the Meal");
+                toast.error(`Error deleting meeal, ${meal.name}`);
             }
         });
     }

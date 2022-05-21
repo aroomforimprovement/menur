@@ -70,6 +70,7 @@ export const ShoppingList = () => {
 
         toast.info(
             { 
+                toastId: "DownloadOptions",
                 message: `Would you like download this list as a text file or a pdf?`,
                 dismissTxt:'Cancel',
                 dismissFunc: setIsCancelled,

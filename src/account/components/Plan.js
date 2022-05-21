@@ -39,11 +39,11 @@ export const Plan = ({plan, isLandscape}) => {
             toast.dismiss(id);
             deletePlan().then((response) => {
                 if(response && response.ok){
-                    toast.success('Mealplan deleted ok');
+                    toast.success(`Mealplan, ${plan.name} deleted ok`);
                     //window.location.href = '/account';
                     dispatch({type: 'REMOVE_SAVED_PLAN', data: plan.id});
                 }else{
-                    toast.error('Error deleting Mealplan');
+                    toast.error(`Error deleting Mealplan, ${plan.name}`);
                     console.error("handleDeletePlan: response not ok");
                 }
             });
@@ -51,12 +51,14 @@ export const Plan = ({plan, isLandscape}) => {
         const setIsCancelled = (id) => {
             toast.dismiss(id);
         }
-        toast.fire({
-            approveFunc: setPlanDeleted, 
-            dismissFunc: setIsCancelled,
-            message: 'Are you sure you want to delete this meal plan?',
-            approveBtn: 'Delete', 
-            dismissBtn: 'Cancel'
+        toast.fire(
+            {
+                duration: 1661,
+                approveFunc: setPlanDeleted, 
+                dismissFunc: setIsCancelled,
+                message: `Are you sure you want to delete mealplan, ${plan.name}?`,
+                approveBtn: 'Delete', 
+                dismissBtn: 'Cancel'
             }
         );
     }
@@ -76,21 +78,25 @@ export const Plan = ({plan, isLandscape}) => {
             toast.dismiss(id);
         }
 
-        toast.fire({
-            message: `Would you like to edit and save over this meal plan or make a new copy?`,
-            dismissFunc: setIsCancelled,
-            dismissText: 'Cancel',
-            moreOptions: [
-                {
-                    handler: () => setIsEdit(plan.id),
-                    btnText: 'Edit this one'
-                },
-                {
-                    handler: () => setIsCopy(plan.id),
-                    btnText: 'Create a copy',
-                }
-            ]
-        })
+        toast.fire(
+            {
+                toastId: 'EditMealPlan',
+                duration: 1661,
+                message: `Would you like to edit and save over this meal plan or make a new copy?`,
+                dismissFunc: setIsCancelled,
+                dismissText: 'Cancel',
+                moreOptions: [
+                    {
+                        handler: () => setIsEdit(plan.id),
+                        btnText: 'Edit this one'
+                    },
+                    {
+                        handler: () => setIsCopy(plan.id),
+                        btnText: 'Create a copy',
+                    }
+                ]
+            }
+        )
 
         
     }
@@ -143,6 +149,8 @@ export const Plan = ({plan, isLandscape}) => {
 
         toast.fire(
             {   
+                toastId: 'DownloadMealplan',
+                duration: 1661,
                 message:'Would you like to download this meal plan with a generated shopping list attached?',        
                 dismissFunc: cancel,
                 dismissTxt: 'Cancel', 

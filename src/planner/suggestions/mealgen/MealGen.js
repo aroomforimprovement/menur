@@ -139,6 +139,8 @@ export const MealGen = ({meal, edit, open}) => {
         if(state.user && state.user.isAuth && !state.user.isVerified){
             if(num >= 5){
                 toast.warn({
+                    toastId: "MealLimit",
+                    duration: 1661,
                     message: "You have saved " + num + " meals." +
                         "You can only have 10 saved meals until you verify your account." +
                         "Check your email and follow the verfication link remove this limit.",

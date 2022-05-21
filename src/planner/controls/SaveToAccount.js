@@ -58,7 +58,7 @@ export const SaveToAccount = () => {
                                 }
                         }
                     );
-                    toast.success("Mealplan saved ok");
+                    toast.success(`Mealplan, ${name}, saved ok`);
                     window.location.href = `/planner/${body.mealplan.id}/1`;
                 }else{
                     console.error(`response not ok`);
@@ -69,7 +69,7 @@ export const SaveToAccount = () => {
                 console.error(error);
                 setIsSaving(false);
                 setIsSaveFailed(false);
-                toast.error("Error saving mealplan");
+                toast.error(`Error saving mealplan, ${name}`);
             });
         }
     }
@@ -86,6 +86,7 @@ export const SaveToAccount = () => {
             && state.plans.length >= 5){
             const num = state.plans.length;
             toast.warn({
+                toastId: "MealplanLimit",
                 message: "You have saved " + num + " meal plans." +
                     "You can only have 10 saved plans until you verify your account." +
                     "Check your email and follow the verfication link remove this limit.",

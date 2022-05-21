@@ -21,6 +21,8 @@ export const GenerateList = () => {
             ? generateList()
             : toast.warn(
                 { 
+                    toastId: "GenerateList",
+                    duration: 1661,
                     approveFunc: setIsCancelled,
                     dismissFunc: setIsCancelled,
                     message: `FYI - If you change anything in the mealplan, it won't update the shopping list.

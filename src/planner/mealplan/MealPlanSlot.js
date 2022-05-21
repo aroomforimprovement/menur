@@ -93,6 +93,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
              }else{
                 toast.fire(
                     {
+                        toastId: "SaveToAccount",
                         approveFunc: addAndSaveMeal, 
                         approveTxt: 'Save to account',
                         dismissFunc: addMeal,

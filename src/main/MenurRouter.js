@@ -97,10 +97,19 @@ const MenurRouter = () => {
                             type: 'SET_ACCOUNT_INFO',
                             data: result
                         });
-                        toast.success("Your account info is ready");
+                        toast.success(
+                            {
+                                toastId: "AccountReady",
+                                message: "Your account info is ready"
+                            }
+                        );
                     }else{
                         dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
-                        toast.error("You are not logged in");
+                        toast.error(
+                            {
+                                toastId: "AccountReady",
+                                message: "You are not logged in"
+                            });
                     }  
             });
         }
@@ -144,6 +153,7 @@ const MenurRouter = () => {
     const cookieToast = () => {
         setCookieWarning(true);
         toast.warn({
+            toastId: "CookieWarning",
             message: `By using this website, you accept the use of cookies
             to perform basic functionality.`,
             approveFunc:approveCookies,

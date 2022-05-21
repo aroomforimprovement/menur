@@ -84,6 +84,8 @@ export const DownloadMealPlan = () => {
 
         toast.info(
             {
+                toastId: "DownloadWithList",
+                duration: 1661,
                 message: 'Would you like to download the meal plan with your shopping list(s) attached?',
                 dismissFunc: cancel, 
                 dismissTxt: 'Cancel',

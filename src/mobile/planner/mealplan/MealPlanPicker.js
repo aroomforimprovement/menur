@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useMainContext } from '../../../main/MenurRouter';
 import { days, mealtimes } from '../../../shared/states';
 import { addMealToast } from '../../../utils/toastUtils';
-import toast from 'buttoned-toaster';
-
 
 export const MealPlanPicker = ({meal}) => {
     
@@ -58,7 +56,7 @@ export const MealPlanPicker = ({meal}) => {
                     meal: meal.meal,
                     day: meal.day,
                     mealtime: time
-                }, toast);
+                });
             }
     
             return(
