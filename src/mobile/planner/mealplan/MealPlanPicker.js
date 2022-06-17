@@ -55,7 +55,10 @@ export const MealPlanPicker = ({meal}) => {
                     dispatch: dispatch,
                     meal: meal.meal,
                     day: meal.day,
-                    mealtime: time
+                    mealtime: time,
+                    user: state.user
+                }).then(() => {
+                    setIsDayPicked(false);
                 });
             }
     
