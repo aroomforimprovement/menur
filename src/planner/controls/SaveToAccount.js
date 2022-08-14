@@ -107,13 +107,11 @@ export const SaveToAccount = () => {
     }
 
     const handleNameChange = (e) => {
-        //dispatch({type: 'NAME', data: e.target.value});
         setMealplanName(e.target.value);
         e.preventDefault();
     }
 
     const NameInput = () => {
-        console.dir(state);
         const inputRef = useRef(null);
         const [name, setName] = useState(
                     mealplanName 
@@ -137,7 +135,13 @@ export const SaveToAccount = () => {
                 autoFocus={true}
                 onChange={handleNameChange} 
                 ref={inputRef}
+                maxLength='140'
                 value={name}
+                onKeyPress={(e) => {
+                    if(e.code === 'Enter'){
+                        handleSaveData();
+                    }
+                }}
             />
         );
     }
