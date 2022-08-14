@@ -113,14 +113,32 @@ export const SaveToAccount = () => {
     }
 
     const NameInput = () => {
-        const inputRef = useRef();
+        console.dir(state);
+        const inputRef = useRef(null);
+        const [name, setName] = useState(
+                    mealplanName 
+                    ? mealplanName
+                    : state.backupPlan.name 
+                    ? state.backupPlan.name
+                    : undefined);
         useEffect(() => {inputRef.current && inputRef.current.focus()});
+        useEffect(() => {
+            setName(mealplanName 
+                ? mealplanName
+                : state.backupPlan.name
+                ? state.backupPlan.name
+                : undefined);   
+        }, []);
         return(
-            <Form.Control type='text' id='name' name='name' autoFocus={true}
+            <Form.Control
+                type='text'
+                id='name'
+                name='name'
+                autoFocus={true}
                 onChange={handleNameChange} 
                 ref={inputRef}
-                value={mealplanName ? mealplanName : undefined}
-                />
+                value={name}
+            />
         );
     }
     return(
