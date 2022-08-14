@@ -73,3 +73,14 @@ export const getClearedMealplan = () => {
         "Sunday": { "Dinner": {}, "Lunch": {}, "Breakfast":{}}
     }
 }
+
+export const getFullClearedMealplan = () => {
+    const mealplan = getClearedMealplan();
+    return {
+        mealplan: mealplan, 
+        leftovers: [],
+        genList: {list: [], heading: 'Shopping list', index: -1},
+        userLists: [],
+        genListTemp: [],
+    }
+}

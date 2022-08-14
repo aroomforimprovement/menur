@@ -1,5 +1,5 @@
 import { DEFAULT_SERVINGS, MEALS } from '../shared/meals';
-import { days, mealtimes, getClearedMealplan } from '../shared/states';
+import { days, mealtimes, getFullClearedMealplan, getClearedMealplan } from '../shared/states';
 import { saveMeal } from '../utils/apiUtils';
 import { getIngredientsFromMeal, getMealsWithIngredient, getNewId } from '../utils/objUtils';
 
@@ -478,12 +478,18 @@ export const reducer = (state, action) => {
         }
         case 'SET_SPLAT':{
             const plans = [...state.plans];
-            const plan = plans.find(p => {
+            let plan = plans.find(p => {
                 return p.id === action.data;
             })
-            return({...state, mealplan: plan.mealplan, leftovers: plan.leftovers,
-                genList: plan.genList, userLists: plan.userLists, splatSet: true,
-                backupPlan: {...plan}});
+            plan = plan ? plan : getFullClearedMealplan();
+            return({...state, 
+                mealplan: plan.mealplan , 
+                leftovers: plan.leftovers,
+                genList: plan.genList, 
+                userLists: plan.userLists, 
+                splatSet: true,
+                backupPlan: {...plan},
+                badUrl: true});
         }
         case 'ADD_SELECTOR_MEAL':{
             const meals = [...state.meals];

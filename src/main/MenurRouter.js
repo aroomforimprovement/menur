@@ -176,7 +176,6 @@ const MenurRouter = () => {
         }
     });
 
-
     return (
         <div>
             {state && state.isSet ? 
@@ -187,7 +186,7 @@ const MenurRouter = () => {
                         <Header />
                         <ToastRack />
                         <Routes>
-                            <Route path='/planner/:id/:edit' history={history} element={isMobile ? <PlannerMobile edit={true} /> : <Planner edit={true}/>} />
+                            <Route path='/planner/:id/:edit' history={history} element={state.badUrl ? <Navigate to="/planner" replace /> :isMobile ? <PlannerMobile edit={true} /> : <Planner edit={true}/>} />
                             <Route path='/planner' history={history} element={isMobile ? <PlannerMobile edit={false}/> : <Planner edit={false}/>} />
                             <Route path='/account' history={history} element={<Account />} />
                             <Route path='/help' history={history} element={<Help />} />
