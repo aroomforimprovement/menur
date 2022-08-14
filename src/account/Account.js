@@ -60,7 +60,7 @@ const Account = () => {
                 </div>
             );
     }) : <div>No saved mealplans here.</div>;
-
+    
     const meals = state && state.meals && state.meals.length > 0
     ? state.meals.map((meal, i) => {
         return(

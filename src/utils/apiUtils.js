@@ -1,8 +1,13 @@
+import { getNewId } from './objUtils';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
 
+
 export const saveMeal = async (meal, user, edit, toast) => {
+    if(meal.id.length <= 4){
+        meal.id = getNewId();
+    }
     const body = {
         userid: user.userid,
         meal: meal
