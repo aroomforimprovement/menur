@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { Loading } from '../../common/Loading';
-import { useMainContext } from '../../main/MenurRouter';
+import { Loading } from '../../../common/Loading';
+import { useMainContext } from '../../../main/MenurRouter';
 import toast from 'buttoned-toaster';
+import { ResendVerification } from './ResendVerfication';
 
 export const Settings = () => {
     const apiUrl = process.env.REACT_APP_API_URL;
@@ -216,6 +217,7 @@ export const Settings = () => {
             <DisplayName/>
             <DefaultServings/>
             <ResetChoices />
+            <ResendVerification user={state.user}/>
         </div>
     );
 }

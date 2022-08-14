@@ -5,7 +5,7 @@ import { accountReducer } from './accountReducer';
 import { Form } from 'react-bootstrap';
 import { Plan } from './components/Plan';
 import { Meal } from './components/Meal';
-import { Settings } from './components/Settings';
+import { Settings } from './components/settings/Settings';
 
 const AccountContext = createContext({showSpices: false});
 
