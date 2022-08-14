@@ -13,9 +13,8 @@ import toast, { ToastRack } from 'buttoned-toaster';
 import Cookies from 'cookies-js';
 import { isMobile } from 'react-device-detect';
 import { PlannerMobile } from '../mobile/planner/PlannerMobile';
+import { getAccountInfo } from '../utils/apiUtils';
 
-let apiUrl = process.env.REACT_APP_API_URL;
-let proxy = process.env.REACT_APP_PROXY_URL;
 
 const MainContext = createContext({...INIT_STATE});
 
@@ -63,62 +62,42 @@ const MenurRouter = () => {
     },[getAccessTokenSilently, isAuthenticated, state.user]);
 
     useEffect(() => {
-        const getAccountInfo = async (access) => {
-            const body = {
-                userid: state.user.userid, 
-                username: state.user.username,
-                email: state.user.email
-            }
-            
-            return await fetch(`${proxy}${apiUrl}app/login`, {
-                method: 'POST',
-                body: JSON.stringify(body),
-                mode: 'cors',
-                headers: {
-                    Authorization: `Bearer ${access}`,
-                    'Content-Type': 'application/json'
-                },
-                redirect: 'follow'
-            }).then(response => {
-                if(response.ok){
-                    return response.json();
-                }
-            }, error => {
-                console.error("error fetching account info: ");
-                
-            }).catch(err => console.error(err))
-        }
         const setInfo = async () => {
-            await getAccountInfo(state.user.access)
-                .then((result) => {
-                    if(result){
-                        result.isSet = true;
-                        dispatch({
-                            type: 'SET_ACCOUNT_INFO',
-                            data: result
+            await getAccountInfo({
+                userid: user.sub.replace('auth0|', ''),
+                username: user.nickname,
+                email: user.email,
+                access: state.user.access
+            })
+            .then((result) => {
+                if(result){
+                    result.isSet = true;
+                    dispatch({
+                        type: 'SET_ACCOUNT_INFO',
+                        data: result
+                    });
+                    toast.success(
+                        {
+                            toastId: "AccountReady",
+                            message: "Your account info is ready"
+                        }
+                    );
+                }else{
+                    dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
+                    toast.error(
+                        {
+                            toastId: "AccountReady",
+                            message: "You are not logged in"
                         });
-                        toast.success(
-                            {
-                                toastId: "AccountReady",
-                                message: "Your account info is ready"
-                            }
-                        );
-                    }else{
-                        dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
-                        toast.error(
-                            {
-                                toastId: "AccountReady",
-                                message: "You are not logged in"
-                            });
-                    }  
+                }  
             });
         }
-        if(isAuthenticated && state.user && state.user.access && !state.isSet){
+        if(isAuthenticated && user && state?.user?.access && !state?.isSet){
             setInfo();
-        }else if(!isLoading && !isAuthenticated && !state.user){
+        }else if(!isLoading && !isAuthenticated && !user){
             dispatch({type: 'SET_ACCOUNT_INFO', data: {isSet: true}});
         }
-    },[isLoading, isAuthenticated, state.user, state.isSet]);
+    },[isLoading, isAuthenticated, user, state?.user?.access, state.isSet]);
 
     useEffect(() => {
         const dismissToast = (id) => {

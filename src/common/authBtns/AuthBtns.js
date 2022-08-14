@@ -1,6 +1,8 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useMainContext } from '../../main/MenurRouter';
+import { Navigate } from 'react-router-dom';
+
 
 export const LoginBtn = ({size}) => {
     const classes = `butt butt-alternate ${size} m-1`;
@@ -9,14 +11,14 @@ export const LoginBtn = ({size}) => {
 
     const loginPop = async () => {
         loginWithPopup().then(() => {
-            window.location.href = '/planner';
-        });
+            <Navigate to='/planner' />;
+        });        
     }
     return <button 
                 onClick={() => loginPop()}
                 type='button' 
                 className={classes}
-                >Login</button>
+            >Login</button>
 }
 
 export const LogoutBtn = ({size}) => {
@@ -40,15 +42,18 @@ export const LogoutBtn = ({size}) => {
 export const SignupBtn = ({size}) => {
     const classes = `butt butt-good ${size} m-1`;
     const { loginWithPopup } = useAuth0();
+
+    const signupWithPop = () => {
+        loginWithPopup(
+            {
+                screen_hint: 'signup'
+            }
+        )
+    }
     return <button
-            onClick={() => loginWithPopup(
-                {
-                    screen_hint: 'signup'
-                }
-            )}
+            onClick={() => signupWithPop()}
             type='button'
             className={classes}
             >Signup</button>
-
 }
 

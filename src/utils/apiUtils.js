@@ -3,6 +3,30 @@ import { getNewId } from './objUtils';
 const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
 
+export const getAccountInfo = async (user) => {
+    const body = {
+        userid: user.userid, 
+        username: user.username,
+        email: user.email
+    }
+    return await fetch(`${proxy}${apiUrl}app/login`, {
+        method: 'POST',
+        body: JSON.stringify(body),
+        mode: 'cors',
+        headers: {
+            Authorization: `Bearer ${user.access}`,
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow'
+    }).then(response => {
+        if(response.ok){
+            return response.json();
+        }
+    }, error => {
+        console.error("error fetching account info: ");
+        
+    }).catch(err => console.error(err))
+}
 
 export const saveMeal = async (meal, user, edit, toast) => {
     if(meal.id.length <= 4){
@@ -22,7 +46,6 @@ export const saveMeal = async (meal, user, edit, toast) => {
     }).then(response => {
         if(response.ok){
             return body.meal;
-            
         }else{
             console.error(`response not ok`);
             toast.error("Error saving the meal");

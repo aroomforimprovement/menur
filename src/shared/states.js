@@ -59,7 +59,8 @@ export const INIT_STATE = {
         list: [],
         heading: '',
         index: -1
-    }
+    },
+    badUrl: false,
 }
 
 export const getClearedMealplan = () => {

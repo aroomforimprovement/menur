@@ -33,7 +33,7 @@ export const Header = () => {
                                 </LinkContainer>
                             </Col>
                             <Col>
-                                {!state ? <Loading /> : state.user && state.user.isAuth 
+                                {!state ? <Loading /> : state.user && state.user.access
                                 ? <LinkContainer to='/account'>
                                     <Nav.Link className='nav-link m-1'>
                                         Account
@@ -59,17 +59,17 @@ export const Header = () => {
                                     <Nav navbar>
                                         <div className={`col`} >
                                             <Navbar.Text className='nav-item' >
-                                                {!state || (state && state.user && state.user.isAuth) ? null : <LoginBtn size=' mt-2 px-3 ' />}
+                                                {!state || (state && state.user && state.user.access) ? null : <LoginBtn size=' mt-2 px-3 ' />}
                                             </Navbar.Text>
                                         </div>
                                         <div className='col'>
                                             <Navbar.Text className='nav-item'>
-                                                {!state || (state && state.user && state.user.isAuth) ? <LogoutBtn size=' mt-2 px-3 ' /> : null}
+                                                {!state || (state && state.user && state.user.access) ? <LogoutBtn size=' mt-2 px-3 ' /> : null}
                                             </Navbar.Text>
                                         </div>
                                         <div className='col' >
                                             <Navbar.Text className='nav-item'>
-                                                {!state || (state && state.user && state.user.isAuth) ? null : <SignupBtn size=' mt-2 px-3 ' />}
+                                                {!state || (state && state.user && state.user.access) ? null : <SignupBtn size=' mt-2 px-3 ' />}
                                             </Navbar.Text>
                                         </div>
                                     </Nav>

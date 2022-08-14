@@ -481,6 +481,7 @@ export const reducer = (state, action) => {
             let plan = plans.find(p => {
                 return p.id === action.data;
             })
+            const badUrl = plan ? false : true;
             plan = plan ? plan : getFullClearedMealplan();
             return({...state, 
                 mealplan: plan.mealplan , 
@@ -489,7 +490,7 @@ export const reducer = (state, action) => {
                 userLists: plan.userLists, 
                 splatSet: true,
                 backupPlan: {...plan},
-                badUrl: true});
+                badUrl: badUrl});
         }
         case 'ADD_SELECTOR_MEAL':{
             const meals = [...state.meals];
