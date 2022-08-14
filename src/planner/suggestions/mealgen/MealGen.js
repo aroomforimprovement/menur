@@ -100,6 +100,14 @@ export const MealGen = ({meal, edit, open}) => {
             toast.warn("Name your meal to save it");
         }
     }
+    const [saved, setSaved] = useState(false);
+    const indicateSaved = () => {
+        setSaved(true);
+        setTimeout(() => {
+            setSaved(false);
+        }, 1000);
+    }
+
     const handleSave = async (e) => {
         e.preventDefault();
         const mealForSaving = getMealForSaving();
@@ -115,9 +123,10 @@ export const MealGen = ({meal, edit, open}) => {
                     return meal.id;
                 });
                 edit ? console.log() : addSuggestion(mealForSaving);
-                setName('');
-                setIng([]);
+                edit ? console.log() : setName('');
+                edit ? console.log() : setIng([]);
             }
+            indicateSaved();
         }
 
         const dismiss = (id) => {
@@ -363,7 +372,9 @@ export const MealGen = ({meal, edit, open}) => {
                             onClick={handleAdd}>Add meal to suggestions</button>}
                         {state && state.user && state.user.isAuth ?
                             <button className='butt butt-good col col-12 mx-1 mt-1 mb-3'
-                            onClick={handleSave}>Save meal to account</button> : <div></div>
+                            onClick={handleSave}>
+                                {saved ? '✓' : 'Save meal to account'}
+                            </button> : <div></div>
                         }
                     </div>}
                 </div>
