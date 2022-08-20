@@ -5,6 +5,7 @@ import toast from 'buttoned-toaster';
 import { useParams } from 'react-router';
 import { useMainContext } from '../../main/MenurRouter';
 import { Form, Modal } from 'react-bootstrap';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 let proxy = process.env.REACT_APP_PROXY_URL;
@@ -21,13 +22,16 @@ export const SaveToAccount = () => {
     const params = useParams();
     const mealPlanId = params.id;
     const isEdit = params.edit;
+    const { user } = useAuth0();
     
     const saveDataToAccount = async () => {
-        if(state && state.user && state.user.isAuth){
+        console.log("saveDataToAccount");
+        if(state && state.user && state.user.access && user && user.sub){
+            console.log("user is auth")
             const name = mealplanName ? mealplanName : new Date().toString();
             const id = isEdit > 0 ? mealPlanId : getNewId();
             const body = {
-                userid: state.user.userid,
+                userid: user.sub.replace('auth0|', ''),
                 mealplan:{
                     id: id,
                     name: name,
@@ -71,6 +75,8 @@ export const SaveToAccount = () => {
                 setIsSaveFailed(false);
                 toast.error(`Error saving mealplan, ${name}`);
             });
+        }else{
+            console.log("no auth user");
         }
     }
 

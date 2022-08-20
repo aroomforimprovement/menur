@@ -34,6 +34,7 @@ const MenurRouter = () => {
         dispatch({type: 'COOKIES_APPROVED', data: true});
         toast.dismiss(id)
     }
+
     useEffect(() => {
         if(isLoading && state.isSet){
             dispatch({type: 'UNSET'});
