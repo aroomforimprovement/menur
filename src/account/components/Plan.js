@@ -97,7 +97,9 @@ export const Plan = ({plan, isLandscape}) => {
                 ]
             }
         )
+    }
 
+    const handleViewPlan = () => {
         
     }
 
@@ -179,6 +181,10 @@ export const Plan = ({plan, isLandscape}) => {
                 <button className='butt butt-outline-standard open-plan shadow shadow-sm col col-2 m-auto'
                     onClick={handleOpenPlan}>
                     <span className='fa fa-lg fa-edit'></span>
+                </button>
+                <button className='butt butt-outline-alter shadow shadow-sm col col-2 m-auto'
+                    onClick={handleViewPlan}>
+                    <span className='fa fa-lg fa-eye'></span>
                 </button>
                 <button className='butt butt-good open-plan shadow shadow-sm col col-2 m-auto'
                     onClick={handleDownload}>
