@@ -85,9 +85,9 @@ export const Settings = () => {
                                 <Row>
                                 <Form onSubmit={handleUpdate} hidden={isEditHidden} >
                                     <Row >
-                                        <Col xs={6} md={8} lg={8} className='mx-0'><Form.Control size='sm' type='text' name='displayName' id='displayName' defaultValue={state.user.username} /></Col>
-                                        <Col xs={3} md={2} lg={1} className='mx-0'><Button size='sm' variant='secondary' onClick={handleEdit}>Cancel</Button></Col>
-                                        <Col xs={3} md={2} lg={1} className='mx-0'><Button size='sm' variant='primary' type='submit' >Save</Button></Col>
+                                        <div className='col col-sm-6 col-md-8 mx-auto'><Form.Control size='sm' type='text' name='displayName' id='displayName' defaultValue={state.user.username} /></div>
+                                        <div className='col col-sm-4 col-md-2 mx-auto'><button className='butt butt-alter border shadow shade' onClick={handleEdit} width='100%'>Cancel</button></div>
+                                        <div className='col col-sm-4 col-md-2 mx-auto'><button className='butt butt-standard border shadow shade' type='submit' width='100%'>Save</button></div>
                                     </Row>
                                 </Form>
                                 </Row>
