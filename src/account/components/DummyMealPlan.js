@@ -10,7 +10,7 @@ export const DummyMealPlan = ({mealplan, name}) => {
             <div className='col col-12'>
                 <div className='row mt-2 ms-1'>
                     
-                    <div className='col col-9'><small>{name}</small></div>
+                    <div className='col col-9'><h6>{name}</h6></div>
                 </div>
             </div>
             <MealPlanOverview mealplan={mealplan} />
