@@ -7,7 +7,7 @@ import { days, mealtimes } from '../../shared/states';
 import { isMobile } from 'react-device-detect';
 import ReactTooltip from 'react-tooltip';
 
-export const MealPlan = ({unsaved}) => {
+export const MealPlan = ({unsaved, mealplan}) => {
 
     const { state, dispatch } = useMainContext();
 

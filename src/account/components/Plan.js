@@ -100,7 +100,7 @@ export const Plan = ({plan, isLandscape}) => {
     }
 
     const handleViewPlan = () => {
-        
+        dispatch({type: 'VIEW_PLAN', data: plan});
     }
 
     useEffect(() => {

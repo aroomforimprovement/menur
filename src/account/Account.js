@@ -6,6 +6,7 @@ import { Form } from 'react-bootstrap';
 import { Plan } from './components/Plan';
 import { Meal } from './components/Meal';
 import { Settings } from './components/settings/Settings';
+import { DummyMealPlan } from './components/DummyMealPlan';
 
 const AccountContext = createContext({showSpices: false});
 
@@ -39,6 +40,9 @@ const Account = () => {
         accountDispatch({type: 'SHOW_SPICES', data: show});
     }
 
+    const toggleMealplanViewerClosed = () => {
+        dispatch({type: 'VIEW_PLAN', data: false});
+    }
     
     const ShowSpices = () => {
         return(<div className='row mb-4'>    
@@ -77,41 +81,58 @@ const Account = () => {
                 <AccountContext.Consumer>
                     {() => (
                         <div>
-                            <div className='row account-heading mt-2'>
-                                <h3>{state.user.username}</h3>
-                            </div>
-                            <div className='row account-plans my-4 px-2 shadow shadow-lg border border-light '>
-                                <div className='account-plans-header text-center p-4'
-                                    onClick={handleShowPlans}>
-                                    <h5>Meal Plans:</h5>
+                            <div hidden={state.viewPlan}>
+                                <div className='row account-heading mt-2'>
+                                    <h3>{state.user.username}</h3>
                                 </div>
-                                <div className='container' hidden={state.hidePlans}>
-                                    <div className='row mb-4 plan-row'>{plans}</div>
-                                </div>
-                            </div>
-                            <div className='row account-meals my-4 px-2 shadow shadow-lg border border-light'>
-                                <div className='col col-12'>
-                                    <div className='account-meals-header p-4 text-center'
-                                        onClick={handleShowMeals}>
-                                        <h5>Meals:</h5>
+                                <div className='row account-plans my-4 px-2 shadow shadow-lg border border-light '>
+                                    <div className='account-plans-header text-center p-4'
+                                        onClick={handleShowPlans}>
+                                        <h5>Meal Plans:</h5>
                                     </div>
-                                    <div className='container' hidden={state.hideMeals}>
-                                        <ShowSpices />
-                                        <div className='row mb-4 mt-4'>{meals}</div>
-                                        <ShowSpices />
+                                    <div className='container' hidden={state.hidePlans}>
+                                        <div className='row mb-4 plan-row'>{plans}</div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='row account-plans my-4 px-2 shadow shadow-lg border border-light '>
-                                <div className='account-plans-header text-center p-4'
-                                    onClick={handleShowSettings}>
-                                    <h5>Settings:</h5>
+                                <div className='row account-meals my-4 px-2 shadow shadow-lg border border-light'>
+                                    <div className='col col-12'>
+                                        <div className='account-meals-header p-4 text-center'
+                                            onClick={handleShowMeals}>
+                                            <h5>Meals:</h5>
+                                        </div>
+                                        <div className='container' hidden={state.hideMeals}>
+                                            <ShowSpices />
+                                            <div className='row mb-4 mt-4'>{meals}</div>
+                                            <ShowSpices />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div hidden={state.hideSettings}>
-                                    <Settings />
+                                <div className='row account-plans my-4 px-2 shadow shadow-lg border border-light '>
+                                    <div className='account-plans-header text-center p-4'
+                                        onClick={handleShowSettings}>
+                                        <h5>Settings:</h5>
+                                    </div>
+                                    <div hidden={state.hideSettings}>
+                                        <Settings />
+                                    </div>
                                 </div>
                             </div>
-                        </div>            
+                            {state.viewPlan 
+                            ? <div>
+                                <div onClick={toggleMealplanViewerClosed} 
+                                    className={`clickable mt-2 ms-2 p-3 border 
+                                        rounded rounded-circle shadow 
+                                        fa fa-chevron-left`}>
+                                    </div>
+                                <DummyMealPlan 
+                                    mealplan={state.viewPlan.mealplan} 
+                                    name={state.viewPlan.name}/>
+                              </div>
+                            : <div></div>}
+                            <div hidden={!state.viewPlan}>
+
+                            </div>
+                        </div>          
                     )}
                 </AccountContext.Consumer>
             </AccountContext.Provider>

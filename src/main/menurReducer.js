@@ -574,6 +574,9 @@ export const reducer = (state, action) => {
                 }
             })
         }
+        case 'VIEW_PLAN':{
+            return({...state, viewPlan: action.data});
+        }
         default:{
             console.error("Reached default case - menurReducer.js");
             return state;
