@@ -73,7 +73,7 @@ export const MealPlanSlot = ({mealtime, day}) => {
         const hasMeal = (meal) => {
             if(meals && meal.id){
               for(let i = 0; i < meals.length; i++){
-                if(meals[i].id && meals[i].id === meal.id){
+                if(meals[i].id && meal.id.indexOf(meals[i].id) > -1){
                   return true;
                 }
               }

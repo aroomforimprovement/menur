@@ -126,26 +126,27 @@ export const MealPlan = ({unsaved, mealplan}) => {
     return(
         <div className={`mealplan-${state.isLandscape ? 'ls' : 'pt'} `}>
             <div className='mt-2'>
-            <div className='float-center'>
+                <div className='float-center'>
                     <h6 style={{display: 'inline'}}>
                         {state.backupPlan && state.backupPlan.name 
                         && window.location.href.toString().indexOf('/0') === window.location.href.toString().length-2
                         ? `Copy of ${state.backupPlan.name}` 
                         : state.backupPlan && state.backupPlan.name 
                         ? state.backupPlan.name 
-                        : undefined}</h6>
-                    
+                        : undefined}
+                    </h6>        
                     <small 
                         className='fa fa-save float-end' 
                         style={{color:unsaved ? 'red' : 'green', marginLeft: '2rem'}}
                         data-tip={unsaved ? "Unsaved Changes" : "No unsaved changes"}></small> 
                 </div>
-            {isMobile 
-                ? <PortraitPlan /> 
-                : state.isLandscape 
-                    ? <LandscapePlan /> 
-                    : <PortraitPlan />
-            }
+                {
+                    isMobile 
+                    ? <PortraitPlan /> 
+                    : state.isLandscape 
+                        ? <LandscapePlan /> 
+                        : <PortraitPlan />
+                }
             </div>
             <ReactTooltip type='info' delayShow={500} data-effect='float'
                 place='right'/>

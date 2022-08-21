@@ -30,7 +30,9 @@ export const getAccountInfo = async (user) => {
 
 export const saveMeal = async (meal, user, edit, toast) => {
     if(meal.id.length <= 4){
-        meal.id = getNewId();
+        const stockId = meal.id;
+        let newId = getNewId();
+        meal.id = newId.replace(newId.substring(0, 4), stockId);
     }
     const body = {
         userid: user.userid,
