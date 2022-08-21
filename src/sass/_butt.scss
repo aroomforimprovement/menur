@@ -26,32 +26,41 @@
   }
   
   .butt-standard-outline{
-    background-color: theme.$neutral;
-    border: 2px solid theme.$action-border;
-    color: theme.$action-text;
+    background-color: theme.$bg-neutral;
+    border: 1px solid theme.$action-border;
   }
   .butt-alternate-outline{
-    background-color: theme.$neutral;
-    border: 2px solid theme.$bg-action;
+    background-color: theme.$bg-neutral;
+    border: 1px solid theme.$bg-action;
   }
   .butt-good-outline{
-    background-color: theme.$neutral;
-    border: 2px solid theme.$good;
+    background-color: theme.$bg-neutral;
+    border: 1px solid theme.$good;
   }
   .butt-warn-outline{
-    background-color: theme.$neutral;
-    border: 2px solid theme.$warn;
+    background-color: theme.$bg-neutral;
+    border: 1px solid theme.$warn;
   }
   .butt-bad-outline{
-    background-color: theme.$neutral;
-    border: 2px solid theme.$err;
+    background-color: theme.$bg-neutral;
+    border: 1px solid theme.$err;
+  }
+  .butt-attn-outline{
+    background-color: theme.$bg-neutral;
+    color: theme.$attn;
+    border: 1px solid theme.$attn;
+  }
+
+  .butt-attn{
+    background-color: theme.$attn;
+    color: white;
+    border-color: theme.$attn;
   }
   .butt-good{
     background-color: theme.$good;
     color:white;
     border-color: theme.$good;
   }
-  
   
   .butt-warn{
     background-color: theme.$warn;

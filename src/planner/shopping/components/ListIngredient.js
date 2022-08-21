@@ -49,29 +49,30 @@ export const ListIngredient = ({ingredient, index}) => {
                 onDragEnter={handleEnter}
                 onDragLeave={handleExit}
                 onHit={handleReorder} >
-            <div className={`btn btn-sm fa fa-caret-left mx-1 border mb-2 pt-2`}
+            <div className={`butt butt-alternate-outline fa fa-caret-left mx-1 py-1 px-2`}
                 onClick={() => decrement(ingredient)}>{' '}</div>
             <ListDraggable 
-                dragData={ingredient} />        
-            <div className='btn btn-sm fa fa-caret-right mx-1 border mb-2 pt-2'
+                dragData={ingredient} /> 
+            <div style={{
+                    display:'inline', 
+                    textAlign:'end', 
+                    marginRight:'0px',
+                    color:'green'
+                }} 
+                className={`highlight-ingredient`}>
+                <button className={`butt butt-attn-outline rounded rounded-circle mx-1 py-0 mb-1 clickable
+                    ${state.highlightedIngredient === ingredient.name 
+                    ? 'highlighted' : ''}`}
+                    data-tip="Click to highlight meals that use this"
+                    onClick={() => {handleHighlightIngredient(ingredient.name)}}>
+                    <small>?</small>
+                </button>
+            </div>       
+            <div className='butt butt-alternate-outline fa fa-caret-right me-5 border py-1 px-2 float-end'
                 onClick={() => increment(ingredient)}>{' '}</div>
-                <div style={{
-                        display:'inline', 
-                        textAlign:'end', 
-                        marginRight:'0px',
-                        color:'green'
-                    }} className={`highlight-ingredient`}>
-            <button className={`btn btn-sm rounded rounded-circle border mx-1 py-0 mb-1 clickable
-                ${state.highlightedIngredient === ingredient.name 
-                ? 'highlighted' : ''}`}
-                data-tip="Click to highlight meals that use this"
-                onClick={() => {handleHighlightIngredient(ingredient.name)}}>
-                <small>?</small>
-            </button>
-            </div>
             <button type='button' className='btn-close meal-remove' 
                 onClick={() => remove(ingredient)} 
-                style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} 
+                //style={{ width:'3px', height:'3px', top:'2px', right:'2px' }} 
                 aria-label='Remove'>
             </button> 
             <ReactTooltip type='info' delayShow={500} data-effect='float'
