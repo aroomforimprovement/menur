@@ -67,7 +67,7 @@ export const Meal = ({meal, showSpices, index}) => {
     return(
         <div className='container dummy-meal border shadow-sm m-0 p-0'
             style={{zIndex:1000-index}}>
-            <div onClick={handleEditMeal} className='mealtime-click fa fa-eye float-start'>
+            <div onClick={handleEditMeal} className='mealtime-click fa fa-eye'>
             </div> 
             <div className='row meal-row m-0 px-0'>
                 <div className='meal-heading'>

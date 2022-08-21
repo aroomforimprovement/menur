@@ -128,12 +128,16 @@
   opacity: 0.8;
   vertical-align: bottom;
   position: relative;
-  border-radius:3em;
+  border-radius:1em;
   border: 2px solid black;
 }
 
 .mealtime:hover{
   opacity:1;
+ }
+
+ .dummy-meal{
+  position:relative;
  }
 
 .mealtime-text{
@@ -149,12 +153,15 @@
 }
 
 .mealtime-click{
-  position:relative;
+  position:absolute;
   cursor: pointer;
   font-size: xx-small;
-  color: theme.$action;
+  color: theme.$attn;
   border: 1px solid theme.$neutral;
   border-radius: 50%;
+  top:0px;
+  left:0px;
+  z-index:1000;
 }
 
 .meal-remove{
@@ -178,6 +185,7 @@
 }
 
  .expand-ingredients{
+   color: theme.$attn;
    position:absolute;
    bottom:0px;
    left:45%;
