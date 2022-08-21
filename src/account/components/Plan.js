@@ -173,20 +173,20 @@ export const Plan = ({plan, isLandscape}) => {
     return(
         <div className='container m-0 p-0 col col-12'>
             <DummyMealPlan mealplan={plan.mealplan} name={plan.name} leftovers={plan.mealplan.leftovers}/>
-            <div className='row plan-controls py-2 col-10 m-auto'>
-                <button className='butt butt-warn shadow shadow-sm col col-2 m-auto'
+            <div className='row plan-controls pt-2 col-10 m-auto'>
+                <button className='butt butt-warn-outline shadow shadow-sm col col-2 m-auto'
                     onClick={handleDeletePlan}>
                     <span className='fa fa-lg fa-trash'></span>
                 </button>
-                <button className='butt butt-outline-standard open-plan shadow shadow-sm col col-2 m-auto'
+                <button className='butt butt-standard-outline open-plan shadow shadow-sm col col-2 m-auto'
                     onClick={handleOpenPlan}>
                     <span className='fa fa-lg fa-edit'></span>
                 </button>
-                <button className='butt butt-outline-alter shadow shadow-sm col col-2 m-auto'
+                <button className='butt butt-alternate-outline shadow shadow-sm col col-2 m-auto'
                     onClick={handleViewPlan}>
                     <span className='fa fa-lg fa-eye'></span>
                 </button>
-                <button className='butt butt-good open-plan shadow shadow-sm col col-2 m-auto'
+                <button className='butt butt-good-outline open-plan shadow shadow-sm col col-2 m-auto'
                     onClick={handleDownload}>
                     <span className='fa fa-lg fa-download'></span>        
                 </button>
