@@ -45,7 +45,7 @@ export const MEALS = [{
             "score": "1"
         },
         {
-            "name": "Oil",
+            "name": "Olive oil",
             "type": "cond",
             "qty": "1",
             "score": "1"
@@ -82,7 +82,15 @@ export const MEALS = [{
         }
 
     ],
-    "steps":[]
+    "steps":[
+            `Heat olive oil in a frying pan.
+            Add chilli and garlic.`,
+            `After a minute, add canned tomatoes.`,
+            `Simmer for about 10 minutes, until sauce has thickened.`,
+            `Add salt to taste.`,
+            `Boil to taste pasta in large saucepan of salted water.`,
+            `Drain the pasta and add the tomato sauce.`
+    ]
 },
 {
     "id": "1002",
