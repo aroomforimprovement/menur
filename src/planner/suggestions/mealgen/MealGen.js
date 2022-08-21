@@ -261,10 +261,8 @@ export const MealGen = ({meal, edit, open}) => {
         );
     }) : <div></div>;
 
-    return(
-        <div className='container meal-gen shadow shadow-lg p-0 mt-3 mb-3'>
-            <div hidden={true} >{edit ? '' : isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-right'}</div>
-            <div className='col col-12 meal-gen-toggle border border-1 rounded-3'>
+    const MealGenHeader = () => {
+        return(<div className='col col-12 meal-gen-toggle border border-1 rounded-3'>
                 <div className={`${edit ? 'not-butt' : 'butt butt-standard meal-gen-toggle-btn'} col col-12 pt-2`}
                     onClick={edit ? ()=>{} : handleShowForm} text={edit ? isViewer ? `Viewing ${meal.name}` : `Editing ${meal.name}` : `Create a new meal`}>
                         <div className={`fa fa-lg ${showFormClasses} ms-2`}>{' '}</div>
@@ -277,51 +275,118 @@ export const MealGen = ({meal, edit, open}) => {
                             </h6>
                         
                 </div>
-            </div>
+            </div>)
+    }
+
+    const MealGenNameField = () => {
+        return(<Row>
+                <Col xs={edit ? 10 : 12}>
+                    {isViewer 
+                    ? <h5 className={`p-2 pt-4`}>{name}</h5>
+                    : <div>
+                        <Form.Label className='mb-1 mt-2'>
+                            <h6>Meal name:</h6>
+                        </Form.Label>
+                        <InputGroup size='sm'>
+                            <FormControl 
+                                type='text' 
+                                id='name' 
+                                placeholder='Meal name'
+                                onChange={handleNameChange} 
+                                style={name.toLowerCase().indexOf('leftover') > -1 ? {borderColor: 'red'}: {}}
+                                value={name}></FormControl>
+                        </InputGroup>
+                        <small style={{color:'red'}}>{name.toLowerCase().indexOf('leftover') > -1 
+                            ? "Sorry, you can't use the word 'leftover' in a meal name" : ''}</small>
+                    </div>}
+                </Col>
+                {edit ? <Col xs={1}>
+                    <button className={`butt butt-alternate fa fa-lg rounded rounded-circle
+                        p-3 mt-3 ${isViewer ? 'fa-edit' : 'fa-eye'}`}
+                        onClick={() => {setIsViewer(!isViewer)}}></button>
+                </Col> : <div></div>}
+            </Row>)
+    }
+
+    const MealGenServingsField = () => {
+        return (<div className={`row mt-${isViewer ? '0' : '2'}`}>
+                    <div className='col col-10'>
+                        {isViewer 
+                        ? <small>{`${state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings ? parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - parseInt(state.defaultServings) : parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - DEFAULT_SERVINGS} leftovers`}</small>
+                        : <InputGroup size='sm' >
+                            <Form.Label size='sm' htmlFor='servings' className='col col-8'>
+                                <strong>Servings:</strong>
+                            </Form.Label>
+                            <FormControl type='number' id='servings' defaultValue={DEFAULT_SERVINGS}
+                                onChange={handleServingsChange} size="sm"
+                                className='col col-5 ps-2 w-25'></FormControl>
+                            <small>{`${state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings ? parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - parseInt(state.defaultServings) : parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - DEFAULT_SERVINGS} leftovers`}</small>
+                        </InputGroup>}
+                    </div>
+                </div>)
+    }
+
+    const MealGenStepsField = () => {
+        return (<div>
+                    <Form.Label size='sm' className='mt-2'>
+                        <Row >
+                            <Col xs={11}>
+                                <h6 style={{display:'inline'}} className='me-1'>Steps:</h6>                                
+                            </Col>
+                            {isViewer ? <div></div>
+                            : <Col xs={1}>
+                                <button className={`butt butt-standard rounded rounded-circle
+                                    fa ${ hideSteps ? 'fa-eye' : 'fa-eye-slash'}`}
+                                    onClick={() => {setHideSteps(!hideSteps)}}
+                                ></button>
+                            </Col>}
+                        </Row>
+                            {isViewer ? <div></div>
+                            : <small style={{fontSize: 'small', fontStyle:'italic'}}>
+                                Optionally add some notes on the steps to make your meal
+                            </small>}
+                        </Form.Label>
+                    {hideSteps && !isViewer
+                    ? <div></div> 
+                    : <div>
+                        <div id='step-slot'>
+                            {stepFields}
+                        </div>
+                        {isViewer ? <div></div> 
+                        :<StepField i={steps.length} />}
+                    </div>}
+                </div>)
+    }
+
+    const MealGenSaveBtns = () => {
+        return (<div>{
+                    isViewer 
+                    ? <div></div> 
+                    : <div className='row ing-row pb-3'>
+                        <div className='col col-3'></div>                       
+                        {edit 
+                        ? <div></div> 
+                        : <button className='butt butt-standard col col-12 mx-1 mt-3'
+                            onClick={handleAdd}>Add meal to suggestions</button>}
+                        {state && state.user && state.user.isAuth 
+                        ? <button className='butt butt-good col col-12 mx-1 mt-1 mb-3'
+                            onClick={handleSave}>
+                                {saved ? '✓' : 'Save meal to account'}
+                        </button> 
+                        : <div></div>
+                        }
+                        </div>
+                }</div>)
+    }
+
+    return(
+        <div className='container meal-gen shadow shadow-lg p-0 mt-3 mb-3'>
+            <div hidden={true} >{edit ? '' : isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-right'}</div>
+            <MealGenHeader />
             <div hidden={!isFormVisible} className={isFormVisible ? 'meal-gen-in' : 'meal-gen-out'} > {/*hidden={!isFormVisible} >*/}
                 <div className='container meal-gen-container'>
-                    <Row>
-                        <Col xs={edit ? 10 : 12}>
-                            {isViewer 
-                            ? <h5 className={`p-2 pt-4`}>{name}</h5>
-                            : <div>
-                                <Form.Label className='mb-1 mt-2'>
-                                    <h6>Meal name:</h6>
-                                </Form.Label>
-                                <InputGroup size='sm'>
-                                    <FormControl 
-                                        type='text' 
-                                        id='name' 
-                                        placeholder='Meal name'
-                                        onChange={handleNameChange} 
-                                        style={name.toLowerCase().indexOf('leftover') > -1 ? {borderColor: 'red'}: {}}
-                                        value={name}></FormControl>
-                                </InputGroup>
-                                <small style={{color:'red'}}>{name.toLowerCase().indexOf('leftover') > -1 
-                                    ? "Sorry, you can't use the word 'leftover' in a meal name" : ''}</small>
-                            </div>}
-                        </Col>
-                        {edit ? <Col xs={1}>
-                            <button className={`butt butt-alternate fa fa-lg rounded rounded-circle
-                                p-3 mt-3 ${isViewer ? 'fa-edit' : 'fa-eye'}`}
-                                onClick={() => {setIsViewer(!isViewer)}}></button>
-                        </Col> : <div></div>}
-                    </Row>
-                    <div className={`row mt-${isViewer ? '0' : '2'}`}>
-                        <div className='col col-10'>
-                            {isViewer 
-                            ? <small>{`${state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings ? parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - parseInt(state.defaultServings) : parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - DEFAULT_SERVINGS} leftovers`}</small>
-                            : <InputGroup size='sm' >
-                                <Form.Label size='sm' htmlFor='servings' className='col col-8'>
-                                    <strong>Servings:</strong>
-                                </Form.Label>
-                                <FormControl type='number' id='servings' defaultValue={DEFAULT_SERVINGS}
-                                    onChange={handleServingsChange} size="sm"
-                                    className='col col-5 ps-2 w-25'></FormControl>
-                                <small>{`${state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings ? parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - parseInt(state.defaultServings) : parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - DEFAULT_SERVINGS} leftovers`}</small>
-                            </InputGroup>}
-                        </div>
-                    </div>
+                    <MealGenNameField />
+                    <MealGenServingsField/>
                     <div>
                         <Form.Label size='sm' className='mt-2'>
                             <h6 style={{display:'inline'}} className='me-1'>Ingredients:</h6>
@@ -336,47 +401,8 @@ export const MealGen = ({meal, edit, open}) => {
                         ? <div></div> 
                         : <IngredientField i={ingredients.length} />}
                     </div>    
-                    <div>
-                        <Form.Label size='sm' className='mt-2'>
-                            <Row >
-                                <Col xs={11}>
-                                    <h6 style={{display:'inline'}} className='me-1'>Steps:</h6>                                
-                                </Col>
-                                {isViewer ? <div></div>
-                                : <Col xs={1}>
-                                    <button className={`butt butt-standard rounded rounded-circle
-                                        fa ${ hideSteps ? 'fa-eye' : 'fa-eye-slash'}`}
-                                        onClick={() => {setHideSteps(!hideSteps)}}
-                                    ></button>
-                                </Col>}
-                            </Row>
-                                {isViewer ? <div></div>
-                                : <small style={{fontSize: 'small', fontStyle:'italic'}}>
-                                    Optionally add some notes on the steps to make your meal
-                                </small>}
-                            </Form.Label>
-                        {hideSteps && !isViewer
-                        ? <div></div> 
-                        : <div>
-                            <div id='step-slot'>
-                                {stepFields}
-                            </div>
-                            {isViewer ? <div></div> 
-                            :<StepField i={steps.length} />}
-                        </div>}
-                    </div>
-                    {isViewer ? <div></div> 
-                    : <div className='row ing-row pb-3'>
-                        <div className='col col-3'></div>                       
-                        {edit ? <div></div> : <button className='butt butt-standard col col-12 mx-1 mt-3'
-                            onClick={handleAdd}>Add meal to suggestions</button>}
-                        {state && state.user && state.user.isAuth ?
-                            <button className='butt butt-good col col-12 mx-1 mt-1 mb-3'
-                            onClick={handleSave}>
-                                {saved ? '✓' : 'Save meal to account'}
-                            </button> : <div></div>
-                        }
-                    </div>}
+                    <MealGenStepsField />
+                    <MealGenSaveBtns />
                 </div>
             </div>
         </div>
