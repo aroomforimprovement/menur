@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Form, FormControl, InputGroup, Container, Row, Col } from 'react-bootstrap';
 import './mealgen.scss';
 import { useMainContext } from '../../../main/MenurRouter';
 import { getNewId } from '../../../utils/objUtils';
@@ -22,6 +21,7 @@ export const MealGen = ({meal, edit, open}) => {
     }
     const handleNameChange = (e) => {
         setName(e.target.value);
+        e.preventDefault();
     }
     const handleAddIngredient = (e) => {
         const nameField = document.getElementById(`ingredient_${ingredients.length}`);
@@ -181,25 +181,26 @@ export const MealGen = ({meal, edit, open}) => {
         return(
             <div className='container p-0'>
                 <div className='row'>
-                    <div className='col col-10'>
-                        <InputGroup size='sm' onKeyDown={handleIngredientKeyDown} className='row'>
-                            <FormControl size='sm' type='text' id={`ingredient_${i}`} placeholder='Ingredient'
+                    <div className='col col-11'>
+                        <div onKeyDown={handleIngredientKeyDown} className='row'>
+                            <input type='text' id={`ingredient_${i}`} placeholder='Ingredient'
                                 defaultValue={ingredient && ingredient.name ? ingredient.name : ''} 
-                                className='w-50'></FormControl>
-                            
-                            <Form.Select size='sm' type='select' id={`type_${i}`} 
+                                className='w-50' />
+                            <select id={`type_${i}`} name={`type_${i}`}
+                                className={'w-25'}
                                 defaultValue={ingredient && ingredient.type ? ingredient.type : 'fresh'}>
                                 <option>fresh</option>
                                 <option>dry</option>
                                 <option>tin</option>
                                 <option>spice</option>
                                 <option>cond</option>
-                            </Form.Select>
-                            <FormControl size='sm' type='number' id={`qty_${i}`} placeholder={1}
-                                defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1}></FormControl>
-                        </InputGroup>
+                            </select>
+                            <input type='number' id={`qty_${i}`} name={`qty_${i}`} placeholder={1}
+                                className={'w-25'}
+                                defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1} />
+                        </div>
                     </div>
-                    <div className='col col-2' xs={2}>
+                    <div className='col col-1'>
                         <button className='butt butt-standard-outline fa fa-plus my-1 py-2 mx-auto px-auto center'
                             style={{minWidth:'100%'}} onClick={handleAddIngredient}>{' '}
                         </button>
@@ -232,21 +233,24 @@ export const MealGen = ({meal, edit, open}) => {
         }
 
         return(
-            <Container className='p-0'>
-                <Row>
-                    <Col xs={10}>
-                        <InputGroup size='sm' onKeyDown={handleStepKeyDown} className='row'>
-                            <FormControl size='sm' as={'textarea'} id={`step_${i}`} placeholder={`Step ${i+1}`}
-                                defaultValue={step ? step : ''} className='w-75'></FormControl>
-                        </InputGroup>
-                    </Col>
-                    <Col xs={2}>
+            <div className='container p-0'>
+                <div className='row'>
+                    <div className='col col-11'>
+                        <div onKeyDown={handleStepKeyDown} className='row'>
+                            <textarea 
+                                id={`step_${i}`}
+                                name={`step_${i}`} 
+                                placeholder={`Step ${i+1}`}
+                                defaultValue={step ? step : ''} className='col' />
+                        </div>
+                    </div>
+                    <div className='col col-1'>
                         <button className={`butt butt-standard-outline fa fa-plus my-1 py-2 mx-auto px-auto center`}
                             style={{minWidth:'100%', display:'inline'}} onClick={handleAddStep}
                         ></button>
-                    </Col>
-                </Row>
-            </Container>
+                    </div>
+                </div>
+            </div>
         );
     }
 
@@ -279,73 +283,85 @@ export const MealGen = ({meal, edit, open}) => {
     }
 
     const MealGenNameField = () => {
-        return(<Row>
-                <Col xs={edit ? 10 : 12}>
+        return(<div className='row'>
+                <div className={`col col-${edit ? '10' : '12'}`}>
                     {isViewer 
                     ? <h5 className={`p-2 pt-4`}>{name}</h5>
                     : <div>
-                        <Form.Label className='mb-1 mt-2'>
+                        <label className='mb-1 mt-2'>
                             <h6>Meal name:</h6>
-                        </Form.Label>
-                        <InputGroup size='sm'>
-                            <FormControl 
+                        </label>
+                        <div>
+                            <input 
+                                className='col col-11'
+                                key='name'
                                 type='text' 
                                 id='name' 
+                                name='name'
                                 placeholder='Meal name'
                                 onChange={handleNameChange} 
                                 style={name.toLowerCase().indexOf('leftover') > -1 ? {borderColor: 'red'}: {}}
-                                value={name}></FormControl>
-                        </InputGroup>
+                                defaultValue={''}
+                                value={name} />
+                        </div>
                         <small style={{color:'red'}}>{name.toLowerCase().indexOf('leftover') > -1 
                             ? "Sorry, you can't use the word 'leftover' in a meal name" : ''}</small>
                     </div>}
-                </Col>
-                {edit ? <Col xs={1}>
+                </div>
+                {edit ? <div className='col col-1'>
                     <button className={`butt butt-alternate fa fa-lg rounded rounded-circle
                         p-3 mt-3 ${isViewer ? 'fa-edit' : 'fa-eye'}`}
                         onClick={() => {setIsViewer(!isViewer)}}></button>
-                </Col> : <div></div>}
-            </Row>)
+                </div> : <div></div>}
+            </div>)
     }
 
     const MealGenServingsField = () => {
+        
         return (<div className={`row mt-${isViewer ? '0' : '2'}`}>
                     <div className='col col-10'>
                         {isViewer 
                         ? <small>{`${state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings ? parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - parseInt(state.defaultServings) : parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - DEFAULT_SERVINGS} leftovers`}</small>
-                        : <InputGroup size='sm' >
-                            <Form.Label size='sm' htmlFor='servings' className='col col-8'>
+                        : <div >
+                            <label for='servings' className='col col-8'>
                                 <strong>Servings:</strong>
-                            </Form.Label>
-                            <FormControl type='number' id='servings' defaultValue={DEFAULT_SERVINGS}
-                                onChange={handleServingsChange} size="sm"
-                                className='col col-5 ps-2 w-25'></FormControl>
-                            <small>{`${state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings ? parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - parseInt(state.defaultServings) : parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - DEFAULT_SERVINGS} leftovers`}</small>
-                        </InputGroup>}
+                            </label>
+                            <input type='number' id='servings' name='servings' defaultValue={state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS}
+                                onChange={handleServingsChange} value={servings}
+                                className='col col-5 ps-2 w-25' />
+                            <small style={{display: 'block'}}>
+                                {
+                                    `${ state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings 
+                                    ? parseInt(servings && servings !== 'DEFAULT' 
+                                    ? servings 
+                                    : DEFAULT_SERVINGS) - parseInt(state.defaultServings) 
+                                    : parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - DEFAULT_SERVINGS} leftovers`}
+                            </small>
+                        </div>}
                     </div>
                 </div>)
     }
 
     const MealGenStepsField = () => {
         return (<div>
-                    <Form.Label size='sm' className='mt-2'>
-                        <Row >
-                            <Col xs={11}>
+                    <label className='mt-2'>
+                        <div className='row' >
+                            <div className='col col-11'>
                                 <h6 style={{display:'inline'}} className='me-1'>Steps:</h6>                                
-                            </Col>
+                            </div>
                             {isViewer ? <div></div>
-                            : <Col xs={1}>
+                            : <div className='col col-1'>
                                 <button className={`butt butt-standard rounded rounded-circle
                                     fa ${ hideSteps ? 'fa-eye' : 'fa-eye-slash'}`}
                                     onClick={() => {setHideSteps(!hideSteps)}}
                                 ></button>
-                            </Col>}
-                        </Row>
+                            </div>}
+                        </div>
                             {isViewer ? <div></div>
                             : <small style={{fontSize: 'small', fontStyle:'italic'}}>
                                 Optionally add some notes on the steps to make your meal
                             </small>}
-                        </Form.Label>
+                        </label>
                     {hideSteps && !isViewer
                     ? <div></div> 
                     : <div>
@@ -385,15 +401,15 @@ export const MealGen = ({meal, edit, open}) => {
             <MealGenHeader />
             <div hidden={!isFormVisible} className={isFormVisible ? 'meal-gen-in' : 'meal-gen-out'} > {/*hidden={!isFormVisible} >*/}
                 <div className='container meal-gen-container'>
-                    <MealGenNameField />
-                    <MealGenServingsField/>
+                    {MealGenNameField() }
+                    {MealGenServingsField()}
                     <div>
-                        <Form.Label size='sm' className='mt-2'>
+                        <label size='sm' className='mt-2'>
                             <h6 style={{display:'inline'}} className='me-1'>Ingredients:</h6>
                             {isViewer 
                             ? <div></div>
                             : <small style={{fontSize: 'small', fontStyle:'italic'}}>Use | character to separate options, like "Fresh tomatoes|Canned tomatoes", if either will do</small>}
-                        </Form.Label>
+                        </label>
                         <div id='ingredient-slot'>
                             {ingredientFields}
                         </div>
@@ -401,8 +417,8 @@ export const MealGen = ({meal, edit, open}) => {
                         ? <div></div> 
                         : <IngredientField i={ingredients.length} />}
                     </div>    
-                    <MealGenStepsField />
-                    <MealGenSaveBtns />
+                    {MealGenStepsField()}
+                    {MealGenSaveBtns()}
                 </div>
             </div>
         </div>
