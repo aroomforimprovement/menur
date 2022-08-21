@@ -179,9 +179,9 @@ export const MealGen = ({meal, edit, open}) => {
         }
 
         return(
-            <Container className='p-0'>
-                <Row>
-                    <Col xs={10}>
+            <div className='container p-0'>
+                <div className='row'>
+                    <div className='col col-10'>
                         <InputGroup size='sm' onKeyDown={handleIngredientKeyDown} className='row'>
                             <FormControl size='sm' type='text' id={`ingredient_${i}`} placeholder='Ingredient'
                                 defaultValue={ingredient && ingredient.name ? ingredient.name : ''} 
@@ -198,14 +198,14 @@ export const MealGen = ({meal, edit, open}) => {
                             <FormControl size='sm' type='number' id={`qty_${i}`} placeholder={1}
                                 defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1}></FormControl>
                         </InputGroup>
-                    </Col>
-                    <Col xs={2}>
+                    </div>
+                    <div className='col col-2' xs={2}>
                         <button className='butt butt-standard-outline fa fa-plus my-1 py-2 mx-auto px-auto center'
                             style={{minWidth:'100%'}} onClick={handleAddIngredient}>{' '}
                         </button>
-                    </Col>
-                </Row>
-            </Container>
+                    </div>
+                </div>
+            </div>
         );
     }
 
@@ -265,7 +265,7 @@ export const MealGen = ({meal, edit, open}) => {
         <div className='container meal-gen shadow shadow-lg p-0 mt-3 mb-3'>
             <div hidden={true} >{edit ? '' : isFormVisible ? showFormClasses = ' fa-caret-up' : showFormClasses = 'fa-caret-right'}</div>
             <div className='col col-12 meal-gen-toggle border border-1 rounded-3'>
-                <div className='butt butt-standard col col-12 meal-gen-toggle-btn pt-2'
+                <div className={`${edit ? 'not-butt' : 'butt butt-standard meal-gen-toggle-btn'} col col-12 pt-2`}
                     onClick={edit ? ()=>{} : handleShowForm} text={edit ? isViewer ? `Viewing ${meal.name}` : `Editing ${meal.name}` : `Create a new meal`}>
                         <div className={`fa fa-lg ${showFormClasses} ms-2`}>{' '}</div>
                         <h6 style={{display:'inline-block'}}className={'ms-3'}>

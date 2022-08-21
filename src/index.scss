@@ -9,6 +9,11 @@ body {
   min-width:100%;
 }
 
+.not-butt{
+  background-color: theme.$bg-header;
+  cursor:default;
+}
+
 /**
 body {
   margin: 0;
