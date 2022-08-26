@@ -840,67 +840,6 @@ export const MEALS = [{
         }
     ],
     "steps":[]
-},  {
-    "id": "1013",
-    "name": "Italian Chilli",
-    "mealtime": "Dinner",
-    "servings": "DEFAULT",
-    "ingredients": [{
-            "name": "Baby potatoes",
-            "type": "fresh",
-            "qty": "1",
-            "score": "4"
-        },
-        {
-            "name": "Chopped tomatoes",
-            "type": "tin",
-            "qty": "1",
-            "score": "2"
-        },
-        {
-            "name": "Borlotti beans",
-            "type": "tin",
-            "qty": "1",
-            "score": "2"
-        },
-        {
-            "name": "Pepper",
-            "type": "fresh",
-            "qty": "1",
-            "score": "2"
-        },
-        {
-            "name": "Onion",
-            "type": "fresh",
-            "qty": "1",
-            "score": "1"
-        },
-        {
-            "name": "Cumin",
-            "type": "spice",
-            "qty": "1",
-            "score": "1"
-        },
-        {
-            "name": "Cayenne pepper",
-            "type": "spice",
-            "qty": "1",
-            "score": "1"
-        },
-        {
-            "name": "Smoked paprika",
-            "type": "spice",
-            "qty": "1",
-            "score": "1"
-        },
-        {
-            "name": "Parmesan",
-            "type": "fresh",
-            "qty": "1",
-            "score": "2"
-        }
-    ],
-    "steps":[]
 },
 {
     "id": "1014",
@@ -984,7 +923,7 @@ export const MEALS = [{
 },
 {
     "id": "1015",
-    "name": "Lentils",
+    "name": "Red Lentil Soup",
     "mealtime": "Dinner",
     "servings": "DEFAULT",
     "ingredients": [{
