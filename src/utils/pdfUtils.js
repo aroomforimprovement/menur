@@ -14,13 +14,14 @@ const styles = StyleSheet.create({
         borderRadius: '20px'
     },
     section: {
-        flexGrow: 1,
         verticalAlign: 'middle',
-        marginTop: '20px'
+        marginTop: '60px',
+        padding: '10px',
+        display: 'block'
     },
     slot:{
         width: '100px',
-        minHeight: '80px',
+        minHeight: '150px',
         overflowWrap: 'break-word',
         overflow: 'wrap',
         textAlign: 'center',

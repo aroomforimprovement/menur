@@ -51,35 +51,11 @@ export const MEALS = [{
             "score": "1"
         },
         {
-            "name": "Balsamic vinegar",
-            "type": "cond",
-            "qty": "1",
-            "score": "1"
-        },
-        {
-            "name": "Honey",
-            "type": "cond",
-            "qty": "1",
-            "score": "1"
-        },
-        {
             "name": "Salt",
             "type": "cond",
             "qty": "1",
             "score": "0"
         },
-        {
-            "name": "Black pepper",
-            "type": "cond",
-            "qty": "1",
-            "score": "0"
-        },
-        {
-            "name": "Chilli flakes",
-            "type": "spice",
-            "qty": "1",
-            "score": "1"
-        }
 
     ],
     "steps":[
@@ -158,7 +134,15 @@ export const MEALS = [{
             "score": "4"
         }
     ],
-    "steps":[]
+    "steps":[
+        `Finely chop most of the onions.`,
+        `Mix the minced beef, eggs and onions in a bowl along with salt and black pepper to taste`,
+        `Ball the mixture into small fist-sized lumps, flatten into patties and lay out on grease-proof paper`,
+        `Chop some slices of tomato, hoops of onion, and prepare some salad leaves. Set aside`,
+        `Heat a small amount of oil in a pan and fry the beef patties on both sides for about 2 minutes.`,
+        `Optionally warm the buns under a grill or on the same pan`,
+        `Assemble the buns, burgers, cheese and salad to taste.`
+    ]
 },
 {
     "id": "1003",
