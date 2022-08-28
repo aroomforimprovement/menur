@@ -4,7 +4,7 @@ import '../css/meal.scss';
 import { DELIM, OR } from '../../shared/meals';
 import { useMainContext } from '../../main/MenurRouter';
 import { Modal } from 'react-bootstrap';
-import { MealGen } from '../../planner/suggestions/mealgen/MealGen';
+import { MealGen } from '../../common/mealgen/MealGen';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 const proxy = process.env.REACT_APP_PROXY_URL;

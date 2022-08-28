@@ -1,7 +1,7 @@
 import React from 'react';
 import { isMobile } from 'react-device-detect';
+import { MealGen } from '../../common/mealgen/MealGen';
 import { useMainContext } from '../../main/MenurRouter';
-import { MealGen } from './mealgen/MealGen';
 import { Suggestion } from './suggestion/Suggestion';
 
 

@@ -1,4 +1,4 @@
-@use '../../../sass/theme';
+@use '../../sass/theme';
 
 .meal-gen-toggle-btn{
   cursor: pointer;
@@ -35,4 +35,9 @@
   opacity: 1;
   transition:visibility 0s linear 0ms, opacity 500ms;
   transition: max-height 500ms;
+}
+
+input, select, textarea{
+  border:1px solid rgb(190, 190, 190);
+  border-radius: 2px;
 }

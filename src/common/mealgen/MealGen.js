@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './mealgen.scss';
-import { useMainContext } from '../../../main/MenurRouter';
-import { getNewId } from '../../../utils/objUtils';
+import { useMainContext } from '../../main/MenurRouter';
+import { getNewId } from '../../utils/objUtils';
 import toast from 'buttoned-toaster';
-import { DEFAULT_SERVINGS } from '../../../shared/meals';
-import { saveMeal } from '../../../utils/apiUtils';
+import { DEFAULT_SERVINGS } from '../../shared/meals';
+import { saveMeal } from '../../utils/apiUtils';
 
 export const MealGen = ({meal, edit, open}) => {
     const { state, dispatch } = useMainContext();
@@ -179,15 +179,15 @@ export const MealGen = ({meal, edit, open}) => {
         }
 
         return(
-            <div className='container p-0'>
+            <div className='container p-0 ms-2 mt-2'>
                 <div className='row'>
-                    <div className='col col-11'>
+                    <div className='col col-12'>
                         <div onKeyDown={handleIngredientKeyDown} className='row'>
                             <input type='text' id={`ingredient_${i}`} placeholder='Ingredient'
                                 defaultValue={ingredient && ingredient.name ? ingredient.name : ''} 
-                                className='w-50' />
+                                className='col col-7' />
                             <select id={`type_${i}`} name={`type_${i}`}
-                                className={'w-25'}
+                                className={'col col-2'}
                                 defaultValue={ingredient && ingredient.type ? ingredient.type : 'fresh'}>
                                 <option>fresh</option>
                                 <option>dry</option>
@@ -196,15 +196,16 @@ export const MealGen = ({meal, edit, open}) => {
                                 <option>cond</option>
                             </select>
                             <input type='number' id={`qty_${i}`} name={`qty_${i}`} placeholder={1}
-                                className={'w-25'}
+                                className={'col col-2'}
                                 defaultValue={ingredient && ingredient.qty ? ingredient.qty : 1} />
+                            <div className='col col-1 m-0'>
+                                <button className='butt butt-standard-outline fa fa-plus py-1 mt-1 px-auto ms-0 center'
+                                    style={{minWidth:'100%'}} onClick={handleAddIngredient}>{' '}
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div className='col col-1'>
-                        <button className='butt butt-standard-outline fa fa-plus my-1 py-2 mx-auto px-auto center'
-                            style={{minWidth:'100%'}} onClick={handleAddIngredient}>{' '}
-                        </button>
-                    </div>
+                    
                 </div>
             </div>
         );
@@ -233,7 +234,7 @@ export const MealGen = ({meal, edit, open}) => {
         }
 
         return(
-            <div className='container p-0'>
+            <div className='container p-0 ms-2 mt-1'>
                 <div className='row'>
                     <div className='col col-11'>
                         <div onKeyDown={handleStepKeyDown} className='row'>
@@ -293,7 +294,7 @@ export const MealGen = ({meal, edit, open}) => {
                         </label>
                         <div>
                             <input 
-                                className='col col-11'
+                                className='col col-11 ps-2'
                                 key='name'
                                 type='text' 
                                 id='name' 
@@ -328,7 +329,7 @@ export const MealGen = ({meal, edit, open}) => {
                             </label>
                             <input type='number' id='servings' name='servings' defaultValue={state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS}
                                 onChange={handleServingsChange} value={servings}
-                                className='col col-5 ps-2 w-25' />
+                                className='col col-1 ps-2 w-25' />
                             <small style={{display: 'block'}}>
                                 {
                                     `${ state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings 
