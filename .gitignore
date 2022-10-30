@@ -61,7 +61,8 @@ Thumbs.db
 /coverage
 
 # production
-/build
+/build/*
+!/build/_redirects
 
 # misc
 .DS_Store
