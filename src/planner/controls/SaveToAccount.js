@@ -25,9 +25,7 @@ export const SaveToAccount = () => {
     const { user } = useAuth0();
     
     const saveDataToAccount = async () => {
-        console.log("saveDataToAccount");
         if(state && state.user && state.user.access && user && user.sub){
-            console.log("user is auth")
             const name = mealplanName ? mealplanName : new Date().toString();
             const id = isEdit > 0 ? mealPlanId : getNewId();
             const body = {
@@ -75,8 +73,6 @@ export const SaveToAccount = () => {
                 setIsSaveFailed(false);
                 toast.error(`Error saving mealplan, ${name}`);
             });
-        }else{
-            console.log("no auth user");
         }
     }
 
