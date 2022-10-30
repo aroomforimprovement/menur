@@ -40,6 +40,7 @@
     "react-scripts": "^5.0",
     "react-search-box": "^2.2.1",
     "react-tooltip": "^4.2.21",
+    "run-script-os": "^1.1.6",
     "sass": "^1.49.7",
     "stream-browserify": "^3.0.0",
     "terser": "5.12.1",
@@ -50,7 +51,9 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "run-script-os",
+    "build:darwin:linux": "react-app-rewired build  && cp ./web-config/_redirects ./build/_redirects",
+    "build:win32": "react-app-rewired build && copy .\\web-config\\_redirects .\\build\\_redirects",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
