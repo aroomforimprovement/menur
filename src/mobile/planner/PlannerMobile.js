@@ -33,7 +33,7 @@ export const PlannerMobile = () => {
             setUnsaved(true);
         }
     }, [state.mealplan, state.backupPlan])
-
+    console.log(unsaved);
     return(
         <div className='mt-3'>
             <div hidden={!state.isMealPlanClosed || !state.isPickerClosed}>
