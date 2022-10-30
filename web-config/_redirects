@@ -1,4 +1,4 @@
-/api/*      https://menur-api.netlify.app/:splat    202
+/api/*      https://menur-api.netlify.app/:splat    200
 /planner    /   200
 /account    /   200
 /help       /   200
