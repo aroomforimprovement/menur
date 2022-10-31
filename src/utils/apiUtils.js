@@ -10,9 +10,9 @@ export const getAccountInfo = async (user) => {
         email: user.email
     }
     return await fetch(`${proxy}${apiUrl}app/login`, {
-        method: 'GET',
+        //method: 'GET',
         body: JSON.stringify(body),
-        mode: 'cors',
+        //mode: 'cors',
         headers: {
             Authorization: `Bearer ${user.access}`,
             'Content-Type': 'application/json'
@@ -24,7 +24,6 @@ export const getAccountInfo = async (user) => {
         }
     }, error => {
         console.error("error fetching account info: ");
-        
     }).catch(err => console.error(err))
 }
 
