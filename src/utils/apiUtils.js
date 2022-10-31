@@ -24,6 +24,7 @@ export const getAccountInfo = async (user) => {
         }
     }, error => {
         console.error("error fetching account info: ");
+        console.error(error);
     }).catch(err => console.error(err))
 }
 
