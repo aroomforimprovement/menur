@@ -10,7 +10,7 @@ export const getAccountInfo = async (user) => {
         email: user.email
     }
     return await fetch(`${proxy}${apiUrl}app/login`, {
-        method: 'POST',
+        method: 'GET',
         body: JSON.stringify(body),
         mode: 'cors',
         headers: {
