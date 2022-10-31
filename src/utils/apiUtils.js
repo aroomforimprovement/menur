@@ -9,9 +9,9 @@ export const getAccountInfo = async (user) => {
         username: user.username,
         email: user.email
     }
-    return await fetch(`${proxy}${apiUrl}app/login/${JSON.stringify(body)}`, {
-        //method: 'GET',
-        //body: JSON.stringify(body),
+    return await fetch(`${proxy}${apiUrl}app/login/`, {
+        method: 'POST',
+        body: JSON.stringify(body),
         mode: 'cors',
         headers: {
             Authorization: `Bearer ${user.access}`,
