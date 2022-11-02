@@ -302,7 +302,7 @@ export const MealGen = ({meal, edit, open}) => {
                                 placeholder='Meal name'
                                 onChange={handleNameChange} 
                                 style={name.toLowerCase().indexOf('leftover') > -1 ? {borderColor: 'red'}: {}}
-                                defaultValue={''}
+                                //defaultValue={''}
                                 value={name} />
                         </div>
                         <small style={{color:'red'}}>{name.toLowerCase().indexOf('leftover') > -1 
@@ -324,10 +324,10 @@ export const MealGen = ({meal, edit, open}) => {
                         {isViewer 
                         ? <small>{`${state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS} servings + ${state.defaultServings ? parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - parseInt(state.defaultServings) : parseInt(servings && servings !== 'DEFAULT' ? servings : DEFAULT_SERVINGS) - DEFAULT_SERVINGS} leftovers`}</small>
                         : <div >
-                            <label for='servings' className='col col-8'>
+                            <label htmlFor='servings' className='col col-8'>
                                 <strong>Servings:</strong>
                             </label>
-                            <input type='number' id='servings' name='servings' defaultValue={state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS}
+                            <input type='number' id='servings' name='servings' //defaultValue={state.defaultServings ? state.defaultServings : DEFAULT_SERVINGS}
                                 onChange={handleServingsChange} value={servings}
                                 className='col col-1 ps-2 w-25' />
                             <small style={{display: 'block'}}>
