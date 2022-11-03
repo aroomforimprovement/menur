@@ -1,0 +1,61 @@
+{
+  "name": "menur-api",
+  "version": "0.0.1",
+  "description": "menur backend",
+  "main": "functions/server.js",
+  "scripts": {
+    "start": "node express/server.js",
+    "prebuild": "node ./installer.mjs",
+    "build": "run-script-os",
+    "build:darwin:linux": "netlify-lambda install functions && netlify-lambda build express --config ./webpack.functions.js && cp ./_redirects ./functions/_redirects && cp ./_headers ./functions/_headers",
+    "build:win32": "netlify-lambda install functions && netlify-lambda build express --config ./webpack.functions.js && copy .\\_redirects .\\functions\\_redirects && copy .\\_headers .\\functions\\_headers",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run build && netlify dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://aroomforimprovement@bitbucket.org/testteamarfi/menur-api.git"
+  },
+  "author": "arfi720",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/testteamarfi/menur-api#readme",
+  "dependencies": {
+    "auth0": "^2.42.0",
+    "bson": "^4.6.5",
+    "chai": "^4.3.4",
+    "child_process": "^1.0.2",
+    "connect-busboy": "0.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.1.0",
+    "express-openid-connect": "^2.7.1",
+    "express-rate-limit": "^6.3.0",
+    "globby": "^13.1.2",
+    "jwks-rsa": "^2.0.5",
+    "mocha": "^9.2.1",
+    "mongodb": "^4.1.3",
+    "netlify-lambda": "^2.0.15",
+    "node-fetch": "^2.6.7",
+    "node-loader": "^2.0.0",
+    "raw-loader": "^4.0.2",
+    "run-script-os": "^1.1.6",
+    "serverless-http": "^3.1.0",
+    "superagent-proxy": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.19.4",
+    "@babel/plugin-transform-object-assign": "^7.18.6",
+    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/module-alias": "^2.0.1",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8",
+    "eslint": "^8.21.0",
+    "shell-loader": "^1.2.1",
+    "webpack": "^5.74.0",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
