@@ -141,7 +141,7 @@ export const ShoppingList = () => {
                 list={list.list} 
                 title={list.heading} 
                 tag={`userList_${i}`}
-                copyFunc={() => copyList([list.list], list.heading)}
+                copyFunc={() => copyList([...list.list], list.heading)}
                 downloadFunc={() => downloadList(list.list, list.heading)}
                 addFunc={() => addList(list.list, list.heading, i)} />
         )
