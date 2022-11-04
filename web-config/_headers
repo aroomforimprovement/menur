@@ -1,2 +1,8 @@
 # https://menur-api.netlify.app/*
 # X-From: Netlify
+/*
+Access-Control-Allow-Origin: *
+/*
+Access-Control-Allow-Methods: GET, POST, PUT, HEAD, OPTIONS, DELETE
+/*
+Access-Control-Allow-Headers: Content-Type, Authorization
