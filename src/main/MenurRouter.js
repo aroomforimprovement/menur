@@ -64,6 +64,7 @@ const MenurRouter = () => {
 
     useEffect(() => {
         const setInfo = async () => {
+            //console.log(state.user.access);
             await getAccountInfo({
                 userid: user.sub.replace('auth0|', ''),
                 username: user.nickname,
