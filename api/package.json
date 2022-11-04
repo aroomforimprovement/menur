@@ -7,8 +7,8 @@
     "start": "node express/server.js",
     "prebuild": "node ./installer.mjs",
     "build": "run-script-os",
-    "build:darwin:linux": "netlify-lambda install functions && netlify-lambda build express --config ./webpack.functions.js && cp ./_redirects ./functions/_redirects && cp ./_headers ./functions/_headers",
-    "build:win32": "netlify-lambda install functions && netlify-lambda build express --config ./webpack.functions.js && copy .\\_redirects .\\functions\\_redirects && copy .\\_headers .\\functions\\_headers",
+    "build:darwin:linux": "node ./installer.mjs && netlify-lambda install functions && netlify-lambda build express --config ./webpack.functions.js && cp ./_redirects ./functions/_redirects && cp ./_headers ./functions/_headers",
+    "build:win32": "node ./installer.mjs && netlify-lambda install functions && netlify-lambda build express --config ./webpack.functions.js && copy .\\_redirects .\\functions\\_redirects && copy .\\_headers .\\functions\\_headers",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm run build && netlify dev"
   },

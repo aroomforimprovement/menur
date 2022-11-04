@@ -87,8 +87,8 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "run-script-os",
-    "build:darwin:linux": "react-app-rewired build  && cp ./web-config/_redirects ./build/_redirects && cp ./web-config/_headers ./build/_headers",
-    "build:win32": "react-app-rewired build && copy .\\web-config\\_redirects .\\build\\_redirects && copy .\\web-config\\_headers .\\build\\_headers",
+    "build:darwin:linux": "react-app-rewired build  && cp ./web-config/_redirects ./build/_redirects && cp ./web-config/_headers ./build/_headers && cd ./api/ && node ./installer.mjs && netlify-lambda install functions && netlify-lambda build express --config ./webpack.functions.js",
+    "build:win32": "react-app-rewired build && copy .\\web-config\\_redirects .\\build\\_redirects && copy .\\web-config\\_headers .\\build\\_headers && cd .\\api\\ && node ./installer.mjs && netlify-lambda install functions && netlify-lambda build express --config ./webpack.functions.js",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
