@@ -1,4 +1,4 @@
-/api/*      /.netlify/functions/index/:splat  200
+/api/*      https://menur-dev.netlify.app/.netlify/api/functions/index/:splat  200
 /planner    /   200
 /account    /   200
 /help       /   200
