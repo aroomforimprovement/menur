@@ -1,5 +1,6 @@
 [[redirects]]
 from = "/api/*"
 to = "https://menur-ui.netlify.app/.netlify/functions/server/:splat"
+status = 202
     [redirects.headers]
         X-From = "Netlify"
