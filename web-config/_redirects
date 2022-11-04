@@ -1,4 +1,4 @@
-http://menur-ui.netlify.app/*    http://menur-ui.netlify.app/.netlify/functions/server/:splat  200
+/api/*    /.netlify/functions/server/:splat  200
 /planner    /   200
 /account    /   200
 /help       /   200
