@@ -61,8 +61,6 @@
     "mongodb": "^4.1.3",
     "netlify-lambda": "^2.0.15",
     "node-fetch": "^2.6.7",
-    "node-loader": "^2.0.0",
-    "raw-loader": "^4.0.2",
     "serverless-http": "^3.1.0",
     "superagent-proxy": "^3.0.0"
   },
@@ -79,6 +77,8 @@
     "babel-cli": "^6.26.0",
     "babel-loader": "^8",
     "eslint": "^8.21.0",
+    "node-loader": "^2.0.0",
+    "raw-loader": "^4.0.2",
     "shell-loader": "^1.2.1",
     "webpack": "^5.74.0",
     "webpack-node-externals": "^3.0.0"
@@ -86,8 +86,8 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "run-script-os",
-    "build:darwin:linux": "react-app-rewired build  && cp ./web-config/_redirects ./build/_redirects && cp ./web-config/_headers ./build/_headers",
-    "build:win32": "react-app-rewired build && copy .\\web-config\\_redirects .\\build\\_redirects && copy .\\web-config\\_headers .\\build\\_headers",
+    "build:darwin:linux": "react-app-rewired build  && cp ./web-config/_redirects ./build/_redirects && cp ./web-config/_headers ./build/_headers && cd ./api/ && npm install && npm run build",
+    "build:win32": "react-app-rewired build && copy .\\web-config\\_redirects .\\build\\_redirects && copy .\\web-config\\_headers .\\build\\_headers && cd .\\api\\ && npm install && npm run build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
