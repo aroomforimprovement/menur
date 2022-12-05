@@ -1,7 +1,6 @@
 const { getClient, getDb, transactionOptions } = require('../util/mongo-util');
-const { getLastDocumentId } = require('../util/transaction-util');
+const { getLastDocumentId, handleTransactionError } = require('../util/transaction-util');
 const { MongoError } = require('mongodb');
-const transactionUtil = require('../util/transaction-util');
 
 module.exports = {
     newPlan: async (data) => {
@@ -27,7 +26,7 @@ module.exports = {
                     return {ok: 1};
                 }
             }catch(error){
-                transactionUtil.handleTransactionError(data, module.exports.newPlan, error);
+                handleTransactionError(data, module.exports.newPlan, error);
                 await session.abortTransaction();
             }finally{
                 await session.endSession();

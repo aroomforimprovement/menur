@@ -1,5 +1,2 @@
 /api/*    https://menur.xyz/.netlify/functions/server/:splat  200
-/planner    /   200
-/account    /   200
-/help       /   200
-/nothing    /   200
+/*  /   200
