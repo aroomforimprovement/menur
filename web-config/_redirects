@@ -1,3 +1,3 @@
-/api/*    https://menur.xyz/.netlify/functions/server/:splat  200
-/api/*/*  https://menur.xyz/.netlify/functions/server/:splat/:splat 200
+/api/*    /.netlify/functions/server/:splat  200
+/api/*/*  /.netlify/functions/server/:splat/:splat 200
 /*  /   200
