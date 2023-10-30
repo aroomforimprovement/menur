@@ -21,7 +21,7 @@ module.exports = {
         }
     },
     isRequesterOwner: (req) => {
-        if(req.user.sub.replace('auth0|', '') === req.body.userid){
+        if(req.user.sub.replace(/.+\|/gm, '') === req.body.userid){
             return true;
         }
         return false;

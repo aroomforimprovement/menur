@@ -64,7 +64,7 @@ module.exports = {
         console.log('isValidDeleteMealReq?');
         const id = req.params[0];
         if(req.user && req.user.sub){
-            const userid = req.user.sub.replace('auth0|', '');
+            const userid = req.user.sub.replace(/.+\|/gm, '');
             let hasMeal;
             try{
                 hasMeal = await module.exports.hasMeal(userid, id);
@@ -101,7 +101,7 @@ module.exports = {
         console.log('isValidUpdateMealReq?');
         const id = req.params[0];
         if(req.user && req.user.sub){
-            const userid = req.user.sub.replace('auth0|', '');
+            const userid = req.user.sub.replace(/.+\|/gm, '');
             let hasMeal;
             try{
                 hasMeal = await module.exports.hasMeal(userid, id);

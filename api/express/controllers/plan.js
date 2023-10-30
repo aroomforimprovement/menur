@@ -90,7 +90,7 @@ module.exports = {
         console.log('isValidDeletePlanReq?');
         const id = req.params[0];
         if(req.user && req.user && req.user.sub){
-            const userid = req.user.sub.replace('auth0|', '');
+            const userid = req.user.sub.replace(/.+\|/gm, '');
             let hasPlan;
             try{
                 hasPlan = await module.exports.hasPlan(userid, id);
